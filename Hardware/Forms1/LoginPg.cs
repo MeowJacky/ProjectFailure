@@ -81,6 +81,11 @@ namespace Forms1
                 myConnect.Close();
             }
         }
+
+        private void LoginPg_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
