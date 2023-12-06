@@ -34,18 +34,20 @@
             // adminusername
             // 
             this.adminusername.AutoSize = true;
-            this.adminusername.Location = new System.Drawing.Point(66, 66);
+            this.adminusername.Location = new System.Drawing.Point(74, 82);
             this.adminusername.Name = "adminusername";
-            this.adminusername.Size = new System.Drawing.Size(0, 17);
+            this.adminusername.Size = new System.Drawing.Size(0, 20);
             this.adminusername.TabIndex = 1;
             this.adminusername.Click += new System.EventHandler(this.label1_Click);
             // 
             // Admin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 488);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(1010, 610);
             this.Controls.Add(this.adminusername);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Admin";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Admin_Load);
