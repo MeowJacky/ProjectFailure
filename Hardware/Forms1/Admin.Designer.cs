@@ -34,10 +34,12 @@
             // adminusername
             // 
             this.adminusername.AutoSize = true;
-            this.adminusername.Location = new System.Drawing.Point(74, 82);
+            this.adminusername.ForeColor = System.Drawing.Color.White;
+            this.adminusername.Location = new System.Drawing.Point(918, 35);
             this.adminusername.Name = "adminusername";
-            this.adminusername.Size = new System.Drawing.Size(0, 20);
+            this.adminusername.Size = new System.Drawing.Size(41, 20);
             this.adminusername.TabIndex = 1;
+            this.adminusername.Text = " bnjv";
             this.adminusername.Click += new System.EventHandler(this.label1_Click);
             // 
             // Admin
