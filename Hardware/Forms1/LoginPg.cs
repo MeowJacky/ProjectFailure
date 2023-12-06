@@ -56,11 +56,15 @@ namespace Forms1
                 //Step 4: Access data
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
-                    MessageBox.Show("Login Successful");
+                {
+                    
+                    AdminPg frm = new AdminPg();
+                    frm.ShowDialog();
 
+                }
                 else
 
-                    MessageBox.Show("Login Fail");
+                    MessageBox.Show("Incorrect Username or Password");
                 //Step 5: Close connection
                 reader.Close();
             }

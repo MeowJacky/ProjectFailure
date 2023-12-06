@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPg.Designer.cs">
+      <DependentUpon>AdminPg.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginPg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminPg.resx">
+      <DependentUpon>AdminPg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPg.resx">
       <DependentUpon>LoginPg.cs</DependentUpon>
     </EmbeddedResource>
