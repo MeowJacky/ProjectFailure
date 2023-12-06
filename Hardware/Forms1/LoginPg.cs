@@ -43,7 +43,7 @@ namespace Forms1
             //Step 1: Open Connection
             SqlConnection myConnect = new SqlConnection(strConnectionString);
             //Step 2: Create command
-            string strCommandText = "SELECT Name, Password FROM Admins";
+            string strCommandText = "SELECT Name, Password, Authority FROM Admins";
             //Add a WHERE clause to SQL statement
             strCommandText += " WHERE Name=@uname AND Password=@pwd";
             SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
@@ -58,9 +58,20 @@ namespace Forms1
                 if (reader.Read())
                 {
                     MessageBox.Show("Login Successful");
-                    Admin adminform = new Admin(tbUserName.Text);
-                    adminform.Show();
+                    int userAuthority = Convert.ToInt32(reader["Authority"]);
+                    if (userAuthority == 999)
+                    {
+                        User userform = new User(tbUserName.Text);
+                        userform.Show();
+                    }
+                    else
+                    {
+                        Admin adminform = new Admin(tbUserName.Text);
+                        adminform.Show();
 
+
+
+                    }
                     this.Hide();
                 }
                 else
