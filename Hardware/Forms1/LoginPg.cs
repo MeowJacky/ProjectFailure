@@ -56,11 +56,17 @@ namespace Forms1
                 //Step 4: Access data
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
+                {
                     MessageBox.Show("Login Successful");
+                    Admin adminform = new Admin(tbUserName.Text);
+                    adminform.Show();
 
+                    this.Hide();
+                }
                 else
-
+                {
                     MessageBox.Show("Login Fail");
+                }
                 //Step 5: Close connection
                 reader.Close();
             }
