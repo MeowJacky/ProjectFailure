@@ -57,14 +57,16 @@ namespace Forms1
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    
-                    AdminPg frm = new AdminPg();
-                    frm.ShowDialog();
+                    MessageBox.Show("Login Successful");
+                    Admin adminform = new Admin(tbUserName.Text);
+                    adminform.Show();
 
+                    this.Hide();
                 }
                 else
-
-                    MessageBox.Show("Incorrect Username or Password");
+                {
+                    MessageBox.Show("Login Fail");
+                }
                 //Step 5: Close connection
                 reader.Close();
             }
