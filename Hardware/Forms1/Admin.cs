@@ -40,5 +40,17 @@ namespace Forms1
         {
 
         }
+
+        private void hiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageAdmin manage = new ManageAdmin(this.username);
+            manage.Show();
+            this.Close();
+        }
     }
 }
