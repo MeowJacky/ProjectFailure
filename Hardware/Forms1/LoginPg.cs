@@ -58,9 +58,6 @@ namespace Forms1
                 if (reader.Read())
                 {
                     MessageBox.Show("Login Successful");
-
-
-
                     int userAuthority = Convert.ToInt32(reader["Authority"]);
                     if (userAuthority == 999)
                     {
@@ -71,11 +68,11 @@ namespace Forms1
                     {
                         Admin adminform = new Admin(tbUserName.Text);
                         adminform.Show();
+
+
+
                     }
                     this.Hide();
-
-
-
                 }
                 else
                 {
