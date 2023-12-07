@@ -139,6 +139,7 @@
   <ItemGroup>
     <None Include="Resources\Screenshot %28145%29.png" />
     <None Include="Resources\logo.png" />
+    <None Include="Resources\logo1.png" />
     <Content Include="UserDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
