@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.clockin = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.editclockin = new System.Windows.Forms.Button();
-            this.Viewusers = new System.Windows.Forms.ToolStripMenuItem();
+            this.refresh = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             this.SuspendLayout();
@@ -98,6 +98,13 @@
             this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
             this.manageUsersToolStripMenuItem.Text = "Manage Users";
             // 
+            // Viewusers
+            // 
+            this.Viewusers.Name = "Viewusers";
+            this.Viewusers.Size = new System.Drawing.Size(177, 26);
+            this.Viewusers.Text = "View All Users";
+            this.Viewusers.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
@@ -145,16 +152,16 @@
             // 
             // clockin
             // 
-            chartArea2.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.clockin.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.clockin.Legends.Add(legend1);
             this.clockin.Location = new System.Drawing.Point(197, 188);
             this.clockin.Name = "clockin";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.clockin.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.clockin.Series.Add(series1);
             this.clockin.Size = new System.Drawing.Size(732, 327);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "clockin";
@@ -169,18 +176,21 @@
             this.editclockin.UseVisualStyleBackColor = true;
             this.editclockin.Click += new System.EventHandler(this.editclockin_Click);
             // 
-            // Viewusers
+            // refresh
             // 
-            this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(210, 30);
-            this.Viewusers.Text = "View All Users";
-            this.Viewusers.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.refresh.Location = new System.Drawing.Point(780, 354);
+            this.refresh.Name = "refresh";
+            this.refresh.Size = new System.Drawing.Size(139, 36);
+            this.refresh.TabIndex = 5;
+            this.refresh.Text = "Refresh Data";
+            this.refresh.UseVisualStyleBackColor = true;
+            this.refresh.Click += new System.EventHandler(this.refresh_Click);
             // 
             // Admin
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1141, 527);
-            this.Controls.Add(this.refreshed);
+            this.Controls.Add(this.refresh);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.editclockin);
             this.Controls.Add(this.AUsername);
@@ -217,5 +227,6 @@
         private System.Windows.Forms.Button editclockin;
         private System.Windows.Forms.ToolStripMenuItem Viewusers;
         private System.Windows.Forms.Button refreshed;
+        private System.Windows.Forms.Button refresh;
     }
 }

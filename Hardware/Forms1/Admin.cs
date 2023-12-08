@@ -240,7 +240,7 @@ namespace Forms1
             this.Close();
         }
 
-        private void refreshed_Click(object sender, EventArgs e)
+        private void refresh_Click(object sender, EventArgs e)
         {
             PopulateChartData();
         }
