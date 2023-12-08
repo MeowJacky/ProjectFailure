@@ -74,9 +74,15 @@ namespace Forms1
                             clockin.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
 
                             // Set the Y-axis labels with the desired interval
-                            clockin.ChartAreas[0].AxisY.Interval = 1; // Assuming one unit per person
+                            clockin.ChartAreas[0].AxisY.Interval = 1;
+                            clockin.ChartAreas[0].AxisY.Minimum = 0; // Set based on your data
+                            clockin.ChartAreas[0].AxisY.Maximum = databaserows(); // Set based on your data
+                            Console.WriteLine(databaserows());
+
+
                             clockin.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
 
+                            clockin.MouseUp -= Clockin_MouseClick;
                             clockin.MouseUp += Clockin_MouseClick;
 
                             // Check if the series has data before adding it to the chart
@@ -100,6 +106,24 @@ namespace Forms1
                 MessageBox.Show($"Error populating chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private int databaserows()
+        {
+            int rowCount = 0;
+
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Admins";
+    
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    rowCount = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+
+            return rowCount;
+        }
 
         private void Clockin_MouseClick(object sender, MouseEventArgs e)
         {
@@ -109,6 +133,7 @@ namespace Forms1
             if (result.Series != null && result.PointIndex >= 0)
             {
                 // Check if the clicked bar represents "Present"
+                Console.WriteLine(result.Series.Points[result.PointIndex].Tag);
                 int clockInValue = Convert.ToInt32(result.Series.Points[result.PointIndex].Tag);
 
                 if (clockInValue == 1)
@@ -176,8 +201,9 @@ namespace Forms1
             form.ShowDialog();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            PopulateChartData();
 
         }
 
