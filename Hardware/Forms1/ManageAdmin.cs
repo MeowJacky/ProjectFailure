@@ -50,15 +50,19 @@ namespace Forms1
             SqlConnection myConnect = new SqlConnection(strConnectionString);
             //Step 2: Create Command
             string strCommandText = "SELECT Name, UniqueRFID, NRIC, Address, Contact, Authority FROM Admins "; //Add a WHERE clause to SQL statement
-            strCommandText += "WHERE UniqueUserID=@UserID";
-            SqlCommand cmd = new SqlCommand(strCommandText, myConnect); cmd.Parameters.AddWithValue("@UserID", tbUserID.Text);
+            strCommandText += "WHERE UniqueUserID=@UserID OR Name=@Name Or UniqueRFID=@UniqueRFID";
+           
+            SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
+            cmd.Parameters.AddWithValue("@UserID", tbUserID.Text);
+            cmd.Parameters.AddWithValue("@Name", tbName.Text);
+            cmd.Parameters.AddWithValue("@UniqueRFID", tbName.Text);
             //Step 3: Open Connection and retrieve data by calling ExecuteReader
             myConnect.Open();
             //Step 4: Access Data
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-
+                tbUserID.Text = reader["UniqueUserID"].ToString();
                 tbName.Text = reader["Name"].ToString();
                 tbRFID.Text = reader["UniqueRFID"].ToString();
                 tbNRIC.Text = reader["NRIC"].ToString();
@@ -110,6 +114,44 @@ namespace Forms1
             Admin adminpg = new Admin(this.username);
             adminpg.Show();
             this.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (DeleteUserRecord(tbRFID.Text) > 0)
+                {
+                    MessageBox.Show("UserName = " + tbName.Text + "has been deleted");
+                    tbAdd.Text = "";
+                    tbAuthority.Text = "";
+                    tbContact.Text = "";
+                    tbName.Text = "";
+                    tbNRIC.Text = "";
+                    tbRFID.Text = "";
+                    tbUserID.Text = "";
+                }
+                else
+                    MessageBox.Show("Delete Failed");
+            }
+        }
+
+        private int DeleteUserRecord(string strRFID)
+        {
+            int result = 0;
+            //Step 1: Create connection
+            SqlConnection myConnect = new SqlConnection(strConnectionString);
+            //Step 2: Create command
+            String strCommandText = "DELETE FROM Admins WHERE UniqueRFID = @UniqueRFID";
+            SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
+            updateCmd.Parameters.AddWithValue("@UniqueRFID", strRFID);
+            //Step 3: Open connection and detele data by calling ExecutenonQuery() 
+            myConnect.Open();
+            //Step 4: Execute command
+            result = updateCmd.ExecuteNonQuery();
+            //Step 5: Close Connection
+            myConnect.Close();
+            return result;
         }
     }
 }
