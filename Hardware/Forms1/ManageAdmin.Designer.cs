@@ -46,6 +46,7 @@
             this.btnModify = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbUserID
@@ -181,9 +182,9 @@
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(54, 400);
+            this.btnModify.Location = new System.Drawing.Point(231, 400);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(165, 53);
+            this.btnModify.Size = new System.Drawing.Size(150, 60);
             this.btnModify.TabIndex = 15;
             this.btnModify.Text = "Modify";
             this.btnModify.UseVisualStyleBackColor = true;
@@ -191,9 +192,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(324, 400);
+            this.btnDelete.Location = new System.Drawing.Point(431, 400);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(165, 53);
+            this.btnDelete.Size = new System.Drawing.Size(150, 60);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete Admin";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -201,13 +202,23 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(581, 400);
+            this.btnCancel.Location = new System.Drawing.Point(624, 400);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(165, 53);
+            this.btnCancel.Size = new System.Drawing.Size(150, 60);
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(26, 400);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 60);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Clear Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // ManageAdmin
             // 
@@ -215,6 +226,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(796, 486);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnModify);
@@ -261,5 +273,6 @@
         private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button button1;
     }
 }
