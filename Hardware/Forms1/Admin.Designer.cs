@@ -43,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.clockin = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.editclockin = new System.Windows.Forms.Button();
+            this.Viewusers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +86,7 @@
             // manageUsersToolStripMenuItem
             // 
             this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Viewusers,
             this.currentAdminToolStripMenuItem,
             this.currentUserToolStripMenuItem,
             this.addAdminToolStripMenuItem,
@@ -97,25 +99,27 @@
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
-            this.currentAdminToolStripMenuItem.Text = "Current Admin";
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentAdminToolStripMenuItem.Text = "Search Admin";
+            this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
             // currentUserToolStripMenuItem
             // 
             this.currentUserToolStripMenuItem.Name = "currentUserToolStripMenuItem";
-            this.currentUserToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
-            this.currentUserToolStripMenuItem.Text = "Current User";
+            this.currentUserToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentUserToolStripMenuItem.Text = "Search User";
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.addAdminToolStripMenuItem.Text = "Add Admin";
+            this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_1);
             // 
             // addUserToolStripMenuItem
             // 
             this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.addUserToolStripMenuItem.Text = "Add User";
             // 
             // signOutToolStripMenuItem
@@ -162,6 +166,13 @@
             this.editclockin.UseVisualStyleBackColor = true;
             this.editclockin.Click += new System.EventHandler(this.editclockin_Click);
             // 
+            // Viewusers
+            // 
+            this.Viewusers.Name = "Viewusers";
+            this.Viewusers.Size = new System.Drawing.Size(210, 30);
+            this.Viewusers.Text = "View All Users";
+            this.Viewusers.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // Admin
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -200,5 +211,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataVisualization.Charting.Chart clockin;
         private System.Windows.Forms.Button editclockin;
+        private System.Windows.Forms.ToolStripMenuItem Viewusers;
     }
 }

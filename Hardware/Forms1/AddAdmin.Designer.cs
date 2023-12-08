@@ -213,6 +213,7 @@
             this.Controls.Add(this.lblname);
             this.Name = "AddAdmin";
             this.Text = "AddAdmin";
+            this.Load += new System.EventHandler(this.AddAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
