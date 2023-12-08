@@ -19,8 +19,8 @@ namespace Forms1
         private string username;
         public ViewAllUsers(string username)
         {
-            Adusername.Text = username;
             InitializeComponent();
+            Adusername.Text = username;
         }
 
 

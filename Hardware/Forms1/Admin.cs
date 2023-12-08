@@ -239,5 +239,17 @@ namespace Forms1
             addmin.Show();
             this.Close();
         }
+
+        private void AUsername_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginPg login = new LoginPg();
+            login.Show();
+            this.Close();
+        }
     }
 }

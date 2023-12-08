@@ -180,6 +180,8 @@
             // 
             // manageUsersToolStripMenuItem
             // 
+            this.manageUsersToolStripMenuItem.Checked = true;
+            this.manageUsersToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.adminToolStripMenuItem,
             this.usersToolStripMenuItem,
