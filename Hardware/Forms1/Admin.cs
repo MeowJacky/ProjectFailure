@@ -200,18 +200,6 @@ namespace Forms1
             editclockin form = new editclockin();
             form.ShowDialog();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PopulateChartData();
-            nothing();
-
-        }
-        private void nothing()
-        {
-
-        }
-
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ViewAllUsers allusers = new ViewAllUsers(this.username);
@@ -250,6 +238,11 @@ namespace Forms1
             LoginPg login = new LoginPg();
             login.Show();
             this.Close();
+        }
+
+        private void refreshed_Click(object sender, EventArgs e)
+        {
+            PopulateChartData();
         }
     }
 }
