@@ -167,8 +167,13 @@ namespace Hardware
                 truedistance = getDistance();
                 if (truedistance < 20)
                 {
+                    close = true;
                     sendtowindows("Close=" + close);
                     close = false;
+                }
+                else
+                {
+                    sendtowindows("Close=" + close);
                 }
                 truetemp = getTemp();
                 sendtowindows("Temp=" + truetemp);

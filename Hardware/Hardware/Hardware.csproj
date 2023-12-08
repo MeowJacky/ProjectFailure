@@ -96,6 +96,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SerialComms.cs" />
     <Compile Include="StartupTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -131,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GrovePi">
-      <HintPath>..\..\..\GrovePi.dll</HintPath>
+      <HintPath>..\..\..\Lab\Lab 1\GrovePi.dll</HintPath>
     </Reference>
     <Reference Include="RpiCommsUtil">
       <HintPath>..\..\..\Week 2\DataCommsStarters\RpiCommsUtil.dll</HintPath>
