@@ -175,5 +175,10 @@ namespace Forms1
             editclockin form = new editclockin();
             form.ShowDialog();
         }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
