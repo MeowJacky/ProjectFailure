@@ -82,6 +82,7 @@ namespace Forms1
 
                             clockin.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
 
+                            clockin.MouseUp -= Clockin_MouseClick;
                             clockin.MouseUp += Clockin_MouseClick;
 
                             // Check if the series has data before adding it to the chart
@@ -132,6 +133,7 @@ namespace Forms1
             if (result.Series != null && result.PointIndex >= 0)
             {
                 // Check if the clicked bar represents "Present"
+                Console.WriteLine(result.Series.Points[result.PointIndex].Tag);
                 int clockInValue = Convert.ToInt32(result.Series.Points[result.PointIndex].Tag);
 
                 if (clockInValue == 1)
@@ -199,9 +201,10 @@ namespace Forms1
             form.ShowDialog();
         }
 
-        private void refresh_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             PopulateChartData();
+
         }
     }
 }
