@@ -46,10 +46,34 @@ namespace Forms1
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageAdmin manage = new ManageAdmin(this.username);
+            manage.Show();
+            this.Close();
+        }
+
+        private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Admin adminpg = new Admin(this.username);
             adminpg.Show();
+            this.Close();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginPg login = new LoginPg();
+            login.Show();
             this.Close();
         }
     }
