@@ -48,6 +48,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDBDataSet)).BeginInit();
@@ -75,7 +77,7 @@
             this.dataGridViewUsers.Name = "dataGridViewUsers";
             this.dataGridViewUsers.ReadOnly = true;
             this.dataGridViewUsers.RowTemplate.Height = 28;
-            this.dataGridViewUsers.Size = new System.Drawing.Size(854, 494);
+            this.dataGridViewUsers.Size = new System.Drawing.Size(860, 482);
             this.dataGridViewUsers.TabIndex = 0;
             this.dataGridViewUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -112,7 +114,9 @@
             // 
             this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.adminToolStripMenuItem,
-            this.usersToolStripMenuItem});
+            this.usersToolStripMenuItem,
+            this.addAdminToolStripMenuItem,
+            this.addUsersToolStripMenuItem});
             this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 200, 0, 0);
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
             this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
@@ -122,15 +126,15 @@
             // adminToolStripMenuItem
             // 
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
-            this.adminToolStripMenuItem.Text = "Admin";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.adminToolStripMenuItem.Text = "Current Admin";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
-            this.usersToolStripMenuItem.Text = "Users";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.usersToolStripMenuItem.Text = "Current Users";
             // 
             // uniqueUserIDDataGridViewTextBoxColumn
             // 
@@ -203,7 +207,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(188, 18);
+            this.label1.Location = new System.Drawing.Point(195, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(291, 30);
             this.label1.TabIndex = 2;
@@ -215,6 +219,18 @@
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
             this.signOutToolStripMenuItem.Text = "Sign Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
+            // 
+            // addAdminToolStripMenuItem
+            // 
+            this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.addAdminToolStripMenuItem.Text = "Add Admin";
+            // 
+            // addUsersToolStripMenuItem
+            // 
+            this.addUsersToolStripMenuItem.Name = "addUsersToolStripMenuItem";
+            this.addUsersToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.addUsersToolStripMenuItem.Text = "Add Users";
             // 
             // ViewAllUsers
             // 
@@ -260,5 +276,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addUsersToolStripMenuItem;
     }
 }

@@ -40,7 +40,7 @@
             // 
             this.userusername.AutoSize = true;
             this.userusername.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.userusername.Location = new System.Drawing.Point(647, 9);
+            this.userusername.Location = new System.Drawing.Point(631, 9);
             this.userusername.Name = "userusername";
             this.userusername.Size = new System.Drawing.Size(51, 20);
             this.userusername.TabIndex = 0;
