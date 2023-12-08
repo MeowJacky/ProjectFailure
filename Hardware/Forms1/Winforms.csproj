@@ -69,11 +69,35 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="editclockin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editclockin.Designer.cs">
+      <DependentUpon>editclockin.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginPg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginPg.Designer.cs">
       <DependentUpon>LoginPg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageAdmin.Designer.cs">
+      <DependentUpon>ManageAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="notpresent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="notpresent.Designer.cs">
+      <DependentUpon>notpresent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="present.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="present.Designer.cs">
+      <DependentUpon>present.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,11 +107,34 @@
     <Compile Include="User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAllUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAllUsers.Designer.cs">
+      <DependentUpon>ViewAllUsers.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="editclockin.resx">
+      <DependentUpon>editclockin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPg.resx">
       <DependentUpon>LoginPg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageAdmin.resx">
+      <DependentUpon>ManageAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="notpresent.resx">
+      <DependentUpon>notpresent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="present.resx">
+      <DependentUpon>present.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -97,9 +144,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewAllUsers.resx">
+      <DependentUpon>ViewAllUsers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -110,6 +161,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="UserDBDataSet.xsc">
+      <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UserDBDataSet.xss">
+      <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -127,6 +189,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot %28145%29.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\logo1.png" />
+    <Content Include="UserDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserDB_log.ldf">
+      <DependentUpon>UserDB.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

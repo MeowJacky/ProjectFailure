@@ -23,5 +23,22 @@ namespace Forms1
         {
 
         }
+
+        private void userusername_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            LoginPg login = new LoginPg();
+            login.Show();
+            this.Close();
+        }
     }
 }
