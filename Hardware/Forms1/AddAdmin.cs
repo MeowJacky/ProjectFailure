@@ -41,14 +41,15 @@ namespace Forms1
                 SqlConnection myConnect = new SqlConnection(strConnectionString);
                 //Step 2: Create command
                 String strCommandText =
-                "INSERT Admins (Name, UniqueRFID, NRIC, Address, Contact, Authority)" + "VALUES (@NewName, @NewRFID, @NewNRIC, @NewAdd, @NewContact, @NewAuthority)";
+                "INSERT Admins (Name, UniqueRFID, NRIC, Address, Contact, Authority, Password)" + "VALUES (@NewName, @NewRFID, @NewNRIC, @NewAdd, @NewContact, @NewAuthority, @NewPassword)";
                 SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
                 updateCmd.Parameters.AddWithValue("@NewName", tbname.Text);
                 updateCmd.Parameters.AddWithValue("@NewRFID", tbRFID.Text);
                 updateCmd.Parameters.AddWithValue("@NewNRIC", tbNRIC.Text);
                 updateCmd.Parameters.AddWithValue("@NewAdd", tbadd.Text);
                 updateCmd.Parameters.AddWithValue("@NewContact", tbcontact.Text);
-                updateCmd.Parameters.AddWithValue("@NewAuthority", AuthoritySelect);
+                updateCmd.Parameters.AddWithValue("@NewAuthority", AuthoritySelect.Value);
+                updateCmd.Parameters.AddWithValue("@NewPassword", tbpassword.Text);
                 //Step 3: Open Connection and retrieve data by calling ExecuteReader
                 myConnect.Open();
                 //Step 4: ExecuteCommand
@@ -60,7 +61,13 @@ namespace Forms1
                     MessageBox.Show("New Admin Failed to Add");
                 //Step 5: Close Connection
                 myConnect.Close();
-                Close();
+                tbpassword.Text = "";
+                tbRFID.Text = "";
+                tbNRIC.Text = "";
+                tbname.Text = "";
+                tbcontact.Text = "";
+                tbadd.Text = "";
+                AuthoritySelect.Value = 1;
             }
         }
 
@@ -77,6 +84,26 @@ namespace Forms1
         }
 
         private void AddAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
