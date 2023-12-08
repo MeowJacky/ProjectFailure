@@ -98,7 +98,19 @@ namespace Forms1
 
         }
 
-        private void chart1_Click_1(object sender, EventArgs e)
+        private void hiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageAdmin manage = new ManageAdmin(this.username);
+            manage.Show();
+            this.Close();
+        }
+
+        private void Admin_Load_1(object sender, EventArgs e)
         {
 
         }
