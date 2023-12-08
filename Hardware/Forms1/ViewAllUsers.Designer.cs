@@ -50,6 +50,7 @@
             this.addUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.Adusername = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDBDataSet)).BeginInit();
@@ -154,6 +155,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -192,26 +194,27 @@
             // adminToolStripMenuItem
             // 
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
-            this.adminToolStripMenuItem.Text = "Current Admin";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.adminToolStripMenuItem.Text = "Search Admin";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
-            this.usersToolStripMenuItem.Text = "Current User";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.usersToolStripMenuItem.Text = "Search User";
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.addAdminToolStripMenuItem.Text = "Add Admin";
+            this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click);
             // 
             // addUsersToolStripMenuItem
             // 
             this.addUsersToolStripMenuItem.Name = "addUsersToolStripMenuItem";
-            this.addUsersToolStripMenuItem.Size = new System.Drawing.Size(212, 30);
+            this.addUsersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.addUsersToolStripMenuItem.Text = "Add Users";
             // 
             // signOutToolStripMenuItem
@@ -232,12 +235,24 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "User\'s Information Table";
             // 
+            // Adusername
+            // 
+            this.Adusername.AutoSize = true;
+            this.Adusername.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Adusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Adusername.Location = new System.Drawing.Point(27, 223);
+            this.Adusername.Name = "Adusername";
+            this.Adusername.Size = new System.Drawing.Size(137, 22);
+            this.Adusername.TabIndex = 3;
+            this.Adusername.Text = "adminusername";
+            // 
             // ViewAllUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1059, 554);
+            this.Controls.Add(this.Adusername);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewUsers);
             this.Controls.Add(this.menuStrip1);
@@ -278,5 +293,6 @@
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addUsersToolStripMenuItem;
+        private System.Windows.Forms.Label Adusername;
     }
 }

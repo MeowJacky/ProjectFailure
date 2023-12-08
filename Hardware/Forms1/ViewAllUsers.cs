@@ -17,10 +17,12 @@ namespace Forms1
         // retrieve connection information from App.Config
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private string username;
-        public ViewAllUsers()
+        public ViewAllUsers(string username)
         {
+            Adusername.Text = username;
             InitializeComponent();
         }
+
 
         private void ViewAllUsers_Load(object sender, EventArgs e)
         {
@@ -73,6 +75,18 @@ namespace Forms1
         {
             LoginPg login = new LoginPg();
             login.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username);
+            addmin.Show();
             this.Close();
         }
     }

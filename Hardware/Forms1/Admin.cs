@@ -211,5 +211,33 @@ namespace Forms1
         {
 
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ViewAllUsers allusers = new ViewAllUsers(this.username);
+            allusers.Show();
+            this.Close();
+        }
+
+        private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageAdmin manage = new ManageAdmin(this.username);
+            manage.Show();
+            this.Close();
+        }
+
+        private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username);
+            addmin.Show();
+            this.Close();
+        }
+
+        private void addAdminToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username);
+            addmin.Show();
+            this.Close();
+        }
     }
 }
