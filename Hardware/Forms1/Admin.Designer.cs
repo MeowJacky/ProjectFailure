@@ -34,6 +34,7 @@
             this.clockin = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AUsername = new System.Windows.Forms.Label();
             this.editclockin = new System.Windows.Forms.Button();
+            this.refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,9 +73,20 @@
             this.editclockin.UseVisualStyleBackColor = true;
             this.editclockin.Click += new System.EventHandler(this.editclockin_Click);
             // 
+            // refresh
+            // 
+            this.refresh.Location = new System.Drawing.Point(870, 401);
+            this.refresh.Name = "refresh";
+            this.refresh.Size = new System.Drawing.Size(71, 23);
+            this.refresh.TabIndex = 3;
+            this.refresh.Text = "Refresh";
+            this.refresh.UseVisualStyleBackColor = true;
+            this.refresh.Click += new System.EventHandler(this.refresh_Click);
+            // 
             // Admin
             // 
             this.ClientSize = new System.Drawing.Size(1141, 527);
+            this.Controls.Add(this.refresh);
             this.Controls.Add(this.editclockin);
             this.Controls.Add(this.AUsername);
             this.Controls.Add(this.clockin);
@@ -95,5 +107,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart clockin;
         private System.Windows.Forms.Label AUsername;
         private System.Windows.Forms.Button editclockin;
+        private System.Windows.Forms.Button refresh;
     }
 }

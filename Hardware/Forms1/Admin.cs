@@ -74,7 +74,12 @@ namespace Forms1
                             clockin.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
 
                             // Set the Y-axis labels with the desired interval
-                            clockin.ChartAreas[0].AxisY.Interval = 1; // Assuming one unit per person
+                            clockin.ChartAreas[0].AxisY.Interval = 1;
+                            clockin.ChartAreas[0].AxisY.Minimum = 0; // Set based on your data
+                            clockin.ChartAreas[0].AxisY.Maximum = databaserows(); // Set based on your data
+                            Console.WriteLine(databaserows());
+
+
                             clockin.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
 
                             clockin.MouseUp += Clockin_MouseClick;
@@ -99,6 +104,24 @@ namespace Forms1
                 // Handle exceptions appropriately
                 MessageBox.Show($"Error populating chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private int databaserows()
+        {
+            int rowCount = 0;
+
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Admins";
+    
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    rowCount = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+
+            return rowCount;
         }
 
         private void Clockin_MouseClick(object sender, MouseEventArgs e)
@@ -174,6 +197,11 @@ namespace Forms1
         {
             editclockin form = new editclockin();
             form.ShowDialog();
+        }
+
+        private void refresh_Click(object sender, EventArgs e)
+        {
+            PopulateChartData();
         }
     }
 }
