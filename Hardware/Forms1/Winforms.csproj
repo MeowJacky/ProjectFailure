@@ -69,6 +69,12 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="editclockin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editclockin.Designer.cs">
+      <DependentUpon>editclockin.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginPg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,18 @@
     </Compile>
     <Compile Include="ManageAdmin.Designer.cs">
       <DependentUpon>ManageAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="notpresent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="notpresent.Designer.cs">
+      <DependentUpon>notpresent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="present.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="present.Designer.cs">
+      <DependentUpon>present.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,11 +121,20 @@
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="editclockin.resx">
+      <DependentUpon>editclockin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPg.resx">
       <DependentUpon>LoginPg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageAdmin.resx">
       <DependentUpon>ManageAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="notpresent.resx">
+      <DependentUpon>notpresent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="present.resx">
+      <DependentUpon>present.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
