@@ -34,6 +34,7 @@
             // 
             this.ClientSize = new System.Drawing.Size(876, 306);
             this.Name = "Admin";
+            this.Load += new System.EventHandler(this.Admin_Load_1);
             this.ResumeLayout(false);
 
         }

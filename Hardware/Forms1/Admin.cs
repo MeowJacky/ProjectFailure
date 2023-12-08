@@ -109,5 +109,10 @@ namespace Forms1
             manage.Show();
             this.Close();
         }
+
+        private void Admin_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
