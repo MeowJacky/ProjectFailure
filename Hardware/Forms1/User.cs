@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Forms1
 {
     public partial class User : Form
     {
+        private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
+
+        private string username;
         public User(string username)
         {
             InitializeComponent();
+            this.username=username;
 
             userusername.Text = username;
         }
@@ -26,7 +32,8 @@ namespace Forms1
 
         private void userusername_Click(object sender, EventArgs e)
         {
-
+            ManageUser userProfile = new ManageUser(this.username);
+            userProfile.Show();
         }
 
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,6 +46,16 @@ namespace Forms1
             LoginPg login = new LoginPg();
             login.Show();
             this.Close();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
