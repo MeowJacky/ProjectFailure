@@ -50,6 +50,8 @@
             this.userusername.TabIndex = 0;
             this.userusername.Text = "label1";
             this.userusername.Click += new System.EventHandler(this.userusername_Click);
+            this.userusername.MouseLeave += new System.EventHandler(this.userusername_MouseLeave);
+            this.userusername.MouseHover += new System.EventHandler(this.username_MouseHover);
             // 
             // menuStrip1
             // 
