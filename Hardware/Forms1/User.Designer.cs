@@ -78,6 +78,7 @@
             this.projectWSYSToolStripMenuItem.Name = "projectWSYSToolStripMenuItem";
             this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(178, 36);
             this.projectWSYSToolStripMenuItem.Text = "Project W-SYS";
+            this.projectWSYSToolStripMenuItem.Click += new System.EventHandler(this.projectWSYSToolStripMenuItem_Click);
             // 
             // logout
             // 

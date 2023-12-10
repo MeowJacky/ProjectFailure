@@ -244,5 +244,10 @@ namespace Forms1
         {
             PopulateChartData();
         }
+
+        private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
