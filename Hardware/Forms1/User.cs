@@ -66,11 +66,33 @@ namespace Forms1
 
             if (currentStatus == 0)
             {
-                UpdateClockStatus(1); // Clock In
+                if (currentStatus == 0)
+                {
+                    DateTime currentTime = DateTime.Now;
+                    TimeSpan lateStartTime = new TimeSpan(9, 0, 0);
+                    TimeSpan lateEndTime = new TimeSpan(7, 59, 59);
+                    TimeSpan targetTime = new TimeSpan(8, 0, 0);
+
+                    if ((currentTime.TimeOfDay >= lateStartTime && currentTime.TimeOfDay <= TimeSpan.FromHours(24)) ||
+                        (currentTime.TimeOfDay >= TimeSpan.Zero && currentTime.TimeOfDay <= lateEndTime))
+                    {
+                        TimeSpan lateDuration = currentTime.TimeOfDay - targetTime;
+                        if (lateDuration < TimeSpan.Zero)
+                        {
+                            lateDuration = TimeSpan.FromHours(24) + lateDuration; //Adding a day for it to be positive
+                        }
+
+                        int lateHours = (int)lateDuration.TotalHours;
+                        int lateMinutes = lateDuration.Minutes;
+
+                        string lateMessage = "You are late by " + lateHours + " hours and " + lateMinutes + " minutes!";
+                        MessageBox.Show(lateMessage);
+                    }
+                }
             }
             else
             {
-                UpdateClockStatus(0); // Clock Out
+                UpdateClockStatus(0); 
             }
 
             DisplayClockStatus(); // Update UI to reflect the new clock-in status
