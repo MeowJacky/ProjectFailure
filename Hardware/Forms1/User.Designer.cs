@@ -35,8 +35,11 @@
             this.logout = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ClockButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,6 +109,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.ClockButton);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -113,6 +118,24 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Clock In";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(202, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "You have not clocked in yet";
+            // 
+            // ClockButton
+            // 
+            this.ClockButton.Location = new System.Drawing.Point(8, 71);
+            this.ClockButton.Name = "ClockButton";
+            this.ClockButton.Size = new System.Drawing.Size(162, 48);
+            this.ClockButton.TabIndex = 0;
+            this.ClockButton.Text = "Clock in";
+            this.ClockButton.UseVisualStyleBackColor = true;
             // 
             // tabControl1
             // 
@@ -141,6 +164,8 @@
             this.Load += new System.EventHandler(this.User_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,5 +182,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button ClockButton;
     }
 }
