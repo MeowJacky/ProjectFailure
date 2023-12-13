@@ -180,7 +180,8 @@ namespace Forms1
 
         private void adminsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManageAdmin manage = new ManageAdmin(this.username);
+            string userid = "0";
+            ManageAdmin manage = new ManageAdmin(this.username,userid);
             manage.Show();
             this.Close();
         }
@@ -209,7 +210,8 @@ namespace Forms1
 
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManageAdmin manage = new ManageAdmin(this.username);
+            string userid = "0";
+            ManageAdmin manage = new ManageAdmin(this.username, userid);
             manage.Show();
             this.Close();
         }

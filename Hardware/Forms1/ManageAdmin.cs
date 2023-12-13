@@ -18,10 +18,18 @@ namespace Forms1
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private string username;
 
-        public ManageAdmin(string username)
+        public ManageAdmin(string username, string userID)
         {
             InitializeComponent();
             this.username = username;
+
+            tbUserID.Text = userID;
+            if (userID == "0"){
+
+            }
+            else {
+                GetUserDetails();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

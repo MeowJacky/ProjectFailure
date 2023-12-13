@@ -30,14 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
-            this.uniqueUserIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nRICDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.authorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uniqueRFIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             this.adminsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userDBDataSet = new Forms1.UserDBDataSet();
             this.adminsTableAdapter = new Forms1.UserDBDataSetTableAdapters.AdminsTableAdapter();
@@ -51,6 +43,14 @@
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.Adusername = new System.Windows.Forms.Label();
+            this.UniqueUserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nRICDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.authorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uniqueRFIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDBDataSet)).BeginInit();
@@ -65,7 +65,7 @@
             this.dataGridViewUsers.AutoGenerateColumns = false;
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.uniqueUserIDDataGridViewTextBoxColumn,
+            this.UniqueUserID,
             this.nameDataGridViewTextBoxColumn,
             this.nRICDataGridViewTextBoxColumn,
             this.contactDataGridViewTextBoxColumn,
@@ -80,64 +80,7 @@
             this.dataGridViewUsers.RowTemplate.Height = 28;
             this.dataGridViewUsers.Size = new System.Drawing.Size(860, 482);
             this.dataGridViewUsers.TabIndex = 0;
-            this.dataGridViewUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // uniqueUserIDDataGridViewTextBoxColumn
-            // 
-            this.uniqueUserIDDataGridViewTextBoxColumn.DataPropertyName = "UniqueUserID";
-            this.uniqueUserIDDataGridViewTextBoxColumn.HeaderText = "UniqueUserID";
-            this.uniqueUserIDDataGridViewTextBoxColumn.Name = "uniqueUserIDDataGridViewTextBoxColumn";
-            this.uniqueUserIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nRICDataGridViewTextBoxColumn
-            // 
-            this.nRICDataGridViewTextBoxColumn.DataPropertyName = "NRIC";
-            this.nRICDataGridViewTextBoxColumn.HeaderText = "NRIC";
-            this.nRICDataGridViewTextBoxColumn.Name = "nRICDataGridViewTextBoxColumn";
-            this.nRICDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // contactDataGridViewTextBoxColumn
-            // 
-            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
-            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
-            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
-            this.contactDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // departmentDataGridViewTextBoxColumn
-            // 
-            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "Department";
-            this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
-            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
-            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // authorityDataGridViewTextBoxColumn
-            // 
-            this.authorityDataGridViewTextBoxColumn.DataPropertyName = "Authority";
-            this.authorityDataGridViewTextBoxColumn.HeaderText = "Authority";
-            this.authorityDataGridViewTextBoxColumn.Name = "authorityDataGridViewTextBoxColumn";
-            this.authorityDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // uniqueRFIDDataGridViewTextBoxColumn
-            // 
-            this.uniqueRFIDDataGridViewTextBoxColumn.DataPropertyName = "UniqueRFID";
-            this.uniqueRFIDDataGridViewTextBoxColumn.HeaderText = "UniqueRFID";
-            this.uniqueRFIDDataGridViewTextBoxColumn.Name = "uniqueRFIDDataGridViewTextBoxColumn";
-            this.uniqueRFIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Action
-            // 
-            this.Action.HeaderText = "Action";
-            this.Action.Name = "Action";
-            this.Action.ReadOnly = true;
-            this.Action.Text = "Manage";
-            this.Action.UseColumnTextForButtonValue = true;
+            this.dataGridViewUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsers_CellContentClick);
             // 
             // adminsBindingSource
             // 
@@ -196,27 +139,27 @@
             // adminToolStripMenuItem
             // 
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.adminToolStripMenuItem.Text = "Search Admin";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.usersToolStripMenuItem.Text = "Search User";
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.addAdminToolStripMenuItem.Text = "Add Admin";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click);
             // 
             // addUsersToolStripMenuItem
             // 
             this.addUsersToolStripMenuItem.Name = "addUsersToolStripMenuItem";
-            this.addUsersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addUsersToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.addUsersToolStripMenuItem.Text = "Add Users";
             // 
             // signOutToolStripMenuItem
@@ -247,6 +190,63 @@
             this.Adusername.Size = new System.Drawing.Size(137, 22);
             this.Adusername.TabIndex = 3;
             this.Adusername.Text = "adminusername";
+            // 
+            // UniqueUserID
+            // 
+            this.UniqueUserID.DataPropertyName = "UniqueUserID";
+            this.UniqueUserID.HeaderText = "UniqueUserID";
+            this.UniqueUserID.Name = "UniqueUserID";
+            this.UniqueUserID.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nRICDataGridViewTextBoxColumn
+            // 
+            this.nRICDataGridViewTextBoxColumn.DataPropertyName = "NRIC";
+            this.nRICDataGridViewTextBoxColumn.HeaderText = "NRIC";
+            this.nRICDataGridViewTextBoxColumn.Name = "nRICDataGridViewTextBoxColumn";
+            this.nRICDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contactDataGridViewTextBoxColumn
+            // 
+            this.contactDataGridViewTextBoxColumn.DataPropertyName = "Contact";
+            this.contactDataGridViewTextBoxColumn.HeaderText = "Contact";
+            this.contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            this.contactDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // departmentDataGridViewTextBoxColumn
+            // 
+            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "Department";
+            this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
+            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
+            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // authorityDataGridViewTextBoxColumn
+            // 
+            this.authorityDataGridViewTextBoxColumn.DataPropertyName = "Authority";
+            this.authorityDataGridViewTextBoxColumn.HeaderText = "Authority";
+            this.authorityDataGridViewTextBoxColumn.Name = "authorityDataGridViewTextBoxColumn";
+            this.authorityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // uniqueRFIDDataGridViewTextBoxColumn
+            // 
+            this.uniqueRFIDDataGridViewTextBoxColumn.DataPropertyName = "UniqueRFID";
+            this.uniqueRFIDDataGridViewTextBoxColumn.HeaderText = "UniqueRFID";
+            this.uniqueRFIDDataGridViewTextBoxColumn.Name = "uniqueRFIDDataGridViewTextBoxColumn";
+            this.uniqueRFIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Text = "Manage";
+            this.Action.UseColumnTextForButtonValue = true;
             // 
             // ViewAllUsers
             // 
@@ -282,7 +282,13 @@
         private System.Windows.Forms.ToolStripMenuItem manageUsersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn uniqueUserIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addUsersToolStripMenuItem;
+        private System.Windows.Forms.Label Adusername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UniqueUserID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nRICDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
@@ -290,11 +296,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn authorityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn uniqueRFIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Action;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addAdminToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addUsersToolStripMenuItem;
-        private System.Windows.Forms.Label Adusername;
     }
 }
