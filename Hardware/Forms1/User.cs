@@ -87,7 +87,9 @@ namespace Forms1
 
                         string lateMessage = "You are late by " + lateHours + " hours and " + lateMinutes + " minutes!";
                         MessageBox.Show(lateMessage);
+                        UpdateClockStatus(1);
                     }
+                    
                 }
             }
             else
