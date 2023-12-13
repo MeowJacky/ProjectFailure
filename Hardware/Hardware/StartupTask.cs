@@ -169,6 +169,7 @@ namespace Hardware
                 {
                     close = true;
                     sendtowindows("Close=" + close);
+                    Debug.WriteLine("Close=" + close);
                     close = false;
                 }
                 else
@@ -177,15 +178,22 @@ namespace Hardware
                 }
                 truetemp = getTemp();
                 sendtowindows("Temp=" + truetemp);
+                Debug.WriteLine("Temp="+truetemp);
                 if (detect == true)
                 {
                     sendtowindows("Detect=" + detect);
+                    Debug.WriteLine("Detect=" + detect);
                     detect = false;
                 }
                 if (rfid != "")
                 {
                     sendtowindows("RFID=" + rfid);
                     rfid = "";
+                }
+                if (press == true)
+                {
+                    Debug.WriteLine("Pressed=" + press);
+                    press = false;
                 }
             }
         }

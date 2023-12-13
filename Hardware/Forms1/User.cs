@@ -16,6 +16,58 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
+        DataComms dataComms;
+        int rfidnum;
+
+        public delegate void myprocessDataDelegate(string strData);
+
+        private string extractStringValue(string strData, string ID)
+        {
+            string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
+            return result;
+        }
+
+        private int extractIntValue(string strData, string ID)
+        {
+            return (int.Parse(extractStringValue(strData, ID)));
+        }
+
+        private int handelRFID(string strData, string ID)
+        {
+            rfidnum = extractIntValue(strData, ID);
+            return rfidnum;
+        }
+
+        private void extractSensorData(string strData)
+        {
+            if (strData.IndexOf("RFID=") != -1)
+                handelRFID(strData, "RFID=");
+
+        }
+
+        public void processDataReceive(string strData)
+        {
+            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+        }
+
+        public void commsDataReceive(string dataReceived)
+        {
+            processDataReceive(dataReceived);
+        }
+
+        public void commsSendError(string errMsg)
+        {
+            MessageBox.Show(errMsg);
+            processDataReceive(errMsg);
+        }
+        
+        private void InitComms()
+        {
+            dataComms = new DataComms();
+            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsDataReceive);
+            dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+        }
+
         private string username;
         public User(string username)
         {
@@ -41,9 +93,6 @@ namespace Forms1
 
                     connection.Open();
 
-                    
-
-
                     int clockInStatus = Convert.ToInt32(command.ExecuteScalar());
 
                     if (clockInStatus == 0)
@@ -62,8 +111,13 @@ namespace Forms1
 
         private void ClockButton_Click(object sender, EventArgs e)
         {
+            //string query = "SELECT UniqueRFID FROM Admins WHERE Name = @Username";
             int currentStatus = GetCurrentClockStatus();
 
+            //using (SqlConnection connection = new SqlConnection(strConnectionString))
+            //{
+            //    using (SqlCommand command = new SqlCommand(query, connection))
+            //    {
             if (currentStatus == 0)
             {
                 if (currentStatus == 0)
@@ -89,17 +143,66 @@ namespace Forms1
                         MessageBox.Show(lateMessage);
                         UpdateClockStatus(1);
                     }
-                    
+
                 }
             }
             else
             {
-                UpdateClockStatus(0); 
+                UpdateClockStatus(0);
             }
 
             DisplayClockStatus(); // Update UI to reflect the new clock-in status
         }
+        //    }
+        //}
 
+        //private void ClockButton_Click(object sender, EventArgs e)
+        //{
+        //    int currentStatus = GetCurrentClockStatus();
+
+        //    // Assuming that RFID data is received and processed in processDataReceive method
+        //    // You can modify this part based on your actual RFID data handling
+
+        //    // Check if the scanned RFID matches the RFID of the logged-in user
+        //    if (IsRFIDMatch(rfidnum))
+        //    {
+        //        rfidnum = 0;
+        //        if (currentStatus == 0)
+        //        {
+        //            DateTime currentTime = DateTime.Now;
+        //            TimeSpan lateStartTime = new TimeSpan(9, 0, 0);
+        //            TimeSpan lateEndTime = new TimeSpan(7, 59, 59);
+        //            TimeSpan targetTime = new TimeSpan(8, 0, 0);
+
+        //            if ((currentTime.TimeOfDay >= lateStartTime && currentTime.TimeOfDay <= TimeSpan.FromHours(24)) ||
+        //                (currentTime.TimeOfDay >= TimeSpan.Zero && currentTime.TimeOfDay <= lateEndTime))
+        //            {
+        //                TimeSpan lateDuration = currentTime.TimeOfDay - targetTime;
+        //                if (lateDuration < TimeSpan.Zero)
+        //                {
+        //                    lateDuration = TimeSpan.FromHours(24) + lateDuration; // Adding a day for it to be positive
+        //                }
+
+        //                int lateHours = (int)lateDuration.TotalHours;
+        //                int lateMinutes = lateDuration.Minutes;
+
+        //                string lateMessage = "You are late by " + lateHours + " hours and " + lateMinutes + " minutes!";
+        //                MessageBox.Show(lateMessage);
+        //                UpdateClockStatus(1);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            UpdateClockStatus(0);
+        //        }
+
+        //        DisplayClockStatus(); // Update UI to reflect the new clock-in status
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("RFID does not match the logged-in user.");
+        //    }
+        //}
 
         private int GetCurrentClockStatus()
         {
@@ -134,10 +237,32 @@ namespace Forms1
                 }
             }
         }
-    
-    private void User_Load(object sender, EventArgs e)
-        {
 
+        //private bool IsRFIDMatch(int scannedRFIDData)
+        //{
+        //    // Query to retrieve the RFID of the logged-in user
+        //    string query = "SELECT UniqueRFID FROM Admins WHERE Name = @Username";
+
+        //    using (SqlConnection connection = new SqlConnection(strConnectionString))
+        //    {
+        //        using (SqlCommand command = new SqlCommand(query, connection))
+        //        {
+        //            command.Parameters.AddWithValue("@Username", username);
+
+        //            connection.Open();
+
+        //            // Retrieve the RFID value of the logged-in user from the database
+        //            int userRFIDValue = Convert.ToInt32(command.ExecuteScalar());
+
+        //            // Compare the scanned RFID value with the user's RFID value
+        //            return scannedRFIDData == userRFIDValue;
+        //        }
+        //    }
+        //}
+
+        private void User_Load(object sender, EventArgs e)
+        {
+            InitComms();
         }
 
         private void userusername_Click(object sender, EventArgs e)
@@ -187,6 +312,11 @@ namespace Forms1
         private void userusername_MouseLeave(object sender, EventArgs e)
         {
             userusername.BackColor = Color.White;
+        }
+
+        private void tabPage1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
