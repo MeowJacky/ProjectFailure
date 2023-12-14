@@ -16,9 +16,13 @@ namespace Hardware
 {
     public sealed class StartupTask : IBackgroundTask
     {
+        static int curMode;
         IUltrasonicRangerSensor ultra = DeviceFactory.Build.UltraSonicSensor(Pin.DigitalPin8);
+        ILed red = DeviceFactory.Build.Led(Pin.DigitalPin5);
+        ILed green = DeviceFactory.Build.Led(Pin.DigitalPin6);
         Pin thermo = Pin.AnalogPin0;
         Pin motion = Pin.DigitalPin2;
+        Pin buzzer = Pin.DigitalPin3;
         IButtonSensor button = DeviceFactory.Build.ButtonSensor(Pin.DigitalPin4);
         private static SerialComms uartComms;
         private string rfid = "";
@@ -58,11 +62,11 @@ namespace Hardware
 
         private double getTemp()
         {
-            int val;
+            int adcval;
             double tempcal = 0, R;
-            val = readtemp(thermo);
+            adcval = readtemp(thermo);
             int B = 4250, R0 = 100000;
-            R = 100000 * (1023.0 - val) / val;
+            R = 100000 * (1023.0 - adcval) / adcval;
             tempcal = 1 / (Math.Log(R / R0) / B + 1 / 298.15) - 273.15;
             if (!Double.IsNaN(tempcal) && tempcal > 15 && tempcal < 40)
                 temp = tempcal;
@@ -112,6 +116,83 @@ namespace Hardware
                 }
             }
         }
+
+        private void activateBuzzer(Pin pin,byte val)
+        {
+            sm.WaitOne();
+            DeviceFactory.Build.GrovePi().AnalogWrite(pin, val);
+            sm.Release();
+        }
+
+        private void buzzing()
+        {
+            activateBuzzer(buzzer, 60);
+            sleep(80);
+            activateBuzzer(buzzer, 120);
+            sleep(80);
+            activateBuzzer(buzzer, 60);
+            sleep(80);
+            activateBuzzer(buzzer, 120);
+            sleep(80);
+            activateBuzzer(buzzer, 0);
+            sleep(2000);
+        }
+
+        private SensorStatus ledstatus(ILed led)
+        {
+            sm.WaitOne();
+            SensorStatus sensorstate = led.CurrentState;
+            sm.Release();
+            return sensorstate;
+        }
+
+        private void changeled(ILed led, SensorStatus targetState)
+        {
+            sm.WaitOne();
+            led.ChangeState(targetState);
+            sm.Release();
+        }
+
+        private void redon()
+        {
+            changeled(red, SensorStatus.On);
+            if (press == true)
+            {
+                press = false;
+                curMode = 0;
+            }
+        }
+
+        private void greenon()
+        {
+            changeled(green, SensorStatus.On);
+            if (press == true)
+            {
+                press = false;
+                curMode = 0;
+            }
+        }
+
+        private void redoff()
+        {
+            changeled(red, SensorStatus.Off);
+            if (press == true)
+            {
+                press = false;
+                curMode = 1;
+            }
+        }
+
+        private void greenoff()
+        {
+            changeled(green, SensorStatus.Off);
+            if (press == true)
+            {
+                press = false;
+                curMode = 1;
+            }
+        }
+
         private void UartDataHandler(Object sender, SerialComms.UartEventArgs e)
         {
             rfid = e.data;
@@ -161,6 +242,7 @@ namespace Hardware
             StartUart();
             StartMotion();
             StartButton();
+            activateBuzzer(buzzer, 0);
             while (true)
             {
                 sleep(300);
@@ -169,7 +251,6 @@ namespace Hardware
                 {
                     close = true;
                     sendtowindows("Close=" + close);
-                    Debug.WriteLine("Close=" + close);
                     close = false;
                 }
                 else
@@ -178,11 +259,9 @@ namespace Hardware
                 }
                 truetemp = getTemp();
                 sendtowindows("Temp=" + truetemp);
-                Debug.WriteLine("Temp="+truetemp);
                 if (detect == true)
                 {
                     sendtowindows("Detect=" + detect);
-                    Debug.WriteLine("Detect=" + detect);
                     detect = false;
                 }
                 if (rfid != "")
@@ -192,8 +271,8 @@ namespace Hardware
                 }
                 if (press == true)
                 {
-                    Debug.WriteLine("Pressed=" + press);
                     press = false;
+                    buzzing();
                 }
             }
         }

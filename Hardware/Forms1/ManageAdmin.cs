@@ -21,7 +21,7 @@ namespace Forms1
         public ManageAdmin(string username, string userID)
         {
             InitializeComponent();
-            this.username = username;
+            Console.WriteLine(this.username);
 
             tbUserID.Text = userID;
             if (userID == "0"){

@@ -45,7 +45,8 @@ namespace Forms1
                 string selectedUserID = selectedRow.Cells["UniqueUserID"].Value.ToString();
 
                 // Pass the data to the ManageAdmin form
-                ManageAdmin manage = new ManageAdmin(this.username, selectedUserID);
+                ManageAdmin manage = new ManageAdmin(Adusername.Text, selectedUserID);
+                Console.WriteLine(Adusername.Text);
                 manage.Show();
                 this.Close();
             }

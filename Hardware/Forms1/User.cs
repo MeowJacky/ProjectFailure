@@ -111,13 +111,8 @@ namespace Forms1
 
         private void ClockButton_Click(object sender, EventArgs e)
         {
-            //string query = "SELECT UniqueRFID FROM Admins WHERE Name = @Username";
             int currentStatus = GetCurrentClockStatus();
 
-            //using (SqlConnection connection = new SqlConnection(strConnectionString))
-            //{
-            //    using (SqlCommand command = new SqlCommand(query, connection))
-            //    {
             if (currentStatus == 0)
             {
                 if (currentStatus == 0)
@@ -153,8 +148,6 @@ namespace Forms1
 
             DisplayClockStatus(); // Update UI to reflect the new clock-in status
         }
-        //    }
-        //}
 
         //private void ClockButton_Click(object sender, EventArgs e)
         //{
