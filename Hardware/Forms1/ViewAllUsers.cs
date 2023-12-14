@@ -35,11 +35,20 @@ namespace Forms1
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ManageAdmin manage = new ManageAdmin(this.username);
-            manage.Show();
-            this.Close();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewUsers.Rows[e.RowIndex];
+
+                // Extract data from the selected row
+                string selectedUserID = selectedRow.Cells["UniqueUserID"].Value.ToString();
+
+                // Pass the data to the ManageAdmin form
+                ManageAdmin manage = new ManageAdmin(this.username, selectedUserID);
+                manage.Show();
+                this.Close();
+            }
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -49,7 +58,8 @@ namespace Forms1
 
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManageAdmin manage = new ManageAdmin(this.username);
+            String UserID = "0"; 
+            ManageAdmin manage = new ManageAdmin(this.username, UserID);
             manage.Show();
             this.Close();
         }

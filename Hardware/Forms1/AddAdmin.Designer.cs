@@ -43,6 +43,8 @@
             this.btnAddAdmin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbpassword = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +78,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(50, 222);
+            this.label4.Location = new System.Drawing.Point(48, 231);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 3;
@@ -85,7 +87,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(50, 266);
+            this.label5.Location = new System.Drawing.Point(361, 86);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 20);
             this.label5.TabIndex = 4;
@@ -95,7 +97,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(50, 311);
+            this.label6.Location = new System.Drawing.Point(361, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 20);
             this.label6.TabIndex = 5;
@@ -104,42 +106,42 @@
             // 
             // tbname
             // 
-            this.tbname.Location = new System.Drawing.Point(130, 87);
+            this.tbname.Location = new System.Drawing.Point(141, 87);
             this.tbname.Name = "tbname";
             this.tbname.Size = new System.Drawing.Size(153, 26);
             this.tbname.TabIndex = 6;
             // 
             // tbNRIC
             // 
-            this.tbNRIC.Location = new System.Drawing.Point(130, 137);
+            this.tbNRIC.Location = new System.Drawing.Point(141, 137);
             this.tbNRIC.Name = "tbNRIC";
             this.tbNRIC.Size = new System.Drawing.Size(153, 26);
             this.tbNRIC.TabIndex = 7;
             // 
             // tbcontact
             // 
-            this.tbcontact.Location = new System.Drawing.Point(130, 182);
+            this.tbcontact.Location = new System.Drawing.Point(141, 182);
             this.tbcontact.Name = "tbcontact";
             this.tbcontact.Size = new System.Drawing.Size(153, 26);
             this.tbcontact.TabIndex = 8;
             // 
             // tbadd
             // 
-            this.tbadd.Location = new System.Drawing.Point(132, 222);
+            this.tbadd.Location = new System.Drawing.Point(141, 231);
             this.tbadd.Name = "tbadd";
             this.tbadd.Size = new System.Drawing.Size(277, 26);
             this.tbadd.TabIndex = 9;
             // 
             // tbRFID
             // 
-            this.tbRFID.Location = new System.Drawing.Point(132, 311);
+            this.tbRFID.Location = new System.Drawing.Point(454, 131);
             this.tbRFID.Name = "tbRFID";
             this.tbRFID.Size = new System.Drawing.Size(208, 26);
             this.tbRFID.TabIndex = 11;
             // 
             // AuthoritySelect
             // 
-            this.AuthoritySelect.Location = new System.Drawing.Point(132, 264);
+            this.AuthoritySelect.Location = new System.Drawing.Point(454, 84);
             this.AuthoritySelect.Maximum = new decimal(new int[] {
             4,
             0,
@@ -161,7 +163,7 @@
             // 
             // btnAddAdmin
             // 
-            this.btnAddAdmin.Location = new System.Drawing.Point(169, 373);
+            this.btnAddAdmin.Location = new System.Drawing.Point(365, 295);
             this.btnAddAdmin.Name = "btnAddAdmin";
             this.btnAddAdmin.Size = new System.Drawing.Size(240, 41);
             this.btnAddAdmin.TabIndex = 13;
@@ -171,9 +173,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(44, 373);
+            this.btnCancel.Location = new System.Drawing.Point(54, 295);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 41);
+            this.btnCancel.Size = new System.Drawing.Size(240, 41);
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -190,12 +192,32 @@
             this.label1.Text = "Add New Admin";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(454, 179);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(208, 26);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // tbpassword
+            // 
+            this.tbpassword.AutoSize = true;
+            this.tbpassword.Location = new System.Drawing.Point(361, 179);
+            this.tbpassword.Name = "tbpassword";
+            this.tbpassword.Size = new System.Drawing.Size(82, 20);
+            this.tbpassword.TabIndex = 16;
+            this.tbpassword.Text = "Password:";
+            this.tbpassword.Click += new System.EventHandler(this.label7_Click);
+            // 
             // AddAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(468, 453);
+            this.ClientSize = new System.Drawing.Size(676, 360);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbpassword);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddAdmin);
@@ -237,5 +259,7 @@
         private System.Windows.Forms.Button btnAddAdmin;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label tbpassword;
     }
 }

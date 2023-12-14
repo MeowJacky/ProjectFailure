@@ -18,10 +18,18 @@ namespace Forms1
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private string username;
 
-        public ManageAdmin(string username)
+        public ManageAdmin(string username, string userID)
         {
             InitializeComponent();
             this.username = username;
+
+            tbUserID.Text = userID;
+            if (userID == "0"){
+
+            }
+            else {
+                GetUserDetails();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -49,13 +57,13 @@ namespace Forms1
             //Step 1: Create connection
             SqlConnection myConnect = new SqlConnection(strConnectionString);
             //Step 2: Create Command
-            string strCommandText = "SELECT Name, UniqueRFID, NRIC, Address, Contact, Authority FROM Admins "; //Add a WHERE clause to SQL statement
+            string strCommandText = "SELECT UniqueUserID, Name, UniqueRFID, NRIC, Address, Contact, Authority FROM Admins "; //Add a WHERE clause to SQL statement
             strCommandText += "WHERE UniqueUserID=@UserID OR Name=@Name Or UniqueRFID=@UniqueRFID";
            
             SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
             cmd.Parameters.AddWithValue("@UserID", tbUserID.Text);
             cmd.Parameters.AddWithValue("@Name", tbName.Text);
-            cmd.Parameters.AddWithValue("@UniqueRFID", tbName.Text);
+            cmd.Parameters.AddWithValue("@UniqueRFID", tbRFID.Text);
             //Step 3: Open Connection and retrieve data by calling ExecuteReader
             myConnect.Open();
             //Step 4: Access Data
@@ -152,6 +160,17 @@ namespace Forms1
             //Step 5: Close Connection
             myConnect.Close();
             return result;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            tbAdd.Text = "";
+            tbAuthority.Text = "";
+            tbContact.Text = "";
+            tbName.Text = "";
+            tbNRIC.Text = "";
+            tbRFID.Text = "";
+            tbUserID.Text = "";
         }
     }
 }

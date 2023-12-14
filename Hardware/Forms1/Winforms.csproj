@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommsUtil">
+      <HintPath>..\..\..\Week 2\DataCommsStarters\CommsUtil.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -92,6 +95,12 @@
     </Compile>
     <Compile Include="ManageAdmin.Designer.cs">
       <DependentUpon>ManageAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageUser.Designer.cs">
+      <DependentUpon>ManageUser.cs</DependentUpon>
     </Compile>
     <Compile Include="notpresent.cs">
       <SubType>Form</SubType>
@@ -138,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageAdmin.resx">
       <DependentUpon>ManageAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageUser.resx">
+      <DependentUpon>ManageUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="notpresent.resx">
       <DependentUpon>notpresent.cs</DependentUpon>
