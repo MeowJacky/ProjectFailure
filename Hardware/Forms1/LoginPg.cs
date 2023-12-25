@@ -41,56 +41,67 @@ namespace Forms1
         private void btnLogin_Click(object sender, EventArgs e)
         {
             //Step 1: Open Connection
-            SqlConnection myConnect = new SqlConnection(strConnectionString);
-            //Step 2: Create command
-            string strCommandText = "SELECT Name, Password, Authority FROM Admins";
-            //Add a WHERE clause to SQL statement
-            strCommandText += " WHERE Name=@uname AND Password=@pwd";
-            SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
-            cmd.Parameters.AddWithValue("@uname", tbUserName.Text);
-            cmd.Parameters.AddWithValue("@pwd", tbPassword.Text);
             try
             {
-                //Step 3: Open connection and retrieve data by calling ExecuteReader
-                myConnect.Open();
-                //Step 4: Access data
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                // Code that interacts with the database
+                SqlConnection myConnect = new SqlConnection(strConnectionString);
+                //Step 2: Create command
+                string strCommandText = "SELECT Name, Password, Authority FROM Admins";
+                //Add a WHERE clause to SQL statement
+                strCommandText += " WHERE Name=@uname AND Password=@pwd";
+                SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
+                cmd.Parameters.AddWithValue("@uname", tbUserName.Text);
+                cmd.Parameters.AddWithValue("@pwd", tbPassword.Text);
+                try
                 {
-                    MessageBox.Show("Login Successful");
-                    int userAuthority = Convert.ToInt32(reader["Authority"]);
-                    if (userAuthority == 999)
+                    //Step 3: Open connection and retrieve data by calling ExecuteReader
+                    myConnect.Open();
+                    //Step 4: Access data
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        User userform = new User(tbUserName.Text);
-                        userform.Show();
+                        MessageBox.Show("Login Successful");
+                        int userAuthority = Convert.ToInt32(reader["Authority"]);
+                        if (userAuthority == 999)
+                        {
+                            User userform = new User(tbUserName.Text);
+                            userform.Show();
+                        }
+                        else
+                        {
+                            Admin adminform = new Admin(tbUserName.Text);
+                            adminform.Show();
+
+
+
+                        }
+                        this.Hide();
                     }
                     else
                     {
-                        Admin adminform = new Admin(tbUserName.Text);
-                        adminform.Show();
-
-
-
+                        MessageBox.Show("Login Fail");
                     }
-                    this.Hide();
+                    //Step 5: Close connection
+                    reader.Close();
                 }
-                else
+                catch (SqlException ex)
                 {
-                    MessageBox.Show("Login Fail");
+                    MessageBox.Show("Error: " + ex.Message.ToString());
                 }
-                //Step 5: Close connection
-                reader.Close();
+                finally
+                {
+
+                    //Step 5: Close connection
+                    myConnect.Close();
+                }
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Error: " + ex.Message.ToString());
+                // Log the exception details
+                Console.WriteLine($"SQL Exception: {ex.Message}");
+                // You can also log additional details like ex.StackTrace, ex.Number, etc.
             }
-            finally
-            {
-
-                //Step 5: Close connection
-                myConnect.Close();
-            }
+            
         }
 
         private void LoginPg_Load(object sender, EventArgs e)
