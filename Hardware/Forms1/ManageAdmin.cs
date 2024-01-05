@@ -21,6 +21,7 @@ namespace Forms1
         public ManageAdmin(string username, string userID)
         {
             InitializeComponent();
+            this.username = username;
             Console.WriteLine(this.username);
 
             tbUserID.Text = userID;
@@ -128,19 +129,33 @@ namespace Forms1
         {
             if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
-                if (DeleteUserRecord(tbRFID.Text) > 0)
+                // Get the username of the user currently logged in
+                string loggedInUsername = username.Trim();
+
+                // Get the username of the user to be deleted
+                string userToDelete = tbName.Text.Trim();
+
+                // Check if the user to be deleted is the same as the logged-in user
+                if (userToDelete == loggedInUsername)
                 {
-                    MessageBox.Show("UserName = " + tbName.Text + "has been deleted");
-                    tbAdd.Text = "";
-                    tbAuthority.Text = "";
-                    tbContact.Text = "";
-                    tbName.Text = "";
-                    tbNRIC.Text = "";
-                    tbRFID.Text = "";
-                    tbUserID.Text = "";
+                    MessageBox.Show("Cannot delete the currently logged-in user.");
                 }
                 else
-                    MessageBox.Show("Delete Failed");
+                {
+                    if (DeleteUserRecord(tbRFID.Text) > 0)
+                    {
+                        MessageBox.Show("UserName = " + tbName.Text + "has been deleted");
+                        tbAdd.Text = "";
+                        tbAuthority.Text = "";
+                        tbContact.Text = "";
+                        tbName.Text = "";
+                        tbNRIC.Text = "";
+                        tbRFID.Text = "";
+                        tbUserID.Text = "";
+                    }
+                    else
+                        MessageBox.Show("Delete Failed");
+                }
             }
         }
 
