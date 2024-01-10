@@ -21,6 +21,7 @@ namespace Forms1
         public ManageAdmin(string username, string userID)
         {
             InitializeComponent();
+            ShiftStart.Value = DateTime.Today;
             this.username = username;
             Console.WriteLine(this.username);
 
@@ -58,7 +59,7 @@ namespace Forms1
             //Step 1: Create connection
             SqlConnection myConnect = new SqlConnection(strConnectionString);
             //Step 2: Create Command
-            string strCommandText = "SELECT UniqueUserID, Name, UniqueRFID, NRIC, Address, Contact, Authority FROM Admins "; //Add a WHERE clause to SQL statement
+            string strCommandText = "SELECT UniqueUserID, Name, UniqueRFID, NRIC, Address, Contact, Authority, SupposedToClockIn FROM Admins "; //Add a WHERE clause to SQL statement
             strCommandText += "WHERE UniqueUserID=@UserID OR Name=@Name Or UniqueRFID=@UniqueRFID";
            
             SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
@@ -78,6 +79,14 @@ namespace Forms1
                 tbAdd.Text = reader["Address"].ToString();
                 tbContact.Text = reader["Contact"].ToString();
                 tbAuthority.Text = reader["Authority"].ToString();
+                if (reader["SupposedToClockIn"] != DBNull.Value)
+                {
+                    ShiftStart.Value = DateTime.Parse(reader["SupposedToClockIn"].ToString());
+                }
+                else
+                {
+                    ShiftStart.Value = new DateTime(2024, 1, 1, 0, 0, 0);
+                }
             }
             else
 
@@ -98,7 +107,10 @@ namespace Forms1
         {
             //step 1: Create connection
             SqlConnection myConnect = new SqlConnection(strConnectionString); String strCommandText =
-            "UPDATE Admins SET Name=@NewName, UniqueRFID=@NewRFID, NRIC=@NewNRIC, Address=@NewAdd, Contact=@NewContact, Authority=@NewAuthority WHERE UniqueUserID=@UserID";
+            "UPDATE Admins SET Name=@NewName, UniqueRFID=@NewRFID, NRIC=@NewNRIC, Address=@NewAdd, Contact=@NewContact, Authority=@NewAuthority, SupposedToClockIn=@NewShiftStart WHERE UniqueUserID=@UserID";
+            //SqlConnection myConnect = new SqlConnection(strConnectionString); String strCommandText =
+            //"UPDATE Admins SET Name=@NewName, UniqueRFID=@NewRFID, NRIC=@NewNRIC, Address=@NewAdd, Contact=@NewContact, Authority=@NewAuthority WHERE UniqueUserID=@UserID";
+
             SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
             //step 2: Create command
             updateCmd.Parameters.AddWithValue("@UserID", tbUserID.Text);
@@ -108,6 +120,9 @@ namespace Forms1
             updateCmd.Parameters.AddWithValue("@NewAdd", tbAdd.Text);
             updateCmd.Parameters.AddWithValue("@NewContact", tbContact.Text);
             updateCmd.Parameters.AddWithValue("@NewAuthority", tbAuthority.Text);
+            ShiftStart.Value = DateTime.Today.Add(ShiftStart.Value.TimeOfDay);
+            updateCmd.Parameters.AddWithValue("@NewShiftStart", ShiftStart.Value);
+            //Console.Write(ShiftStart.Value);
             //step 3: open connection and retrieve data by calling ExecuteNonQuery 
             myConnect.Open();
             //step4: Execute command
@@ -152,6 +167,7 @@ namespace Forms1
                         tbNRIC.Text = "";
                         tbRFID.Text = "";
                         tbUserID.Text = "";
+                        ShiftStart.Value = DateTime.Today;
                     }
                     else
                         MessageBox.Show("Delete Failed");
@@ -186,6 +202,27 @@ namespace Forms1
             tbNRIC.Text = "";
             tbRFID.Text = "";
             tbUserID.Text = "";
+            ShiftStart.Value = DateTime.Today;
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShiftStart_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShiftStart_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShiftStart_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
