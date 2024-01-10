@@ -123,6 +123,13 @@ namespace Forms1
         {
 
         }
+
+        private void forgetpass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ForgetPass ForgetPass = new ForgetPass();
+            ForgetPass.Show();
+            this.Close();
+        }
     }
 
 }

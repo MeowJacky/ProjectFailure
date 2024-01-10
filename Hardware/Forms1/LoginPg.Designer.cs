@@ -37,6 +37,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.forgetpass = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -117,6 +118,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.splitContainer1.Panel2.Controls.Add(this.forgetpass);
             this.splitContainer1.Panel2.Controls.Add(this.tbUserName);
             this.splitContainer1.Panel2.Controls.Add(this.lblUsername);
             this.splitContainer1.Panel2.Controls.Add(this.lblPassword);
@@ -136,6 +138,17 @@
             this.logo.TabIndex = 0;
             this.logo.TabStop = false;
             this.logo.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // forgetpass
+            // 
+            this.forgetpass.AutoSize = true;
+            this.forgetpass.Location = new System.Drawing.Point(215, 369);
+            this.forgetpass.Name = "forgetpass";
+            this.forgetpass.Size = new System.Drawing.Size(129, 20);
+            this.forgetpass.TabIndex = 5;
+            this.forgetpass.TabStop = true;
+            this.forgetpass.Text = "Forget Password";
+            this.forgetpass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.forgetpass_LinkClicked);
             // 
             // LoginPg
             // 
@@ -167,7 +180,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Button btnLogin;
-
+        private System.Windows.Forms.LinkLabel forgetpass;
     }
 }
 

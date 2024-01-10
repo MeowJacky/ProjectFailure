@@ -84,6 +84,12 @@
     <Compile Include="editclockin.Designer.cs">
       <DependentUpon>editclockin.cs</DependentUpon>
     </Compile>
+    <Compile Include="ForgetPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForgetPass.Designer.cs">
+      <DependentUpon>ForgetPass.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginPg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="editclockin.resx">
       <DependentUpon>editclockin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForgetPass.resx">
+      <DependentUpon>ForgetPass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginPg.resx">
       <DependentUpon>LoginPg.cs</DependentUpon>
