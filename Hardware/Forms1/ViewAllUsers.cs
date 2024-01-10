@@ -30,13 +30,14 @@ namespace Forms1
 
             // TODO: This line of code loads data into the 'userDBDataSet.Admins' table. You can move, or remove it, as needed.
             this.adminsTableAdapter.Fill(this.userDBDataSet.Admins);
-
+            RefreshDataGridView();
 
 
         }
 
         private void dataGridViewUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            RefreshDataGridView();
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dataGridViewUsers.Rows[e.RowIndex];
@@ -100,5 +101,37 @@ namespace Forms1
             addmin.Show();
             this.Close();
         }
+
+        private void RefreshDataGridView()
+        {
+            try
+            {
+                // Create a new SqlConnection using the connection string
+                using (SqlConnection connection = new SqlConnection(strConnectionString))
+                {
+                    // Open the connection
+                    connection.Open();
+
+                    // Create a new SqlDataAdapter
+                    using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Admins", connection))
+                    {
+                        // Create a new DataTable to hold the data
+                        DataTable dataTable = new DataTable();
+
+                        // Fill the DataTable with the data from the database
+                        adapter.Fill(dataTable);
+
+                        // Set the DataGridView's DataSource to the DataTable
+                        dataGridViewUsers.DataSource = dataTable;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during the data retrieval
+                MessageBox.Show("Error loading data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
