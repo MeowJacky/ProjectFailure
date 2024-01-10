@@ -44,14 +44,14 @@ namespace Forms1
                 if (IsEmailExists(userEmail))
                 {
                     // Generate a new random password (you might want to use a more secure method)
-                    //string newPassword = GenerateRandomPassword();
+                    string newPassword = GenerateRandomPassword();
 
                     //// Update the password in the database
 
-                    //UpdatePassword(userEmail, newPassword);
+                    UpdatePassword(userEmail, newPassword);
 
                     //// Send the new password to the user via email
-                    //SendEmail(userEmail, newPassword);
+                    SendEmail(userEmail, newPassword);
 
                     MessageBox.Show("Password reset successfully. Check your email for the new password.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -101,9 +101,13 @@ namespace Forms1
             // You might want to use a library or a more secure method
 
             // For simplicity, using a basic method to generate a random password
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var random = new Random();
-            return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+
+            //const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            //var random = new Random();
+            //return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+
+
+            return "robertM";
         }
 
         private void UpdatePassword(string email, string newPassword)
@@ -127,24 +131,33 @@ namespace Forms1
         private void SendEmail(string to, string newPassword)
         {
             // Replace the following information with your SMTP server details
-            string smtpServer = "yourSmtpServer";
+            string smtpServer = "smtp.gmail.com";
             int smtpPort = 587;
-            string smtpUsername = "yourSmtpUsername";
-            string smtpPassword = "yourSmtpPassword";
+            string smtpUsername = "pax337.ml@gmail.com";
+            string smtpAppPassword = "xoog ppja ulws ytzn";
 
-            using (MailMessage mail = new MailMessage())
+            try
             {
-                mail.From = new MailAddress("yourEmailAddress");
-                mail.To.Add(to);
-                mail.Subject = "Password Reset";
-                mail.Body = $"Your new password is: {newPassword}";
-
-                using (SmtpClient smtp = new SmtpClient(smtpServer, smtpPort))
+                using (MailMessage mail = new MailMessage())
                 {
-                    smtp.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
+                    mail.From = new MailAddress("pax337.ml@gmail.com");
+                    mail.To.Add(to);
+                    mail.Subject = "Password Reset";
+                    mail.Body = $"Your new password is: {newPassword}";
+
+                    using (SmtpClient smtp = new SmtpClient(smtpServer, smtpPort))
+                    {
+                        smtp.Credentials = new NetworkCredential(smtpUsername, smtpAppPassword);
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
                 }
+            }
+
+            catch (SmtpException ex)
+            {
+                // Handle the exception
+                MessageBox.Show($"Error sending email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
