@@ -17,10 +17,12 @@ namespace Forms1
         // retrieve connection information from App.Config
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private string username;
-        public ViewAllUsers(string username)
+        private int loggedInAdminAuthority;
+        public ViewAllUsers(string username, int authority)
         {
             InitializeComponent();
             Adusername.Text = username;
+            loggedInAdminAuthority = authority;
         }
 
 
@@ -46,7 +48,7 @@ namespace Forms1
                 string selectedUserID = selectedRow.Cells["UniqueUserID"].Value.ToString();
 
                 // Pass the data to the ManageAdmin form
-                ManageAdmin manage = new ManageAdmin(Adusername.Text, selectedUserID);
+                ManageAdmin manage = new ManageAdmin(Adusername.Text, selectedUserID, this.loggedInAdminAuthority);
                 Console.WriteLine(Adusername.Text);
                 manage.Show();
                 this.Close();
@@ -61,7 +63,7 @@ namespace Forms1
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String UserID = "0"; 
-            ManageAdmin manage = new ManageAdmin(this.username, UserID);
+            ManageAdmin manage = new ManageAdmin(this.username, UserID,this.loggedInAdminAuthority);
             manage.Show();
             this.Close();
         }
@@ -78,7 +80,7 @@ namespace Forms1
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Admin adminpg = new Admin(this.username);
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
             adminpg.Show();
             this.Close();
         }

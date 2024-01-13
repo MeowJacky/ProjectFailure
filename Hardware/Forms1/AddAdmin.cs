@@ -17,6 +17,7 @@ namespace Forms1
         // retrieve connection information from App.Config
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private string username;
+        private int loggedInAdminAuthority;
         public AddAdmin(string username)
         {
             InitializeComponent();
@@ -73,7 +74,7 @@ namespace Forms1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Admin adminpg = new Admin(this.username);
+            Admin adminpg = new Admin(this.username,loggedInAdminAuthority);
             adminpg.Show();
             this.Close();
         }

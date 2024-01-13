@@ -69,9 +69,9 @@ namespace Forms1
                         }
                         else
                         {
-                            Admin adminform = new Admin(tbUserName.Text);
+                            Admin adminform = new Admin(tbUserName.Text, userAuthority);
                             adminform.Show();
-
+                            Console.WriteLine(userAuthority);
 
 
                         }

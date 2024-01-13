@@ -18,11 +18,12 @@ namespace Forms1
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
         private string username;
-        public Admin(string username)
+        private int loggedInAdminAuthority;
+        public Admin(string username, int authority)
         {
             InitializeComponent();
             this.username = username;
-
+            loggedInAdminAuthority = authority;
             AUsername.Text = username;
             PopulateChartData();
 
@@ -181,7 +182,7 @@ namespace Forms1
         private void adminsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userid = "0";
-            ManageAdmin manage = new ManageAdmin(this.username,userid);
+            ManageAdmin manage = new ManageAdmin(this.username,userid, loggedInAdminAuthority);
             manage.Show();
             this.Close();
         }
@@ -203,7 +204,7 @@ namespace Forms1
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ViewAllUsers allusers = new ViewAllUsers(this.username);
+            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
             allusers.Show();
             this.Close();
         }
@@ -211,7 +212,7 @@ namespace Forms1
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userid = "0";
-            ManageAdmin manage = new ManageAdmin(this.username, userid);
+            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
             manage.Show();
             this.Close();
         }
