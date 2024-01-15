@@ -45,6 +45,7 @@ namespace Forms1
             {
                 // Code that interacts with the database
                 SqlConnection myConnect = new SqlConnection(strConnectionString);
+
                 //Step 2: Create command
                 string strCommandText = "SELECT Name, Password, Authority FROM Admins";
                 //Add a WHERE clause to SQL statement
@@ -52,15 +53,23 @@ namespace Forms1
                 SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
                 cmd.Parameters.AddWithValue("@uname", tbUserName.Text);
                 cmd.Parameters.AddWithValue("@pwd", tbPassword.Text);
+
                 try
                 {
                     //Step 3: Open connection and retrieve data by calling ExecuteReader
                     myConnect.Open();
+
                     //Step 4: Access data
                     SqlDataReader reader = cmd.ExecuteReader();
+
                     if (reader.Read())
                     {
+                        // Login Successful
                         MessageBox.Show("Login Successful");
+
+                        // Record login attempt to LoginLogs table
+                        RecordLogin(tbUserName.Text, "Login", "Yes");
+
                         int userAuthority = Convert.ToInt32(reader["Authority"]);
                         if (userAuthority == 999)
                         {
@@ -72,15 +81,19 @@ namespace Forms1
                             Admin adminform = new Admin(tbUserName.Text, userAuthority);
                             adminform.Show();
                             Console.WriteLine(userAuthority);
-
-
                         }
+
                         this.Hide();
                     }
                     else
                     {
+                        // Login Fail
                         MessageBox.Show("Login Fail");
+
+                        // Record failed login attempt to LoginLogs table
+                        RecordLogin(tbUserName.Text, "Login", "No");
                     }
+
                     //Step 5: Close connection
                     reader.Close();
                 }
@@ -90,7 +103,6 @@ namespace Forms1
                 }
                 finally
                 {
-
                     //Step 5: Close connection
                     myConnect.Close();
                 }
@@ -101,8 +113,27 @@ namespace Forms1
                 Console.WriteLine($"SQL Exception: {ex.Message}");
                 // You can also log additional details like ex.StackTrace, ex.Number, etc.
             }
-            
         }
+
+
+        private void RecordLogin(string userName, string loginStatus, string success)
+        {
+            string insertQuery = "INSERT INTO LoginLogs ([Time], [UserName], [Login/Out], [Success]) VALUES (@time, @userName, @loginStatus, @success)";
+
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            using (SqlCommand cmd = new SqlCommand(insertQuery, connection))
+            {
+                connection.Open();
+
+                cmd.Parameters.AddWithValue("@time", DateTime.Now);
+                cmd.Parameters.AddWithValue("@userName", userName);
+                cmd.Parameters.AddWithValue("@loginStatus", loginStatus);
+                cmd.Parameters.AddWithValue("@success", success);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
         private void LoginPg_Load(object sender, EventArgs e)
         {

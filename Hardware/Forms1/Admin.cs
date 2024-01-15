@@ -252,5 +252,12 @@ namespace Forms1
         {
 
         }
+
+        private void loginOutLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Loginlogs logs = new Loginlogs(this.username);
+            //logs.Show();
+            //this.Close();
+        }
     }
 }
