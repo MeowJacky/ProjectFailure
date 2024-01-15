@@ -193,6 +193,13 @@ namespace Hardware
             }
         }
 
+        private void Temp()
+        {
+            truetemp = getTemp();
+            sendtowindows("Temp=" + truetemp);
+            sleep(3600);
+        }
+
         private void UartDataHandler(Object sender, SerialComms.UartEventArgs e)
         {
             rfid = e.data;
@@ -246,6 +253,7 @@ namespace Hardware
             while (true)
             {
                 sleep(300);
+                Temp();
                 truedistance = getDistance();
                 if (truedistance < 20)
                 {
@@ -257,8 +265,7 @@ namespace Hardware
                 {
                     sendtowindows("Close=" + close);
                 }
-                truetemp = getTemp();
-                sendtowindows("Temp=" + truetemp);
+                
                 if (detect == true)
                 {
                     sendtowindows("Detect=" + detect);
