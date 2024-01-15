@@ -195,9 +195,9 @@ namespace Hardware
 
         private void Temp()
         {
+            sleep(3600);
             truetemp = getTemp();
             sendtowindows("Temp=" + truetemp);
-            sleep(3600);
         }
 
         private void UartDataHandler(Object sender, SerialComms.UartEventArgs e)

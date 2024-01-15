@@ -16,7 +16,7 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
-        //DataComms dataComms;
+        DataComms dataComms;
         int rfidnum;
 
         public delegate void myprocessDataDelegate(string strData);
@@ -63,9 +63,9 @@ namespace Forms1
         
         private void InitComms()
         {
-            //dataComms = new DataComms();
-            //dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsDataReceive);
-            //dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+            dataComms = new DataComms();
+            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsDataReceive);
+            dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
 
         private string username;
