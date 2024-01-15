@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommsUtil">
-      <HintPath>..\..\..\Week 2\DataCommsStarters\CommsUtil.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\CommsUtil.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimerForTemp.cs" />
     <Compile Include="User.cs">
       <SubType>Form</SubType>
     </Compile>

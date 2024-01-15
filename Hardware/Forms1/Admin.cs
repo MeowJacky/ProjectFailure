@@ -16,6 +16,7 @@ namespace Forms1
     public partial class Admin : Form
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
+        private DBTempUpdate temperatureUpdateService;
 
         private string username;
         private int loggedInAdminAuthority;
@@ -26,6 +27,8 @@ namespace Forms1
             loggedInAdminAuthority = authority;
             AUsername.Text = username;
             PopulateChartData();
+
+            
 
         }
 
@@ -161,7 +164,8 @@ namespace Forms1
 
         private void Admin_Load(object sender, EventArgs e)
         {
-
+            //temperatureUpdateService = new DBTempUpdate();
+            //temperatureUpdateService.UpdateTemperatureDB();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -258,6 +262,11 @@ namespace Forms1
             //Loginlogs logs = new Loginlogs(this.username);
             //logs.Show();
             //this.Close();
+        }
+
+        private void clockin_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
