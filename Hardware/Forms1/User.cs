@@ -24,17 +24,20 @@ namespace Forms1
         private string extractStringValue(string strData, string ID)
         {
             string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
+            Console.WriteLine(result);
             return result;
         }
 
         private string handelRFID(string strData, string ID)
         {
             rfidnum = extractStringValue(strData, ID);
+            Console.WriteLine(rfidnum);
             return rfidnum;
         }
 
         public void extractSensorData(string strData)
         {
+            Console.WriteLine("hi4");
             if (strData.IndexOf("RFID=") != -1)
                 handelRFID(strData, "RFID=");
 
@@ -42,12 +45,25 @@ namespace Forms1
 
         public void processDataReceive(string strData)
         {
-            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+            if (strData.IndexOf("RFID=") != -1)
+            {
+                Console.WriteLine("hi3");
+            }
+            try
+            {
+                myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+                d(strData);
+            }
+            catch(Exception)
+            {
+                Console.WriteLine("error");
+            }
         }
 
-        public void commsDataReceive(string dataReceived)
+        public void commsdatareceive(string datareceived)
         {
-            processDataReceive(dataReceived);
+            Console.WriteLine("hi2");
+            processDataReceive(datareceived);
         }
 
         public void commsSendError(string errMsg)
@@ -58,8 +74,9 @@ namespace Forms1
         
         private void InitComms()
         {
+            Console.WriteLine("hi1");
             dataComms = new DataComms();
-            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsDataReceive);
+            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
             dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
 
