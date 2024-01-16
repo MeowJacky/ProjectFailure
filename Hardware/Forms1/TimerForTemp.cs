@@ -14,6 +14,9 @@ public class DBTempUpdate
     private static Timer timer;
     private static readonly object timerLock = new object(); // Lock object to prevent race conditions
     private static bool isTimerStarted = false;
+    DataComms datacomms;
+    public delegate void myprocessDataDelegate(string strData);
+    float fuckthisproject;
 
     public void UpdateTemperatureDB()
     {
@@ -59,9 +62,28 @@ public class DBTempUpdate
 
     private float GetRoomTemperature()
     {
-        Random random = new Random();
-        float randomTemperature = (float)(random.NextDouble() * 10.0 + 20.0);
+        //Random random = new Random();
+        //float Temperature = (float)(random.NextDouble() * 10.0 + 20.0);
+        InitComms();
+        //get temperature
 
-        return randomTemperature;
+        return Temperature;
     }
+    private string extractStringValue(string strData, string ID)
+    {
+        string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
+        Console.WriteLine(result);
+        return result;
+    }
+    private float extractFloatValue(string strData, string ID)
+    {
+        return (float.Parse(extractStringValue(strData, ID)));
+    }
+    private string HandleTemp(string strData, string ID)
+    {
+        fuckthisproject = extractFloatValue(strData, ID);
+
+        return "";
+    }
+
 }
