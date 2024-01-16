@@ -30,12 +30,14 @@ namespace Forms1
         private string extractStringValue(string strData, string ID)
         {
             string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
+            Console.WriteLine(result);
             return result;
         }
 
         private string handelRFID(string strData, string ID)
         {
             rfidnum = extractStringValue(strData, ID);
+            Console.WriteLine(rfidnum);
             return rfidnum;
         }
 
@@ -48,12 +50,13 @@ namespace Forms1
 
         public void processDataReceive(string strData)
         {
-            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+                myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+                d(strData);
         }
 
-        public void commsDataReceive(string dataReceived)
+        public void commsdatareceive(string datareceived)
         {
-            processDataReceive(dataReceived);
+            processDataReceive(datareceived);
         }
 
         public void commsSendError(string errMsg)
@@ -65,7 +68,7 @@ namespace Forms1
         private void InitComms()
         {
             dataComms = new DataComms();
-            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsDataReceive);
+            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
             dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
 
