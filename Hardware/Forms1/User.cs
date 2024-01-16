@@ -109,57 +109,12 @@ namespace Forms1
             }
         }
 
-        private void ClockButton_Click(object sender, EventArgs e)
-        {
-            int currentStatus = GetCurrentClockStatus();
-
-            if (currentStatus == 0)
-            {
-                if (currentStatus == 0)
-                {
-                    DateTime currentTime = DateTime.Now;
-                    TimeSpan lateStartTime = new TimeSpan(9, 0, 0);
-                    TimeSpan lateEndTime = new TimeSpan(7, 59, 59);
-                    TimeSpan targetTime = new TimeSpan(8, 0, 0);
-
-                    if ((currentTime.TimeOfDay >= lateStartTime && currentTime.TimeOfDay <= TimeSpan.FromHours(24)) ||
-                        (currentTime.TimeOfDay >= TimeSpan.Zero && currentTime.TimeOfDay <= lateEndTime))
-                    {
-                        TimeSpan lateDuration = currentTime.TimeOfDay - targetTime;
-                        if (lateDuration < TimeSpan.Zero)
-                        {
-                            lateDuration = TimeSpan.FromHours(24) + lateDuration; //Adding a day for it to be positive
-                        }
-
-                        int lateHours = (int)lateDuration.TotalHours;
-                        int lateMinutes = lateDuration.Minutes;
-
-                        string lateMessage = "You are late by " + lateHours + " hours and " + lateMinutes + " minutes!";
-                        MessageBox.Show(lateMessage);
-                        UpdateClockStatus(1);
-                    }
-
-                }
-            }
-            else
-            {
-                UpdateClockStatus(0);
-            }
-
-            DisplayClockStatus(); // Update UI to reflect the new clock-in status
-        }
-
         //private void ClockButton_Click(object sender, EventArgs e)
         //{
         //    int currentStatus = GetCurrentClockStatus();
 
-        //    // Assuming that RFID data is received and processed in processDataReceive method
-        //    // You can modify this part based on your actual RFID data handling
-
-        //    // Check if the scanned RFID matches the RFID of the logged-in user
-        //    if (IsRFIDMatch(rfidnum))
+        //    if (currentStatus == 0)
         //    {
-        //        rfidnum = 0;
         //        if (currentStatus == 0)
         //        {
         //            DateTime currentTime = DateTime.Now;
@@ -173,7 +128,7 @@ namespace Forms1
         //                TimeSpan lateDuration = currentTime.TimeOfDay - targetTime;
         //                if (lateDuration < TimeSpan.Zero)
         //                {
-        //                    lateDuration = TimeSpan.FromHours(24) + lateDuration; // Adding a day for it to be positive
+        //                    lateDuration = TimeSpan.FromHours(24) + lateDuration; //Adding a day for it to be positive
         //                }
 
         //                int lateHours = (int)lateDuration.TotalHours;
@@ -183,19 +138,65 @@ namespace Forms1
         //                MessageBox.Show(lateMessage);
         //                UpdateClockStatus(1);
         //            }
-        //        }
-        //        else
-        //        {
-        //            UpdateClockStatus(0);
-        //        }
 
-        //        DisplayClockStatus(); // Update UI to reflect the new clock-in status
+        //        }
         //    }
         //    else
         //    {
-        //        MessageBox.Show("RFID does not match the logged-in user.");
+        //        UpdateClockStatus(0);
         //    }
+
+        //    DisplayClockStatus(); // Update UI to reflect the new clock-in status
         //}
+
+        private void ClockButton_Click(object sender, EventArgs e)
+        {
+            int currentStatus = GetCurrentClockStatus();
+
+            // Assuming that RFID data is received and processed in processDataReceive method
+            // You can modify this part based on your actual RFID data handling
+
+            // Check if the scanned RFID matches the RFID of the logged-in user
+            
+            if (currentStatus == 0)
+            {
+                if (IsRFIDMatch(rfidnum))
+                {
+                    rfidnum = 0;
+                    DateTime currentTime = DateTime.Now;
+                    TimeSpan lateStartTime = new TimeSpan(9, 0, 0);
+                    TimeSpan lateEndTime = new TimeSpan(7, 59, 59);
+                    TimeSpan targetTime = new TimeSpan(8, 0, 0);
+
+                    if ((currentTime.TimeOfDay >= lateStartTime && currentTime.TimeOfDay <= TimeSpan.FromHours(24)) ||
+                        (currentTime.TimeOfDay >= TimeSpan.Zero && currentTime.TimeOfDay <= lateEndTime))
+                    {
+                        TimeSpan lateDuration = currentTime.TimeOfDay - targetTime;
+                        if (lateDuration < TimeSpan.Zero)
+                        {
+                            lateDuration = TimeSpan.FromHours(24) + lateDuration; // Adding a day for it to be positive
+                        }
+
+                        int lateHours = (int)lateDuration.TotalHours;
+                        int lateMinutes = lateDuration.Minutes;
+
+                        string lateMessage = "You are late by " + lateHours + " hours and " + lateMinutes + " minutes!";
+                        MessageBox.Show(lateMessage);
+                        UpdateClockStatus(1);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("RFID does not match the logged-in user.");
+                }
+            }
+            else
+            {
+                UpdateClockStatus(0);
+                
+            }
+            DisplayClockStatus(); // Update UI to reflect the new clock-in status
+        }
 
         private int GetCurrentClockStatus()
         {
@@ -231,27 +232,27 @@ namespace Forms1
             }
         }
 
-        //private bool IsRFIDMatch(int scannedRFIDData)
-        //{
-        //    // Query to retrieve the RFID of the logged-in user
-        //    string query = "SELECT UniqueRFID FROM Admins WHERE Name = @Username";
+        private bool IsRFIDMatch(int scannedRFIDData)
+        {
+            // Query to retrieve the RFID of the logged-in user
+            string query = "SELECT UniqueRFID FROM Admins WHERE Name = @Username";
 
-        //    using (SqlConnection connection = new SqlConnection(strConnectionString))
-        //    {
-        //        using (SqlCommand command = new SqlCommand(query, connection))
-        //        {
-        //            command.Parameters.AddWithValue("@Username", username);
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
 
-        //            connection.Open();
+                    connection.Open();
 
-        //            // Retrieve the RFID value of the logged-in user from the database
-        //            int userRFIDValue = Convert.ToInt32(command.ExecuteScalar());
+                    // Retrieve the RFID value of the logged-in user from the database
+                    int userRFIDValue = Convert.ToInt32(command.ExecuteScalar());
 
-        //            // Compare the scanned RFID value with the user's RFID value
-        //            return scannedRFIDData == userRFIDValue;
-        //        }
-        //    }
-        //}
+                    // Compare the scanned RFID value with the user's RFID value
+                    return scannedRFIDData == userRFIDValue;
+                }
+            }
+        }
 
         private void User_Load(object sender, EventArgs e)
         {
