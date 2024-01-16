@@ -33,7 +33,7 @@ namespace Forms1
             return rfidnum;
         }
 
-        private void extractSensorData(string strData)
+        public void extractSensorData(string strData)
         {
             if (strData.IndexOf("RFID=") != -1)
                 handelRFID(strData, "RFID=");
@@ -152,7 +152,7 @@ namespace Forms1
             // You can modify this part based on your actual RFID data handling
 
             // Check if the scanned RFID matches the RFID of the logged-in user
-            
+
             if (currentStatus == 0)
             {
                 Console.WriteLine(rfidnum);
