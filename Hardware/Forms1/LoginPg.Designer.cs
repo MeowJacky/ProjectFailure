@@ -49,9 +49,9 @@
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblUsername.Location = new System.Drawing.Point(104, 124);
+            this.lblUsername.Location = new System.Drawing.Point(92, 99);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(91, 20);
+            this.lblUsername.Size = new System.Drawing.Size(81, 17);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "Username: ";
             this.lblUsername.Click += new System.EventHandler(this.label1_Click);
@@ -60,38 +60,39 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblPassword.Location = new System.Drawing.Point(103, 228);
+            this.lblPassword.Location = new System.Drawing.Point(92, 182);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(78, 20);
+            this.lblPassword.Size = new System.Drawing.Size(69, 17);
             this.lblPassword.TabIndex = 1;
             this.lblPassword.Text = "Password";
             // 
             // tbUserName
             // 
             this.tbUserName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tbUserName.Location = new System.Drawing.Point(201, 124);
+            this.tbUserName.Location = new System.Drawing.Point(179, 99);
             this.tbUserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(256, 26);
+            this.tbUserName.Size = new System.Drawing.Size(228, 22);
             this.tbUserName.TabIndex = 2;
             this.tbUserName.TextChanged += new System.EventHandler(this.tbUsername_TextChanged);
             // 
             // tbPassword
             // 
             this.tbPassword.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tbPassword.Location = new System.Drawing.Point(201, 228);
+            this.tbPassword.Location = new System.Drawing.Point(179, 182);
             this.tbPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(256, 26);
+            this.tbPassword.PasswordChar = '*';
+            this.tbPassword.Size = new System.Drawing.Size(228, 22);
             this.tbPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnLogin.Location = new System.Drawing.Point(153, 318);
+            this.btnLogin.Location = new System.Drawing.Point(136, 254);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(256, 35);
+            this.btnLogin.Size = new System.Drawing.Size(228, 28);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -106,7 +107,8 @@
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.splitContainer1.Location = new System.Drawing.Point(0, -32);
+            this.splitContainer1.Location = new System.Drawing.Point(0, -26);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -125,16 +127,17 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnLogin);
             this.splitContainer1.Panel2.Controls.Add(this.tbPassword);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(932, 498);
-            this.splitContainer1.SplitterDistance = 357;
+            this.splitContainer1.Size = new System.Drawing.Size(828, 398);
+            this.splitContainer1.SplitterDistance = 317;
             this.splitContainer1.TabIndex = 6;
             // 
             // logo
             // 
             this.logo.Image = global::Forms1.Properties.Resources.logo1;
-            this.logo.Location = new System.Drawing.Point(54, 94);
+            this.logo.Location = new System.Drawing.Point(48, 75);
+            this.logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(300, 312);
+            this.logo.Size = new System.Drawing.Size(267, 250);
             this.logo.TabIndex = 0;
             this.logo.TabStop = false;
             this.logo.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -142,9 +145,9 @@
             // forgetpass
             // 
             this.forgetpass.AutoSize = true;
-            this.forgetpass.Location = new System.Drawing.Point(215, 369);
+            this.forgetpass.Location = new System.Drawing.Point(191, 295);
             this.forgetpass.Name = "forgetpass";
-            this.forgetpass.Size = new System.Drawing.Size(129, 20);
+            this.forgetpass.Size = new System.Drawing.Size(114, 17);
             this.forgetpass.TabIndex = 5;
             this.forgetpass.TabStop = true;
             this.forgetpass.Text = "Forget Password";
@@ -152,9 +155,9 @@
             // 
             // LoginPg
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 441);
+            this.ClientSize = new System.Drawing.Size(831, 353);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LoginPg";

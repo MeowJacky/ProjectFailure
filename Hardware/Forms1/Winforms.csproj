@@ -124,6 +124,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="temperaturechart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="temperaturechart.Designer.cs">
+      <DependentUpon>temperaturechart.cs</DependentUpon>
+    </Compile>
     <Compile Include="TimerForTemp.cs" />
     <Compile Include="User.cs">
       <SubType>Form</SubType>
@@ -179,6 +185,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="temperaturechart.resx">
+      <DependentUpon>temperaturechart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>

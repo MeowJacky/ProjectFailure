@@ -25,7 +25,7 @@ public class DBTempUpdate
             if (timer == null)
             {
                 timer = new Timer();
-                timer.Interval = 10000; // 10 seconds for testing
+                timer.Interval = 10000; // 10 seconds for testing 10000
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -45,8 +45,11 @@ public class DBTempUpdate
 
     private void UpdateTemperatureInDatabase()
     {
+        //InitComms();
+
         int result = 0;
-        float temperature = GetRoomTemperature();
+        //float temperature = temp;
+        float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
         SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
         string strCommandText = "INSERT INTO Temperature (Time, Temp) VALUES (@CurrentTime, @NewTemperature)";
         SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
@@ -60,15 +63,6 @@ public class DBTempUpdate
         Console.WriteLine($"Updating temperature: {temperature}");
     }
 
-    private float GetRoomTemperature()
-    {
-        //Random random = new Random();
-        //float Temperature = (float)(random.NextDouble() * 10.0 + 20.0);
-        InitComms();
-        //get temperature
-
-        return Temperature;
-    }
     private string extractStringValue(string strData, string ID)
     {
         string result = strData.Substring(strData.IndexOf(ID) + ID.Length);

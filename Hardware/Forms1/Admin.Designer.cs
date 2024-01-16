@@ -31,6 +31,10 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,14 +43,24 @@
             this.currentAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginOutLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.clockin = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.editclockin = new System.Windows.Forms.Button();
             this.refresh = new System.Windows.Forms.Button();
+            this.historialDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.temperatureLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginOutLogsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.TemperatureChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.RefreshTempData = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TemperatureChart)).BeginInit();
             this.SuspendLayout();
             // 
             // AUsername
@@ -70,11 +84,11 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.projectWSYSToolStripMenuItem,
             this.manageUsersToolStripMenuItem,
-            this.loginOutLogsToolStripMenuItem,
+            this.historialDataToolStripMenuItem,
             this.signOutToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(156, 527);
+            this.menuStrip2.Size = new System.Drawing.Size(156, 514);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -102,36 +116,29 @@
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(177, 26);
+            this.Viewusers.Size = new System.Drawing.Size(181, 26);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addAdminToolStripMenuItem.Text = "Add Admin";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_1);
             // 
             // addUserToolStripMenuItem
             // 
             this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.addUserToolStripMenuItem.Text = "Add User";
-            // 
-            // loginOutLogsToolStripMenuItem
-            // 
-            this.loginOutLogsToolStripMenuItem.Name = "loginOutLogsToolStripMenuItem";
-            this.loginOutLogsToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
-            this.loginOutLogsToolStripMenuItem.Text = "Login/Out Logs";
-            this.loginOutLogsToolStripMenuItem.Click += new System.EventHandler(this.loginOutLogsToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 
@@ -158,22 +165,24 @@
             this.clockin.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.clockin.Legends.Add(legend1);
-            this.clockin.Location = new System.Drawing.Point(197, 188);
+            this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.clockin.Series.Add(series1);
-            this.clockin.Size = new System.Drawing.Size(732, 327);
+            this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
-            this.clockin.Text = "clockin";
+            this.clockin.Text = "Employee Clock In";
+            title1.Name = "Employee Clock In";
+            this.clockin.Titles.Add(title1);
             this.clockin.Click += new System.EventHandler(this.clockin_Click);
             // 
             // editclockin
             // 
-            this.editclockin.Location = new System.Drawing.Point(780, 416);
+            this.editclockin.Location = new System.Drawing.Point(457, 124);
             this.editclockin.Name = "editclockin";
-            this.editclockin.Size = new System.Drawing.Size(139, 36);
+            this.editclockin.Size = new System.Drawing.Size(107, 34);
             this.editclockin.TabIndex = 2;
             this.editclockin.Text = "Edit Clocked In";
             this.editclockin.UseVisualStyleBackColor = true;
@@ -181,23 +190,91 @@
             // 
             // refresh
             // 
-            this.refresh.Location = new System.Drawing.Point(780, 354);
+            this.refresh.Location = new System.Drawing.Point(457, 178);
             this.refresh.Name = "refresh";
-            this.refresh.Size = new System.Drawing.Size(139, 36);
+            this.refresh.Size = new System.Drawing.Size(107, 36);
             this.refresh.TabIndex = 5;
             this.refresh.Text = "Refresh Data";
             this.refresh.UseVisualStyleBackColor = true;
             this.refresh.Click += new System.EventHandler(this.refresh_Click);
             // 
+            // historialDataToolStripMenuItem
+            // 
+            this.historialDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.temperatureLogsToolStripMenuItem,
+            this.loginOutLogsToolStripMenuItem1});
+            this.historialDataToolStripMenuItem.Name = "historialDataToolStripMenuItem";
+            this.historialDataToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
+            this.historialDataToolStripMenuItem.Text = "Historical Logs";
+            this.historialDataToolStripMenuItem.Click += new System.EventHandler(this.historialDataToolStripMenuItem_Click);
+            // 
+            // temperatureLogsToolStripMenuItem
+            // 
+            this.temperatureLogsToolStripMenuItem.Name = "temperatureLogsToolStripMenuItem";
+            this.temperatureLogsToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.temperatureLogsToolStripMenuItem.Text = "Temperature Logs";
+            this.temperatureLogsToolStripMenuItem.Click += new System.EventHandler(this.temperatureLogsToolStripMenuItem_Click);
+            // 
+            // loginOutLogsToolStripMenuItem1
+            // 
+            this.loginOutLogsToolStripMenuItem1.Name = "loginOutLogsToolStripMenuItem1";
+            this.loginOutLogsToolStripMenuItem1.Size = new System.Drawing.Size(203, 26);
+            this.loginOutLogsToolStripMenuItem1.Text = "Login/Out Logs";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Location = new System.Drawing.Point(159, 12);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.refresh);
+            this.splitContainer1.Panel1.Controls.Add(this.editclockin);
+            this.splitContainer1.Panel1.Controls.Add(this.clockin);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.RefreshTempData);
+            this.splitContainer1.Panel2.Controls.Add(this.TemperatureChart);
+            this.splitContainer1.Size = new System.Drawing.Size(1115, 292);
+            this.splitContainer1.SplitterDistance = 594;
+            this.splitContainer1.TabIndex = 6;
+            // 
+            // TemperatureChart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend2);
+            this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
+            this.TemperatureChart.Name = "TemperatureChart";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.TemperatureChart.Series.Add(series2);
+            this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
+            this.TemperatureChart.TabIndex = 0;
+            this.TemperatureChart.Text = "TemperatureLogs";
+            this.TemperatureChart.Click += new System.EventHandler(this.chart1_Click_1);
+            // 
+            // RefreshTempData
+            // 
+            this.RefreshTempData.Location = new System.Drawing.Point(391, 145);
+            this.RefreshTempData.Name = "RefreshTempData";
+            this.RefreshTempData.Size = new System.Drawing.Size(108, 41);
+            this.RefreshTempData.TabIndex = 1;
+            this.RefreshTempData.Text = "Refresh Data";
+            this.RefreshTempData.UseVisualStyleBackColor = true;
+            this.RefreshTempData.Click += new System.EventHandler(this.RefreshTempData_Click);
+            // 
             // Admin
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1141, 527);
-            this.Controls.Add(this.refresh);
+            this.ClientSize = new System.Drawing.Size(1299, 514);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.editclockin);
             this.Controls.Add(this.AUsername);
-            this.Controls.Add(this.clockin);
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip2;
             this.Name = "Admin";
@@ -205,6 +282,11 @@
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TemperatureChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +312,11 @@
         private System.Windows.Forms.ToolStripMenuItem Viewusers;
         private System.Windows.Forms.Button refreshed;
         private System.Windows.Forms.Button refresh;
-        private System.Windows.Forms.ToolStripMenuItem loginOutLogsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem historialDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem temperatureLogsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginOutLogsToolStripMenuItem1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart TemperatureChart;
+        private System.Windows.Forms.Button RefreshTempData;
     }
 }

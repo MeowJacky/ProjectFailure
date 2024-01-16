@@ -27,10 +27,86 @@ namespace Forms1
             loggedInAdminAuthority = authority;
             AUsername.Text = username;
             PopulateChartData();
+            TemperaturePopulateChartData();
 
-            
+
+
 
         }
+
+        private void TemperaturePopulateChartData()
+        {
+            try
+            {
+                // Clear existing series from the chart
+                TemperatureChart.Series.Clear();
+
+                using (SqlConnection connection = new SqlConnection(strConnectionString))
+                {
+                    connection.Open();
+
+                    // Use your actual table name and column names
+                    string query = "SELECT TOP 36 Time, Temp FROM Temperature ORDER BY Time DESC";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Create a series for the chart
+                            Series series = new Series("Temperature");
+                            series.ChartType = SeriesChartType.Line; // Assuming you want a line chart for temperature
+
+                            while ((reader.Read()))
+                            {
+                                DateTime time = Convert.ToDateTime(reader["Time"]);
+                                float temperature = Convert.ToSingle(reader["Temp"]);
+
+                                // Add a data point to the series
+                                series.Points.AddXY(time, temperature);
+
+                            }
+
+                            // Set the X-axis labels to time values
+                            TemperatureChart.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss"; // Adjust the format as needed
+
+
+                            if (TemperatureChart.Titles.Count == 0)
+                            {
+                                Title chartTitle = new Title();
+                                chartTitle.Text = "Temperature Chart";
+                                chartTitle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+                                TemperatureChart.Titles.Add(chartTitle);
+                            }
+                            TemperatureChart.ChartAreas[0].AxisY.Minimum = double.NaN;
+                            TemperatureChart.ChartAreas[0].AxisY.Maximum = double.NaN;
+                            TemperatureChart.ChartAreas[0].RecalculateAxesScale();
+
+
+
+
+
+                            // Check if the series has data before adding it to the chart
+                            if (series.Points.Count > 0)
+                            {
+                                // Add the series to the chart
+                                TemperatureChart.Series.Add(series);
+                            }
+                            else
+                            {
+                                // Handle the case where the series is empty
+                                MessageBox.Show("No data to display in the chart.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately
+                MessageBox.Show($"Error populating temperature chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void PopulateChartData()
         {
@@ -88,6 +164,19 @@ namespace Forms1
 
                             clockin.MouseUp -= Clockin_MouseClick;
                             clockin.MouseUp += Clockin_MouseClick;
+
+
+                            if (clockin.Titles.Count == 1) //idk why its 1 i think i messed with the properties
+                            {
+                                Title chart1Title = new Title();
+                                chart1Title.Text = "Employee Clock In";
+                                chart1Title.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+                                clockin.Titles.Add(chart1Title);
+                                Console.WriteLine("clockin title added");
+                            }
+                            
+
+
 
                             // Check if the series has data before adding it to the chart
                             if (series.Points.Count > 0)
@@ -164,8 +253,7 @@ namespace Forms1
 
         private void Admin_Load(object sender, EventArgs e)
         {
-            //temperatureUpdateService = new DBTempUpdate();
-            //temperatureUpdateService.UpdateTemperatureDB();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -267,6 +355,31 @@ namespace Forms1
         private void clockin_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void historialDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void temperatureLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void chart1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RefreshTempData_Click(object sender, EventArgs e)
+        {
+            TemperaturePopulateChartData();
         }
     }
 }
