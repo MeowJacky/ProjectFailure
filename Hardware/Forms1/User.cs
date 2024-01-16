@@ -17,7 +17,7 @@ namespace Forms1
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
         DataComms dataComms;
-        int rfidnum;
+        string rfidnum;
 
         public delegate void myprocessDataDelegate(string strData);
 
@@ -27,14 +27,9 @@ namespace Forms1
             return result;
         }
 
-        private int extractIntValue(string strData, string ID)
+        private string handelRFID(string strData, string ID)
         {
-            return (int.Parse(extractStringValue(strData, ID)));
-        }
-
-        private int handelRFID(string strData, string ID)
-        {
-            rfidnum = extractIntValue(strData, ID);
+            rfidnum = extractStringValue(strData, ID);
             return rfidnum;
         }
 
@@ -160,9 +155,11 @@ namespace Forms1
             
             if (currentStatus == 0)
             {
+                Console.WriteLine(rfidnum);
+                Console.WriteLine(IsRFIDMatch(rfidnum));
                 if (IsRFIDMatch(rfidnum))
                 {
-                    rfidnum = 0;
+                    rfidnum = "";
                     DateTime currentTime = DateTime.Now;
                     TimeSpan lateStartTime = new TimeSpan(9, 0, 0);
                     TimeSpan lateEndTime = new TimeSpan(7, 59, 59);
@@ -232,7 +229,7 @@ namespace Forms1
             }
         }
 
-        private bool IsRFIDMatch(int scannedRFIDData)
+        private bool IsRFIDMatch(string scannedRFIDData)
         {
             // Query to retrieve the RFID of the logged-in user
             string query = "SELECT UniqueRFID FROM Admins WHERE Name = @Username";
@@ -246,7 +243,7 @@ namespace Forms1
                     connection.Open();
 
                     // Retrieve the RFID value of the logged-in user from the database
-                    int userRFIDValue = Convert.ToInt32(command.ExecuteScalar());
+                    string userRFIDValue = Convert.ToString(command.ExecuteScalar());
 
                     // Compare the scanned RFID value with the user's RFID value
                     return scannedRFIDData == userRFIDValue;
