@@ -9,12 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using GrovePi;
-using GrovePi.Sensors;
-
-
 
 namespace Forms1
 {
@@ -50,8 +44,8 @@ namespace Forms1
 
         public void processDataReceive(string strData)
         {
-                myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
-                d(strData);
+            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+            d(strData);
         }
 
         public void commsdatareceive(string datareceived)
@@ -64,7 +58,7 @@ namespace Forms1
             MessageBox.Show(errMsg);
             processDataReceive(errMsg);
         }
-        
+
         private void InitComms()
         {
             dataComms = new DataComms();
@@ -76,7 +70,7 @@ namespace Forms1
         public User(string username)
         {
             InitializeComponent();
-            this.username=username;
+            this.username = username;
 
             userusername.Text = username;
 
@@ -199,7 +193,7 @@ namespace Forms1
             else
             {
                 UpdateClockStatus(0);
-                
+
             }
             DisplayClockStatus(); // Update UI to reflect the new clock-in status
         }
