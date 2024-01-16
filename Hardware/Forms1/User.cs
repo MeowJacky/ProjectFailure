@@ -37,7 +37,6 @@ namespace Forms1
 
         public void extractSensorData(string strData)
         {
-            Console.WriteLine("hi4");
             if (strData.IndexOf("RFID=") != -1)
                 handelRFID(strData, "RFID=");
 
@@ -45,24 +44,12 @@ namespace Forms1
 
         public void processDataReceive(string strData)
         {
-            if (strData.IndexOf("RFID=") != -1)
-            {
-                Console.WriteLine("hi3");
-            }
-            try
-            {
                 myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
                 d(strData);
-            }
-            catch(Exception)
-            {
-                Console.WriteLine("error");
-            }
         }
 
         public void commsdatareceive(string datareceived)
         {
-            Console.WriteLine("hi2");
             processDataReceive(datareceived);
         }
 
@@ -74,7 +61,6 @@ namespace Forms1
         
         private void InitComms()
         {
-            Console.WriteLine("hi1");
             dataComms = new DataComms();
             dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
             dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
