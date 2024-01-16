@@ -16,7 +16,7 @@ public class DBTempUpdate
     private static bool isTimerStarted = false;
     DataComms datacomms;
     public delegate void myprocessDataDelegate(string strData);
-    float fuckthisproject;
+    float temp;
 
     public void UpdateTemperatureDB()
     {
@@ -79,11 +79,40 @@ public class DBTempUpdate
     {
         return (float.Parse(extractStringValue(strData, ID)));
     }
-    private string HandleTemp(string strData, string ID)
+    private float HandleTemp(string strData, string ID)
     {
-        fuckthisproject = extractFloatValue(strData, ID);
-
-        return "";
+        temp = extractFloatValue(strData, ID);
+        return temp;
     }
 
+    public void extractSensorData(string strData)
+    {
+        if (strData.IndexOf("Temp=") != -1)
+            HandleTemp(strData, "Temp=");
+    
+    }
+
+    public void processDataReceive(string strData)
+    {
+        myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+        d(strData);
+    }
+
+    public void commsdatareceive(string datareceived)
+    {
+        processDataReceive(datareceived);
+    }
+
+    public void commsSendError(string errMsg)
+    {
+        MessageBox.Show(errMsg);
+        processDataReceive(errMsg);
+    }
+
+    private void InitComms()
+    {
+        datacomms = new DataComms();
+        datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+        datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+    }
 }
