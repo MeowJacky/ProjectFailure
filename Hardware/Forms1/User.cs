@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using GrovePi;
+using GrovePi.Sensors;
+
+
 
 namespace Forms1
 {
