@@ -88,7 +88,7 @@ namespace Hardware
                 if (motionState.Equals("1"))
                 {
                     detect = true;
-                    Task.Delay(1000).Wait();
+                    Task.Delay(100).Wait();
                 }
             }
         }
@@ -272,9 +272,9 @@ namespace Hardware
                 //{
                 //    sendtowindows("Close=" + close);
                 //}
-                
-                if (detect == true)
+                if(incoming.Equals("GIBMOVE"))
                 {
+                    incoming = "";
                     sendtowindows("Detect=" + detect);
                     detect = false;
                 }

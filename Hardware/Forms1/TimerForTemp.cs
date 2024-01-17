@@ -14,7 +14,7 @@ public class DBTempUpdate
     private static Timer timer;
     private static readonly object timerLock = new object(); // Lock object to prevent race conditions
     private static bool isTimerStarted = false;
-    DataComms datacomms;
+    DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
     public delegate void myprocessDataDelegate(string strData);
     float temp;
 
@@ -43,6 +43,8 @@ public class DBTempUpdate
     {
         datacomms.sendData("GIBTEMP");
         UpdateTemperatureInDatabase();
+        datacomms.dataReceiveEvent -= commsdatareceive;
+        datacomms.dataSendErrorEvent -= commsSendError;
     }
 
     private void UpdateTemperatureInDatabase()
@@ -104,8 +106,7 @@ public class DBTempUpdate
 
     private void InitComms()
     {
-        datacomms = new DataComms();
-        datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-        datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+            datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+            datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
     }
 }

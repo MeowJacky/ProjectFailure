@@ -10,6 +10,23 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
+public static class DataCommsHelper
+{
+    private static DataComms dataCommsInstance;
+
+    public static DataComms GetDataCommsInstance()
+    {
+        if (dataCommsInstance == null)
+        {
+            // Instantiate DataComms only if it hasn't been created yet
+            dataCommsInstance = new DataComms();
+            // You might want to set up event handlers or perform other initialization here
+        }
+
+        return dataCommsInstance;
+    }
+}
+
 namespace Forms1
 {
     public partial class LoginPg : Form
@@ -71,15 +88,18 @@ namespace Forms1
 
                         // Record login attempt to LoginLogs table
                         RecordLogin(tbUserName.Text, "Login", "Yes");
-
+                        Console.WriteLine("1");
                         int userAuthority = Convert.ToInt32(reader["Authority"]);
+                        Console.WriteLine("2");
                         if (userAuthority == 999)
                         {
+                            Console.WriteLine("3");
                             User userform = new User(tbUserName.Text);
                             userform.Show();
                         }
                         else
                         {
+                            Console.WriteLine("4");
                             Admin adminform = new Admin(tbUserName.Text, userAuthority);
                             adminform.Show();
                             Console.WriteLine(userAuthority);
