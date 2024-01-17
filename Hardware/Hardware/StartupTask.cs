@@ -60,22 +60,6 @@ namespace Hardware
             return val;
         }
 
-        //private double getTemp()
-        //{
-        //    int adcval; double tempcal = 0, R;
-        //    adcval = readtemp(thermo);
-        //    int B = 4250, R0 = 100000;
-        //    R = 100000 * (1023.0 - adcval) / adcval;
-        //    tempcal = 1 / (Math.Log(R / R0) / B + 1 / 298.15) - 273.15;
-        //    if (!Double.IsNaN(tempcal) && tempcal > 15 && tempcal < 40)
-        //    {
-        //        temp = tempcal;
-        //    }
-        //    Debug.WriteLine(tempcal);
-        //    Debug.WriteLine(temp);
-        //    return temp;
-        //}
-
         private double getTemp()
         {
             int adcValue; double tempCalculated = 0, R;
