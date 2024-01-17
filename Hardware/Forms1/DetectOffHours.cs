@@ -14,9 +14,9 @@ public class DBOffHoursDetect
     private static Timer Intrusiontimer;
     private static readonly object timerLock = new object(); // Lock object to prevent race conditions
     private static bool isTimerStartedIntrusion = false;
-    DataComms datacomms;
+    DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
     public delegate void myprocessDataDelegate(string strData);
-    float temp;
+    bool detect;
 
     public void UpdateIntrusionDB()
     {
@@ -40,12 +40,15 @@ public class DBOffHoursDetect
     }
     private void Intrusiontimer_Tick(object sender, EventArgs e)
     {
+        datacomms.sendData("GIBMOVE");
         Intrusion();
+        datacomms.dataReceiveEvent -= commsdatareceive;
+        datacomms.dataSendErrorEvent -= commsSendError;
     }
 
     private void Intrusion()
     {
-        if ((CheckTimeRange()) && (DetectIntrusionsRPI()))
+        if ((CheckTimeRange()) && (detect))
         //if (DetectIntrusionsRPI())
         {
                 int result = 0;
@@ -75,12 +78,7 @@ public class DBOffHoursDetect
         }
     }
 
-    private static bool DetectIntrusionsRPI()
-    {
-        bool result = new Random().Next(2) == 0;
 
-        return result;
-    }
 
     private static bool CheckTimeRange()
     {
@@ -98,5 +96,49 @@ public class DBOffHoursDetect
             result = false;
         }
         return result;
+    }
+    private string extractStringValue(string strData, string ID)
+    {
+        string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
+        return result;
+    }
+    private bool extractBoolValue(string strData, string ID)
+    {
+        return (bool.Parse(extractStringValue(strData, ID)));
+    }
+    private bool HandleDetect(string strData, string ID)
+    {
+        detect = extractBoolValue(strData, ID);
+        return detect;
+    }
+
+    public void extractSensorData(string strData)
+    {
+        if (strData.IndexOf("Detect=") != -1)
+            HandleDetect(strData, "Detect=");
+
+    }
+
+    public void processDataReceive(string strData)
+    {
+        myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+        d(strData);
+    }
+
+    public void commsdatareceive(string datareceived)
+    {
+        processDataReceive(datareceived);
+    }
+
+    public void commsSendError(string errMsg)
+    {
+        MessageBox.Show(errMsg);
+        processDataReceive(errMsg);
+    }
+
+    private void InitComms()
+    {
+        datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+        datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
     }
 }
