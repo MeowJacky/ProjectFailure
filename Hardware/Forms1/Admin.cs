@@ -386,5 +386,12 @@ namespace Forms1
         {
 
         }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            AddProduct addpro = new AddProduct(this.username);
+            addpro.Show();
+            this.Close();
+        }
     }
 }
