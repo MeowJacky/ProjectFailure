@@ -34,7 +34,7 @@ namespace Forms1
 
         }
 
-        private void TemperaturePopulateChartData()
+        private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
         {
             try
             {
@@ -44,9 +44,19 @@ namespace Forms1
                 using (SqlConnection connection = new SqlConnection(strConnectionString))
                 {
                     connection.Open();
-
+                    string query;
                     // Use your actual table name and column names
-                    string query = "SELECT TOP 36 Time, Temp FROM Temperature ORDER BY Time DESC";
+                    if (ChangeMax != default(DateTime))
+                    {
+                        // If ChangeMax is provided, use it as a filter in the WHERE clause
+                        query = $"SELECT TOP 36 Time, Temp FROM Temperature WHERE Time <= '{ChangeMax.ToString("yyyy-MM-dd HH:mm:ss")}' ORDER BY Time DESC";
+                    }
+                    else
+                    {
+                        // If ChangeMax is not provided, retrieve the top 36 records without a filter
+                        query = "SELECT TOP 36 Time, Temp FROM Temperature ORDER BY Time DESC";
+                    }
+
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -80,7 +90,7 @@ namespace Forms1
                             TemperatureChart.ChartAreas[0].AxisY.Maximum = double.NaN;
                             TemperatureChart.ChartAreas[0].RecalculateAxesScale();
 
-
+                            SetDateTemp.Value = DateTime.Now;
 
 
 
@@ -253,6 +263,7 @@ namespace Forms1
 
         private void Admin_Load(object sender, EventArgs e)
         {
+            SetDateTemp.Value = DateTime.Now;
 
         }
 
@@ -389,9 +400,20 @@ namespace Forms1
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            AddProduct addpro = new AddProduct(this.username);
+            AddProduct addpro = new AddProduct();
             addpro.Show();
             this.Close();
+        }
+
+        private void SetDateTemp_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void selectDate_Click(object sender, EventArgs e)
+        {
+            DateTime maxdate = SetDateTemp.Value;
+            TemperaturePopulateChartData(maxdate);
         }
     }
 }
