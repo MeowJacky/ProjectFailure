@@ -28,6 +28,7 @@ namespace Forms1
             AUsername.Text = username;
             PopulateChartData();
             TemperaturePopulateChartData();
+            PopulateIntrusionChartData();
 
 
 
@@ -116,6 +117,74 @@ namespace Forms1
             }
         }
 
+        private void PopulateIntrusionChartData()
+        {
+            try
+            {
+                // Clear existing series from the chart
+                IntrusionChart.Series.Clear();
+
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT CONVERT(DATE, Time) AS IntrusionDate, COUNT(*) AS IntrusionCount FROM Detection GROUP BY CONVERT(DATE, Time) ORDER BY IntrusionDate DESC";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Create a series for the chart
+                            Series series = new Series("Intrusion Events");
+                            series.ChartType = SeriesChartType.Column;
+
+                            while (reader.Read())
+                            {
+                                DateTime intrusionDate = Convert.ToDateTime(reader["IntrusionDate"]);
+                                int intrusionCount = Convert.ToInt32(reader["IntrusionCount"]);
+
+                                // Add a data point to the series with the specified count
+                                series.Points.Add(intrusionCount);
+
+                                // Set the data point label to indicate the count of intrusions for the day
+                                series.Points.Last().AxisLabel = $"{intrusionDate.ToString("MM/dd/yyyy")}\n({intrusionCount} intrusions)";
+                            }
+
+                            IntrusionChart.ChartAreas[0].AxisY.Minimum = double.NaN;
+                            IntrusionChart.ChartAreas[0].AxisY.Maximum = double.NaN;
+                            IntrusionChart.ChartAreas[0].RecalculateAxesScale();
+
+                            IntrusionChart.MouseUp -= IntrusionChart_Click;
+                            IntrusionChart.MouseUp += IntrusionChart_Click;
+
+                            // Customize the chart appearance and labels based on your requirements
+                            if (IntrusionChart.Titles.Count == 0)
+                            {
+                                Title chartTitle = new Title();
+                                chartTitle.Text = "Intrusion Chart";
+                                chartTitle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+                                IntrusionChart.Titles.Add(chartTitle);
+                            }
+                            // Check if the series has data before adding it to the chart
+                            if (series.Points.Count > 0)
+                            {
+                                // Add the series to the chart
+                                IntrusionChart.Series.Add(series);
+                            }
+                            else
+                            {
+                                // Handle the case where the series is empty
+                                MessageBox.Show("No intrusion events to display in the chart.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately
+                MessageBox.Show($"Error populating intrusion chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
         private void PopulateChartData()
@@ -174,6 +243,8 @@ namespace Forms1
 
                             clockin.MouseUp -= Clockin_MouseClick;
                             clockin.MouseUp += Clockin_MouseClick;
+
+                            
 
 
                             if (clockin.Titles.Count == 1) //idk why its 1 i think i messed with the properties
@@ -415,5 +486,30 @@ namespace Forms1
             DateTime maxdate = SetDateTemp.Value;
             TemperaturePopulateChartData(maxdate);
         }
+
+        private void IntrusionChart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IntrusionButton_Click(object sender, EventArgs e)
+        {
+            PopulateIntrusionChartData();
+        }
+        private void IntrusionChart_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Get the clicked data point
+            HitTestResult result = IntrusionChart.HitTest(e.X, e.Y);
+
+            if (result.Series != null && result.PointIndex >= 0)
+            {
+                // Retrieve information about the clicked intrusion event
+                DateTime intrusionTime = Convert.ToDateTime(result.Series.Points[result.PointIndex].AxisLabel.Split('\n')[0]);
+                int intrusionCount = Convert.ToInt32(result.Series.Points[result.PointIndex].AxisLabel.Split('(')[1].Split(' ')[0]);
+
+                Console.WriteLine(intrusionTime);
+            }
+        }
+
     }
 }

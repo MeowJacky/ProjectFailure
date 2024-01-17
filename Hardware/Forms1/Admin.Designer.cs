@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,9 +46,6 @@
             this.currentAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.historialDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.temperatureLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginOutLogsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Productmenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,10 +55,13 @@
             this.editclockin = new System.Windows.Forms.Button();
             this.refresh = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.selectDate = new System.Windows.Forms.Button();
+            this.SetDateTemp = new System.Windows.Forms.DateTimePicker();
             this.RefreshTempData = new System.Windows.Forms.Button();
             this.TemperatureChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.SetDateTemp = new System.Windows.Forms.DateTimePicker();
-            this.selectDate = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.IntrusionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.IntrusionButton = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -66,6 +69,10 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TemperatureChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IntrusionChart)).BeginInit();
             this.SuspendLayout();
             // 
             // AUsername
@@ -89,12 +96,11 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.projectWSYSToolStripMenuItem,
             this.manageUsersToolStripMenuItem,
-            this.historialDataToolStripMenuItem,
             this.signOutToolStripMenuItem,
             this.Productmenu});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(156, 514);
+            this.menuStrip2.Size = new System.Drawing.Size(156, 594);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -146,29 +152,6 @@
             this.addUserToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.addUserToolStripMenuItem.Text = "Add User";
             // 
-            // historialDataToolStripMenuItem
-            // 
-            this.historialDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.temperatureLogsToolStripMenuItem,
-            this.loginOutLogsToolStripMenuItem1});
-            this.historialDataToolStripMenuItem.Name = "historialDataToolStripMenuItem";
-            this.historialDataToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
-            this.historialDataToolStripMenuItem.Text = "Historical Logs";
-            this.historialDataToolStripMenuItem.Click += new System.EventHandler(this.historialDataToolStripMenuItem_Click);
-            // 
-            // temperatureLogsToolStripMenuItem
-            // 
-            this.temperatureLogsToolStripMenuItem.Name = "temperatureLogsToolStripMenuItem";
-            this.temperatureLogsToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
-            this.temperatureLogsToolStripMenuItem.Text = "Temperature Logs";
-            this.temperatureLogsToolStripMenuItem.Click += new System.EventHandler(this.temperatureLogsToolStripMenuItem_Click);
-            // 
-            // loginOutLogsToolStripMenuItem1
-            // 
-            this.loginOutLogsToolStripMenuItem1.Name = "loginOutLogsToolStripMenuItem1";
-            this.loginOutLogsToolStripMenuItem1.Size = new System.Drawing.Size(203, 26);
-            this.loginOutLogsToolStripMenuItem1.Text = "Login/Out Logs";
-            // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
@@ -213,16 +196,16 @@
             // 
             // clockin
             // 
-            chartArea3.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.clockin.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.clockin.Legends.Add(legend4);
             this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.clockin.Series.Add(series3);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.clockin.Series.Add(series4);
             this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "Employee Clock In";
@@ -272,6 +255,24 @@
             this.splitContainer1.SplitterDistance = 594;
             this.splitContainer1.TabIndex = 6;
             // 
+            // selectDate
+            // 
+            this.selectDate.Location = new System.Drawing.Point(402, 130);
+            this.selectDate.Name = "selectDate";
+            this.selectDate.Size = new System.Drawing.Size(75, 23);
+            this.selectDate.TabIndex = 3;
+            this.selectDate.Text = "Select Date";
+            this.selectDate.UseVisualStyleBackColor = true;
+            this.selectDate.Click += new System.EventHandler(this.selectDate_Click);
+            // 
+            // SetDateTemp
+            // 
+            this.SetDateTemp.Location = new System.Drawing.Point(384, 88);
+            this.SetDateTemp.Name = "SetDateTemp";
+            this.SetDateTemp.Size = new System.Drawing.Size(116, 22);
+            this.SetDateTemp.TabIndex = 2;
+            this.SetDateTemp.ValueChanged += new System.EventHandler(this.SetDateTemp_ValueChanged);
+            // 
             // RefreshTempData
             // 
             this.RefreshTempData.Location = new System.Drawing.Point(392, 211);
@@ -284,43 +285,66 @@
             // 
             // TemperatureChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.TemperatureChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.TemperatureChart.Legends.Add(legend4);
+            chartArea5.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend5);
             this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
             this.TemperatureChart.Name = "TemperatureChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.TemperatureChart.Series.Add(series4);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.TemperatureChart.Series.Add(series5);
             this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
             this.TemperatureChart.TabIndex = 0;
             this.TemperatureChart.Text = "TemperatureLogs";
             this.TemperatureChart.Click += new System.EventHandler(this.chart1_Click_1);
             // 
-            // SetDateTemp
+            // splitContainer2
             // 
-            this.SetDateTemp.Location = new System.Drawing.Point(384, 88);
-            this.SetDateTemp.Name = "SetDateTemp";
-            this.SetDateTemp.Size = new System.Drawing.Size(116, 22);
-            this.SetDateTemp.TabIndex = 2;
-            this.SetDateTemp.ValueChanged += new System.EventHandler(this.SetDateTemp_ValueChanged);
+            this.splitContainer2.Location = new System.Drawing.Point(159, 310);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // selectDate
+            // splitContainer2.Panel1
             // 
-            this.selectDate.Location = new System.Drawing.Point(402, 130);
-            this.selectDate.Name = "selectDate";
-            this.selectDate.Size = new System.Drawing.Size(75, 23);
-            this.selectDate.TabIndex = 3;
-            this.selectDate.Text = "Select Date";
-            this.selectDate.UseVisualStyleBackColor = true;
-            this.selectDate.Click += new System.EventHandler(this.selectDate_Click);
+            this.splitContainer2.Panel1.Controls.Add(this.IntrusionButton);
+            this.splitContainer2.Panel1.Controls.Add(this.IntrusionChart);
+            this.splitContainer2.Size = new System.Drawing.Size(1112, 272);
+            this.splitContainer2.SplitterDistance = 586;
+            this.splitContainer2.TabIndex = 7;
+            // 
+            // IntrusionChart
+            // 
+            chartArea6.Name = "ChartArea1";
+            this.IntrusionChart.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.IntrusionChart.Legends.Add(legend6);
+            this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
+            this.IntrusionChart.Name = "IntrusionChart";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.IntrusionChart.Series.Add(series6);
+            this.IntrusionChart.Size = new System.Drawing.Size(583, 272);
+            this.IntrusionChart.TabIndex = 0;
+            this.IntrusionChart.Text = "chart1";
+            this.IntrusionChart.Click += new System.EventHandler(this.IntrusionChart_Click);
+            // 
+            // IntrusionButton
+            // 
+            this.IntrusionButton.Location = new System.Drawing.Point(457, 102);
+            this.IntrusionButton.Name = "IntrusionButton";
+            this.IntrusionButton.Size = new System.Drawing.Size(107, 30);
+            this.IntrusionButton.TabIndex = 1;
+            this.IntrusionButton.Text = "Refresh Data";
+            this.IntrusionButton.UseVisualStyleBackColor = true;
+            this.IntrusionButton.Click += new System.EventHandler(this.IntrusionButton_Click);
             // 
             // Admin
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1299, 514);
+            this.ClientSize = new System.Drawing.Size(1286, 594);
+            this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AUsername);
@@ -336,6 +360,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TemperatureChart)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.IntrusionChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,9 +389,6 @@
         private System.Windows.Forms.ToolStripMenuItem Viewusers;
         private System.Windows.Forms.Button refreshed;
         private System.Windows.Forms.Button refresh;
-        private System.Windows.Forms.ToolStripMenuItem historialDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem temperatureLogsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loginOutLogsToolStripMenuItem1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataVisualization.Charting.Chart TemperatureChart;
         private System.Windows.Forms.Button RefreshTempData;
@@ -372,5 +397,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.Button selectDate;
         private System.Windows.Forms.DateTimePicker SetDateTemp;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Button IntrusionButton;
+        private System.Windows.Forms.DataVisualization.Charting.Chart IntrusionChart;
     }
 }

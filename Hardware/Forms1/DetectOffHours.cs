@@ -46,9 +46,9 @@ public class DBOffHoursDetect
     private void Intrusion()
     {
         if ((CheckTimeRange()) && (DetectIntrusionsRPI()))
-        //if (DetectIntrusionsRPI())
+            //if (DetectIntrusionsRPI())
         {
-                int result = 0;
+            int result = 0;
             int detectionStatus = 1;
 
             SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
