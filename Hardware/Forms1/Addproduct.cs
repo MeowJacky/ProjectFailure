@@ -16,5 +16,27 @@ namespace Forms1
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddProduct_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'productDataSet.Products' table. You can move, or remove it, as needed.
+            this.productsTableAdapter.Fill(this.productDataSet.Products);
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
