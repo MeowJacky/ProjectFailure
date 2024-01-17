@@ -389,7 +389,7 @@ namespace Forms1
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            AddProduct addpro = new AddProduct(this.username);
+            AddProduct addpro = new AddProduct();
             addpro.Show();
             this.Close();
         }

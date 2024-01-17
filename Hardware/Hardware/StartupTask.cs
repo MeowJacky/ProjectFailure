@@ -60,16 +60,35 @@ namespace Hardware
             return val;
         }
 
+        //private double getTemp()
+        //{
+        //    int adcval; double tempcal = 0, R;
+        //    adcval = readtemp(thermo);
+        //    int B = 4250, R0 = 100000;
+        //    R = 100000 * (1023.0 - adcval) / adcval;
+        //    tempcal = 1 / (Math.Log(R / R0) / B + 1 / 298.15) - 273.15;
+        //    if (!Double.IsNaN(tempcal) && tempcal > 15 && tempcal < 40)
+        //    {
+        //        temp = tempcal;
+        //    }
+        //    Debug.WriteLine(tempcal);
+        //    Debug.WriteLine(temp);
+        //    return temp;
+        //}
+
         private double getTemp()
         {
-            int adcval;
-            double tempcal = 0, R;
-            adcval = readtemp(thermo);
+            int adcValue; double tempCalculated = 0, R;
+            adcValue = readtemp(thermo);
+            Debug.WriteLine(adcValue);
             int B = 4250, R0 = 100000;
-            R = 100000 * (1023.0 - adcval) / adcval;
-            tempcal = 1 / (Math.Log(R / R0) / B + 1 / 298.15) - 273.15;
-            if (!Double.IsNaN(tempcal) && tempcal > 15 && tempcal < 40)
-                temp = tempcal;
+            R = 100000 * (1023.0 - adcValue) / adcValue;
+            tempCalculated = 1 / (Math.Log(R / R0) / B + 1 / 298.15) - 273.15;
+            if (!Double.IsNaN(tempCalculated) && tempCalculated > 15 && tempCalculated < 40)
+            {
+                temp = tempCalculated;
+            }
+            Debug.WriteLine(temp);
             return temp;
         }
 
@@ -195,8 +214,8 @@ namespace Hardware
 
         private void Temp()
         {
-            sleep(3600);
             truetemp = getTemp();
+            Debug.WriteLine(truetemp);
             sendtowindows("Temp=" + truetemp);
         }
 
@@ -253,18 +272,22 @@ namespace Hardware
             while (true)
             {
                 sleep(300);
-                Temp();
-                truedistance = getDistance();
-                if (truedistance < 20)
+                if (incoming.Equals("GIBTEMP"))
                 {
-                    close = true;
-                    sendtowindows("Close=" + close);
-                    close = false;
+                    incoming = "";
+                    Temp();
                 }
-                else
-                {
-                    sendtowindows("Close=" + close);
-                }
+                //truedistance = getDistance();
+                //if (truedistance < 20)
+                //{
+                //    close = true;
+                //    sendtowindows("Close=" + close);
+                //    close = false;
+                //}
+                //else
+                //{
+                //    sendtowindows("Close=" + close);
+                //}
                 
                 if (detect == true)
                 {
@@ -276,11 +299,11 @@ namespace Hardware
                     sendtowindows("RFID=" + rfid);
                     rfid = "";
                 }
-                if (press == true)
-                {
-                    press = false;
-                    buzzing();
-                }
+                //if (press == true)
+                //{
+                //    press = false;
+                //    buzzing();
+                //}
             }
         }
 

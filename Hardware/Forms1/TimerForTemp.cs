@@ -20,12 +20,13 @@ public class DBTempUpdate
 
     public void UpdateTemperatureDB()
     {
+        InitComms();
         lock (timerLock)
         {
             if (timer == null)
             {
                 timer = new Timer();
-                timer.Interval = 10000; // 10 seconds for testing 10000
+                timer.Interval = 15000; // 10 seconds for testing 10000
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -40,16 +41,15 @@ public class DBTempUpdate
 
     private void Timer_Tick(object sender, EventArgs e)
     {
+        datacomms.sendData("GIBTEMP");
         UpdateTemperatureInDatabase();
     }
 
     private void UpdateTemperatureInDatabase()
     {
-        //InitComms();
-
         int result = 0;
-        //float temperature = temp;
-        float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        float temperature = temp;
+        //float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
         SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
         string strCommandText = "INSERT INTO Temperature (Time, Temp) VALUES (@CurrentTime, @NewTemperature)";
         SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
@@ -66,7 +66,6 @@ public class DBTempUpdate
     private string extractStringValue(string strData, string ID)
     {
         string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
-        Console.WriteLine(result);
         return result;
     }
     private float extractFloatValue(string strData, string ID)
