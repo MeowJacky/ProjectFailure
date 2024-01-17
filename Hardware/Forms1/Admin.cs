@@ -296,9 +296,9 @@ namespace Forms1
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
-            allusers.Show();
-            this.Close();
+            //ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            //allusers.Show();
+            //this.Close();
         }
 
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
@@ -389,7 +389,7 @@ namespace Forms1
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            AddProduct addpro = new AddProduct(this.username);
+            AddProduct addpro = new AddProduct();
             addpro.Show();
             this.Close();
         }

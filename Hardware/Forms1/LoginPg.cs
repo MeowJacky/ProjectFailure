@@ -126,10 +126,10 @@ namespace Forms1
             {
                 connection.Open();
 
-                cmd.Parameters.AddWithValue("@time", DateTime.Now);
-                cmd.Parameters.AddWithValue("@userName", userName);
-                cmd.Parameters.AddWithValue("@loginStatus", loginStatus);
-                cmd.Parameters.AddWithValue("@success", success);
+                cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Now;
+                cmd.Parameters.Add("@userName", SqlDbType.VarChar, 50).Value = userName;
+                cmd.Parameters.Add("@loginStatus", SqlDbType.VarChar, 50).Value = loginStatus;
+                cmd.Parameters.Add("@success", SqlDbType.VarChar, 3).Value = success;
 
                 cmd.ExecuteNonQuery();
             }
