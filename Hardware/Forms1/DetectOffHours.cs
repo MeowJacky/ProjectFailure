@@ -11,102 +11,92 @@ using System.Threading.Tasks;
 
 public class DBOffHoursDetect
 {
-    private static Timer timer;
+    private static Timer Intrusiontimer;
     private static readonly object timerLock = new object(); // Lock object to prevent race conditions
-    private static bool isTimerStarted = false;
+    private static bool isTimerStartedIntrusion = false;
     DataComms datacomms;
     public delegate void myprocessDataDelegate(string strData);
     float temp;
 
-    public void UpdateDetectionDB()
+    public void UpdateIntrusionDB()
     {
+        //InitComms();
         lock (timerLock)
         {
-            if (timer == null)
+            if (Intrusiontimer == null)
             {
-                timer = new Timer();
-                timer.Interval = 10000; // 10 seconds for testing 10000
-                timer.Tick += Timer_Tick;
+                Intrusiontimer = new Timer();
+                Intrusiontimer.Interval = 100;
+                Intrusiontimer.Tick += Intrusiontimer_Tick;
 
                 // Ensure that timer operations run on the UI thread
-                if (!isTimerStarted && Application.OpenForms.Count > 0)
+                if (!isTimerStartedIntrusion && Application.OpenForms.Count > 0)
                 {
-                    timer.Start();
-                    isTimerStarted = true;
+                    Intrusiontimer.Start();
+                    isTimerStartedIntrusion = true;
                 }
             }
         }
     }
-
-    private void Timer_Tick(object sender, EventArgs e)
+    private void Intrusiontimer_Tick(object sender, EventArgs e)
     {
-        UpdateTemperatureInDatabase();
+        Intrusion();
     }
 
-    private void UpdateTemperatureInDatabase()
+    private void Intrusion()
     {
-        //InitComms();
+        if ((CheckTimeRange()) && (DetectIntrusionsRPI()))
+        //if (DetectIntrusionsRPI())
+        {
+                int result = 0;
+            int detectionStatus = 1;
 
-        int result = 0;
-        //float temperature = temp;
-        float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
-        SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
-        string strCommandText = "INSERT INTO Temperature (Time, Temp) VALUES (@CurrentTime, @NewTemperature)";
-        SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
-        cmd.Parameters.AddWithValue("@NewTemperature", temperature);
-        cmd.Parameters.AddWithValue("@CurrentTime", DateTime.Now);
+            SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
+            string strCommandText = "INSERT INTO Detection (Time, Detection) VALUES (@CurrentTime, @DetectionStatus)";
+            SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
+            cmd.Parameters.AddWithValue("@DetectionStatus", detectionStatus);
+            cmd.Parameters.AddWithValue("@CurrentTime", DateTime.Now);
 
-        myConnect.Open();
-        result = cmd.ExecuteNonQuery();
-        myConnect.Close();
+            myConnect.Open();
 
-        Console.WriteLine($"Updating temperature: {temperature}");
+            try
+            {
+                result = cmd.ExecuteNonQuery();
+                Console.WriteLine("Intrusion Detected!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating the database: {ex.Message}");
+            }
+            finally
+            {
+                myConnect.Close();
+            }
+        }
     }
 
-    private string extractStringValue(string strData, string ID)
+    private static bool DetectIntrusionsRPI()
     {
-        string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
-        Console.WriteLine(result);
+        bool result = new Random().Next(2) == 0;
+
         return result;
     }
-    private float extractFloatValue(string strData, string ID)
-    {
-        return (float.Parse(extractStringValue(strData, ID)));
-    }
-    private float HandleTemp(string strData, string ID)
-    {
-        temp = extractFloatValue(strData, ID);
-        return temp;
-    }
 
-    public void extractSensorData(string strData)
+    private static bool CheckTimeRange()
     {
-        if (strData.IndexOf("Temp=") != -1)
-            HandleTemp(strData, "Temp=");
-    
-    }
+        DateTime currentTime = DateTime.Now;
+        DateTime startTime = DateTime.Today.AddHours(1); // 1 am
+        DateTime endTime = DateTime.Today.AddHours(6).AddMinutes(30); // 6:30 am
+        bool result = false;
 
-    public void processDataReceive(string strData)
-    {
-        myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
-        d(strData);
-    }
-
-    public void commsdatareceive(string datareceived)
-    {
-        processDataReceive(datareceived);
-    }
-
-    public void commsSendError(string errMsg)
-    {
-        MessageBox.Show(errMsg);
-        processDataReceive(errMsg);
-    }
-
-    private void InitComms()
-    {
-        datacomms = new DataComms();
-        datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-        datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+        if (currentTime.TimeOfDay > startTime.TimeOfDay && currentTime.TimeOfDay < endTime.TimeOfDay)
+        {
+            result = true;
+        }
+        else
+        {
+            result = false;
+        }
+        return result;
     }
 }

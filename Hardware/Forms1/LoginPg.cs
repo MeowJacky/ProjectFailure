@@ -17,6 +17,7 @@ namespace Forms1
         // retrieve connection information from App.Config
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private DBTempUpdate temperatureUpdateService;
+        private DBOffHoursDetect intrusionDetectionService;
 
 
         public LoginPg()
@@ -140,6 +141,10 @@ namespace Forms1
         {
             temperatureUpdateService = new DBTempUpdate();
             temperatureUpdateService.UpdateTemperatureDB();
+
+            intrusionDetectionService = new DBOffHoursDetect();
+            intrusionDetectionService.UpdateIntrusionDB();
+
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
