@@ -381,5 +381,17 @@ namespace Forms1
         {
             TemperaturePopulateChartData();
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            AddProduct addpro = new AddProduct(this.username);
+            addpro.Show();
+            this.Close();
+        }
     }
 }
