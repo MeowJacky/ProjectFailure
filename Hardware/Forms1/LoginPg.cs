@@ -34,7 +34,8 @@ namespace Forms1
         // retrieve connection information from App.Config
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private DBTempUpdate temperatureUpdateService;
-        
+        private DBOffHoursDetect intrusionDetectionService;
+
 
         public LoginPg()
         {
@@ -146,10 +147,10 @@ namespace Forms1
             {
                 connection.Open();
 
-                cmd.Parameters.AddWithValue("@time", DateTime.Now);
-                cmd.Parameters.AddWithValue("@userName", userName);
-                cmd.Parameters.AddWithValue("@loginStatus", loginStatus);
-                cmd.Parameters.AddWithValue("@success", success);
+                cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Now;
+                cmd.Parameters.Add("@userName", SqlDbType.VarChar, 50).Value = userName;
+                cmd.Parameters.Add("@loginStatus", SqlDbType.VarChar, 50).Value = loginStatus;
+                cmd.Parameters.Add("@success", SqlDbType.VarChar, 3).Value = success;
 
                 cmd.ExecuteNonQuery();
             }
@@ -160,6 +161,10 @@ namespace Forms1
         {
             temperatureUpdateService = new DBTempUpdate();
             temperatureUpdateService.UpdateTemperatureDB();
+
+            intrusionDetectionService = new DBOffHoursDetect();
+            intrusionDetectionService.UpdateIntrusionDB();
+
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)

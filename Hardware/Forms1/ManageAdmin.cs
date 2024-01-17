@@ -123,7 +123,7 @@ namespace Forms1
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            if (CheckAuthorityLevel())
+            if (CheckAuthorityLevelForModify())
             {
                 if (ModifyUserRecord() > 0)
                     MessageBox.Show("Modified");
@@ -136,11 +136,38 @@ namespace Forms1
             }
         }
 
-        private bool CheckAuthorityLevel()
+        private bool CheckAuthorityLevelForModify()
         {
-            return loggedInAdminAuthority == 1;
-        }
+            int userAuthority = Convert.ToInt32(tbAuthority.Text);
+            int loggedInAuthority = loggedInAdminAuthority;
 
+            // Lvl 1 authority can modify any record
+            if (loggedInAuthority == 1)
+            {
+                return true;
+            }
+            // Lvl 2 authority can only modify records lower than itself
+            else if (loggedInAuthority == 2 && userAuthority < 2)
+            {
+                return true;
+            }
+            // Lvl 3 authority can only modify records lower than itself but not authority level
+            else if (loggedInAuthority == 3 && (userAuthority < 3 && userAuthority != 1 && userAuthority != 2))
+            {
+                return true;
+            }
+            // Lvl 4 authority can only modify records with authority 999 but not authority level
+            else if (loggedInAuthority == 4 && userAuthority == 999)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("You do not have the authority to modify records at this level.");
+            }
+
+            return false;
+        }
 
         private int ModifyUserRecord()
         {
@@ -163,63 +190,6 @@ namespace Forms1
             myConnect.Close();
 
             return result;
-        }
-
-
-        private void GetWorkerDetails()
-        {
-            // Step 1: Create connection
-            SqlConnection myConnect = new SqlConnection(strConnectionString);
-
-            // Step 2: Create Command
-            string strCommandText = "SELECT UniqueUserID, Name, UniqueRFID, NRIC, Address, Contact, SupposedToClockIn FROM Admins ";
-            strCommandText += "WHERE UniqueUserID=@UserID OR Name=@Name Or UniqueRFID=@UniqueRFID AND Authority >= 1 AND Authority <= 4";
-
-            SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
-            cmd.Parameters.AddWithValue("@UserID", tbUserID1.Text); // Use tbUserID1 for worker details
-            cmd.Parameters.AddWithValue("@Name", tbName1.Text);    // Use tbName1 for worker details
-            cmd.Parameters.AddWithValue("@UniqueRFID", tbRFID1.Text); // Use tbRFID1 for worker details
-
-            // Step 3: Open Connection and retrieve data by calling ExecuteReader
-            myConnect.Open();
-            // Step 4: Access Data
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
-            {
-                string uniqueUserID = reader["UniqueUserID"].ToString();
-
-                // Check if the searched ID is an admin's ID
-                if (IsAdminID(uniqueUserID))
-                {
-                    MessageBox.Show("No record available for the given ID.");
-                }
-                else
-                {
-                    tbUserID1.Text = uniqueUserID;
-                    tbName1.Text = reader["Name"].ToString();
-                    tbRFID1.Text = reader["UniqueRFID"].ToString();
-                    tbNRIC1.Text = reader["NRIC"].ToString();
-                    tbAdd1.Text = reader["Address"].ToString();
-                    tbContact1.Text = reader["Contact"].ToString();
-
-                    if (reader["SupposedToClockIn"] != DBNull.Value)
-                    {
-                        ShiftStart1.Value = DateTime.Parse(reader["SupposedToClockIn"].ToString());
-                    }
-                    else
-                    {
-                        ShiftStart1.Value = new DateTime(2024, 1, 1, 0, 0, 0);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No Record Found");
-            }
-
-            reader.Close();
-            myConnect.Close();
         }
 
 
@@ -261,38 +231,78 @@ namespace Forms1
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (CheckAuthorityLevelForDelete())
             {
-                string loggedInUsername = username.Trim();
-                string userToDelete = tbName.Text.Trim();
-
-                if (userToDelete == loggedInUsername)
+                if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Cannot delete the currently logged-in user.");
-                }
-                else
-                {
-                    int loggedInAuthority = loggedInAdminAuthority;
+                    string loggedInUsername = username.Trim();
+                    string userToDelete = tbName.Text.Trim();
 
-                    if (loggedInAuthority > Convert.ToInt32(tbAuthority.Text))
+                    if (userToDelete == loggedInUsername)
                     {
-                        if (DeleteUserRecord(tbRFID.Text) > 0)
-                        {
-                            MessageBox.Show($"UserName = {tbName.Text} has been deleted");
-                            button1_Click_1(sender, e);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Delete Failed");
-                        }
+                        MessageBox.Show("Cannot delete the currently logged-in user.");
                     }
                     else
                     {
-                        MessageBox.Show("You do not have the authority to delete user details with equal or higher authority.");
+                        int loggedInAuthority = loggedInAdminAuthority;
+
+                        if (loggedInAuthority > Convert.ToInt32(tbAuthority.Text))
+                        {
+                            if (DeleteUserRecord(tbRFID.Text) > 0)
+                            {
+                                MessageBox.Show($"UserName = {tbName.Text} has been deleted");
+                                button1_Click_1(sender, e);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Delete Failed");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("You do not have the authority to delete user details with equal or higher authority.");
+                        }
                     }
                 }
             }
         }
+
+        private bool CheckAuthorityLevelForDelete()
+        {
+            int userAuthority = Convert.ToInt32(tbAuthority.Text);
+            int loggedInAuthority = loggedInAdminAuthority;
+
+            // Lvl 1 authority can delete any record
+            if (loggedInAuthority == 1)
+            {
+                return true;
+            }
+            // Lvl 2 authority can delete records lower than itself
+            else if (loggedInAuthority == 2 && userAuthority < loggedInAuthority)
+            {
+                return true;
+            }
+            // Lvl 3 authority can only delete records with authority 999 and lower than itself
+            else if (loggedInAuthority == 3 && (userAuthority == 999 || userAuthority < loggedInAuthority))
+            {
+                return true;
+            }
+            // Lvl 4 cannot delete any records
+            else if (loggedInAuthority == 4)
+            {
+                MessageBox.Show("You do not have the authority to delete records.");
+                return false;
+            }
+            else
+            {
+                MessageBox.Show("You do not have the authority to delete records at this level.");
+            }
+
+            // If none of the conditions are met, return false
+            return false;
+        }
+
+        // ... (other methods and event handlers)
 
         private int DeleteUserRecord(string strRFID)
         {
@@ -368,9 +378,9 @@ namespace Forms1
 
         private void viewAllUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
-            allusers.Show();
-            this.Close();
+            //ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            //allusers.Show();
+            //this.Close();
         }
 
         private void signOutToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -385,121 +395,8 @@ namespace Forms1
 
         }
 
-        private void SearchWorker_Click(object sender, EventArgs e)
-        {
-            GetWorkerDetails();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            btnCancel_Click(sender, e);
-        }
-
-        private void btnClearS_Click(object sender, EventArgs e)
-        {
-            tbAdd1.Text = "";
-            tbContact1.Text = "";
-            tbName1.Text = "";
-            tbNRIC1.Text = "";
-            tbRFID1.Text = "";
-            tbUserID1.Text = "";
-            ShiftStart1.Value = DateTime.Today;
-        }
-
-        private void btnDeleteW_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-            {
-                    // Check if the logged-in admin's authority is higher than or equal to the searched admin's authority
-                    int loggedInAuthority = this.loggedInAdminAuthority; // Assuming you want to use the authority of the logged-in admin
-
-                    if (loggedInAuthority <= 3)
-                    {
-                        if (DeleteUserRecord(tbRFID1.Text) > 0)
-                        {
-                            MessageBox.Show("UserName = " + tbName1.Text + " has been deleted");
-                            tbAdd1.Text = "";
-                            tbContact1.Text = "";
-                            tbName1.Text = "";
-                            tbNRIC1.Text = "";
-                            tbRFID1.Text = "";
-                            tbUserID1.Text = "";
-                            ShiftStart1.Value = DateTime.Today;
-                        }
-                        else
-                            MessageBox.Show("Delete Failed");
-                    }
-                    else
-                    {
-                        MessageBox.Show("You do not have the authority to delete worker details.");
-                    }
-                }
-            }
-
-
-        private int ModifyWorkerRecord()
-        {
-            // Step 1: Create connection
-            SqlConnection myConnect = new SqlConnection(strConnectionString);
-
-            // Step 2: Create command
-            string strCommandText = "UPDATE Admins SET Name=@NewName, UniqueRFID=@NewRFID, NRIC=@NewNRIC, Address=@NewAdd, Contact=@NewContact, SupposedToClockIn=@NewShiftStart WHERE UniqueUserID=@UserID";
-
-            SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
-
-            // Step 3: Create parameters
-            updateCmd.Parameters.AddWithValue("@UserID", tbUserID1.Text); // Use tbUserID1 for worker details
-            updateCmd.Parameters.AddWithValue("@NewName", tbName1.Text);
-            updateCmd.Parameters.AddWithValue("@NewRFID", tbRFID1.Text);
-            updateCmd.Parameters.AddWithValue("@NewNRIC", tbNRIC1.Text);
-            updateCmd.Parameters.AddWithValue("@NewAdd", tbAdd1.Text);
-            updateCmd.Parameters.AddWithValue("@NewContact", tbContact1.Text);
-            updateCmd.Parameters.AddWithValue("@NewShiftStart", ShiftStart1.Value);
-
-            // Step 4: Open connection and execute command
-            myConnect.Open();
-            int result = updateCmd.ExecuteNonQuery();
-
-            // Step 5: Close connection
-            myConnect.Close();
-
-            return result;
-        }
-
-        private void btnModW_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Confirm Modify?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                // Get the username of the user currently logged in
-                string loggedInUsername = username.Trim();
-
-                // Get the username of the worker to be modified
-                string workerToModify = tbName1.Text.Trim();
-
-                // Check if the worker to be modified is the same as the logged-in user
-                if (workerToModify == loggedInUsername)
-                {
-                    MessageBox.Show("Cannot modify the currently logged-in user.");
-                }
-                else
-                {
-                    
-                        if (ModifyWorkerRecord() > 0)
-                        {
-                            MessageBox.Show("Worker details modified successfully.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Modify Failed");
-                        }
-                    
-                }
-            }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
+      
+        
+      
     }
 }

@@ -307,9 +307,9 @@ namespace Forms1
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
-            allusers.Show();
-            this.Close();
+            //ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            //allusers.Show();
+            //this.Close();
         }
 
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)

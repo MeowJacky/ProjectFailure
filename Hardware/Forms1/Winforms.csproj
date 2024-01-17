@@ -136,6 +136,7 @@
     <Compile Include="temperaturechart.Designer.cs">
       <DependentUpon>temperaturechart.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetectOffHours.cs" />
     <Compile Include="TimerForTemp.cs" />
     <Compile Include="User.cs">
       <SubType>Form</SubType>
