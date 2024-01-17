@@ -16,7 +16,7 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
-        DataComms dataComms;
+        DataComms dataComms = DataCommsHelper.GetDataCommsInstance();
         string rfidnum;
 
         public delegate void myprocessDataDelegate(string strData);
@@ -61,9 +61,8 @@ namespace Forms1
 
         private void InitComms()
         {
-            dataComms = new DataComms();
-            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-            dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+                dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+                dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
 
         private string username;
@@ -81,6 +80,7 @@ namespace Forms1
 
         private void DisplayClockStatus()
         {
+            InitComms();
             string query = "SELECT ClockIn FROM Admins WHERE Name = @Username"; // Query to retrieve ClockIn status by username
 
             using (SqlConnection connection = new SqlConnection(strConnectionString))
@@ -107,46 +107,6 @@ namespace Forms1
             }
         }
 
-        //private void ClockButton_Click(object sender, EventArgs e)
-        //{
-        //    int currentStatus = GetCurrentClockStatus();
-
-        //    if (currentStatus == 0)
-        //    {
-        //        if (currentStatus == 0)
-        //        {
-        //            DateTime currentTime = DateTime.Now;
-        //            TimeSpan lateStartTime = new TimeSpan(9, 0, 0);
-        //            TimeSpan lateEndTime = new TimeSpan(7, 59, 59);
-        //            TimeSpan targetTime = new TimeSpan(8, 0, 0);
-
-        //            if ((currentTime.TimeOfDay >= lateStartTime && currentTime.TimeOfDay <= TimeSpan.FromHours(24)) ||
-        //                (currentTime.TimeOfDay >= TimeSpan.Zero && currentTime.TimeOfDay <= lateEndTime))
-        //            {
-        //                TimeSpan lateDuration = currentTime.TimeOfDay - targetTime;
-        //                if (lateDuration < TimeSpan.Zero)
-        //                {
-        //                    lateDuration = TimeSpan.FromHours(24) + lateDuration; //Adding a day for it to be positive
-        //                }
-
-        //                int lateHours = (int)lateDuration.TotalHours;
-        //                int lateMinutes = lateDuration.Minutes;
-
-        //                string lateMessage = "You are late by " + lateHours + " hours and " + lateMinutes + " minutes!";
-        //                MessageBox.Show(lateMessage);
-        //                UpdateClockStatus(1);
-        //            }
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        UpdateClockStatus(0);
-        //    }
-
-        //    DisplayClockStatus(); // Update UI to reflect the new clock-in status
-        //}
-
         private void ClockButton_Click(object sender, EventArgs e)
         {
             int currentStatus = GetCurrentClockStatus();
@@ -163,6 +123,8 @@ namespace Forms1
                 if (IsRFIDMatch(rfidnum))
                 {
                     rfidnum = "";
+                    dataComms.dataReceiveEvent -= commsdatareceive;
+                    dataComms.dataSendErrorEvent -= commsSendError;
                     DateTime currentTime = DateTime.Now;
                     TimeSpan lateStartTime = new TimeSpan(9, 0, 0);
                     TimeSpan lateEndTime = new TimeSpan(7, 59, 59);
@@ -256,7 +218,7 @@ namespace Forms1
 
         private void User_Load(object sender, EventArgs e)
         {
-            InitComms();
+            
         }
 
         private void userusername_Click(object sender, EventArgs e)

@@ -419,7 +419,7 @@ namespace Forms1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AdminsRow AddAdminsRow(string Name, string NRIC, string Contact, string Department, int Authority, int UniqueRFID) {
+            public AdminsRow AddAdminsRow(string Name, string NRIC, string Contact, string Department, int Authority, string UniqueRFID) {
                 AdminsRow rowAdminsRow = ((AdminsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -436,7 +436,7 @@ namespace Forms1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AdminsRow FindByUniqueRFID(int UniqueRFID) {
+            public AdminsRow FindByUniqueRFID(string UniqueRFID) {
                 return ((AdminsRow)(this.Rows.Find(new object[] {
                             UniqueRFID})));
             }
@@ -482,7 +482,7 @@ namespace Forms1 {
                 base.Columns.Add(this.columnDepartment);
                 this.columnAuthority = new global::System.Data.DataColumn("Authority", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAuthority);
-                this.columnUniqueRFID = new global::System.Data.DataColumn("UniqueRFID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnUniqueRFID = new global::System.Data.DataColumn("UniqueRFID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUniqueRFID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnUniqueRFID}, true));
@@ -730,9 +730,9 @@ namespace Forms1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int UniqueRFID {
+            public string UniqueRFID {
                 get {
-                    return ((int)(this[this.tableAdmins.UniqueRFIDColumn]));
+                    return ((string)(this[this.tableAdmins.UniqueRFIDColumn]));
                 }
                 set {
                     this[this.tableAdmins.UniqueRFIDColumn] = value;
@@ -1018,12 +1018,17 @@ SELECT UniqueUserID, Name, NRIC, Contact, Department, Authority, UniqueRFID FROM
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT UniqueUserID, Name, NRIC, Contact, Department, Authority, UniqueRFID FROM " +
                 "dbo.Admins";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT UniqueUserID, Name, NRIC, Contact, Department, Authority, UniqueRFID FROM " +
+                "dbo.Admins";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1048,6 +1053,19 @@ SELECT UniqueUserID, Name, NRIC, Contact, Department, Authority, UniqueRFID FROM
             UserDBDataSet.AdminsDataTable dataTable = new UserDBDataSet.AdminsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int Users(UserDBDataSet.AdminsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

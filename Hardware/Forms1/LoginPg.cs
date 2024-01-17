@@ -10,6 +10,23 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
+public static class DataCommsHelper
+{
+    private static DataComms dataCommsInstance;
+
+    public static DataComms GetDataCommsInstance()
+    {
+        if (dataCommsInstance == null)
+        {
+            // Instantiate DataComms only if it hasn't been created yet
+            dataCommsInstance = new DataComms();
+            // You might want to set up event handlers or perform other initialization here
+        }
+
+        return dataCommsInstance;
+    }
+}
+
 namespace Forms1
 {
     public partial class LoginPg : Form
@@ -71,15 +88,18 @@ namespace Forms1
 
                         // Record login attempt to LoginLogs table
                         RecordLogin(tbUserName.Text, "Login", "Yes");
-
+                        Console.WriteLine("1");
                         int userAuthority = Convert.ToInt32(reader["Authority"]);
+                        Console.WriteLine("2");
                         if (userAuthority == 999)
                         {
+                            Console.WriteLine("3");
                             User userform = new User(tbUserName.Text);
                             userform.Show();
                         }
                         else
                         {
+                            Console.WriteLine("4");
                             Admin adminform = new Admin(tbUserName.Text, userAuthority);
                             adminform.Show();
                             Console.WriteLine(userAuthority);
@@ -127,10 +147,10 @@ namespace Forms1
             {
                 connection.Open();
 
-                cmd.Parameters.AddWithValue("@time", DateTime.Now);
-                cmd.Parameters.AddWithValue("@userName", userName);
-                cmd.Parameters.AddWithValue("@loginStatus", loginStatus);
-                cmd.Parameters.AddWithValue("@success", success);
+                cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Now;
+                cmd.Parameters.Add("@userName", SqlDbType.VarChar, 50).Value = userName;
+                cmd.Parameters.Add("@loginStatus", SqlDbType.VarChar, 50).Value = loginStatus;
+                cmd.Parameters.Add("@success", SqlDbType.VarChar, 3).Value = success;
 
                 cmd.ExecuteNonQuery();
             }
@@ -139,11 +159,11 @@ namespace Forms1
 
         private void LoginPg_Load(object sender, EventArgs e)
         {
-            temperatureUpdateService = new DBTempUpdate();
-            temperatureUpdateService.UpdateTemperatureDB();
+            //temperatureUpdateService = new DBTempUpdate();
+            //temperatureUpdateService.UpdateTemperatureDB();
 
-            intrusionDetectionService = new DBOffHoursDetect();
-            intrusionDetectionService.UpdateIntrusionDB();
+            //intrusionDetectionService = new DBOffHoursDetect();
+            //intrusionDetectionService.UpdateIntrusionDB();
 
         }
 
