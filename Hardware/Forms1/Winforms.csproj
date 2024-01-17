@@ -144,6 +144,9 @@
     <Compile Include="User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserDBDataSet.cs">
+      <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
