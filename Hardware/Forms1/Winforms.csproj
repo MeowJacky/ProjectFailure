@@ -98,9 +98,7 @@
     <Compile Include="ForgetPass.Designer.cs">
       <DependentUpon>ForgetPass.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginPg.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="LoginPg.cs" />
     <Compile Include="LoginPg.Designer.cs">
       <DependentUpon>LoginPg.cs</DependentUpon>
     </Compile>
