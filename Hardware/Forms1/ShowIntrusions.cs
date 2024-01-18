@@ -109,9 +109,9 @@ namespace Forms1
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
 
             int result = 0;
-            String strCommandText = "DELETE FROM Detection WHERE Time = CONVERT(datetime, @IntrusionTime, 103)";
+            String strCommandText = "DELETE FROM Detection WHERE Time = @IntrusionTime";
             SqlCommand updateCmd = new SqlCommand(strCommandText, connection);
-            updateCmd.Parameters.AddWithValue("@IntrusionTime", intrusionTime);
+            updateCmd.Parameters.AddWithValue("@IntrusionTime", DateTime.Parse(intrusionTime));
 
             connection.Open();
             result = updateCmd.ExecuteNonQuery();
