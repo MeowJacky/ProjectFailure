@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Globalization;
+
 
 namespace Forms1
 {
@@ -29,10 +31,6 @@ namespace Forms1
             PopulateChartData();
             TemperaturePopulateChartData();
             PopulateIntrusionChartData();
-
-
-
-
         }
 
         private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
@@ -117,7 +115,7 @@ namespace Forms1
             }
         }
 
-        private void PopulateIntrusionChartData()
+        private void PopulateIntrusionChartData(DateTime IntrusionDateSelector = default(DateTime))
         {
             try
             {
@@ -127,8 +125,16 @@ namespace Forms1
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString))
                 {
                     connection.Open();
+                    string query;
+                    if (IntrusionDateSelector == default(DateTime))
+                    {
+                        query = "SELECT CONVERT(DATE, Time) AS IntrusionDate, COUNT(*) AS IntrusionCount FROM Detection GROUP BY CONVERT(DATE, Time) ORDER BY IntrusionDate DESC";
 
-                    string query = "SELECT CONVERT(DATE, Time) AS IntrusionDate, COUNT(*) AS IntrusionCount FROM Detection GROUP BY CONVERT(DATE, Time) ORDER BY IntrusionDate DESC";
+                    }
+                    else
+                    {
+                        query = $"SELECT CONVERT(DATE, Time) AS IntrusionDate, COUNT(*) AS IntrusionCount FROM Detection WHERE CONVERT(DATE, Time) = '{IntrusionDateSelector.ToString("yyyy-MM-dd")}' GROUP BY CONVERT(DATE, Time) ORDER BY IntrusionDate DESC";
+                    }
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -153,8 +159,7 @@ namespace Forms1
                             IntrusionChart.ChartAreas[0].AxisY.Maximum = double.NaN;
                             IntrusionChart.ChartAreas[0].RecalculateAxesScale();
 
-                            IntrusionChart.MouseUp -= IntrusionChart_Click;
-                            IntrusionChart.MouseUp += IntrusionChart_Click;
+                            
 
                             // Customize the chart appearance and labels based on your requirements
                             if (IntrusionChart.Titles.Count == 0)
@@ -169,6 +174,10 @@ namespace Forms1
                             {
                                 // Add the series to the chart
                                 IntrusionChart.Series.Add(series);
+                                //IntrusionChart.MouseUp -= IntrusionChart_Click;
+                                //IntrusionChart.MouseUp += IntrusionChart_Click;
+                                IntrusionChart.MouseClick -= IntrusionChart_MouseClick;
+                                IntrusionChart.MouseClick += IntrusionChart_MouseClick;
                             }
                             else
                             {
@@ -496,20 +505,54 @@ namespace Forms1
         {
             PopulateIntrusionChartData();
         }
+        //private void IntrusionChart_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    // Get the clicked data point
+        //    HitTestResult result = IntrusionChart.HitTest(e.X, e.Y);
+
+        //    if (result.Series != null && result.PointIndex >= 0)
+        //    {
+        //        // Retrieve information about the clicked intrusion event
+        //        DateTime intrusionTime = Convert.ToDateTime(result.Series.Points[result.PointIndex].AxisLabel.Split('\n')[0]);
+        //        int intrusionCount = Convert.ToInt32(result.Series.Points[result.PointIndex].AxisLabel.Split('(')[1].Split(' ')[0]);
+
+        //        Console.WriteLine(intrusionTime);
+        //    }
+        //}
+
         private void IntrusionChart_MouseClick(object sender, MouseEventArgs e)
         {
-            // Get the clicked data point
+            // Check if the clicked area is a data point
             HitTestResult result = IntrusionChart.HitTest(e.X, e.Y);
 
-            if (result.Series != null && result.PointIndex >= 0)
+            if (result.ChartElementType == ChartElementType.DataPoint)
             {
-                // Retrieve information about the clicked intrusion event
-                DateTime intrusionTime = Convert.ToDateTime(result.Series.Points[result.PointIndex].AxisLabel.Split('\n')[0]);
-                int intrusionCount = Convert.ToInt32(result.Series.Points[result.PointIndex].AxisLabel.Split('(')[1].Split(' ')[0]);
+                // Get the clicked data point
+                DataPoint dataPoint = IntrusionChart.Series[0].Points[result.PointIndex];
 
-                Console.WriteLine(intrusionTime);
+                // Extract the information from the data point
+                string dateStringWithCount = dataPoint.AxisLabel;
+                string dateString = dateStringWithCount.Split('\n')[0].Trim();
+
+                ShowIntrusions intrusionpage = new ShowIntrusions();
+                intrusionpage.SetDate(dateString);
+                intrusionpage.ShowDialog();   
+
+                // Attempt to parse the date without specifying the format
+
             }
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IntrusionDateButton_Click(object sender, EventArgs e)
+        {
+            DateTime selected = IntrusionDatePicker.Value;
+            PopulateIntrusionChartData(selected);
+
+        }
     }
 }

@@ -133,6 +133,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowIntrusions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowIntrusions.Designer.cs">
+      <DependentUpon>ShowIntrusions.cs</DependentUpon>
+    </Compile>
     <Compile Include="temperaturechart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ShowIntrusions.resx">
+      <DependentUpon>ShowIntrusions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="temperaturechart.resx">
       <DependentUpon>temperaturechart.cs</DependentUpon>
     </EmbeddedResource>
