@@ -48,9 +48,10 @@ public class DBOffHoursDetect
 
     private void Intrusion()
     {
-        if ((CheckTimeRange()) && (detect))
+        //if ((CheckTimeRange()) && (detect))
         //if (DetectIntrusionsRPI())
         //if ((CheckTimeRange()) && RandomDetect())
+        if ((RandomDetect()))
         {
             int result = 0;
             int detectionStatus = 1;
