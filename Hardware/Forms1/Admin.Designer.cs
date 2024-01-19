@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,8 +60,11 @@
             this.RefreshTempData = new System.Windows.Forms.Button();
             this.TemperatureChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.IntrusionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.IntrusionButton = new System.Windows.Forms.Button();
+            this.IntrusionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.IntrusionDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.IntrusionDateButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -196,21 +199,21 @@
             // 
             // clockin
             // 
-            chartArea4.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.clockin.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.clockin.Legends.Add(legend1);
             this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.clockin.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.clockin.Series.Add(series1);
             this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "Employee Clock In";
-            title2.Name = "Employee Clock In";
-            this.clockin.Titles.Add(title2);
+            title1.Name = "Employee Clock In";
+            this.clockin.Titles.Add(title1);
             this.clockin.Click += new System.EventHandler(this.clockin_Click);
             // 
             // editclockin
@@ -285,16 +288,16 @@
             // 
             // TemperatureChart
             // 
-            chartArea5.Name = "ChartArea1";
-            this.TemperatureChart.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.TemperatureChart.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend2);
             this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
             this.TemperatureChart.Name = "TemperatureChart";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.TemperatureChart.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.TemperatureChart.Series.Add(series2);
             this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
             this.TemperatureChart.TabIndex = 0;
             this.TemperatureChart.Text = "TemperatureLogs";
@@ -307,38 +310,69 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.label2);
+            this.splitContainer2.Panel1.Controls.Add(this.IntrusionDateButton);
+            this.splitContainer2.Panel1.Controls.Add(this.IntrusionDatePicker);
             this.splitContainer2.Panel1.Controls.Add(this.IntrusionButton);
             this.splitContainer2.Panel1.Controls.Add(this.IntrusionChart);
             this.splitContainer2.Size = new System.Drawing.Size(1112, 272);
             this.splitContainer2.SplitterDistance = 586;
             this.splitContainer2.TabIndex = 7;
             // 
-            // IntrusionChart
-            // 
-            chartArea6.Name = "ChartArea1";
-            this.IntrusionChart.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.IntrusionChart.Legends.Add(legend6);
-            this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
-            this.IntrusionChart.Name = "IntrusionChart";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.IntrusionChart.Series.Add(series6);
-            this.IntrusionChart.Size = new System.Drawing.Size(583, 272);
-            this.IntrusionChart.TabIndex = 0;
-            this.IntrusionChart.Text = "chart1";
-            this.IntrusionChart.Click += new System.EventHandler(this.IntrusionChart_Click);
-            // 
             // IntrusionButton
             // 
-            this.IntrusionButton.Location = new System.Drawing.Point(457, 102);
+            this.IntrusionButton.Location = new System.Drawing.Point(457, 196);
             this.IntrusionButton.Name = "IntrusionButton";
             this.IntrusionButton.Size = new System.Drawing.Size(107, 30);
             this.IntrusionButton.TabIndex = 1;
             this.IntrusionButton.Text = "Refresh Data";
             this.IntrusionButton.UseVisualStyleBackColor = true;
             this.IntrusionButton.Click += new System.EventHandler(this.IntrusionButton_Click);
+            // 
+            // IntrusionChart
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.IntrusionChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.IntrusionChart.Legends.Add(legend3);
+            this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
+            this.IntrusionChart.Name = "IntrusionChart";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.IntrusionChart.Series.Add(series3);
+            this.IntrusionChart.Size = new System.Drawing.Size(583, 272);
+            this.IntrusionChart.TabIndex = 0;
+            this.IntrusionChart.Text = "chart1";
+            this.IntrusionChart.Click += new System.EventHandler(this.IntrusionChart_Click);
+            // 
+            // IntrusionDatePicker
+            // 
+            this.IntrusionDatePicker.Location = new System.Drawing.Point(457, 86);
+            this.IntrusionDatePicker.Name = "IntrusionDatePicker";
+            this.IntrusionDatePicker.Size = new System.Drawing.Size(114, 22);
+            this.IntrusionDatePicker.TabIndex = 2;
+            // 
+            // IntrusionDateButton
+            // 
+            this.IntrusionDateButton.Location = new System.Drawing.Point(474, 114);
+            this.IntrusionDateButton.Name = "IntrusionDateButton";
+            this.IntrusionDateButton.Size = new System.Drawing.Size(75, 23);
+            this.IntrusionDateButton.TabIndex = 3;
+            this.IntrusionDateButton.Text = "Select";
+            this.IntrusionDateButton.UseVisualStyleBackColor = true;
+            this.IntrusionDateButton.Click += new System.EventHandler(this.IntrusionDateButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(454, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Date Selector";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Admin
             // 
@@ -361,6 +395,7 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TemperatureChart)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IntrusionChart)).EndInit();
@@ -400,5 +435,8 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button IntrusionButton;
         private System.Windows.Forms.DataVisualization.Charting.Chart IntrusionChart;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button IntrusionDateButton;
+        private System.Windows.Forms.DateTimePicker IntrusionDatePicker;
     }
 }
