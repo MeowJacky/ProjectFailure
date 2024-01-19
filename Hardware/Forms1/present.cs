@@ -18,12 +18,16 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
-        private void present_Load(object sender, EventArgs e)
+        public present()
         {
             InitializeComponent();
             here.Text = "";
 
             LoadPresentEmployees();
+        }
+
+        private void present_Load(object sender, EventArgs e)
+        {
         }
         private void LoadPresentEmployees()
         {
