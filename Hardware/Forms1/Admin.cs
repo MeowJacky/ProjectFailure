@@ -590,5 +590,9 @@ namespace Forms1
             this.Hide();
 
         }
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }
