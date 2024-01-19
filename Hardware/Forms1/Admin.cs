@@ -546,5 +546,10 @@ namespace Forms1
             PopulateIntrusionChartData(selected);
 
         }
+
+        private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

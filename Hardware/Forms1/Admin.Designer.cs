@@ -74,6 +74,7 @@
             this.loginLogsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userLoginDBDataSet = new Forms1.UserLoginDBDataSet();
             this.loginLogsTableAdapter = new Forms1.UserLoginDBDataSetTableAdapters.LoginLogsTableAdapter();
+            this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -171,7 +172,8 @@
             // 
             this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
+            this.toolStripMenuItem3,
+            this.assignProductsToWorkersToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
             this.Productmenu.Size = new System.Drawing.Size(143, 24);
             this.Productmenu.Text = "Manage products";
@@ -179,14 +181,14 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(178, 26);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(263, 26);
             this.toolStripMenuItem2.Text = "View products";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(178, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(263, 26);
             this.toolStripMenuItem3.Text = "Add products";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
@@ -457,15 +459,12 @@
             // 
             this.loginLogsTableAdapter.ClearBeforeFill = true;
             // 
-            // label3
+            // assignProductsToWorkersToolStripMenuItem
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Login Logs";
+            this.assignProductsToWorkersToolStripMenuItem.Name = "assignProductsToWorkersToolStripMenuItem";
+            this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
+            this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
+            this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
             // Admin
             // 
@@ -544,5 +543,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn loginOutDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn successDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
     }
 }

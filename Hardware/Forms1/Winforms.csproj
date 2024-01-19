@@ -86,6 +86,12 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="AssignItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssignItems.Designer.cs">
+      <DependentUpon>AssignItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="editclockin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssignItems.resx">
+      <DependentUpon>AssignItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="editclockin.resx">
       <DependentUpon>editclockin.cs</DependentUpon>
