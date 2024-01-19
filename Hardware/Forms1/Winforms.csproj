@@ -167,6 +167,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserLoginDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Viewallproductsuser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewallproductsuser.Designer.cs">
+      <DependentUpon>Viewallproductsuser.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewAllUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewallproductsuser.resx">
+      <DependentUpon>Viewallproductsuser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewAllUsers.resx">
       <DependentUpon>ViewAllUsers.cs</DependentUpon>

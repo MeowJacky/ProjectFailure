@@ -274,5 +274,12 @@ namespace Forms1
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            Viewallproductsuser viewallpro = new Viewallproductsuser();
+            viewallpro.Show();
+            this.Close();
+        }
     }
 }
