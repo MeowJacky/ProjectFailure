@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Globalization;
 
+
 namespace Forms1
 {
 
@@ -20,6 +21,8 @@ namespace Forms1
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private List<int> selectedQuantities = new List<int>();
         private string _selectedEmployee;
+        private ComboBox comboBoxEditingControl;
+        Dictionary<int, int> myDictionary = new Dictionary<int, int>();
 
 
 
@@ -88,13 +91,98 @@ namespace Forms1
                 }
                 quantityCell.DataSource = dropodown;
                 quantityCell.Value = quantityCell.Value == DBNull.Value ? null : quantityCell.Value;
-
             }
         }
+        //private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    //PopulateQuantityComboBox();
+        //}
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            PopulateQuantityComboBox();
+            // Check if the changed cell is in the QuantityForEmployee column
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+            {
+                DataGridViewColumn quantityColumn = dataGridView1.Columns["QuantityForEmployee"];
+
+                if (quantityColumn != null && e.ColumnIndex == quantityColumn.Index)
+                {
+                    DataGridViewComboBoxCell quantityCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewComboBoxCell;
+
+                    if (quantityCell != null && quantityCell.Value != null && quantityCell.Value != DBNull.Value)
+                    {
+                        int productID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ProductID"].Value);
+
+                        // Use int.TryParse to handle the conversion more gracefully
+                        int quantity;
+                        if (int.TryParse(quantityCell.Value.ToString(), out quantity))
+                        {
+                            // If the conversion is successful, proceed with the logic
+                            Console.WriteLine("is this even working");
+
+                            if (myDictionary.ContainsKey(productID))
+                            {
+                                myDictionary[productID] = quantity;
+                            }
+                            else
+                            {
+                                myDictionary.Add(productID, quantity);
+                            }
+                        }
+                        else
+                        {
+                            // Handle the case where the value is not a valid integer (optional)
+                            // You can show a message, log the issue, or take appropriate action.
+                            MessageBox.Show("Fuck. What went wrong.");
+                            // Optionally, you can set a default value or clear the cell
+                            quantityCell.Value = null;
+                        }
+                    }
+                }
+            }
+            // Temporary list to store key value pairs
+            List<KeyValuePair<int, int>> tempList = new List<KeyValuePair<int, int>>();
+
+            // Loop through DataGridViewRows and add key value pairs to tempList
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (!row.IsNewRow && row.Cells["ProductID"].Value != null)
+                {
+                    int productIDInRow = Convert.ToInt32(row.Cells["ProductID"].Value);
+                    int quantityInRow = Convert.ToInt32(row.Cells["QuantityForEmployee"].Value);
+
+                    tempList.Add(new KeyValuePair<int, int>(productIDInRow, quantityInRow));
+                }
+            }
+
+            // Loop through the temporary list and set the values of the DataGridViewComboBoxCell accordingly
+            foreach (var kvp in tempList)
+            {
+                int productIDToFind = kvp.Key;
+                int quantityToSet = kvp.Value;
+
+                // Iterate through rows and find the row with the matching ProductID
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (!row.IsNewRow && row.Cells["ProductID"].Value != null)
+                    {
+                        int productIDInRow = Convert.ToInt32(row.Cells["ProductID"].Value);
+
+                        if (productIDInRow == productIDToFind)
+                        {
+                            // Set the value of the QuantityForEmployee ComboBox cell
+                            DataGridViewComboBoxCell quantityCell = row.Cells["QuantityForEmployee"] as DataGridViewComboBoxCell;
+                            if (quantityCell != null)
+                            {
+                                quantityCell.Value = quantityToSet;
+                            }
+                            break; // Once the row is found and updated, exit the inner loop
+                        }
+                    }
+                }
+            }
+
         }
+
 
         private void EmployeeDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -240,7 +328,11 @@ namespace Forms1
                 }
             }
 
-            MessageBox.Show("Items assigned successfully.");
+            MessageBox.Show("Items assigned successfully. Refreshing page.");
+            this.Close();
+            AssignItems fuckthis = new AssignItems();
+            fuckthis.Show();
+
         }
         private void AssignItem(int PackingID, int ItemID, int quantity)
         {
@@ -248,16 +340,44 @@ namespace Forms1
             {
                 connection.Open();
 
-                string query = "INSERT INTO ItemsAssigned (PackingID, ItemID, Quantity) VALUES (@PackingID, @ItemID, @Quantity);";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                // Start a transaction to ensure both updates happen atomically
+                SqlTransaction transaction = connection.BeginTransaction();
+                try
                 {
-                    command.Parameters.AddWithValue("@PackingID", PackingID);
-                    command.Parameters.AddWithValue("@ItemID", ItemID);
-                    command.Parameters.AddWithValue("@Quantity", quantity);
-                    object result = command.ExecuteScalar();
+                    string insertQuery = "INSERT INTO ItemsAssigned (PackingID, ItemID, Quantity) VALUES (@PackingID, @ItemID, @Quantity);";
+                    using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection, transaction))
+                    {
+                        insertCommand.Parameters.AddWithValue("@PackingID", PackingID);
+                        insertCommand.Parameters.AddWithValue("@ItemID", ItemID);
+                        insertCommand.Parameters.AddWithValue("@Quantity", quantity);
+
+                        insertCommand.ExecuteNonQuery();
+                    }
+
+                    // Update the stock in the Products table
+                    string updateStockQuery = "UPDATE Products SET Stock = Stock - @Quantity WHERE ProductID = @ItemID;";
+                    using (SqlCommand updateStockCommand = new SqlCommand(updateStockQuery, connection, transaction))
+                    {
+                        updateStockCommand.Parameters.AddWithValue("@ItemID", ItemID);
+                        updateStockCommand.Parameters.AddWithValue("@Quantity", quantity);
+
+                        updateStockCommand.ExecuteNonQuery();
+                    }
+
+                    // Commit the transaction if everything succeeded
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    // An error occurred, rollback the transaction
+                    transaction.Rollback();
+                    // Handle or log the exception
+                    MessageBox.Show($"Error assigning item: {ex.Message}");
                 }
             }
         }
+
+
         private int AssignWorker(string worker)
         {
             using (SqlConnection connection = new SqlConnection(strConnectionString))
@@ -283,60 +403,48 @@ namespace Forms1
                 }
             }
         }
+
+
+
+
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //ComboBox comboBox = (ComboBox)sender;
+            //Console.WriteLine("start");
+            //int productID = ((ComboBox)comboBox.SelectedItem).ProductID;
+            //int Quantity = ((ComboBox)comboBox.SelectedItem).Quantity;
+
+            //myDictionary.Add(ProductID, Quantity);
+
+        }
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-        }
-        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //// Get the reference to the ComboBox
-            //ComboBox comboBox = (ComboBox)sender;
-
-            //// Get the reference to the current DataGridView
-            //DataGridView dataGridView = ((DataGridViewComboBoxEditingControl)sender).EditingControlDataGridView;
-
-            //// Get the reference to the current DataGridView row
-            //DataGridViewRow row = dataGridView.CurrentRow;
-
-            //// Update the QuantityForEmployee value based on the selected value of the ComboBox
-            //DataGridViewCell cell = row.Cells["QuantityForEmployee"];
-            //cell.Value = comboBox.SelectedItem;
-
-            //// Commit the change to prevent it from being overridden
-            //dataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            Console.WriteLine("fuck");
+            DataGridView dgv = (DataGridView)sender;
+            if (dgv.Columns[e.ColumnIndex] is DataGridViewComboBoxColumn)
+            {
+                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                cell.Value = cell.EditedFormattedValue;
+                dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
         }
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == dataGridView1.Columns["QuantityForEmployee"].Index)
-            {
-                // Check if the user entered a value that is not in the ComboBox list
-                if (!QuantityForEmployee.Items.Contains(e.FormattedValue))
-                {
-                    // Cancel the cell validation to prevent the value from being reset
-                    e.Cancel = true;
-                }
-            }
+
         }
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            ComboBox comboBox = e.Control as ComboBox;
-            if (comboBox != null)
+            if (dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex] is DataGridViewComboBoxColumn)
             {
-                DataGridViewCell cell = dataGridView1.CurrentCell;
-                if (cell.Value != null)
+                ComboBox comboBox = e.Control as ComboBox;
+                if (comboBox != null)
                 {
-                    comboBox.SelectedItem = cell.Value;
+                    comboBox.SelectedIndexChanged -= comboBox_SelectedIndexChanged;
+                    comboBox.SelectedIndexChanged += comboBox_SelectedIndexChanged;
+                    comboBoxEditingControl = comboBox;
                 }
             }
         }
-        //private void dataGridView1_EditingControlWantsInputKey(object sender, DataGridViewEditingControlWantsInputKeyEventArgs e)
-        //{
-        //    if (e.KeyData == Keys.Enter)
-        //    {
-        //        e.WantsReturnKey = true;
-        //        e.WantsInputKey = true;
-        //        return;
-        //    }
-        //    base.EditingControlWantsInputKey(sender, e);
-        //}
+
     }
 }
