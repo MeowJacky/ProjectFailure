@@ -109,9 +109,14 @@ namespace Forms1
             SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
 
             int result = 0;
-            String strCommandText = "DELETE FROM Detection WHERE Time = @IntrusionTime";
+
+            string strCommandText = "DELETE FROM Detection WHERE Time >= @StartTime AND Time <= @EndTime";
             SqlCommand updateCmd = new SqlCommand(strCommandText, connection);
-            updateCmd.Parameters.AddWithValue("@IntrusionTime", DateTime.Parse(intrusionTime));
+            
+            string StartTime = ((DateTime.Parse(intrusionTime)).AddSeconds(-1)).ToString();
+            string EndTime = ((DateTime.Parse(intrusionTime)).AddSeconds(1)).ToString();
+            updateCmd.Parameters.AddWithValue("@StartTime", DateTime.Parse(StartTime));
+            updateCmd.Parameters.AddWithValue("@EndTime", DateTime.Parse(EndTime));
 
             connection.Open();
             result = updateCmd.ExecuteNonQuery();
@@ -138,19 +143,32 @@ namespace Forms1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString))
-            {
-                connection.Open();
+            //using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString))
+            //{
+            //    connection.Open();
 
-                string deleteQuery = "DELETE FROM Detection WHERE Time = @IntrusionTime";
-                SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
-                deleteCommand.Parameters.AddWithValue("@IntrusionTime", DateTime.Parse("19 / 1 / 2024 3:12:37 am"));
-                
-                // Execute the delete command
-                deleteCommand.ExecuteNonQuery();
+            //    string deleteQuery = "DELETE FROM Detection WHERE Time = @IntrusionTime";
+            //    SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
 
-                connection.Close();
-            }
+            //    // Use parameterized query for DateTime
+            //    deleteCommand.Parameters.Add("@IntrusionTime", SqlDbType.DateTime).Value = DateTime.ParseExact("19/1/2024 4:34:33 pm", "dd/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+
+            //    try
+            //    {
+            //        // Execute the delete command
+            //        deleteCommand.ExecuteNonQuery();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // Handle the exception (e.g., show an error message)
+            //        MessageBox.Show($"Error deleting entry: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //    finally
+            //    {
+            //        connection.Close();
+            //    }
+            //}
         }
+
     }
 }
