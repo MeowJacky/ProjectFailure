@@ -36,7 +36,6 @@ namespace Forms1
                 SessionID IDCheck = SessionID.Instance;
                 this.username = IDCheck.RetrieveID();
                 AUsername.Text = IDCheck.RetrieveID();
-                Console.WriteLine(IDCheck.RetrieveID() + "IDCHECK");
             }
         }
 

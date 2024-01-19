@@ -109,7 +109,6 @@ namespace Forms1
                             Console.WriteLine(userAuthority);
                             SessionID sessionId = SessionID.Instance;
                             sessionId.SetID(tbUserName.Text, userAuthority);
-                            Console.WriteLine("ID =" + sessionId.RetrieveID());
                         }
 
                         this.Hide();
