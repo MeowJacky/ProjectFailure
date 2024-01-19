@@ -30,19 +30,6 @@ namespace Forms1
 
         }
 
-        private void usersToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.adminsTableAdapter.Users(this.userDBDataSet.Admins);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Check if the clicked cell is in the "Action" column

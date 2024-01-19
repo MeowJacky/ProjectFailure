@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,15 +65,20 @@
             this.IntrusionDatePicker = new System.Windows.Forms.DateTimePicker();
             this.IntrusionButton = new System.Windows.Forms.Button();
             this.IntrusionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.loginLogsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userLoginDBDataSet = new Forms1.UserLoginDBDataSet();
+            this.loginLogsTableAdapter = new Forms1.UserLoginDBDataSetTableAdapters.LoginLogsTableAdapter();
+            this.loginLogsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.loginLogsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.userLoginDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loginLogsBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loginOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.successDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loginLogsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userLoginDBDataSet = new Forms1.UserLoginDBDataSet();
-            this.loginLogsTableAdapter = new Forms1.UserLoginDBDataSetTableAdapters.LoginLogsTableAdapter();
-            this.label3 = new System.Windows.Forms.Label();
+            this.loginLogsBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -86,9 +91,14 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IntrusionChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userLoginDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userLoginDBDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource4)).BeginInit();
             this.SuspendLayout();
             // 
             // AUsername
@@ -143,14 +153,14 @@
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(206, 30);
+            this.Viewusers.Size = new System.Drawing.Size(210, 30);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
@@ -205,21 +215,21 @@
             // 
             // clockin
             // 
-            chartArea7.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.clockin.Legends.Add(legend7);
+            chartArea10.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.clockin.Legends.Add(legend10);
             this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.clockin.Series.Add(series7);
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.clockin.Series.Add(series10);
             this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "Employee Clock In";
-            title3.Name = "Employee Clock In";
-            this.clockin.Titles.Add(title3);
+            title4.Name = "Employee Clock In";
+            this.clockin.Titles.Add(title4);
             this.clockin.Click += new System.EventHandler(this.clockin_Click);
             // 
             // editclockin
@@ -294,16 +304,16 @@
             // 
             // TemperatureChart
             // 
-            chartArea8.Name = "ChartArea1";
-            this.TemperatureChart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.TemperatureChart.Legends.Add(legend8);
+            chartArea11.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea11);
+            legend11.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend11);
             this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
             this.TemperatureChart.Name = "TemperatureChart";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.TemperatureChart.Series.Add(series8);
+            series11.ChartArea = "ChartArea1";
+            series11.Legend = "Legend1";
+            series11.Name = "Series1";
+            this.TemperatureChart.Series.Add(series11);
             this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
             this.TemperatureChart.TabIndex = 0;
             this.TemperatureChart.Text = "TemperatureLogs";
@@ -325,10 +335,10 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
-            this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Size = new System.Drawing.Size(1112, 272);
-            this.splitContainer2.SplitterDistance = 586;
+            this.splitContainer2.SplitterDistance = 597;
             this.splitContainer2.TabIndex = 7;
             // 
             // label2
@@ -371,20 +381,49 @@
             // 
             // IntrusionChart
             // 
-            chartArea9.Name = "ChartArea1";
-            this.IntrusionChart.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.IntrusionChart.Legends.Add(legend9);
+            chartArea12.Name = "ChartArea1";
+            this.IntrusionChart.ChartAreas.Add(chartArea12);
+            legend12.Name = "Legend1";
+            this.IntrusionChart.Legends.Add(legend12);
             this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
             this.IntrusionChart.Name = "IntrusionChart";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.IntrusionChart.Series.Add(series9);
-            this.IntrusionChart.Size = new System.Drawing.Size(583, 272);
+            series12.ChartArea = "ChartArea1";
+            series12.Legend = "Legend1";
+            series12.Name = "Series1";
+            this.IntrusionChart.Series.Add(series12);
+            this.IntrusionChart.Size = new System.Drawing.Size(591, 272);
             this.IntrusionChart.TabIndex = 0;
             this.IntrusionChart.Text = "chart1";
             this.IntrusionChart.Click += new System.EventHandler(this.IntrusionChart_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(132, 29);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Login Logs";
+            // 
+            // loginLogsBindingSource
+            // 
+            this.loginLogsBindingSource.DataMember = "LoginLogs";
+            this.loginLogsBindingSource.DataSource = this.userLoginDBDataSet;
+            // 
+            // userLoginDBDataSet
+            // 
+            this.userLoginDBDataSet.DataSetName = "UserLoginDBDataSet";
+            this.userLoginDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // loginLogsTableAdapter
+            // 
+            this.loginLogsTableAdapter.ClearBeforeFill = true;
+            // 
+            // loginLogsBindingSource1
+            // 
+            this.loginLogsBindingSource1.DataMember = "LoginLogs";
+            this.loginLogsBindingSource1.DataSource = this.userLoginDBDataSet;
             // 
             // dataGridView1
             // 
@@ -399,12 +438,29 @@
             this.loginOutDataGridViewTextBoxColumn,
             this.successDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.loginLogsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 55);
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 47);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(518, 217);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Size = new System.Drawing.Size(497, 222);
+            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // loginLogsBindingSource2
+            // 
+            this.loginLogsBindingSource2.DataMember = "LoginLogs";
+            this.loginLogsBindingSource2.DataSource = this.userLoginDBDataSet;
+            // 
+            // userLoginDBDataSetBindingSource
+            // 
+            this.userLoginDBDataSetBindingSource.DataSource = this.userLoginDBDataSet;
+            this.userLoginDBDataSetBindingSource.Position = 0;
+            // 
+            // loginLogsBindingSource3
+            // 
+            this.loginLogsBindingSource3.DataMember = "LoginLogs";
+            this.loginLogsBindingSource3.DataSource = this.userLoginDBDataSetBindingSource;
             // 
             // timeDataGridViewTextBoxColumn
             // 
@@ -434,30 +490,10 @@
             this.successDataGridViewTextBoxColumn.Name = "successDataGridViewTextBoxColumn";
             this.successDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // loginLogsBindingSource
+            // loginLogsBindingSource4
             // 
-            this.loginLogsBindingSource.DataMember = "LoginLogs";
-            this.loginLogsBindingSource.DataSource = this.userLoginDBDataSet;
-            // 
-            // userLoginDBDataSet
-            // 
-            this.userLoginDBDataSet.DataSetName = "UserLoginDBDataSet";
-            this.userLoginDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // loginLogsTableAdapter
-            // 
-            this.loginLogsTableAdapter.ClearBeforeFill = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Login Logs";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.loginLogsBindingSource4.DataMember = "LoginLogs";
+            this.loginLogsBindingSource4.DataSource = this.userLoginDBDataSetBindingSource;
             // 
             // Admin
             // 
@@ -486,9 +522,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IntrusionChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userLoginDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userLoginDBDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginLogsBindingSource4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -527,14 +568,19 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button IntrusionDateButton;
         private System.Windows.Forms.DateTimePicker IntrusionDatePicker;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private UserLoginDBDataSet userLoginDBDataSet;
         private System.Windows.Forms.BindingSource loginLogsBindingSource;
         private UserLoginDBDataSetTableAdapters.LoginLogsTableAdapter loginLogsTableAdapter;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource loginLogsBindingSource1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource loginLogsBindingSource2;
+        private System.Windows.Forms.BindingSource userLoginDBDataSetBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn loginOutDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn successDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource loginLogsBindingSource3;
+        private System.Windows.Forms.BindingSource loginLogsBindingSource4;
     }
 }
