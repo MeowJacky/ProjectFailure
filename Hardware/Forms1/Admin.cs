@@ -31,6 +31,13 @@ namespace Forms1
             PopulateChartData();
             TemperaturePopulateChartData();
             PopulateIntrusionChartData();
+            if (username == "")
+            {
+                SessionID IDCheck = SessionID.Instance;
+                this.username = IDCheck.RetrieveID();
+                AUsername.Text = IDCheck.RetrieveID();
+                Console.WriteLine(IDCheck.RetrieveID() + "IDCHECK");
+            }
         }
 
         private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
@@ -504,6 +511,7 @@ namespace Forms1
         private void IntrusionButton_Click(object sender, EventArgs e)
         {
             PopulateIntrusionChartData();
+            IntrusionDatePicker.Value = DateTime.Now;
         }
         //private void IntrusionChart_MouseClick(object sender, MouseEventArgs e)
         //{
