@@ -86,6 +86,12 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="AssignItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssignItems.Designer.cs">
+      <DependentUpon>AssignItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="editclockin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,9 +104,7 @@
     <Compile Include="ForgetPass.Designer.cs">
       <DependentUpon>ForgetPass.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginPg.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="LoginPg.cs" />
     <Compile Include="LoginPg.Designer.cs">
       <DependentUpon>LoginPg.cs</DependentUpon>
     </Compile>
@@ -128,8 +132,20 @@
     <Compile Include="present.Designer.cs">
       <DependentUpon>present.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionID.cs" />
+    <Compile Include="ShowIntrusions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowIntrusions.Designer.cs">
+      <DependentUpon>ShowIntrusions.cs</DependentUpon>
+    </Compile>
     <Compile Include="temperaturechart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,10 +160,24 @@
     <Compile Include="User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserDBDataSet.cs">
+      <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserLoginDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserLoginDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Viewallproductsuser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewallproductsuser.Designer.cs">
+      <DependentUpon>Viewallproductsuser.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewAllUsers.cs">
       <SubType>Form</SubType>
@@ -163,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssignItems.resx">
+      <DependentUpon>AssignItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="editclockin.resx">
       <DependentUpon>editclockin.cs</DependentUpon>
@@ -195,15 +228,32 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ShowIntrusions.resx">
+      <DependentUpon>ShowIntrusions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="temperaturechart.resx">
       <DependentUpon>temperaturechart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Viewallproductsuser.resx">
+      <DependentUpon>Viewallproductsuser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewAllUsers.resx">
       <DependentUpon>ViewAllUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ProductDataSet.xsc">
+      <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProductDataSet.xss">
+      <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -223,6 +273,17 @@
     </None>
     <None Include="UserDBDataSet.xss">
       <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserLoginDBDataSet.xsc">
+      <DependentUpon>UserLoginDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserLoginDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserLoginDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UserLoginDBDataSet.xss">
+      <DependentUpon>UserLoginDBDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

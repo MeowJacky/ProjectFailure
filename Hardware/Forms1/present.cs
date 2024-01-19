@@ -21,13 +21,13 @@ namespace Forms1
         public present()
         {
             InitializeComponent();
+            here.Text = "";
+
+            LoadPresentEmployees();
         }
 
         private void present_Load(object sender, EventArgs e)
         {
-            here.Text = "";
-
-            LoadPresentEmployees();
         }
         private void LoadPresentEmployees()
         {

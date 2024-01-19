@@ -48,10 +48,12 @@ public class DBOffHoursDetect
 
     private void Intrusion()
     {
-        if ((CheckTimeRange()) && (detect))
+        //if ((CheckTimeRange()) && (detect))
         //if (DetectIntrusionsRPI())
+        //if ((CheckTimeRange()) && RandomDetect())
+        if ((RandomDetect()))
         {
-                int result = 0;
+            int result = 0;
             int detectionStatus = 1;
 
             SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
@@ -77,6 +79,19 @@ public class DBOffHoursDetect
             }
         }
     }
+
+    private static bool RandomDetect()
+    {
+        // Use a random number generator to generate a value between 0 and 1
+        double randomValue = new Random().NextDouble();
+
+        // Set the activation percentage (0.01% or 0.0001)
+        double activationPercentage = 0.01;
+
+        // Check if the generated value is within the activation range
+        return randomValue < activationPercentage;
+    }
+
 
 
 

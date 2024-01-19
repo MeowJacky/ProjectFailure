@@ -95,6 +95,10 @@ namespace Forms1
                         {
                             Console.WriteLine("3");
                             User userform = new User(tbUserName.Text);
+                            SessionID sessionId = SessionID.Instance;
+                            sessionId.SetID(tbUserName.Text);
+                            
+
                             userform.Show();
                         }
                         else
@@ -103,6 +107,8 @@ namespace Forms1
                             Admin adminform = new Admin(tbUserName.Text, userAuthority);
                             adminform.Show();
                             Console.WriteLine(userAuthority);
+                            SessionID sessionId = SessionID.Instance;
+                            sessionId.SetID(tbUserName.Text, userAuthority);
                         }
 
                         this.Hide();
@@ -126,6 +132,7 @@ namespace Forms1
                 finally
                 {
                     //Step 5: Close connection
+                    
                     myConnect.Close();
                 }
             }
@@ -159,11 +166,11 @@ namespace Forms1
 
         private void LoginPg_Load(object sender, EventArgs e)
         {
-            temperatureUpdateService = new DBTempUpdate();
-            temperatureUpdateService.UpdateTemperatureDB();
+            //temperatureUpdateService = new DBTempUpdate();
+            //temperatureUpdateService.UpdateTemperatureDB();
 
-            intrusionDetectionService = new DBOffHoursDetect();
-            intrusionDetectionService.UpdateIntrusionDB();
+            //intrusionDetectionService = new DBOffHoursDetect();
+            //intrusionDetectionService.UpdateIntrusionDB();
 
         }
 

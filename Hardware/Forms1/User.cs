@@ -274,5 +274,13 @@ namespace Forms1
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            string productid = "0";
+            Viewallproductsuser viewallpro = new Viewallproductsuser(username, productid);
+            viewallpro.Show();
+            this.Close();
+        }
     }
 }

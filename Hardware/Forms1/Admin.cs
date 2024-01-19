@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Globalization;
+
 
 namespace Forms1
 {
@@ -28,10 +30,14 @@ namespace Forms1
             AUsername.Text = username;
             PopulateChartData();
             TemperaturePopulateChartData();
-
-
-
-
+            PopulateIntrusionChartData();
+            LoadData();
+            if (username == "")
+            {
+                SessionID IDCheck = SessionID.Instance;
+                this.username = IDCheck.RetrieveID();
+                AUsername.Text = IDCheck.RetrieveID();
+            }
         }
 
         private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
@@ -116,6 +122,85 @@ namespace Forms1
             }
         }
 
+        private void PopulateIntrusionChartData(DateTime IntrusionDateSelector = default(DateTime))
+        {
+            try
+            {
+                // Clear existing series from the chart
+                IntrusionChart.Series.Clear();
+
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString))
+                {
+                    connection.Open();
+                    string query;
+                    if (IntrusionDateSelector == default(DateTime))
+                    {
+                        query = "SELECT CONVERT(DATE, Time) AS IntrusionDate, COUNT(*) AS IntrusionCount FROM Detection GROUP BY CONVERT(DATE, Time) ORDER BY IntrusionDate DESC";
+
+                    }
+                    else
+                    {
+                        query = $"SELECT CONVERT(DATE, Time) AS IntrusionDate, COUNT(*) AS IntrusionCount FROM Detection WHERE CONVERT(DATE, Time) = '{IntrusionDateSelector.ToString("yyyy-MM-dd")}' GROUP BY CONVERT(DATE, Time) ORDER BY IntrusionDate DESC";
+                    }
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Create a series for the chart
+                            Series series = new Series("Intrusion Events");
+                            series.ChartType = SeriesChartType.Column;
+
+                            while (reader.Read())
+                            {
+                                DateTime intrusionDate = Convert.ToDateTime(reader["IntrusionDate"]);
+                                int intrusionCount = Convert.ToInt32(reader["IntrusionCount"]);
+
+                                // Add a data point to the series with the specified count
+                                series.Points.Add(intrusionCount);
+
+                                // Set the data point label to indicate the count of intrusions for the day
+                                series.Points.Last().AxisLabel = $"{intrusionDate.ToString("MM/dd/yyyy")}\n({intrusionCount} intrusions)";
+                            }
+
+                            IntrusionChart.ChartAreas[0].AxisY.Minimum = double.NaN;
+                            IntrusionChart.ChartAreas[0].AxisY.Maximum = double.NaN;
+                            IntrusionChart.ChartAreas[0].RecalculateAxesScale();
+
+                            
+
+                            // Customize the chart appearance and labels based on your requirements
+                            if (IntrusionChart.Titles.Count == 0)
+                            {
+                                Title chartTitle = new Title();
+                                chartTitle.Text = "Intrusion Chart";
+                                chartTitle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+                                IntrusionChart.Titles.Add(chartTitle);
+                            }
+                            // Check if the series has data before adding it to the chart
+                            if (series.Points.Count > 0)
+                            {
+                                // Add the series to the chart
+                                IntrusionChart.Series.Add(series);
+                                //IntrusionChart.MouseUp -= IntrusionChart_Click;
+                                //IntrusionChart.MouseUp += IntrusionChart_Click;
+                                IntrusionChart.MouseClick -= IntrusionChart_MouseClick;
+                                IntrusionChart.MouseClick += IntrusionChart_MouseClick;
+                            }
+                            else
+                            {
+                                // Handle the case where the series is empty
+                                MessageBox.Show("No intrusion events to display in the chart.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately
+                MessageBox.Show($"Error populating intrusion chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
         private void PopulateChartData()
@@ -174,6 +259,8 @@ namespace Forms1
 
                             clockin.MouseUp -= Clockin_MouseClick;
                             clockin.MouseUp += Clockin_MouseClick;
+
+                            
 
 
                             if (clockin.Titles.Count == 1) //idk why its 1 i think i messed with the properties
@@ -307,9 +394,9 @@ namespace Forms1
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
-            //allusers.Show();
-            //this.Close();
+            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            allusers.Show();
+            this.Close();
         }
 
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
@@ -322,14 +409,14 @@ namespace Forms1
 
         private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddAdmin addmin = new AddAdmin(this.username);
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
             addmin.Show();
             this.Close();
         }
 
         private void addAdminToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            AddAdmin addmin = new AddAdmin(this.username);
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
             addmin.Show();
             this.Close();
         }
@@ -354,13 +441,6 @@ namespace Forms1
         private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void loginOutLogsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Loginlogs logs = new Loginlogs(this.username);
-            //logs.Show();
-            //this.Close();
         }
 
         private void clockin_Click(object sender, EventArgs e)
@@ -414,6 +494,105 @@ namespace Forms1
         {
             DateTime maxdate = SetDateTemp.Value;
             TemperaturePopulateChartData(maxdate);
+        }
+
+        private void IntrusionChart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IntrusionButton_Click(object sender, EventArgs e)
+        {
+            PopulateIntrusionChartData();
+            IntrusionDatePicker.Value = DateTime.Now;
+        }
+        //private void IntrusionChart_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    // Get the clicked data point
+        //    HitTestResult result = IntrusionChart.HitTest(e.X, e.Y);
+
+        //    if (result.Series != null && result.PointIndex >= 0)
+        //    {
+        //        // Retrieve information about the clicked intrusion event
+        //        DateTime intrusionTime = Convert.ToDateTime(result.Series.Points[result.PointIndex].AxisLabel.Split('\n')[0]);
+        //        int intrusionCount = Convert.ToInt32(result.Series.Points[result.PointIndex].AxisLabel.Split('(')[1].Split(' ')[0]);
+
+        //        Console.WriteLine(intrusionTime);
+        //    }
+        //}
+
+        private void IntrusionChart_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Check if the clicked area is a data point
+            HitTestResult result = IntrusionChart.HitTest(e.X, e.Y);
+
+            if (result.ChartElementType == ChartElementType.DataPoint)
+            {
+                // Get the clicked data point
+                DataPoint dataPoint = IntrusionChart.Series[0].Points[result.PointIndex];
+
+                // Extract the information from the data point
+                string dateStringWithCount = dataPoint.AxisLabel;
+                string dateString = dateStringWithCount.Split('\n')[0].Trim();
+
+                ShowIntrusions intrusionpage = new ShowIntrusions();
+                intrusionpage.SetDate(dateString);
+                intrusionpage.ShowDialog();   
+
+                // Attempt to parse the date without specifying the format
+
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IntrusionDateButton_Click(object sender, EventArgs e)
+        {
+            DateTime selected = IntrusionDatePicker.Value;
+            PopulateIntrusionChartData(selected);
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void LoadData()
+        {
+            try
+            {
+                // Clear existing data
+                this.userLoginDBDataSet.LoginLogs.Clear();
+
+                // Load fresh data into the 'userDBDataSet.Admins' table
+                this.loginLogsTableAdapter.Fill(this.userLoginDBDataSet.LoginLogs);
+
+                // Sort the data in descending order based on the 'Time' column
+                userLoginDBDataSet.LoginLogs.DefaultView.Sort = "Time DESC";
+
+                // Set the DataGridView data source to the sorted view
+                dataGridView1.DataSource = userLoginDBDataSet.LoginLogs.DefaultView;
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssignItems AssigningItems = new AssignItems();
+            AssigningItems.Show();
+            this.Hide();
+
+        }
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
