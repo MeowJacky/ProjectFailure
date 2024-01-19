@@ -35,40 +35,49 @@ namespace Forms1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Confirm New Add Admin?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            // Check if the logged-in admin has the authority to add admins
+            if (loggedInAdminAuthority == 1 || (loggedInAdminAuthority == 2 || loggedInAdminAuthority == 3) && AuthoritySelect.Value == 999)
             {
-                int result = 0;
-                //Step 1: Create connection
-                SqlConnection myConnect = new SqlConnection(strConnectionString);
-                //Step 2: Create command
-                String strCommandText =
-                "INSERT Admins (Name, UniqueRFID, NRIC, Address, Contact, Authority, Password)" + "VALUES (@NewName, @NewRFID, @NewNRIC, @NewAdd, @NewContact, @NewAuthority, @NewPassword)";
-                SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
-                updateCmd.Parameters.AddWithValue("@NewName", tbname.Text);
-                updateCmd.Parameters.AddWithValue("@NewRFID", tbRFID.Text);
-                updateCmd.Parameters.AddWithValue("@NewNRIC", tbNRIC.Text);
-                updateCmd.Parameters.AddWithValue("@NewAdd", tbadd.Text);
-                updateCmd.Parameters.AddWithValue("@NewContact", tbcontact.Text);
-                updateCmd.Parameters.AddWithValue("@NewAuthority", AuthoritySelect.Value);
-                updateCmd.Parameters.AddWithValue("@NewPassword", tbpassword.Text);
-                //Step 3: Open Connection and retrieve data by calling ExecuteReader
-                myConnect.Open();
-                //Step 4: ExecuteCommand
-                //result indicates number of record created 
-                result = updateCmd.ExecuteNonQuery();
-                if (result > 0)
-                    MessageBox.Show("New Admin Added Successfully!");
-                else
-                    MessageBox.Show("New Admin Failed to Add");
-                //Step 5: Close Connection
-                myConnect.Close();
-                tbpassword.Text = "";
-                tbRFID.Text = "";
-                tbNRIC.Text = "";
-                tbname.Text = "";
-                tbcontact.Text = "";
-                tbadd.Text = "";
-                AuthoritySelect.Value = 1;
+                if (MessageBox.Show("Confirm New Add USer?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    int result = 0;
+                    //Step 1: Create connection
+                    SqlConnection myConnect = new SqlConnection(strConnectionString);
+                    //Step 2: Create command
+                    String strCommandText =
+                    "INSERT Admins (Name, UniqueRFID, NRIC, Address, Contact, Authority, Password)" + "VALUES (@NewName, @NewRFID, @NewNRIC, @NewAdd, @NewContact, @NewAuthority, @NewPassword)";
+                    SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
+                    updateCmd.Parameters.AddWithValue("@NewName", tbname.Text);
+                    updateCmd.Parameters.AddWithValue("@NewRFID", tbRFID.Text);
+                    updateCmd.Parameters.AddWithValue("@NewNRIC", tbNRIC.Text);
+                    updateCmd.Parameters.AddWithValue("@NewAdd", tbadd.Text);
+                    updateCmd.Parameters.AddWithValue("@NewContact", tbcontact.Text);
+                    updateCmd.Parameters.AddWithValue("@NewAuthority", AuthoritySelect.Value);
+                    updateCmd.Parameters.AddWithValue("@NewPassword", tbpassword.Text);
+                    //Step 3: Open Connection and retrieve data by calling ExecuteReader
+                    myConnect.Open();
+                    //Step 4: ExecuteCommand
+                    //result indicates the number of records created 
+                    result = updateCmd.ExecuteNonQuery();
+                    if (result > 0)
+                        MessageBox.Show("New Admin Added Successfully!");
+                    else
+                        MessageBox.Show("New Admin Failed to Add");
+                    //Step 5: Close Connection
+                    myConnect.Close();
+                    // Reset the form fields after successful addition
+                    tbpassword.Text = "";
+                    tbRFID.Text = "";
+                    tbNRIC.Text = "";
+                    tbname.Text = "";
+                    tbcontact.Text = "";
+                    tbadd.Text = "";
+                    AuthoritySelect.Value = 1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("You don't have the authority to add admins with the specified authority level.");
             }
         }
 

@@ -372,6 +372,8 @@ namespace Forms1
 
         private void Admin_Load_1(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'userLoginDBDataSet.LoginLogs' table. You can move, or remove it, as needed.
+            this.loginLogsTableAdapter.Fill(this.userLoginDBDataSet.LoginLogs);
 
         }
 
@@ -552,6 +554,11 @@ namespace Forms1
         {
             DateTime selected = IntrusionDatePicker.Value;
             PopulateIntrusionChartData(selected);
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }

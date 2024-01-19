@@ -159,11 +159,11 @@ namespace Forms1
 
         private void LoginPg_Load(object sender, EventArgs e)
         {
-            temperatureUpdateService = new DBTempUpdate();
-            temperatureUpdateService.UpdateTemperatureDB();
+            //temperatureUpdateService = new DBTempUpdate();
+            //temperatureUpdateService.UpdateTemperatureDB();
 
-            intrusionDetectionService = new DBOffHoursDetect();
-            intrusionDetectionService.UpdateIntrusionDB();
+            //intrusionDetectionService = new DBOffHoursDetect();
+            //intrusionDetectionService.UpdateIntrusionDB();
 
         }
 

@@ -161,6 +161,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="UserLoginDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserLoginDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ViewAllUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +254,17 @@
     </None>
     <None Include="UserDBDataSet.xss">
       <DependentUpon>UserDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserLoginDBDataSet.xsc">
+      <DependentUpon>UserLoginDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UserLoginDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserLoginDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UserLoginDBDataSet.xss">
+      <DependentUpon>UserLoginDBDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
