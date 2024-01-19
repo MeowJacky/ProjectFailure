@@ -70,9 +70,9 @@
             this.label16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label16.Location = new System.Drawing.Point(208, 27);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(189, 37);
+            this.label16.Size = new System.Drawing.Size(164, 37);
             this.label16.TabIndex = 24;
-            this.label16.Text = "Edit Admins";
+            this.label16.Text = "Edit Users";
             this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
             // btnCancel
@@ -292,7 +292,7 @@
             this.signOutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(184, 1025);
+            this.menuStrip1.Size = new System.Drawing.Size(184, 470);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -359,7 +359,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1499, 1025);
+            this.ClientSize = new System.Drawing.Size(986, 470);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.Adusername);
             this.Controls.Add(this.btnCancel);

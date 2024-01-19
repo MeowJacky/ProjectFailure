@@ -20,12 +20,12 @@ namespace Forms1
         {
             InitializeComponent();
             AUsername.Text = username;
+            LoadData();
         }
 
         private void ViewAllUsers_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'userDBDataSet.Admins' table. You can move, or remove it, as needed.
-            this.adminsTableAdapter.Fill(this.userDBDataSet.Admins);
+            LoadData();
 
         }
 
@@ -45,6 +45,21 @@ namespace Forms1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        private void LoadData()
+        {
+            try
+            {
+                // Clear existing data
+                this.userDBDataSet.Admins.Clear();
+
+                // Load fresh data into the 'userDBDataSet.Admins' table
+                this.adminsTableAdapter.Fill(this.userDBDataSet.Admins);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
     }
     
