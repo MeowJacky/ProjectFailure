@@ -86,5 +86,13 @@ namespace Forms1
                 connection.Close();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SessionID sessionId = SessionID.Instance;
+            Admin adminpg = new Admin(this.username, sessionId.RetrieveAuthority());
+            adminpg.Show();
+            this.Close();
+        }
     }
 }
