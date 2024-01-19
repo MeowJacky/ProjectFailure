@@ -31,6 +31,7 @@ namespace Forms1
             PopulateChartData();
             TemperaturePopulateChartData();
             PopulateIntrusionChartData();
+            LoadData();
             if (username == "")
             {
                 SessionID IDCheck = SessionID.Instance;
@@ -393,9 +394,9 @@ namespace Forms1
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
-            //allusers.Show();
-            //this.Close();
+            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            allusers.Show();
+            this.Close();
         }
 
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
@@ -405,6 +406,21 @@ namespace Forms1
             manage.Show();
             this.Close();
         }
+
+        private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
+            addmin.Show();
+            this.Close();
+        }
+
+        private void addAdminToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
+            addmin.Show();
+            this.Close();
+        }
+
         private void AUsername_Click(object sender, EventArgs e)
         {
 
@@ -425,13 +441,6 @@ namespace Forms1
         private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void loginOutLogsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Loginlogs logs = new Loginlogs(this.username);
-            //logs.Show();
-            //this.Close();
         }
 
         private void clockin_Click(object sender, EventArgs e)
@@ -546,5 +555,33 @@ namespace Forms1
             PopulateIntrusionChartData(selected);
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void LoadData()
+        {
+            try
+            {
+                // Clear existing data
+                this.userLoginDBDataSet.LoginLogs.Clear();
+
+                // Load fresh data into the 'userDBDataSet.Admins' table
+                this.loginLogsTableAdapter.Fill(this.userLoginDBDataSet.LoginLogs);
+
+                // Sort the data in descending order based on the 'Time' column
+                userLoginDBDataSet.LoginLogs.DefaultView.Sort = "Time DESC";
+
+                // Set the DataGridView data source to the sorted view
+                dataGridView1.DataSource = userLoginDBDataSet.LoginLogs.DefaultView;
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }
