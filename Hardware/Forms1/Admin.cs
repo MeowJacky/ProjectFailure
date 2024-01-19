@@ -408,14 +408,14 @@ namespace Forms1
 
         private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddAdmin addmin = new AddAdmin(this.username);
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
             addmin.Show();
             this.Close();
         }
 
         private void addAdminToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            AddAdmin addmin = new AddAdmin(this.username);
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
             addmin.Show();
             this.Close();
         }

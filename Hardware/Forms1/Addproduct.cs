@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System;
+using System.IO;
 
 namespace Forms1
 {
@@ -72,7 +74,8 @@ namespace Forms1
                 cmd.Parameters.AddWithValue("@Price", textBox5.Text);
                 cmd.Parameters.AddWithValue("@Image", arr);
                 cmd.Parameters.AddWithValue("@ProductRFID", textBox1.Text);
-                cmd.Parameters.AddWithValue("@FileName", imageUrl);
+                string ImageName = Path.GetFileName(imageUrl);
+                cmd.Parameters.AddWithValue("@FileName", ImageName);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Product saved into database!");
 

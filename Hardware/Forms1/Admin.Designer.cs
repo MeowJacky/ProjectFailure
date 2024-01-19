@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +65,7 @@
             this.IntrusionDatePicker = new System.Windows.Forms.DateTimePicker();
             this.IntrusionButton = new System.Windows.Forms.Button();
             this.IntrusionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +74,6 @@
             this.loginLogsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userLoginDBDataSet = new Forms1.UserLoginDBDataSet();
             this.loginLogsTableAdapter = new Forms1.UserLoginDBDataSetTableAdapters.LoginLogsTableAdapter();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -99,7 +99,7 @@
             this.AUsername.ForeColor = System.Drawing.Color.Black;
             this.AUsername.Location = new System.Drawing.Point(27, 223);
             this.AUsername.Name = "AUsername";
-            this.AUsername.Size = new System.Drawing.Size(137, 22);
+            this.AUsername.Size = new System.Drawing.Size(114, 18);
             this.AUsername.TabIndex = 1;
             this.AUsername.Text = "adminusername";
             this.AUsername.Click += new System.EventHandler(this.AUsername_Click);
@@ -116,7 +116,7 @@
             this.Productmenu});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(184, 594);
+            this.menuStrip2.Size = new System.Drawing.Size(156, 682);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -125,7 +125,7 @@
             this.projectWSYSToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.projectWSYSToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
             this.projectWSYSToolStripMenuItem.Name = "projectWSYSToolStripMenuItem";
-            this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(171, 36);
+            this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(143, 32);
             this.projectWSYSToolStripMenuItem.Text = "Project W-SYS";
             // 
             // manageUsersToolStripMenuItem
@@ -136,35 +136,35 @@
             this.addAdminToolStripMenuItem});
             this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 200, 0, 0);
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
-            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
             this.manageUsersToolStripMenuItem.Text = "Manage Users";
             this.manageUsersToolStripMenuItem.Click += new System.EventHandler(this.manageUsersToolStripMenuItem_Click);
             // 
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(206, 30);
+            this.Viewusers.Size = new System.Drawing.Size(177, 26);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.addAdminToolStripMenuItem.Text = "Add Users";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_1);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
             this.signOutToolStripMenuItem.Text = "Sign Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
@@ -174,20 +174,20 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.Productmenu.Name = "Productmenu";
-            this.Productmenu.Size = new System.Drawing.Size(171, 29);
+            this.Productmenu.Size = new System.Drawing.Size(143, 24);
             this.Productmenu.Text = "Manage products";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 30);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(178, 26);
             this.toolStripMenuItem2.Text = "View products";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(209, 30);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(178, 26);
             this.toolStripMenuItem3.Text = "Add products";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
@@ -199,27 +199,27 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(27, 203);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 20);
+            this.label1.Size = new System.Drawing.Size(101, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Welcome Back";
             // 
             // clockin
             // 
-            chartArea7.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.clockin.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.clockin.Legends.Add(legend1);
             this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.clockin.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.clockin.Series.Add(series1);
             this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "Employee Clock In";
-            title3.Name = "Employee Clock In";
-            this.clockin.Titles.Add(title3);
+            title1.Name = "Employee Clock In";
+            this.clockin.Titles.Add(title1);
             this.clockin.Click += new System.EventHandler(this.clockin_Click);
             // 
             // editclockin
@@ -278,7 +278,7 @@
             // 
             this.SetDateTemp.Location = new System.Drawing.Point(384, 88);
             this.SetDateTemp.Name = "SetDateTemp";
-            this.SetDateTemp.Size = new System.Drawing.Size(116, 26);
+            this.SetDateTemp.Size = new System.Drawing.Size(116, 22);
             this.SetDateTemp.TabIndex = 2;
             this.SetDateTemp.ValueChanged += new System.EventHandler(this.SetDateTemp_ValueChanged);
             // 
@@ -294,16 +294,16 @@
             // 
             // TemperatureChart
             // 
-            chartArea8.Name = "ChartArea1";
-            this.TemperatureChart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.TemperatureChart.Legends.Add(legend8);
+            chartArea2.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend2);
             this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
             this.TemperatureChart.Name = "TemperatureChart";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.TemperatureChart.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.TemperatureChart.Series.Add(series2);
             this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
             this.TemperatureChart.TabIndex = 0;
             this.TemperatureChart.Text = "TemperatureLogs";
@@ -337,7 +337,7 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(454, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 20);
+            this.label2.Size = new System.Drawing.Size(94, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Date Selector";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -356,7 +356,7 @@
             // 
             this.IntrusionDatePicker.Location = new System.Drawing.Point(457, 86);
             this.IntrusionDatePicker.Name = "IntrusionDatePicker";
-            this.IntrusionDatePicker.Size = new System.Drawing.Size(114, 26);
+            this.IntrusionDatePicker.Size = new System.Drawing.Size(114, 22);
             this.IntrusionDatePicker.TabIndex = 2;
             // 
             // IntrusionButton
@@ -371,20 +371,30 @@
             // 
             // IntrusionChart
             // 
-            chartArea9.Name = "ChartArea1";
-            this.IntrusionChart.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.IntrusionChart.Legends.Add(legend9);
+            chartArea3.Name = "ChartArea1";
+            this.IntrusionChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.IntrusionChart.Legends.Add(legend3);
             this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
             this.IntrusionChart.Name = "IntrusionChart";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.IntrusionChart.Series.Add(series9);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.IntrusionChart.Series.Add(series3);
             this.IntrusionChart.Size = new System.Drawing.Size(583, 272);
             this.IntrusionChart.TabIndex = 0;
             this.IntrusionChart.Text = "chart1";
             this.IntrusionChart.Click += new System.EventHandler(this.IntrusionChart_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 25);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Login Logs";
             // 
             // dataGridView1
             // 
@@ -448,21 +458,10 @@
             // 
             this.loginLogsTableAdapter.ClearBeforeFill = true;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Login Logs";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
             // Admin
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1286, 594);
+            this.ClientSize = new System.Drawing.Size(1277, 682);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label1);

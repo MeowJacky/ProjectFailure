@@ -45,5 +45,9 @@ public class SessionID
     {
         return ID;
     }
+    public int RetrieveAuthority()
+    {
+        return Authority;
+    }
 }
 
