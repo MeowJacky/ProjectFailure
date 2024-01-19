@@ -159,7 +159,6 @@
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
             this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.addAdminToolStripMenuItem.Text = "Add Users";
-            this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_1);
             // 
             // signOutToolStripMenuItem
             // 
@@ -457,7 +456,6 @@
             this.label3.Size = new System.Drawing.Size(132, 29);
             this.label3.TabIndex = 1;
             this.label3.Text = "Login Logs";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Admin
             // 

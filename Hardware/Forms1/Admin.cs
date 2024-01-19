@@ -405,21 +405,6 @@ namespace Forms1
             manage.Show();
             this.Close();
         }
-
-        private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddAdmin addmin = new AddAdmin(this.username);
-            addmin.Show();
-            this.Close();
-        }
-
-        private void addAdminToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            AddAdmin addmin = new AddAdmin(this.username);
-            addmin.Show();
-            this.Close();
-        }
-
         private void AUsername_Click(object sender, EventArgs e)
         {
 
