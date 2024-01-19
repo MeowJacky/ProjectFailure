@@ -14,11 +14,14 @@ using System.Globalization;
 
 namespace Forms1
 {
+
     public partial class AssignItems : Form
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private List<int> selectedQuantities = new List<int>();
         private string _selectedEmployee;
+
+
 
         public AssignItems()
         {
@@ -28,7 +31,8 @@ namespace Forms1
             PopulateQuantityComboBox();
             dataGridView1.DataBindingComplete += DataGridViewProducts_DataBindingComplete;
             EmployeeDropDown.SelectedIndexChanged += EmployeeDropDown_SelectedIndexChanged;
-
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+            dataGridView1.CellValidating += dataGridView1_CellValidating;
         }
 
         private void DataGridViewProducts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -38,7 +42,6 @@ namespace Forms1
         }
         private void PopulateQuantityComboBox()
         {
-            // Store the selected quantities
             var selectedQuantities = new List<int>();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -48,13 +51,24 @@ namespace Forms1
                 DataGridViewComboBoxCell quantityCell = row.Cells["QuantityForEmployee"] as DataGridViewComboBoxCell;
                 if (quantityCell.Value != null && quantityCell.Value != DBNull.Value)
                 {
-                    selectedQuantities.Add(Convert.ToInt32(quantityCell.Value));
+                    int quantity;
+                    if (int.TryParse(quantityCell.Value.ToString(), out quantity))
+                    {
+                        selectedQuantities.Add(quantity);
+                    }
+                    else
+                    {
+                        // Handle the case where the value is not a valid integer (optional)
+                        // You can show a message, log the issue, or take appropriate action.
+                        MessageBox.Show("you fucked up");
+                    }
                 }
             }
 
-            // Clear and populate the comboboxes
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
+                List<int> dropodown = new List<int>();
+
                 if (row.IsNewRow)
                     continue;
 
@@ -68,26 +82,13 @@ namespace Forms1
 
                 int maxQuantity = GetMaxQuantityFromDatabase(row.Cells["ProductID"].Value.ToString());
 
-                // Check if the combobox is empty or the selected item is null
-                if (quantityCell.Items.Count == 0 || quantityCell.Value == null)
+                for (int i = 0; i <= maxQuantity; i++)
                 {
-                    quantityCell.Items.Clear();
-                    for (int i = 0; i <= maxQuantity; i++)
-                    {
-                        quantityCell.Items.Add(i);
-                    }
+                    dropodown.Add(i);
                 }
+                quantityCell.DataSource = dropodown;
+                quantityCell.Value = quantityCell.Value == DBNull.Value ? null : quantityCell.Value;
 
-                if (!row.IsNewRow && row.Cells["QuantityForEmployee"].Value != null && row.Cells["QuantityForEmployee"].Value.ToString() != "")
-                {
-                    row.Cells["QuantityForEmployee"].Value = null;
-                }
-
-                // Re-select the previously selected quantity
-                if (selectedQuantities.Count > row.Index && selectedQuantities[row.Index] > 0)
-                {
-                    quantityCell.Value = selectedQuantities[row.Index];
-                }
             }
         }
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -282,7 +283,60 @@ namespace Forms1
                 }
             }
         }
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //// Get the reference to the ComboBox
+            //ComboBox comboBox = (ComboBox)sender;
 
+            //// Get the reference to the current DataGridView
+            //DataGridView dataGridView = ((DataGridViewComboBoxEditingControl)sender).EditingControlDataGridView;
 
+            //// Get the reference to the current DataGridView row
+            //DataGridViewRow row = dataGridView.CurrentRow;
+
+            //// Update the QuantityForEmployee value based on the selected value of the ComboBox
+            //DataGridViewCell cell = row.Cells["QuantityForEmployee"];
+            //cell.Value = comboBox.SelectedItem;
+
+            //// Commit the change to prevent it from being overridden
+            //dataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["QuantityForEmployee"].Index)
+            {
+                // Check if the user entered a value that is not in the ComboBox list
+                if (!QuantityForEmployee.Items.Contains(e.FormattedValue))
+                {
+                    // Cancel the cell validation to prevent the value from being reset
+                    e.Cancel = true;
+                }
+            }
+        }
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            ComboBox comboBox = e.Control as ComboBox;
+            if (comboBox != null)
+            {
+                DataGridViewCell cell = dataGridView1.CurrentCell;
+                if (cell.Value != null)
+                {
+                    comboBox.SelectedItem = cell.Value;
+                }
+            }
+        }
+        //private void dataGridView1_EditingControlWantsInputKey(object sender, DataGridViewEditingControlWantsInputKeyEventArgs e)
+        //{
+        //    if (e.KeyData == Keys.Enter)
+        //    {
+        //        e.WantsReturnKey = true;
+        //        e.WantsInputKey = true;
+        //        return;
+        //    }
+        //    base.EditingControlWantsInputKey(sender, e);
+        //}
     }
 }
