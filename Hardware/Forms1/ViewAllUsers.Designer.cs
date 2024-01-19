@@ -40,11 +40,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.adminsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userDBDataSet = new Forms1.UserDBDataSet();
-            this.usersToolStrip = new System.Windows.Forms.ToolStrip();
-            this.usersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.adminsTableAdapter = new Forms1.UserDBDataSetTableAdapters.AdminsTableAdapter();
             this.uniqueUserIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nRICDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,11 +48,13 @@
             this.authorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uniqueRFIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.adminsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userDBDataSet = new Forms1.UserDBDataSet();
+            this.adminsTableAdapter = new Forms1.UserDBDataSetTableAdapters.AdminsTableAdapter();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDBDataSet)).BeginInit();
-            this.usersToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // AUsername
@@ -109,14 +106,14 @@
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(196, 30);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
             // addUserToolStripMenuItem
             // 
             this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(196, 30);
             this.addUserToolStripMenuItem.Text = "Add User";
             this.addUserToolStripMenuItem.Click += new System.EventHandler(this.addUserToolStripMenuItem_Click);
             // 
@@ -164,45 +161,12 @@
             this.uniqueRFIDDataGridViewTextBoxColumn,
             this.Action});
             this.dataGridView1.DataSource = this.adminsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(187, 47);
+            this.dataGridView1.Location = new System.Drawing.Point(187, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(844, 561);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // adminsBindingSource
-            // 
-            this.adminsBindingSource.DataMember = "Admins";
-            this.adminsBindingSource.DataSource = this.userDBDataSet;
-            // 
-            // userDBDataSet
-            // 
-            this.userDBDataSet.DataSetName = "UserDBDataSet";
-            this.userDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // usersToolStrip
-            // 
-            this.usersToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.usersToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usersToolStripButton});
-            this.usersToolStrip.Location = new System.Drawing.Point(184, 0);
-            this.usersToolStrip.Name = "usersToolStrip";
-            this.usersToolStrip.Size = new System.Drawing.Size(861, 32);
-            this.usersToolStrip.TabIndex = 7;
-            this.usersToolStrip.Text = "usersToolStrip";
-            // 
-            // usersToolStripButton
-            // 
-            this.usersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.usersToolStripButton.Name = "usersToolStripButton";
-            this.usersToolStripButton.Size = new System.Drawing.Size(59, 29);
-            this.usersToolStripButton.Text = "Users";
-            this.usersToolStripButton.Click += new System.EventHandler(this.usersToolStripButton_Click);
-            // 
-            // adminsTableAdapter
-            // 
-            this.adminsTableAdapter.ClearBeforeFill = true;
             // 
             // uniqueUserIDDataGridViewTextBoxColumn
             // 
@@ -255,13 +219,26 @@
             this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Action.Text = "Manage";
             // 
+            // adminsBindingSource
+            // 
+            this.adminsBindingSource.DataMember = "Admins";
+            this.adminsBindingSource.DataSource = this.userDBDataSet;
+            // 
+            // userDBDataSet
+            // 
+            this.userDBDataSet.DataSetName = "UserDBDataSet";
+            this.userDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // adminsTableAdapter
+            // 
+            this.adminsTableAdapter.ClearBeforeFill = true;
+            // 
             // ViewAllUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1045, 608);
-            this.Controls.Add(this.usersToolStrip);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.AUsername);
             this.Controls.Add(this.menuStrip2);
@@ -273,8 +250,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDBDataSet)).EndInit();
-            this.usersToolStrip.ResumeLayout(false);
-            this.usersToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,8 +271,6 @@
         private UserDBDataSet userDBDataSet;
         private System.Windows.Forms.BindingSource adminsBindingSource;
         private UserDBDataSetTableAdapters.AdminsTableAdapter adminsTableAdapter;
-        private System.Windows.Forms.ToolStrip usersToolStrip;
-        private System.Windows.Forms.ToolStripButton usersToolStripButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn uniqueUserIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nRICDataGridViewTextBoxColumn;
