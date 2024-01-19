@@ -57,7 +57,6 @@
             this.manageUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Adusername = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -292,7 +291,7 @@
             this.signOutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(184, 470);
+            this.menuStrip1.Size = new System.Drawing.Size(184, 502);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -310,8 +309,7 @@
             this.manageUsersToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewAllUsersToolStripMenuItem,
-            this.addAdminToolStripMenuItem,
-            this.addUsersToolStripMenuItem});
+            this.addAdminToolStripMenuItem});
             this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 200, 0, 0);
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
             this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
@@ -320,21 +318,16 @@
             // viewAllUsersToolStripMenuItem
             // 
             this.viewAllUsersToolStripMenuItem.Name = "viewAllUsersToolStripMenuItem";
-            this.viewAllUsersToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.viewAllUsersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.viewAllUsersToolStripMenuItem.Text = "View All Users";
             this.viewAllUsersToolStripMenuItem.Click += new System.EventHandler(this.viewAllUsersToolStripMenuItem_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
-            this.addAdminToolStripMenuItem.Text = "Add Admin";
-            // 
-            // addUsersToolStripMenuItem
-            // 
-            this.addUsersToolStripMenuItem.Name = "addUsersToolStripMenuItem";
-            this.addUsersToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
-            this.addUsersToolStripMenuItem.Text = "Add Users";
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Text = "Add User";
+            this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_1);
             // 
             // signOutToolStripMenuItem
             // 
@@ -359,7 +352,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(986, 470);
+            this.ClientSize = new System.Drawing.Size(986, 502);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.Adusername);
             this.Controls.Add(this.btnCancel);
@@ -423,7 +416,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem manageUsersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addAdminToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addUsersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAllUsersToolStripMenuItem;
         private System.Windows.Forms.Label Adusername;

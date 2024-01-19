@@ -16,7 +16,8 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private string username;
-        public ViewAllUsers(string username)
+        private int loggedInAdminAuthority;
+        public ViewAllUsers(string username, int authority)
         {
             InitializeComponent();
             AUsername.Text = username;
@@ -44,7 +45,17 @@ namespace Forms1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Check if the clicked cell is in the "Action" column
+            if (e.ColumnIndex == dataGridView1.Columns["Action"].Index && e.RowIndex >= 0)
+            {
+                // Get the UniqueUserID from the selected row
+                string selectedUserID = dataGridView1.Rows[e.RowIndex].Cells["uniqueUserIDDataGridViewTextBoxColumn"].Value.ToString();
 
+                // Open the ManageAdmin form with the selected user's details
+                ManageAdmin manageAdmin = new ManageAdmin(username, selectedUserID, loggedInAdminAuthority);
+                manageAdmin.Show();
+                this.Hide(); // Optionally, hide the current form
+            }
         }
         private void LoadData()
         {
@@ -60,6 +71,21 @@ namespace Forms1
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
+        }
+
+        private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userid = "0";
+            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
+            manage.Show();
+            this.Close();
+        }
+
+        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
+            addmin.Show();
+            this.Close();
         }
     }
     

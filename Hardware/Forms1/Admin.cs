@@ -31,6 +31,7 @@ namespace Forms1
             PopulateChartData();
             TemperaturePopulateChartData();
             PopulateIntrusionChartData();
+            LoadData();
         }
 
         private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
@@ -374,7 +375,9 @@ namespace Forms1
         {
             // TODO: This line of code loads data into the 'userLoginDBDataSet.LoginLogs' table. You can move, or remove it, as needed.
             this.loginLogsTableAdapter.Fill(this.userLoginDBDataSet.LoginLogs);
-
+            LoadData();
+            dataGridView1.Sort(dataGridView1.Columns["timeDataGridViewTextBoxColumn"], ListSortDirection.Descending);
+            
         }
 
         private void debug_Click(object sender, EventArgs e)
@@ -389,9 +392,9 @@ namespace Forms1
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
-            //allusers.Show();
-            //this.Close();
+            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            allusers.Show();
+            this.Close();
         }
 
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
@@ -404,14 +407,14 @@ namespace Forms1
 
         private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddAdmin addmin = new AddAdmin(this.username);
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
             addmin.Show();
             this.Close();
         }
 
         private void addAdminToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            AddAdmin addmin = new AddAdmin(this.username);
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
             addmin.Show();
             this.Close();
         }
@@ -436,13 +439,6 @@ namespace Forms1
         private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void loginOutLogsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Loginlogs logs = new Loginlogs(this.username);
-            //logs.Show();
-            //this.Close();
         }
 
         private void clockin_Click(object sender, EventArgs e)
@@ -561,5 +557,22 @@ namespace Forms1
         {
 
         }
+
+        private void LoadData()
+        {
+            try
+            {
+                // Clear existing data
+                this.userLoginDBDataSet.LoginLogs.Clear();
+
+                // Load fresh data into the 'userLoginDBDataSet.LoginLogs' table
+                this.loginLogsTableAdapter.Fill(this.userLoginDBDataSet.LoginLogs);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Error loading data into DataGridView: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
+
