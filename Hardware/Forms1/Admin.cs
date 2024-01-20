@@ -635,5 +635,12 @@ namespace Forms1
             return false;
             //do something that checks if buzzer is currently on
         }
+
+        private void viewAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            viewProds vProds = new viewProds();
+            vProds.Show();
+            this.Close();
+        }
     }
 }
