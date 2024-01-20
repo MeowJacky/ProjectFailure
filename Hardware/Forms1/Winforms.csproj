@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="CustomDataGridViewComboBoxCell.cs" />
     <Compile Include="CustomDataGridViewComboBoxColumn.cs" />
+    <Compile Include="DataComms.cs" />
     <Compile Include="editclockin.cs">
       <SubType>Form</SubType>
     </Compile>
