@@ -17,55 +17,57 @@ namespace Forms1
 
         // retrieve connection information from App.Config
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
-        DataComms dataComms = DataCommsHelper.GetDataCommsInstance();
-        string rfidnum;
 
-        public delegate void myprocessDataDelegate(string strData);
-        private DBTempUpdate temperatureUpdateService;
-        private DBOffHoursDetect intrusionDetectionService;
+        //HENG LE PC DONT LIKE DATACOMMS
+        //DataComms dataComms = DataCommsHelper.GetDataCommsInstance();
+        //string rfidnum;
 
-        private string extractStringValue(string strData, string ID)
-        {
-            string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
-            Console.WriteLine(result);
-            return result;
-        }
-        private string handelRFID(string strData, string ID)
-        {
-            rfidnum = extractStringValue(strData, ID);
-            Console.WriteLine(rfidnum);
-            return rfidnum;
-        }
+        //public delegate void myprocessDataDelegate(string strData);
+        //private DBTempUpdate temperatureUpdateService;
+        //private DBOffHoursDetect intrusionDetectionService;
 
-        public void extractSensorData(string strData)
-        {
-            if (strData.IndexOf("RFID=") != -1)
-                handelRFID(strData, "RFID=");
+        //private string extractStringValue(string strData, string ID)
+        //{
+        //    string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
+        //    Console.WriteLine(result);
+        //    return result;
+        //}
+        //private string handelRFID(string strData, string ID)
+        //{
+        //    rfidnum = extractStringValue(strData, ID);
+        //    Console.WriteLine(rfidnum);
+        //    return rfidnum;
+        //}
 
-        }
+        //public void extractSensorData(string strData)
+        //{
+        //    if (strData.IndexOf("RFID=") != -1)
+        //        handelRFID(strData, "RFID=");
 
-        public void processDataReceive(string strData)
-        {
-            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
-            d(strData);
-        }
+        //}
 
-        public void commsdatareceive(string datareceived)
-        {
-            processDataReceive(datareceived);
-        }
+        //public void processDataReceive(string strData)
+        //{
+        //    myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+        //    d(strData);
+        //}
 
-        public void commsSendError(string errMsg)
-        {
-            MessageBox.Show(errMsg);
-            processDataReceive(errMsg);
-        }
+        //public void commsdatareceive(string datareceived)
+        //{
+        //    processDataReceive(datareceived);
+        //}
 
-        private void InitComms()
-        {
-            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-            dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
-        }
+        //public void commsSendError(string errMsg)
+        //{
+        //    MessageBox.Show(errMsg);
+        //    processDataReceive(errMsg);
+        //}
+
+        //private void InitComms()
+        //{
+        //    dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+        //    dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+        //}
 
 
         public LoginPg()
