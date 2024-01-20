@@ -38,8 +38,21 @@ namespace Forms1
                 this.username = IDCheck.RetrieveID();
                 AUsername.Text = IDCheck.RetrieveID();
             }
+            timer1.Interval = 1000;
+            timer1.Enabled = true;
         }
 
+        private void UpdateLabelText()
+        {
+            if (CheckBuzzer())
+            {
+                BuzzerCheck.Text = "Buzzer is active";
+            }
+            else
+            {
+                BuzzerCheck.Text = "Buzzer is not active";
+            }
+        }
         private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
         {
             try
@@ -475,7 +488,9 @@ namespace Forms1
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-
+            EditProds prods = new EditProds(username, loggedInAdminAuthority);
+            prods.Show();
+            this.Close();
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
@@ -593,6 +608,32 @@ namespace Forms1
         private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void BuzzerDeactivate_Click(object sender, EventArgs e)
+        {
+            DeactivateBuzzer();
+            BuzzerCheck.Text = "Buzzer is not active";
+
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            UpdateLabelText();
+        }
+        private void DeactivateBuzzer()
+        {
+            //do something here that deactivates buzzer
+        }
+        private bool CheckBuzzer()
+        {
+            return false;
+            //do something that checks if buzzer is currently on
         }
     }
 }
