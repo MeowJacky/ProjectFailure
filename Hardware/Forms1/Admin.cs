@@ -489,7 +489,8 @@ namespace Forms1
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            EditProds prods = new EditProds(this.username, loggedInAdminAuthority);
+            int productionID = 0;
+            EditProds prods = new EditProds(this.username, loggedInAdminAuthority, productionID);
             prods.Show();
             this.Close();
         }
@@ -639,7 +640,7 @@ namespace Forms1
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            viewProds vProds = new viewProds();
+            viewProds vProds = new viewProds(username, loggedInAdminAuthority);
             vProds.Show();
             this.Close();
         }
