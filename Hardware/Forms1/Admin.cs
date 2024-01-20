@@ -583,5 +583,16 @@ namespace Forms1
             }
         }
 
+        private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssignItems AssigningItems = new AssignItems();
+            AssigningItems.Show();
+            this.Hide();
+
+        }
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

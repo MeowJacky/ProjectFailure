@@ -277,7 +277,8 @@ namespace Forms1
 
         private void label2_Click(object sender, EventArgs e)
         {
-            Viewallproductsuser viewallpro = new Viewallproductsuser();
+            string productid = "0";
+            Viewallproductsuser viewallpro = new Viewallproductsuser(username, productid);
             viewallpro.Show();
             this.Close();
         }
