@@ -23,8 +23,11 @@ namespace Forms1
         public EditProds(string username, int authority)
         {
             this.username = username;
-            this.loggedInAdminAuthority = authority;
+            loggedInAdminAuthority = authority;
             InitializeComponent();
+            Adusername.Text = username;
+            Console.WriteLine(this.username);
+            Console.WriteLine(this.loggedInAdminAuthority);
         }
 
 
@@ -105,53 +108,64 @@ namespace Forms1
             tbfile.Text = reader["FileName"].ToString();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+private void btnDelete_Click(object sender, EventArgs e)
+{
+    // Ensure that the user has entered a valid Product ID
+    if (int.TryParse(tbSearchBar.Text, out productID))
+    {
+        // Check if the logged-in admin has the appropriate authority level (1 to 3)
+        if (loggedInAdminAuthority >= 1 && loggedInAdminAuthority <= 3)
         {
-            // Ensure that the user has entered a valid Product ID
-            if (int.TryParse(tbSearchBar.Text, out productID))
+            if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                using (SqlConnection connection = new SqlConnection(strConnectionString))
                 {
-                    using (SqlConnection connection = new SqlConnection(strConnectionString))
+                    connection.Open();
+
+                    // Query to delete the product based on ProductID
+                    string strCommandText = "DELETE FROM Products WHERE ProductID = @ProductID";
+                    SqlCommand cmd = new SqlCommand(strCommandText, connection);
+                    cmd.Parameters.AddWithValue("@ProductID", productID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
                     {
-                        connection.Open();
-
-                        // Query to delete the product based on ProductID
-                        string strCommandText = "Product Deleted";
-                        SqlCommand cmd = new SqlCommand(strCommandText, connection);
-                        cmd.Parameters.AddWithValue("@ProductID", productID);
-
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Product deleted successfully.");
-                            // Optionally, clear the form fields or perform any other action after deletion.
-                            ClearFormFields();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to delete product.");
-                        }
-
-                        connection.Close();
+                        MessageBox.Show("Product deleted successfully.");
+                        // Optionally, clear the form fields or perform any other action after deletion.
+                        ClearFormFields();
                     }
+                    else
+                    {
+                        MessageBox.Show("Failed to delete product.");
+                    }
+
+                    connection.Close();
                 }
             }
-            else
-            {
-                MessageBox.Show("Please enter a valid Product ID.");
-            }
         }
+        else
+        {
+            MessageBox.Show("You do not have the authority to delete products.");
+        }
+    }
+    else
+    {
+        MessageBox.Show("Please enter a valid Product ID.");
+    }
+}
+
+
 
         private void ClearFormFields()
         {
             // Clear or reset form fields as needed
-            label7.Text = "";
-            label11.Text = "";
-            label8.Text = "";
-            label9.Text = "";
-            label10.Text = "";
+            tbSearchBar.Text = "";
+            ProdName.Text = "";
+            stocksnum.Text = "";
+            tbdesc.Text = "";
+            numprice.Text = "";
+            rfid.Text = "";
             tbshelve.Text = "";
             comboBox1.SelectedIndex = -1;
             pictureBox1.Image = null;
@@ -274,6 +288,11 @@ namespace Forms1
         private void tbfile_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            ClearFormFields();
         }
     }
 }
