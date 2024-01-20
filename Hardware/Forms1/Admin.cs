@@ -68,13 +68,17 @@ namespace Forms1
                     // Use your actual table name and column names
                     if (ChangeMax != default(DateTime))
                     {
+                        DateTime TemporaryChangeMax = ChangeMax.AddDays(1);
                         // If ChangeMax is provided, use it as a filter in the WHERE clause
-                        query = $"SELECT TOP 36 Time, Temp FROM Temperature WHERE Time <= '{ChangeMax.ToString("yyyy-MM-dd HH:mm:ss")}' ORDER BY Time DESC";
+                        query = $"SELECT TOP 23 Time, Temp FROM Temperature WHERE Time <= '{TemporaryChangeMax.ToString("yyyy-MM-dd HH:mm:ss")}' ORDER BY Time DESC";
+                        SetDateTemp.Value = ChangeMax;
+
                     }
                     else
                     {
                         // If ChangeMax is not provided, retrieve the top 36 records without a filter
-                        query = "SELECT TOP 36 Time, Temp FROM Temperature ORDER BY Time DESC";
+                        query = "SELECT TOP 23 Time, Temp FROM Temperature ORDER BY Time DESC";
+                        SetDateTemp.Value = DateTime.Now;
                     }
 
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -110,7 +114,6 @@ namespace Forms1
                             TemperatureChart.ChartAreas[0].AxisY.Maximum = double.NaN;
                             TemperatureChart.ChartAreas[0].RecalculateAxesScale();
 
-                            SetDateTemp.Value = DateTime.Now;
 
 
 
