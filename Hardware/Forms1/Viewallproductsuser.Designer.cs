@@ -74,6 +74,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label2
             // 
@@ -222,6 +223,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Viewallproductsuser";
             this.Text = "Viewallproducts";
+            this.Load += new System.EventHandler(this.Viewallproductsuser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

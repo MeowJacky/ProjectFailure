@@ -100,6 +100,12 @@
     <Compile Include="editclockin.Designer.cs">
       <DependentUpon>editclockin.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditProds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProds.Designer.cs">
+      <DependentUpon>EditProds.cs</DependentUpon>
+    </Compile>
     <Compile Include="ForgetPass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="editclockin.resx">
       <DependentUpon>editclockin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProds.resx">
+      <DependentUpon>EditProds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgetPass.resx">
       <DependentUpon>ForgetPass.cs</DependentUpon>
