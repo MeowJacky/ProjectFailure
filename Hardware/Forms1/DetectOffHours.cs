@@ -68,6 +68,7 @@ public class DBOffHoursDetect
             {
                 result = cmd.ExecuteNonQuery();
                 Console.WriteLine("Intrusion Detected!");
+                //do something that turn on buzzer. 
             }
             catch (Exception ex)
             {
