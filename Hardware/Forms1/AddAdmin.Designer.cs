@@ -29,45 +29,96 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.TabControl tabControl1;
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tbname = new System.Windows.Forms.TextBox();
+            this.tbpassword = new System.Windows.Forms.TextBox();
             this.lblname = new System.Windows.Forms.Label();
+            this.lblpassword = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbname = new System.Windows.Forms.TextBox();
-            this.tbNRIC = new System.Windows.Forms.TextBox();
-            this.tbcontact = new System.Windows.Forms.TextBox();
-            this.tbadd = new System.Windows.Forms.TextBox();
-            this.tbRFID = new System.Windows.Forms.TextBox();
-            this.AuthoritySelect = new System.Windows.Forms.NumericUpDown();
-            this.btnAddAdmin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tbpassword = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnAddAdmin = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.AuthoritySelect = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbRFID = new System.Windows.Forms.TextBox();
+            this.tbNRIC = new System.Windows.Forms.TextBox();
+            this.tbadd = new System.Windows.Forms.TextBox();
+            this.tbcontact = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tbPassword1 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnAdd1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.tbRFID1 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tbAdd1 = new System.Windows.Forms.TextBox();
+            this.tbName1 = new System.Windows.Forms.TextBox();
             this.tbContact1 = new System.Windows.Forms.TextBox();
             this.tbNRIC1 = new System.Windows.Forms.TextBox();
-            this.tbName1 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             tabControl1 = new System.Windows.Forms.TabControl();
-            ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).BeginInit();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(this.tabPage1);
+            tabControl1.Controls.Add(this.tabPage2);
+            tabControl1.Location = new System.Drawing.Point(12, 68);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new System.Drawing.Size(683, 343);
+            tabControl1.TabIndex = 18;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.tbname);
+            this.tabPage1.Controls.Add(this.tbpassword);
+            this.tabPage1.Controls.Add(this.lblname);
+            this.tabPage1.Controls.Add(this.lblpassword);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.btnCancel);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.btnAddAdmin);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.AuthoritySelect);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.tbRFID);
+            this.tabPage1.Controls.Add(this.tbNRIC);
+            this.tabPage1.Controls.Add(this.tbadd);
+            this.tabPage1.Controls.Add(this.tbcontact);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(675, 310);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Admin";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tbname
+            // 
+            this.tbname.Location = new System.Drawing.Point(125, 27);
+            this.tbname.Name = "tbname";
+            this.tbname.Size = new System.Drawing.Size(153, 26);
+            this.tbname.TabIndex = 6;
+            // 
+            // tbpassword
+            // 
+            this.tbpassword.Location = new System.Drawing.Point(438, 119);
+            this.tbpassword.Name = "tbpassword";
+            this.tbpassword.Size = new System.Drawing.Size(208, 26);
+            this.tbpassword.TabIndex = 17;
+            this.tbpassword.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblname
             // 
@@ -77,6 +128,16 @@
             this.lblname.Size = new System.Drawing.Size(55, 20);
             this.lblname.TabIndex = 0;
             this.lblname.Text = "Name:";
+            // 
+            // lblpassword
+            // 
+            this.lblpassword.AutoSize = true;
+            this.lblpassword.Location = new System.Drawing.Point(345, 119);
+            this.lblpassword.Name = "lblpassword";
+            this.lblpassword.Size = new System.Drawing.Size(82, 20);
+            this.lblpassword.TabIndex = 16;
+            this.lblpassword.Text = "Password:";
+            this.lblpassword.Click += new System.EventHandler(this.label7_Click);
             // 
             // label2
             // 
@@ -96,6 +157,16 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Contact:";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(38, 235);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(240, 41);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.button2_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -104,6 +175,16 @@
             this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Address:";
+            // 
+            // btnAddAdmin
+            // 
+            this.btnAddAdmin.Location = new System.Drawing.Point(349, 235);
+            this.btnAddAdmin.Name = "btnAddAdmin";
+            this.btnAddAdmin.Size = new System.Drawing.Size(240, 41);
+            this.btnAddAdmin.TabIndex = 13;
+            this.btnAddAdmin.Text = "Add User";
+            this.btnAddAdmin.UseVisualStyleBackColor = true;
+            this.btnAddAdmin.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
             // 
@@ -114,51 +195,6 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Authority:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(345, 71);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 20);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "RFID:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // tbname
-            // 
-            this.tbname.Location = new System.Drawing.Point(125, 27);
-            this.tbname.Name = "tbname";
-            this.tbname.Size = new System.Drawing.Size(153, 26);
-            this.tbname.TabIndex = 6;
-            // 
-            // tbNRIC
-            // 
-            this.tbNRIC.Location = new System.Drawing.Point(125, 77);
-            this.tbNRIC.Name = "tbNRIC";
-            this.tbNRIC.Size = new System.Drawing.Size(153, 26);
-            this.tbNRIC.TabIndex = 7;
-            // 
-            // tbcontact
-            // 
-            this.tbcontact.Location = new System.Drawing.Point(125, 122);
-            this.tbcontact.Name = "tbcontact";
-            this.tbcontact.Size = new System.Drawing.Size(153, 26);
-            this.tbcontact.TabIndex = 8;
-            // 
-            // tbadd
-            // 
-            this.tbadd.Location = new System.Drawing.Point(125, 171);
-            this.tbadd.Name = "tbadd";
-            this.tbadd.Size = new System.Drawing.Size(277, 26);
-            this.tbadd.TabIndex = 9;
-            // 
-            // tbRFID
-            // 
-            this.tbRFID.Location = new System.Drawing.Point(438, 71);
-            this.tbRFID.Name = "tbRFID";
-            this.tbRFID.Size = new System.Drawing.Size(208, 26);
-            this.tbRFID.TabIndex = 11;
             // 
             // AuthoritySelect
             // 
@@ -182,90 +218,45 @@
             0,
             0});
             // 
-            // btnAddAdmin
+            // label6
             // 
-            this.btnAddAdmin.Location = new System.Drawing.Point(349, 235);
-            this.btnAddAdmin.Name = "btnAddAdmin";
-            this.btnAddAdmin.Size = new System.Drawing.Size(240, 41);
-            this.btnAddAdmin.TabIndex = 13;
-            this.btnAddAdmin.Text = "Add User";
-            this.btnAddAdmin.UseVisualStyleBackColor = true;
-            this.btnAddAdmin.Click += new System.EventHandler(this.button1_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(345, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 20);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "RFID:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // btnCancel
+            // tbRFID
             // 
-            this.btnCancel.Location = new System.Drawing.Point(38, 235);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(240, 41);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.button2_Click);
+            this.tbRFID.Location = new System.Drawing.Point(438, 71);
+            this.tbRFID.Name = "tbRFID";
+            this.tbRFID.Size = new System.Drawing.Size(208, 26);
+            this.tbRFID.TabIndex = 11;
             // 
-            // label1
+            // tbNRIC
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 29);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Add New User";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.tbNRIC.Location = new System.Drawing.Point(125, 77);
+            this.tbNRIC.Name = "tbNRIC";
+            this.tbNRIC.Size = new System.Drawing.Size(153, 26);
+            this.tbNRIC.TabIndex = 7;
+            this.tbNRIC.TextChanged += new System.EventHandler(this.tbNRIC_TextChanged);
             // 
-            // textBox1
+            // tbadd
             // 
-            this.textBox1.Location = new System.Drawing.Point(438, 119);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 26);
-            this.textBox1.TabIndex = 17;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.tbadd.Location = new System.Drawing.Point(125, 171);
+            this.tbadd.Name = "tbadd";
+            this.tbadd.Size = new System.Drawing.Size(277, 26);
+            this.tbadd.TabIndex = 9;
             // 
-            // tbpassword
+            // tbcontact
             // 
-            this.tbpassword.AutoSize = true;
-            this.tbpassword.Location = new System.Drawing.Point(345, 119);
-            this.tbpassword.Name = "tbpassword";
-            this.tbpassword.Size = new System.Drawing.Size(82, 20);
-            this.tbpassword.TabIndex = 16;
-            this.tbpassword.Text = "Password:";
-            this.tbpassword.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(this.tabPage1);
-            tabControl1.Controls.Add(this.tabPage2);
-            tabControl1.Location = new System.Drawing.Point(12, 68);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(683, 343);
-            tabControl1.TabIndex = 18;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.tbname);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.lblname);
-            this.tabPage1.Controls.Add(this.tbpassword);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.btnCancel);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.btnAddAdmin);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.AuthoritySelect);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.tbRFID);
-            this.tabPage1.Controls.Add(this.tbNRIC);
-            this.tabPage1.Controls.Add(this.tbadd);
-            this.tabPage1.Controls.Add(this.tbcontact);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(675, 310);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Admin";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tbcontact.Location = new System.Drawing.Point(125, 122);
+            this.tbcontact.Name = "tbcontact";
+            this.tbcontact.Size = new System.Drawing.Size(153, 26);
+            this.tbcontact.TabIndex = 8;
+            this.tbcontact.TextChanged += new System.EventHandler(this.tbcontact_TextChanged);
             // 
             // tabPage2
             // 
@@ -298,6 +289,15 @@
             this.tbPassword1.Size = new System.Drawing.Size(208, 26);
             this.tbPassword1.TabIndex = 34;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(27, 35);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 20);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "Name:";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -306,6 +306,15 @@
             this.label7.Size = new System.Drawing.Size(82, 20);
             this.label7.TabIndex = 33;
             this.label7.Text = "Password:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(27, 82);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 20);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "NRIC:";
             // 
             // button1
             // 
@@ -317,6 +326,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(27, 127);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 20);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Contact:";
+            // 
             // btnAdd1
             // 
             this.btnAdd1.Location = new System.Drawing.Point(342, 240);
@@ -327,40 +345,21 @@
             this.btnAdd1.UseVisualStyleBackColor = true;
             this.btnAdd1.Click += new System.EventHandler(this.btnAdd1_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 176);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 20);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Address:";
+            // 
             // tbRFID1
             // 
             this.tbRFID1.Location = new System.Drawing.Point(429, 35);
             this.tbRFID1.Name = "tbRFID1";
             this.tbRFID1.Size = new System.Drawing.Size(208, 26);
             this.tbRFID1.TabIndex = 29;
-            // 
-            // tbAdd1
-            // 
-            this.tbAdd1.Location = new System.Drawing.Point(118, 176);
-            this.tbAdd1.Name = "tbAdd1";
-            this.tbAdd1.Size = new System.Drawing.Size(277, 26);
-            this.tbAdd1.TabIndex = 28;
-            // 
-            // tbContact1
-            // 
-            this.tbContact1.Location = new System.Drawing.Point(118, 127);
-            this.tbContact1.Name = "tbContact1";
-            this.tbContact1.Size = new System.Drawing.Size(153, 26);
-            this.tbContact1.TabIndex = 27;
-            // 
-            // tbNRIC1
-            // 
-            this.tbNRIC1.Location = new System.Drawing.Point(118, 82);
-            this.tbNRIC1.Name = "tbNRIC1";
-            this.tbNRIC1.Size = new System.Drawing.Size(153, 26);
-            this.tbNRIC1.TabIndex = 26;
-            // 
-            // tbName1
-            // 
-            this.tbName1.Location = new System.Drawing.Point(118, 32);
-            this.tbName1.Name = "tbName1";
-            this.tbName1.Size = new System.Drawing.Size(153, 26);
-            this.tbName1.TabIndex = 25;
             // 
             // label8
             // 
@@ -371,41 +370,46 @@
             this.label8.TabIndex = 24;
             this.label8.Text = "RFID:";
             // 
-            // label10
+            // tbAdd1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 176);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 20);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Address:";
+            this.tbAdd1.Location = new System.Drawing.Point(118, 176);
+            this.tbAdd1.Name = "tbAdd1";
+            this.tbAdd1.Size = new System.Drawing.Size(277, 26);
+            this.tbAdd1.TabIndex = 28;
             // 
-            // label11
+            // tbName1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(27, 127);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(69, 20);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Contact:";
+            this.tbName1.Location = new System.Drawing.Point(118, 32);
+            this.tbName1.Name = "tbName1";
+            this.tbName1.Size = new System.Drawing.Size(153, 26);
+            this.tbName1.TabIndex = 25;
             // 
-            // label12
+            // tbContact1
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(27, 82);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 20);
-            this.label12.TabIndex = 20;
-            this.label12.Text = "NRIC:";
+            this.tbContact1.Location = new System.Drawing.Point(118, 127);
+            this.tbContact1.Name = "tbContact1";
+            this.tbContact1.Size = new System.Drawing.Size(153, 26);
+            this.tbContact1.TabIndex = 27;
+            this.tbContact1.TextChanged += new System.EventHandler(this.tbContact1_TextChanged);
             // 
-            // label13
+            // tbNRIC1
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(27, 35);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 20);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "Name:";
+            this.tbNRIC1.Location = new System.Drawing.Point(118, 82);
+            this.tbNRIC1.Name = "tbNRIC1";
+            this.tbNRIC1.Size = new System.Drawing.Size(153, 26);
+            this.tbNRIC1.TabIndex = 26;
+            this.tbNRIC1.TextChanged += new System.EventHandler(this.tbNRIC1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(26, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(169, 29);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Add New User";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // AddAdmin
             // 
@@ -418,10 +422,10 @@
             this.Name = "AddAdmin";
             this.Text = "AddAdmin";
             this.Load += new System.EventHandler(this.AddAdmin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).EndInit();
             tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -446,8 +450,8 @@
         private System.Windows.Forms.Button btnAddAdmin;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label tbpassword;
+        private System.Windows.Forms.TextBox tbpassword;
+        private System.Windows.Forms.Label lblpassword;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox tbPassword1;
