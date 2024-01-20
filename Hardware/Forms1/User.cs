@@ -73,7 +73,7 @@ namespace Forms1
 
             userusername.Text = username;
 
-            ClockButton.Click += ClockButton_Click;
+            //ClockButton.Click += ClockButton_Click;
 
             DisplayClockStatus();
         }
@@ -96,7 +96,7 @@ namespace Forms1
                     if (clockInStatus == 0)
                     {
                         label1.Text = "You have not clocked in";
-                        ClockButton.Text = "Clock In";
+                        //ClockButton.Text = "Clock In";
                     }
                     else if (clockInStatus == 1)
                     {
@@ -158,6 +158,45 @@ namespace Forms1
 
             }
             DisplayClockStatus(); // Update UI to reflect the new clock-in status
+
+            RedirectBasedOnPriority();
+        }
+
+        private void RedirectBasedOnPriority()
+        {
+            // Query to retrieve the priority of the logged-in user
+            string query = "SELECT Authority FROM Admins WHERE Name = @Username";
+
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    connection.Open();
+
+                    // Retrieve the priority value of the logged-in user from the database
+                    int userAuthority = Convert.ToInt32(command.ExecuteScalar());
+
+                    // Redirect to the respective page based on the priority
+                    if (userAuthority >= 1 && userAuthority <= 4)
+                    {
+                        // Admin
+                        //Admin adminPage = new Admin(username);
+                        //this.Hide();
+                        //adminPage.ShowDialog();
+                        //this.Show();
+                    }
+                    else if (userAuthority == 999)
+                    {
+                        // User
+                        User userPage = new User(username);
+                        this.Hide();
+                        userPage.ShowDialog();
+                        this.Show();
+                    }
+                }
+            }
         }
 
         private int GetCurrentClockStatus()
