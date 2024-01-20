@@ -20,7 +20,7 @@ namespace Forms1
         private string username;
         private int loggedInAdminAuthority; // Store the authority of the logged-in admin
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
-        public EditProds(string username, int authority)
+        public EditProds(string username, int authority, int productID)
         {
             this.username = username;
             loggedInAdminAuthority = authority;
@@ -28,8 +28,54 @@ namespace Forms1
             Adusername.Text = username;
             Console.WriteLine(this.username);
             Console.WriteLine(this.loggedInAdminAuthority);
+            this.productID = productID;
+            tbSearchBar.Text = productID.ToString();
+            if (productID != 0)
+            {
+                LoadProductDetails();
+            }
         }
 
+
+        private void LoadProductDetails()
+        {
+            // Load product details based on the provided productID
+            if (productID != 0)
+            {
+                using (SqlConnection connection = new SqlConnection(strConnectionString))
+                {
+                    connection.Open();
+
+                    // Query to retrieve product details based on ProductID
+                    string strCommandText = "SELECT Product_Name, Description, Stock, Price, Image, ProductRFID, FileName, Category, Shelve FROM Products ";
+                    strCommandText += "WHERE ProductID=@ProductID";
+
+                    SqlCommand cmd = new SqlCommand(strCommandText, connection);
+                    cmd.Parameters.AddWithValue("@ProductID", productID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        // Populate form fields with retrieved information
+                        PopulateFormFields(reader);
+
+                        // Display the image
+                        byte[] imageData = (byte[])reader["Image"];
+                        using (MemoryStream ms = new MemoryStream(imageData))
+                        {
+                            pictureBox1.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Product not found.");
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
 
         private void ProdName_TextChanged(object sender, EventArgs e)
         {
@@ -37,6 +83,11 @@ namespace Forms1
         }
 
         private void button1_Click_1(object sender, EventArgs e)
+        {
+            btnIDSearch_Click();
+}
+
+        private void btnIDSearch_Click()
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
@@ -169,6 +220,7 @@ private void btnDelete_Click(object sender, EventArgs e)
             tbshelve.Text = "";
             comboBox1.SelectedIndex = -1;
             pictureBox1.Image = null;
+            tbfile.Text = "";
             // Clear other form fields
         }
 

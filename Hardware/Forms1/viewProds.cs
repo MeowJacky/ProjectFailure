@@ -10,118 +10,46 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 
+
 namespace Forms1
 {
     public partial class viewProds : Form
     {
+        private string username;
+        private int loggedInAdminAuthority;
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
-        public viewProds()
+        public viewProds(string username, int authoriy)
         {
             InitializeComponent();
-            InitializeTable();
-            PopulateTableWithData();
-        }
-        private void InitializeTable()
-        {
-            TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
-            tableLayoutPanel.Dock = DockStyle.Fill;
-            Controls.Add(tableLayoutPanel);
-
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15));
-
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-
-            tableLayoutPanel.Controls.Add(CreateLabel("ID", true), 0, 0);
-            tableLayoutPanel.Controls.Add(CreateLabel("Product Name", true), 1, 0);
-            tableLayoutPanel.Controls.Add(CreateLabel("Description", true), 2, 0);
-            tableLayoutPanel.Controls.Add(CreateLabel("Stock", true), 3, 0);
-            tableLayoutPanel.Controls.Add(CreateLabel("Price", true), 4, 0);
-            tableLayoutPanel.Controls.Add(CreateLabel("Category", true), 5, 0);
-            tableLayoutPanel.Controls.Add(CreateLabel("Shelve", true), 6, 0);
+            AUsername.Text = this.username;
         }
 
-        private Label CreateLabel(string text, bool isHeader = false)
+        private void viewProds_Load(object sender, EventArgs e)
         {
-            Label label = new Label();
-            label.Text = text;
-            label.Dock = DockStyle.Fill;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.BackColor = isHeader ? SystemColors.ControlDark : SystemColors.ControlLight;
-            label.ForeColor = isHeader ? SystemColors.ControlLightLight : SystemColors.ControlText;
-            label.BorderStyle = BorderStyle.FixedSingle;
-            return label;
+            // TODO: This line of code loads data into the 'prodsDataSet.Products' table. You can move, or remove it, as needed.
+            this.productsTableAdapter.Fill(this.prodsDataSet.Products);
+
         }
 
-        private void PopulateTableWithData()
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            List<Product> products = GetProductsFromDatabase();
 
-            TableLayoutPanel tableLayoutPanel = Controls.OfType<TableLayoutPanel>().FirstOrDefault();
-            if (tableLayoutPanel != null)
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the double-click occurred on a valid row (not header or empty row)
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
             {
-                int rowIndex = tableLayoutPanel.RowCount;
-                foreach (var product in products)
-                {
-                    tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-                    tableLayoutPanel.Controls.Add(CreateLabel(product.ProductID.ToString()), 0, rowIndex);
-                    tableLayoutPanel.Controls.Add(CreateLabel(product.ProductName), 1, rowIndex);
-                    tableLayoutPanel.Controls.Add(CreateLabel(product.Description), 2, rowIndex);
-                    tableLayoutPanel.Controls.Add(CreateLabel(product.Stock.ToString()), 3, rowIndex);
-                    tableLayoutPanel.Controls.Add(CreateLabel(product.Price.ToString("C")), 4, rowIndex);
-                    tableLayoutPanel.Controls.Add(CreateLabel(product.Category), 5, rowIndex);
-                    tableLayoutPanel.Controls.Add(CreateLabel(product.Shelve?.ToString() ?? "N/A"), 6, rowIndex);
-                    rowIndex++;
-                }
+                // Get the product ID from the selected row
+                int selectedProductID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["productIDDataGridViewTextBoxColumn"].Value);
+
+                // Open the EditProds form with the selected product's details
+                EditProds editProds = new EditProds(username, loggedInAdminAuthority, selectedProductID);
+                editProds.Show();
+                this.Hide(); // Optionally, hide the current form
             }
         }
-
-        private List<Product> GetProductsFromDatabase()
-        {
-            List<Product> products = new List<Product>();
-
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString))
-            {
-                connection.Open();
-                string query = "SELECT * FROM Products";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Product product = new Product
-                        {
-                            ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
-                            ProductName = reader.GetString(reader.GetOrdinal("Product_Name")),
-                            Description = reader.IsDBNull(reader.GetOrdinal("Description")) ? null : reader.GetString(reader.GetOrdinal("Description")),
-                            Stock = reader.GetInt32(reader.GetOrdinal("Stock")),
-                            Price = reader.GetDecimal(reader.GetOrdinal("Price")),
-                            Category = reader.IsDBNull(reader.GetOrdinal("Category")) ? null : reader.GetString(reader.GetOrdinal("Category")),
-                            Shelve = reader.IsDBNull(reader.GetOrdinal("Shelve")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("Shelve"))
-                        };
-                        products.Add(product);
-                    }
-                }
-            }
-
-            return products;
-        }
-    }
-
-    public class Product
-    {
-        public int ProductID { get; set; }
-        public string ProductName { get; set; }
-        public string Description { get; set; }
-        public int Stock { get; set; }
-        public decimal Price { get; set; }
-        public string Category { get; set; }
-        public int? Shelve { get; set; }
     }
 }
 

@@ -34,16 +34,14 @@
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logout = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ClockButton = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label2 = new System.Windows.Forms.Label();
+            this.ClockButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Temp = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // userusername
@@ -99,62 +97,6 @@
             this.logout.Text = "Sign Out";
             this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(776, 469);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Temperature";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.ClockButton);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(776, 469);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Clock In";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click_1);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "You have not clocked in yet";
-            // 
-            // ClockButton
-            // 
-            this.ClockButton.Location = new System.Drawing.Point(8, 71);
-            this.ClockButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ClockButton.Name = "ClockButton";
-            this.ClockButton.Size = new System.Drawing.Size(162, 48);
-            this.ClockButton.TabIndex = 0;
-            this.ClockButton.Text = "Clock in";
-            this.ClockButton.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 42);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(784, 502);
-            this.tabControl1.TabIndex = 3;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -171,14 +113,56 @@
             this.label2.Text = "View all products";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // ClockButton
+            // 
+            this.ClockButton.Location = new System.Drawing.Point(33, 130);
+            this.ClockButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ClockButton.Name = "ClockButton";
+            this.ClockButton.Size = new System.Drawing.Size(162, 48);
+            this.ClockButton.TabIndex = 0;
+            this.ClockButton.Text = "Clock in";
+            this.ClockButton.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(202, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "You have not clocked in yet";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.Controls.Add(this.Temp);
+            this.groupBox1.Location = new System.Drawing.Point(559, 78);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(178, 100);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Current Temperature";
+            // 
+            // Temp
+            // 
+            this.Temp.AutoSize = true;
+            this.Temp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Temp.Location = new System.Drawing.Point(44, 40);
+            this.Temp.Name = "Temp";
+            this.Temp.Size = new System.Drawing.Size(79, 29);
+            this.Temp.TabIndex = 0;
+            this.Temp.Text = "label3";
+            // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(784, 545);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ClockButton);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.logout);
             this.Controls.Add(this.userusername);
             this.Controls.Add(this.menuStrip1);
@@ -189,9 +173,8 @@
             this.Load += new System.EventHandler(this.User_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,12 +187,11 @@
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectWSYSToolStripMenuItem;
         private System.Windows.Forms.Label logout;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button ClockButton;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ClockButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label Temp;
     }
 }

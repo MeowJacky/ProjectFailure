@@ -21,6 +21,10 @@ namespace Forms1
 
         public delegate void myprocessDataDelegate(string strData);
 
+        private Timer temperatureUpdateTimer;
+
+        private DBTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
+
         private string extractStringValue(string strData, string ID)
         {
             string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
@@ -74,8 +78,32 @@ namespace Forms1
             userusername.Text = username;
 
             //ClockButton.Click += ClockButton_Click;
+            dbTempUpdate = new DBTempUpdate(); // Assuming you have an instance of DBTempUpdate
+
+            InitTemperatureUpdateTimer();
+
 
             DisplayClockStatus();
+        }
+
+        private void InitTemperatureUpdateTimer()
+        {
+            temperatureUpdateTimer = new Timer();
+            temperatureUpdateTimer.Interval = 10000; // Update every 10 seconds (adjust as needed)
+            temperatureUpdateTimer.Tick += TemperatureUpdateTimer_Tick;
+            temperatureUpdateTimer.Start();
+        }
+
+        private void TemperatureUpdateTimer_Tick(object sender, EventArgs e)
+        {
+            // Update the temperature label here
+            Temp.Text = dbTempUpdate.LatestTemperature.ToString() + "Degrees";
+        }
+
+        private void User_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            temperatureUpdateTimer.Stop();
+            temperatureUpdateTimer.Dispose();
         }
 
         private void DisplayClockStatus()
