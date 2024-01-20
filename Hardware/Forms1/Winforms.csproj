@@ -92,7 +92,6 @@
     <Compile Include="AssignItems.Designer.cs">
       <DependentUpon>AssignItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="CustomDataGridViewComboBoxCell.cs" />
     <Compile Include="CustomDataGridViewComboBoxColumn.cs" />
     <Compile Include="DataComms.cs" />
