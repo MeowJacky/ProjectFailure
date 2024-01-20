@@ -98,5 +98,15 @@ namespace Forms1
                 MessageBox.Show("Please enter a valid Product ID.");
             }
         }
+
+        private void Viewallproductsuser_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

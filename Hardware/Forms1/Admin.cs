@@ -489,7 +489,9 @@ namespace Forms1
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-
+            EditProds prods = new EditProds(this.username, loggedInAdminAuthority);
+            prods.Show();
+            this.Close();
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)

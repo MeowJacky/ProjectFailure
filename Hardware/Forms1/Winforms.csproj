@@ -100,13 +100,21 @@
     <Compile Include="editclockin.Designer.cs">
       <DependentUpon>editclockin.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditProds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProds.Designer.cs">
+      <DependentUpon>EditProds.cs</DependentUpon>
+    </Compile>
     <Compile Include="ForgetPass.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ForgetPass.Designer.cs">
       <DependentUpon>ForgetPass.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginPg.cs" />
+    <Compile Include="LoginPg.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LoginPg.Designer.cs">
       <DependentUpon>LoginPg.cs</DependentUpon>
     </Compile>
@@ -202,6 +210,9 @@
     <EmbeddedResource Include="editclockin.resx">
       <DependentUpon>editclockin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditProds.resx">
+      <DependentUpon>EditProds.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ForgetPass.resx">
       <DependentUpon>ForgetPass.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,6 +256,7 @@
     <EmbeddedResource Include="ViewAllUsers.resx">
       <DependentUpon>ViewAllUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram2.cd" />
     <None Include="ProductDataSet.xsc">
       <DependentUpon>ProductDataSet.xsd</DependentUpon>
     </None>
