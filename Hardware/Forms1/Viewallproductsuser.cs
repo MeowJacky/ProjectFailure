@@ -9,22 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 
 namespace Forms1
 {
     public partial class Viewallproductsuser : Form
     {
+        int productID;
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
-        private string username;
+        
         public Viewallproductsuser(string username, string ID)
         {
             InitializeComponent();
-
-            textBox1.Text = ID;
-            if (ID != "0")
-            {
-                Viewproduct();
-            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -54,22 +50,63 @@ namespace Forms1
             userpg.Show();
             this.Close();
         }
-        private void Viewproduct()
-        {
-            using (SqlConnection connection = new SqlConnection(strConnectionString))
-            {
-
-                string strCommandText = "SELECT ProductID, Product_Name, Description, Stock, Price, Image, ProductRFID FROM Products";
-                strCommandText += "WHERE ProductID=@PRODUCTID";
-                SqlCommand cmd = new SqlCommand(strCommandText, connection);
-
-                
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Viewproduct();
+            // Ensure that the user has entered a valid Product ID
+            if (int.TryParse(textBox1.Text, out productID))
+            {
+                using (SqlConnection connection = new SqlConnection(strConnectionString))
+                {
+                    connection.Open();
+
+                    // Query to retrieve product details based on ProductID
+                    string strCommandText = "SELECT Product_Name, Description, Stock, Price, Image, ProductRFID, FileName FROM Products ";
+                    strCommandText += "WHERE ProductID=@ProductID";
+
+                    SqlCommand cmd = new SqlCommand(strCommandText, connection);
+                    cmd.Parameters.AddWithValue("@ProductID", productID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        // Display product information
+                        label7.Text = reader["Product_Name"].ToString();
+                        label11.Text = reader["Description"].ToString();
+                        label8.Text = reader["Stock"].ToString();
+                        label9.Text = reader["Price"].ToString();
+                        label10.Text = reader["ProductRFID"].ToString();
+
+                        // Display the image
+                        byte[] imageData = (byte[])reader["Image"];
+                        using (MemoryStream ms = new MemoryStream(imageData))
+                        {
+                            pictureBox1.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Product not found.");
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid Product ID.");
+            }
+        }
+
+        private void Viewallproductsuser_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

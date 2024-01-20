@@ -46,25 +46,13 @@ namespace Forms1
             else if (loggedInAdminAuthority == 2)
             {
                 // Admin with authority level 2 can add people with authority level 2, 3, 4, or 999
-                if (AuthoritySelect.Value == 2 || AuthoritySelect.Value == 3 || AuthoritySelect.Value == 4 || AuthoritySelect.Value == 999)
+                if (AuthoritySelect.Value == 2 || AuthoritySelect.Value == 3 || AuthoritySelect.Value == 4)
                 {
                     AddUser();
                 }
                 else
                 {
                     MessageBox.Show("Authority level 2 can only add people with authority level 2, 3, 4, or 999.");
-                }
-            }
-            else if (loggedInAdminAuthority == 3)
-            {
-                // Admin with authority level 3 can only add people with authority level 999
-                if (AuthoritySelect.Value == 999)
-                {
-                    AddUser();
-                }
-                else
-                {
-                    MessageBox.Show("Authority level 3 can only add people with authority level 999.");
                 }
             }
             else
@@ -171,11 +159,10 @@ namespace Forms1
 
         private void btnAdd1_Click(object sender, EventArgs e)
         {
-            int workerauthority = 999;
             // Check if the logged-in admin has the authority to add admins
             if (loggedInAdminAuthority == 1 || loggedInAdminAuthority == 2 || loggedInAdminAuthority == 3)
             {
-                AddUser();
+                AddWorker();
             }
             else
             {
@@ -194,6 +181,103 @@ namespace Forms1
             {
                 return (int)AuthoritySelect.Value; // Use the value from the AuthoritySelect for other buttons
             }
+        }
+
+        private void tbNRIC_TextChanged(object sender, EventArgs e)
+        {
+            // Set your desired character limit, for example, 10 characters
+            int characterLimit = 9;
+
+            // Check if the length of the text exceeds the limit
+            if (tbNRIC.Text.Length > characterLimit)
+            {
+                // If it does, truncate the text to the allowed length
+                tbNRIC.Text = tbNRIC.Text.Substring(0, characterLimit);
+                tbNRIC.Select(characterLimit, 0); // Move the cursor to the end
+            }
+        }
+
+        private void tbcontact_TextChanged(object sender, EventArgs e)
+        {
+            // Unsubscribe from the event temporarily
+            tbcontact.TextChanged -= tbcontact_TextChanged;
+
+            int characterLimit = 8;
+            if (tbcontact.Text.Length > characterLimit)
+            {
+                // Trim the text to the character limit
+                tbcontact.Text = tbcontact.Text.Substring(0, characterLimit);
+                // Move the cursor to the end of the text
+                tbcontact.Select(characterLimit, 0);
+            }
+
+            // Subscribe back to the event
+            tbcontact.TextChanged += tbcontact_TextChanged;
+        }
+
+        private void AddWorker()
+        {
+            // Similar to AddUser method, adjust as needed
+            if (MessageBox.Show("Confirm New Add Worker?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                int result = 0;
+                SqlConnection myConnect = new SqlConnection(strConnectionString);
+                String strCommandText =
+                    "INSERT Admins (Name, UniqueRFID, NRIC, Address, Contact, Authority, Password, Email)" + "VALUES (@NewName, @NewRFID, @NewNRIC, @NewAdd, @NewContact, @NewAuthority, @NewPassword, @NewEmail)";
+                SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
+                updateCmd.Parameters.AddWithValue("@NewName", tbName1.Text);
+                updateCmd.Parameters.AddWithValue("@NewRFID", tbRFID1.Text);
+                updateCmd.Parameters.AddWithValue("@NewNRIC", tbNRIC1.Text);
+                updateCmd.Parameters.AddWithValue("@NewAdd", tbAdd1.Text);
+                updateCmd.Parameters.AddWithValue("@NewContact", tbContact1.Text);
+                updateCmd.Parameters.AddWithValue("@NewAuthority", 999); // Worker authority is always 999
+                updateCmd.Parameters.AddWithValue("@NewPassword", tbPassword1.Text);
+
+                string emailPrefix = RemoveSpacesAndToLower(tbName1.Text.Substring(0, Math.Min(5, tbName1.Text.Length)));
+                string newEmail = $"{emailPrefix}@gmail.com";
+                updateCmd.Parameters.AddWithValue("@NewEmail", newEmail);
+
+                myConnect.Open();
+                result = updateCmd.ExecuteNonQuery();
+                if (result > 0)
+                    MessageBox.Show("New Worker Added Successfully!");
+                else
+                    MessageBox.Show("New Worker Failed to Add");
+                myConnect.Close();
+
+                // Reset the form fields after successful addition
+                tbPassword1.Text = "";
+                tbRFID1.Text = "";
+                tbNRIC1.Text = "";
+                tbName1.Text = "";
+                tbContact1.Text = "";
+                tbAdd1.Text = "";
+            }
+        }
+
+        private void tbNRIC1_TextChanged(object sender, EventArgs e)
+        {
+            int characterLimit = 9;
+            if (tbNRIC1.Text.Length > characterLimit)
+            {
+                tbNRIC1.Text = tbNRIC1.Text.Substring(0, characterLimit);
+                tbNRIC1.Select(characterLimit, 0);
+            }
+        }
+
+        // Event handler for text change in contact textbox for workers
+        private void tbContact1_TextChanged(object sender, EventArgs e)
+        {
+            tbContact1.TextChanged -= tbContact1_TextChanged; // Unsubscribe temporarily
+
+            int characterLimit = 8;
+            if (tbContact1.Text.Length > characterLimit)
+            {
+                tbContact1.Text = tbContact1.Text.Substring(0, characterLimit);
+                tbContact1.Select(characterLimit, 0);
+            }
+
+            tbContact1.TextChanged += tbContact1_TextChanged; // Subscribe back
         }
     }
 }

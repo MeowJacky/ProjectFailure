@@ -66,7 +66,7 @@ namespace Forms1
                 arr = (byte[])converter.ConvertTo(img, typeof(byte[]));
                 connection.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO Products (Product_Name,Description,Stock,Price,Image,ProductRFID,FileName) VALUES (@Product_Name,@Description,@Stock,@Price,@Image,@ProductRFID,@FileName)",connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Products (Product_Name,Description,Stock,Price,Image,ProductRFID,FileName,Category,Shelve) VALUES (@Product_Name,@Description,@Stock,@Price,@Image,@ProductRFID,@FileName,@Category,@Shelve)",connection);
                 cmd.Parameters.AddWithValue("@Product_Name", textBox2.Text);
                 cmd.Parameters.AddWithValue("@Description", textBox3.Text);
                 cmd.Parameters.AddWithValue("@Stock", textBox4.Text);
@@ -75,6 +75,12 @@ namespace Forms1
                 cmd.Parameters.AddWithValue("@ProductRFID", textBox1.Text);
                 string ImageName = Path.GetFileName(imageUrl);
                 cmd.Parameters.AddWithValue("@FileName", ImageName);
+                string selectedCategory = comboBox1.SelectedItem.ToString();
+                cmd.Parameters.AddWithValue("@Category", selectedCategory);
+
+                // Set Shelve based on the selected category
+                int shelveNumber = GetShelveNumber(selectedCategory);
+                cmd.Parameters.AddWithValue("@Shelve", shelveNumber);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Product saved into database!");
 
@@ -83,6 +89,26 @@ namespace Forms1
                 dt.Load(cmd2.ExecuteReader());
                 dataGridView.DataSource = dt;
                 connection.Close();
+            }
+        }
+
+        private int GetShelveNumber(string category)
+        {
+            // You can implement your logic to map categories to shelve numbers
+            // For example, you can use a switch statement or a dictionary
+            switch (category)
+            {
+                case "Powder":
+                    return 1;
+                case "Bottles":
+                    return 2;
+                case "Stationary":
+                    return 3;
+                case "Pictures":
+                    return 4;
+                // Add more cases for other categories
+                default:
+                    return 5;
             }
         }
 
