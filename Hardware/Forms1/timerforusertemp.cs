@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
+
 public class DBUserTempUpdate
 {
     private static Timer timer;
@@ -17,6 +18,12 @@ public class DBUserTempUpdate
     DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
     public delegate void myprocessDataDelegate(string strData);
     float temp;
+
+    public float LatestTemperature
+    {
+        get { return temp; }
+    }
+
 
     public void UpdateTemperatureDB()
     {
@@ -45,6 +52,7 @@ public class DBUserTempUpdate
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
     }
+
 
 
     private string extractStringValue(string strData, string ID)

@@ -23,7 +23,7 @@ namespace Forms1
 
         private Timer temperatureUpdateTimer;
 
-        private DBTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
+        private DBUserTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
 
         private string extractStringValue(string strData, string ID)
         {
@@ -78,13 +78,20 @@ namespace Forms1
             userusername.Text = username;
 
             //ClockButton.Click += ClockButton_Click;
-            dbTempUpdate = new DBTempUpdate(); // Assuming you have an instance of DBTempUpdate
+            dbTempUpdate = new DBUserTempUpdate(); // Assuming you have an instance of DBTempUpdate
 
             InitTemperatureUpdateTimer();
+
+            LabelChangeWhenLoad();
 
 
             DisplayClockStatus();
         }
+        private void LabelChangeWhenLoad()
+        {
+            Temp.Text = dbTempUpdate.LatestTemperature.ToString() + "Degrees";
+        }
+
 
         private void InitTemperatureUpdateTimer()
         {

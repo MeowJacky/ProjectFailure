@@ -23,8 +23,8 @@ namespace Forms1
         //string rfidnum;
 
         //public delegate void myprocessDataDelegate(string strData);
-        //private DBTempUpdate temperatureUpdateService;
-        //private DBOffHoursDetect intrusionDetectionService;
+        private DBTempUpdate temperatureUpdateService;
+        private DBOffHoursDetect intrusionDetectionService;
 
         //private string extractStringValue(string strData, string ID)
         //{
@@ -114,7 +114,7 @@ namespace Forms1
                     //Step 4: Access data
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (reader.Read())
+                    if (reader.Read() && (tbUserName.Text == (reader["Name"]).ToString()))
                     {
                         // Login Successful
                         MessageBox.Show("Login Successful");
@@ -199,11 +199,11 @@ namespace Forms1
 
         private void LoginPg_Load(object sender, EventArgs e)
         {
-            //temperatureUpdateService = new DBTempUpdate();
-            //temperatureUpdateService.UpdateTemperatureDB();
+            temperatureUpdateService = new DBTempUpdate();
+            temperatureUpdateService.UpdateTemperatureDB();
 
-            //intrusionDetectionService = new DBOffHoursDetect();
-            //intrusionDetectionService.UpdateIntrusionDB();
+            intrusionDetectionService = new DBOffHoursDetect();
+            intrusionDetectionService.UpdateIntrusionDB();
 
         }
 
