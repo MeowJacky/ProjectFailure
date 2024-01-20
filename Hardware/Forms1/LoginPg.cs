@@ -229,7 +229,6 @@ namespace Forms1
 
 }
 
-
 public static class DataCommsHelper
 {
     private static DataComms dataCommsInstance;
