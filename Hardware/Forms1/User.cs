@@ -131,7 +131,7 @@ namespace Forms1
                     if (clockInStatus == 0)
                     {
                         label1.Text = "You have not clocked in";
-                        //ClockButton.Text = "Clock In";
+                        ClockButton.Text = "clock in";
                     }
                     else if (clockInStatus == 1)
                     {
@@ -194,7 +194,7 @@ namespace Forms1
             }
             DisplayClockStatus(); // Update UI to reflect the new clock-in status
 
-            RedirectBasedOnPriority();
+            
         }
 
         private void RedirectBasedOnPriority()

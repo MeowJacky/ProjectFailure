@@ -285,43 +285,51 @@ namespace Forms1
         }
         private void RedirectBasedOnPriority()
         {
-            // Query to retrieve the priority of the logged-in user
-            string query = "SELECT Authority FROM Admins WHERE UniqueRFID = @RFID";
+            // Query to retrieve the authority and name of the logged-in user
+            string query = "SELECT Authority, Name FROM Admins WHERE UniqueRFID = @RFID";
 
             using (SqlConnection connection = new SqlConnection(strConnectionString))
             {
+                connection.Open();
+
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@RFID", textBox1.Text);
 
-                    connection.Open();
-
-                    // Retrieve the priority value of the logged-in user from the database
-                    int userAuthority = Convert.ToInt32(command.ExecuteScalar());
-
-                    // Redirect to the respective page based on the priority
-                    if (userAuthority >= 1 && userAuthority <= 4)
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        // Admin
-                        Admin adminPage = new Admin(textBox1.Text, userAuthority);
-                        adminPage.Show();
-                        Console.WriteLine(userAuthority);
-                        SessionID sessionId = SessionID.Instance;
-                        sessionId.SetID(textBox1.Text, userAuthority);
+                        if (reader.Read())
+                        {
+                            int userAuthority = Convert.ToInt32(reader["Authority"]);
+                            string username = reader["Name"].ToString();
+
+                            // Redirect to the respective page based on the priority
+                            if (userAuthority >= 1 && userAuthority <= 4)
+                            {
+                                // Admin
+                                Admin adminPage = new Admin(username, userAuthority);
+                                adminPage.Show();
+                                Console.WriteLine(userAuthority);
+                                SessionID sessionId = SessionID.Instance;
+                                sessionId.SetID(textBox1.Text, userAuthority);
+                                
+                            }
+                            else if (userAuthority == 999)
+                            {
+                                // User
+                                User userPage = new User(username);
+                                SessionID sessionId = SessionID.Instance;
+                                sessionId.SetID(username);
+                                userPage.Show();
+                            }
+
+                            this.Hide();
+                        }
                     }
-                    else if (userAuthority == 999)
-                    {
-                        // User
-                        User userPage = new User(textBox1.Text);
-                        SessionID sessionId = SessionID.Instance;
-                        sessionId.SetID(tbUserName.Text);
-                        userPage.Show();
-                    }
-                    this.Hide();
                 }
             }
         }
-            private int GetCurrentClockStatus()
+        private int GetCurrentClockStatus()
         {
             string query = "SELECT ClockIn FROM Admins WHERE UniqueRFID = @RFID"; // Query to retrieve ClockIn status by username
 

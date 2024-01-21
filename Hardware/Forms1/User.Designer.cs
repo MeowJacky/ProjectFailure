@@ -36,10 +36,10 @@
             this.logout = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label2 = new System.Windows.Forms.Label();
-            this.ClockButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Temp = new System.Windows.Forms.Label();
+            this.ClockButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -113,24 +113,14 @@
             this.label2.Text = "View all products";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // ClockButton
-            // 
-            this.ClockButton.Location = new System.Drawing.Point(33, 130);
-            this.ClockButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ClockButton.Name = "ClockButton";
-            this.ClockButton.Size = new System.Drawing.Size(162, 48);
-            this.ClockButton.TabIndex = 0;
-            this.ClockButton.Text = "Clock in";
-            this.ClockButton.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(34, 88);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 20);
+            this.label1.Size = new System.Drawing.Size(177, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "You have not clocked in yet";
+            this.label1.Text = "You have not clocked in";
             // 
             // groupBox1
             // 
@@ -152,6 +142,16 @@
             this.Temp.Size = new System.Drawing.Size(79, 29);
             this.Temp.TabIndex = 0;
             this.Temp.Text = "label3";
+            // 
+            // ClockButton
+            // 
+            this.ClockButton.Location = new System.Drawing.Point(33, 130);
+            this.ClockButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ClockButton.Name = "ClockButton";
+            this.ClockButton.Size = new System.Drawing.Size(162, 48);
+            this.ClockButton.TabIndex = 0;
+            this.ClockButton.Text = "Clock in";
+            this.ClockButton.UseVisualStyleBackColor = true;
             // 
             // User
             // 
@@ -189,9 +189,9 @@
         private System.Windows.Forms.Label logout;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button ClockButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label Temp;
+        private System.Windows.Forms.Button ClockButton;
     }
 }
