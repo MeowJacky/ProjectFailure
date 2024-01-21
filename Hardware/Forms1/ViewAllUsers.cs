@@ -43,6 +43,8 @@ namespace Forms1
                 manageAdmin.Show();
                 this.Hide(); // Optionally, hide the current form
             }
+
+            LoadData();
         }
         private void LoadData()
         {

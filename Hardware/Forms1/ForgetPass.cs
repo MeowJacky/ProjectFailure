@@ -102,12 +102,12 @@ namespace Forms1
 
             // For simplicity, using a basic method to generate a random password
 
-            //const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            //var random = new Random();
-            //return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
 
 
-            return "robertM";
+            //return "robertM";
         }
 
         private void UpdatePassword(string email, string newPassword)

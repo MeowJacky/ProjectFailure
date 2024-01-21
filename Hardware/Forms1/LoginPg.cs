@@ -190,7 +190,7 @@ namespace Forms1
                 cmd.Parameters.Add("@time", SqlDbType.DateTime).Value = DateTime.Now;
                 cmd.Parameters.Add("@userName", SqlDbType.VarChar, 50).Value = userName;
                 cmd.Parameters.Add("@loginStatus", SqlDbType.VarChar, 50).Value = loginStatus;
-                cmd.Parameters.Add("@success", SqlDbType.VarChar, 3).Value = success;
+                cmd.Parameters.Add("@success", SqlDbType.NChar, 10).Value = success;
 
                 cmd.ExecuteNonQuery();
             }
@@ -199,11 +199,11 @@ namespace Forms1
 
         private void LoginPg_Load(object sender, EventArgs e)
         {
-            temperatureUpdateService = new DBTempUpdate();
-            temperatureUpdateService.UpdateTemperatureDB();
+            //temperatureUpdateService = new DBTempUpdate();
+            //temperatureUpdateService.UpdateTemperatureDB();
 
-            intrusionDetectionService = new DBOffHoursDetect();
-            intrusionDetectionService.UpdateIntrusionDB();
+            //intrusionDetectionService = new DBOffHoursDetect();
+            //intrusionDetectionService.UpdateIntrusionDB();
 
         }
 

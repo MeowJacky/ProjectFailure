@@ -449,9 +449,9 @@ namespace Forms1 {
                 this.columnTime.AllowDBNull = false;
                 this.columnTime.Unique = true;
                 this.columnUserName.AllowDBNull = false;
-                this.columnUserName.MaxLength = 10;
+                this.columnUserName.MaxLength = 50;
                 this._columnLogin_Out.AllowDBNull = false;
-                this._columnLogin_Out.MaxLength = 10;
+                this._columnLogin_Out.MaxLength = 50;
                 this.columnSuccess.AllowDBNull = false;
                 this.columnSuccess.MaxLength = 10;
             }

@@ -222,6 +222,10 @@ private void btnDelete_Click(object sender, EventArgs e)
             pictureBox1.Image = null;
             tbfile.Text = "";
             // Clear other form fields
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose();
+            }
         }
 
         private void btnChange_Click(object sender, EventArgs e)
@@ -251,7 +255,7 @@ private void btnDelete_Click(object sender, EventArgs e)
                     cmd.Parameters.AddWithValue("@Image", arr);
 
                     cmd.Parameters.AddWithValue("@ProductRFID", rfid.Text);
-                    cmd.Parameters.AddWithValue("@FileName", Path.GetFileName(imageUrl));
+                    cmd.Parameters.AddWithValue("@FileName", tbfile.Text);
                     cmd.Parameters.AddWithValue("@Category", comboBox1.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@Shelve", GetShelveNumber(comboBox1.SelectedItem.ToString()));
                     cmd.Parameters.AddWithValue("@ProductID", productID);

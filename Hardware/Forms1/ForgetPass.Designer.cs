@@ -69,7 +69,7 @@
             this.btnForget.Name = "btnForget";
             this.btnForget.Size = new System.Drawing.Size(255, 45);
             this.btnForget.TabIndex = 4;
-            this.btnForget.Text = "Forget";
+            this.btnForget.Text = "Forget Password";
             this.btnForget.UseVisualStyleBackColor = true;
             this.btnForget.Click += new System.EventHandler(this.btnForget_Click);
             // 
@@ -105,7 +105,7 @@
             // logo
             // 
             this.logo.Image = global::Forms1.Properties.Resources.logo1;
-            this.logo.Location = new System.Drawing.Point(54, 94);
+            this.logo.Location = new System.Drawing.Point(54, 33);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(299, 322);
             this.logo.TabIndex = 0;
