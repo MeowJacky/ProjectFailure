@@ -43,8 +43,8 @@ public class DBTempUpdate
     {
         datacomms.sendData("GIBTEMP");
         UpdateTemperatureInDatabase();
-        datacomms.dataReceiveEvent -= commsdatareceive;
-        datacomms.dataSendErrorEvent -= commsSendError;
+        datacomms.dataReceiveEvent += commsdatareceive;
+        datacomms.dataSendErrorEvent += commsSendError;
     }
 
     private void UpdateTemperatureInDatabase()
@@ -82,30 +82,35 @@ public class DBTempUpdate
 
     public void extractSensorData(string strData)
     {
+        Console.WriteLine("extract sensor data");
         if (strData.IndexOf("Temp=") != -1)
             HandleTemp(strData, "Temp=");
-
     }
 
     public void processDataReceive(string strData)
     {
+        Console.WriteLine("Process Data Receive");
         myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
         d(strData);
     }
 
     public void commsdatareceive(string datareceived)
     {
+        Console.WriteLine("commsdatareceive");
+
         processDataReceive(datareceived);
     }
 
     public void commsSendError(string errMsg)
     {
+        Console.WriteLine("error coms");
         MessageBox.Show(errMsg);
         processDataReceive(errMsg);
     }
 
     private void InitComms()
     {
+        Console.WriteLine("InitComms");
         datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
         datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
     }

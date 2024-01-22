@@ -74,6 +74,7 @@ namespace Forms1
         public LoginPg()
         {
             InitializeComponent();
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
