@@ -207,8 +207,8 @@ namespace Forms1
             //intrusionDetectionService = new DBOffHoursDetect();
             //intrusionDetectionService.UpdateIntrusionDB();
 
-            //UserTempService = new DBUserTempUpdate();
-            //UserTempService.UpdateTemperature();
+            UserTempService = new DBUserTempUpdate();
+            UserTempService.UpdateTemperature();
 
         }
 
