@@ -261,18 +261,18 @@ namespace Hardware
                     incoming = "";
                     Temp();
                 }
-                //truedistance = getDistance();
-                //if (truedistance < 20)
-                //{
-                //    close = true;
-                //    sendtowindows("Close=" + close);
-                //    close = false;
-                //}
-                //else
-                //{
-                //    sendtowindows("Close=" + close);
-                //}
-                if(incoming.Equals("GIBMOVE"))
+                truedistance = getDistance();
+                if (truedistance < 20)
+                {
+                    close = true;
+                    sendtowindows("Close=" + close);
+                    close = false;
+                }
+                else
+                {
+                    sendtowindows("Close=" + close);
+                }
+                if (incoming.Equals("GIBMOVE"))
                 {
                     incoming = "";
                     sendtowindows("Detect=" + detect);
