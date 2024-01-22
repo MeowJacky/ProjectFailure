@@ -143,6 +143,11 @@
     <Compile Include="present.Designer.cs">
       <DependentUpon>present.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProdsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProdsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ProductDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -165,6 +170,7 @@
     </Compile>
     <Compile Include="DetectOffHours.cs" />
     <Compile Include="TimerForTemp.cs" />
+    <Compile Include="timerforusertemp.cs" />
     <Compile Include="User.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +273,17 @@
       <DependentUpon>viewProds.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram2.cd" />
+    <None Include="ProdsDataSet.xsc">
+      <DependentUpon>ProdsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProdsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProdsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProdsDataSet.xss">
+      <DependentUpon>ProdsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ProductDataSet.xsc">
       <DependentUpon>ProductDataSet.xsd</DependentUpon>
     </None>

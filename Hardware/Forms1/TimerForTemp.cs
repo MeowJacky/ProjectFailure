@@ -26,7 +26,7 @@ public class DBTempUpdate
             if (timer == null)
             {
                 timer = new Timer();
-                timer.Interval = 15000; // 10 seconds for testing 10000
+                timer.Interval = 5000; // 10 seconds for testing 10000
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -50,8 +50,8 @@ public class DBTempUpdate
     private void UpdateTemperatureInDatabase()
     {
         int result = 0;
-        float temperature = temp;
-        //float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        //float temperature = temp;
+        float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
         SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
         string strCommandText = "INSERT INTO Temperature (Time, Temp) VALUES (@CurrentTime, @NewTemperature)";
         SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
@@ -84,7 +84,7 @@ public class DBTempUpdate
     {
         if (strData.IndexOf("Temp=") != -1)
             HandleTemp(strData, "Temp=");
-    
+
     }
 
     public void processDataReceive(string strData)
@@ -106,7 +106,7 @@ public class DBTempUpdate
 
     private void InitComms()
     {
-            datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-            datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+        datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+        datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
     }
 }

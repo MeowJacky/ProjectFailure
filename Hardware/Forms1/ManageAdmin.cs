@@ -59,7 +59,7 @@ namespace Forms1
         private void GetAdminDetails()
         {
             SqlConnection myConnect = new SqlConnection(strConnectionString);
-            string strCommandText = "SELECT UniqueUserID, Name, UniqueRFID, NRIC, Address, Contact, Authority, SupposedToClockIn FROM Admins ";
+            string strCommandText = "SELECT UniqueUserID, Name, UniqueRFID, NRIC, Address, Contact, Authority, SupposedToClockIn, Password FROM Admins ";
             strCommandText += "WHERE UniqueUserID=@UserID OR Name=@Name Or UniqueRFID=@UniqueRFID";
 
             SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
@@ -79,6 +79,7 @@ namespace Forms1
                 tbAdd.Text = reader["Address"].ToString();
                 tbContact.Text = reader["Contact"].ToString();
                 tbAuthority.Text = reader["Authority"].ToString();
+                tbpass.Text = reader["Password"].ToString();
 
                 int loggedInAuthority = Convert.ToInt32(tbAuthority.Text);
                 int searchedAuthority = Convert.ToInt32(reader["Authority"]);
@@ -172,7 +173,7 @@ namespace Forms1
         private int ModifyUserRecord()
         {
             SqlConnection myConnect = new SqlConnection(strConnectionString);
-            string strCommandText = "UPDATE Admins SET Name=@NewName, UniqueRFID=@NewRFID, NRIC=@NewNRIC, Address=@NewAdd, Contact=@NewContact, Authority=@NewAuthority, SupposedToClockIn=@NewShiftStart WHERE UniqueUserID=@UserID";
+            string strCommandText = "UPDATE Admins SET Name=@NewName, UniqueRFID=@NewRFID, NRIC=@NewNRIC, Address=@NewAdd, Contact=@NewContact, Authority=@NewAuthority, SupposedToClockIn=@NewShiftStart, Password=@NewPassword WHERE UniqueUserID=@UserID";
             SqlCommand updateCmd = new SqlCommand(strCommandText, myConnect);
 
             updateCmd.Parameters.AddWithValue("@UserID", tbUserID.Text);
@@ -184,6 +185,7 @@ namespace Forms1
             updateCmd.Parameters.AddWithValue("@NewAuthority", tbAuthority.Text);
             ShiftStart.Value = DateTime.Today.Add(ShiftStart.Value.TimeOfDay);
             updateCmd.Parameters.AddWithValue("@NewShiftStart", ShiftStart.Value);
+            updateCmd.Parameters.AddWithValue("@NewPassword", tbpass.Text);
 
             myConnect.Open();
             int result = updateCmd.ExecuteNonQuery();
@@ -250,7 +252,7 @@ namespace Forms1
                         {
                             if (DeleteUserRecord(tbRFID.Text) > 0)
                             {
-                                MessageBox.Show($"UserName = {tbName.Text} has been deleted");
+                                MessageBox.Show($"{tbName.Text} has been deleted");
                                 button1_Click_1(sender, e);
                             }
                             else
@@ -328,6 +330,7 @@ namespace Forms1
             tbNRIC.Text = "";
             tbRFID.Text = "";
             tbUserID.Text = "";
+            tbpass.Text = "";
             ShiftStart.Value = DateTime.Today;
         }
 

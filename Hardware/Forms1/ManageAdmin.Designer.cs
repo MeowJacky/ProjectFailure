@@ -59,6 +59,8 @@
             this.addAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Adusername = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbpass = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +90,7 @@
             // ShiftStart
             // 
             this.ShiftStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.ShiftStart.Location = new System.Drawing.Point(740, 255);
+            this.ShiftStart.Location = new System.Drawing.Point(740, 237);
             this.ShiftStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ShiftStart.Name = "ShiftStart";
             this.ShiftStart.ShowUpDown = true;
@@ -110,7 +112,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(631, 255);
+            this.label8.Location = new System.Drawing.Point(631, 237);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 20);
             this.label8.TabIndex = 19;
@@ -119,7 +121,7 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(321, 156);
+            this.tbName.Location = new System.Drawing.Point(322, 152);
             this.tbName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(221, 26);
@@ -138,7 +140,7 @@
             // 
             // tbContact
             // 
-            this.tbContact.Location = new System.Drawing.Point(321, 269);
+            this.tbContact.Location = new System.Drawing.Point(321, 288);
             this.tbContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbContact.Name = "tbContact";
             this.tbContact.Size = new System.Drawing.Size(221, 26);
@@ -161,7 +163,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(150, 60);
             this.btnDelete.TabIndex = 16;
-            this.btnDelete.Text = "Delete Admin";
+            this.btnDelete.Text = "Delete User";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -169,7 +171,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(211, 159);
+            this.label2.Location = new System.Drawing.Point(212, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 4;
@@ -190,7 +192,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(211, 269);
+            this.label3.Location = new System.Drawing.Point(211, 288);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 20);
             this.label3.TabIndex = 5;
@@ -203,13 +205,13 @@
             this.btnGetUser.Name = "btnGetUser";
             this.btnGetUser.Size = new System.Drawing.Size(251, 52);
             this.btnGetUser.TabIndex = 14;
-            this.btnGetUser.Text = "Search Admin";
+            this.btnGetUser.Text = "Search User";
             this.btnGetUser.UseVisualStyleBackColor = true;
             this.btnGetUser.Click += new System.EventHandler(this.button1_Click);
             // 
             // tbRFID
             // 
-            this.tbRFID.Location = new System.Drawing.Point(740, 206);
+            this.tbRFID.Location = new System.Drawing.Point(741, 191);
             this.tbRFID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbRFID.Name = "tbRFID";
             this.tbRFID.Size = new System.Drawing.Size(145, 26);
@@ -219,7 +221,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(630, 156);
+            this.label7.Location = new System.Drawing.Point(631, 152);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 20);
             this.label7.TabIndex = 13;
@@ -229,7 +231,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(630, 206);
+            this.label4.Location = new System.Drawing.Point(631, 191);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 20);
             this.label4.TabIndex = 7;
@@ -238,7 +240,7 @@
             // 
             // tbAuthority
             // 
-            this.tbAuthority.Location = new System.Drawing.Point(740, 156);
+            this.tbAuthority.Location = new System.Drawing.Point(741, 152);
             this.tbAuthority.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbAuthority.Name = "tbAuthority";
             this.tbAuthority.Size = new System.Drawing.Size(145, 26);
@@ -246,7 +248,7 @@
             // 
             // tbNRIC
             // 
-            this.tbNRIC.Location = new System.Drawing.Point(321, 213);
+            this.tbNRIC.Location = new System.Drawing.Point(322, 198);
             this.tbNRIC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbNRIC.Name = "tbNRIC";
             this.tbNRIC.Size = new System.Drawing.Size(221, 26);
@@ -256,7 +258,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(211, 327);
+            this.label6.Location = new System.Drawing.Point(212, 329);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 20);
             this.label6.TabIndex = 11;
@@ -266,7 +268,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(211, 213);
+            this.label5.Location = new System.Drawing.Point(212, 198);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 20);
             this.label5.TabIndex = 9;
@@ -274,10 +276,10 @@
             // 
             // tbAdd
             // 
-            this.tbAdd.Location = new System.Drawing.Point(321, 327);
+            this.tbAdd.Location = new System.Drawing.Point(322, 329);
             this.tbAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbAdd.Name = "tbAdd";
-            this.tbAdd.Size = new System.Drawing.Size(381, 26);
+            this.tbAdd.Size = new System.Drawing.Size(357, 26);
             this.tbAdd.TabIndex = 10;
             // 
             // menuStrip1
@@ -318,14 +320,14 @@
             // viewAllUsersToolStripMenuItem
             // 
             this.viewAllUsersToolStripMenuItem.Name = "viewAllUsersToolStripMenuItem";
-            this.viewAllUsersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.viewAllUsersToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.viewAllUsersToolStripMenuItem.Text = "View All Users";
             this.viewAllUsersToolStripMenuItem.Click += new System.EventHandler(this.viewAllUsersToolStripMenuItem_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.addAdminToolStripMenuItem.Text = "Add User";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_1);
             // 
@@ -347,12 +349,33 @@
             this.Adusername.TabIndex = 26;
             this.Adusername.Text = "adminusername";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(211, 243);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(78, 20);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Password";
+            // 
+            // tbpass
+            // 
+            this.tbpass.Location = new System.Drawing.Point(321, 243);
+            this.tbpass.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbpass.Name = "tbpass";
+            this.tbpass.PasswordChar = '*';
+            this.tbpass.Size = new System.Drawing.Size(221, 26);
+            this.tbpass.TabIndex = 27;
+            // 
             // ManageAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(986, 502);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.tbpass);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.Adusername);
             this.Controls.Add(this.btnCancel);
@@ -420,5 +443,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewAllUsersToolStripMenuItem;
         private System.Windows.Forms.Label Adusername;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbpass;
     }
 }

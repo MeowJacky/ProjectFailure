@@ -73,21 +73,21 @@ SELECT Time, UserName, [Login/Out], Success FROM LoginLogs WHERE (Time = @Time)<
   <xs:element name="UserLoginDBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="UserLoginDBDataSet" msprop:Generator_UserDSName="UserLoginDBDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="LoginLogs" msprop:Generator_TableClassName="LoginLogsDataTable" msprop:Generator_TableVarName="tableLoginLogs" msprop:Generator_TablePropName="LoginLogs" msprop:Generator_RowDeletingName="LoginLogsRowDeleting" msprop:Generator_RowChangingName="LoginLogsRowChanging" msprop:Generator_RowEvHandlerName="LoginLogsRowChangeEventHandler" msprop:Generator_RowDeletedName="LoginLogsRowDeleted" msprop:Generator_UserTableName="LoginLogs" msprop:Generator_RowChangedName="LoginLogsRowChanged" msprop:Generator_RowEvArgName="LoginLogsRowChangeEvent" msprop:Generator_RowClassName="LoginLogsRow">
+        <xs:element name="LoginLogs" msprop:Generator_TableClassName="LoginLogsDataTable" msprop:Generator_TableVarName="tableLoginLogs" msprop:Generator_RowChangedName="LoginLogsRowChanged" msprop:Generator_TablePropName="LoginLogs" msprop:Generator_RowDeletingName="LoginLogsRowDeleting" msprop:Generator_RowChangingName="LoginLogsRowChanging" msprop:Generator_RowEvHandlerName="LoginLogsRowChangeEventHandler" msprop:Generator_RowDeletedName="LoginLogsRowDeleted" msprop:Generator_RowClassName="LoginLogsRow" msprop:Generator_UserTableName="LoginLogs" msprop:Generator_RowEvArgName="LoginLogsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Time" msprop:Generator_ColumnVarNameInTable="columnTime" msprop:Generator_ColumnPropNameInRow="Time" msprop:Generator_ColumnPropNameInTable="TimeColumn" msprop:Generator_UserColumnName="Time" type="xs:dateTime" />
               <xs:element name="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_UserColumnName="UserName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Login_x002F_Out" msprop:Generator_ColumnVarNameInTable="_columnLogin_Out" msprop:Generator_ColumnPropNameInRow="_Login_Out" msprop:Generator_ColumnPropNameInTable="_Login_OutColumn" msprop:Generator_UserColumnName="Login/Out">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

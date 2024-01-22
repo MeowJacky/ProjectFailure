@@ -21,6 +21,10 @@ namespace Forms1
 
         public delegate void myprocessDataDelegate(string strData);
 
+        private Timer temperatureUpdateTimer;
+
+        private DBUserTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
+
         private string extractStringValue(string strData, string ID)
         {
             string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
@@ -74,8 +78,39 @@ namespace Forms1
             userusername.Text = username;
 
             //ClockButton.Click += ClockButton_Click;
+            dbTempUpdate = new DBUserTempUpdate(); // Assuming you have an instance of DBTempUpdate
+
+            InitTemperatureUpdateTimer();
+
+            LabelChangeWhenLoad();
+
 
             DisplayClockStatus();
+        }
+        private void LabelChangeWhenLoad()
+        {
+            Temp.Text = dbTempUpdate.LatestTemperature.ToString() + "Degrees";
+        }
+
+
+        private void InitTemperatureUpdateTimer()
+        {
+            temperatureUpdateTimer = new Timer();
+            temperatureUpdateTimer.Interval = 10000; // Update every 10 seconds (adjust as needed)
+            temperatureUpdateTimer.Tick += TemperatureUpdateTimer_Tick;
+            temperatureUpdateTimer.Start();
+        }
+
+        private void TemperatureUpdateTimer_Tick(object sender, EventArgs e)
+        {
+            // Update the temperature label here
+            Temp.Text = dbTempUpdate.LatestTemperature.ToString() + "Degrees";
+        }
+
+        private void User_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            temperatureUpdateTimer.Stop();
+            temperatureUpdateTimer.Dispose();
         }
 
         private void DisplayClockStatus()
@@ -96,7 +131,7 @@ namespace Forms1
                     if (clockInStatus == 0)
                     {
                         label1.Text = "You have not clocked in";
-                        //ClockButton.Text = "Clock In";
+                        ClockButton.Text = "clock in";
                     }
                     else if (clockInStatus == 1)
                     {
@@ -159,7 +194,7 @@ namespace Forms1
             }
             DisplayClockStatus(); // Update UI to reflect the new clock-in status
 
-            RedirectBasedOnPriority();
+            
         }
 
         private void RedirectBasedOnPriority()
