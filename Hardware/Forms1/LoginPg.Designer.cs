@@ -38,7 +38,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.logo = new System.Windows.Forms.PictureBox();
             this.forgetpass = new System.Windows.Forms.LinkLabel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -117,14 +116,13 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.logo);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.forgetpass);
             this.splitContainer1.Panel2.Controls.Add(this.tbUserName);
             this.splitContainer1.Panel2.Controls.Add(this.lblUsername);
@@ -158,13 +156,6 @@
             this.forgetpass.Text = "Forget Password";
             this.forgetpass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.forgetpass_LinkClicked);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(54, 412);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(157, 26);
-            this.textBox1.TabIndex = 1;
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -173,11 +164,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(229, 406);
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(153, 411);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 38);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Scan";
+            this.button1.Size = new System.Drawing.Size(256, 35);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Clock In";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -192,7 +185,6 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.LoginPg_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -213,9 +205,8 @@
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel forgetpass;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
