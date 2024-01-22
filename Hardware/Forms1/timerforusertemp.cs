@@ -23,9 +23,13 @@ public class DBUserTempUpdate
     {
         get { return temp; }
     }
+    //public void settemp(float temperature)
+    //{
+    //    temp = temperature;
+    //}
 
 
-    public void UpdateTemperatureDB()
+    public void UpdateTemperature()
     {
         InitComms();
         lock (timerLock)
@@ -33,7 +37,7 @@ public class DBUserTempUpdate
             if (timer == null)
             {
                 timer = new Timer();
-                timer.Interval = 15000; // 10 seconds for testing 10000
+                timer.Interval = 15000; // 15 seconds for testing 10000
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -51,6 +55,7 @@ public class DBUserTempUpdate
         datacomms.sendData("GIBTEMP");
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
+        Console.WriteLine("fuckthismodule" + temp);
     }
 
 

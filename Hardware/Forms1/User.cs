@@ -105,6 +105,7 @@ namespace Forms1
         {
             // Update the temperature label here
             Temp.Text = dbTempUpdate.LatestTemperature.ToString() + "Degrees";
+            Console.WriteLine(dbTempUpdate.LatestTemperature);
         }
 
         private void User_FormClosed(object sender, FormClosedEventArgs e)
@@ -142,9 +143,10 @@ namespace Forms1
             }
         }
 
-        private void ClockButton_Click(object sender, EventArgs e)
+        private void ClockButton_Click_1(object sender, EventArgs e)
         {
             int currentStatus = GetCurrentClockStatus();
+            Console.WriteLine("stat="+currentStatus);
 
             // Assuming that RFID data is received and processed in processDataReceive method
             // You can modify this part based on your actual RFID data handling
@@ -356,5 +358,6 @@ namespace Forms1
             viewallpro.Show();
             this.Close();
         }
+
     }
 }
