@@ -21,6 +21,8 @@ namespace Forms1
         public ClockIn()
         {
             InitializeComponent();
+            label2.Visible = false;
+            label8.Visible = false;
         }
 
         private void ClockIn_Load(object sender, EventArgs e)
@@ -139,6 +141,8 @@ namespace Forms1
                     label12.Text = reader["NRIC"].ToString();
                     label11.Text  = reader["Contact"].ToString();
                     label9.Text = reader["Email"].ToString();
+                    label2.Visible = true;
+                    label8.Visible = true;
                 }
                 reader.Close();
                 connection.Close();
@@ -177,6 +181,23 @@ namespace Forms1
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Reset_Values();
+        }
+        private void Reset_Values()
+        {
+            RFID_textbox.Text = "";
+
+            // Hide labels
+            label2.Visible = false;
+            label10.Text = "";
+            label13.Text = "";
+            label12.Text = "";
+            label11.Text = "";
+            label9.Text = "";
         }
     }
 }

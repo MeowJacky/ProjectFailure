@@ -44,6 +44,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -162,9 +163,8 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(163, 453);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 29);
+            this.label9.Size = new System.Drawing.Size(0, 29);
             this.label9.TabIndex = 15;
-            this.label9.Text = "Email:";
             // 
             // label10
             // 
@@ -172,9 +172,8 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(163, 407);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(144, 29);
+            this.label10.Size = new System.Drawing.Size(0, 29);
             this.label10.TabIndex = 14;
-            this.label10.Text = "Department:";
             // 
             // label11
             // 
@@ -182,9 +181,8 @@
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(163, 358);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 29);
+            this.label11.Size = new System.Drawing.Size(0, 29);
             this.label11.TabIndex = 13;
-            this.label11.Text = "Contact:";
             // 
             // label12
             // 
@@ -192,9 +190,8 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(163, 306);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 29);
+            this.label12.Size = new System.Drawing.Size(0, 29);
             this.label12.TabIndex = 12;
-            this.label12.Text = "NRIC:";
             // 
             // label13
             // 
@@ -202,15 +199,26 @@
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(163, 255);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(99, 29);
+            this.label13.Size = new System.Drawing.Size(0, 29);
             this.label13.TabIndex = 11;
-            this.label13.Text = "User ID:";
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(545, 41);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(102, 44);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "Reset";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // ClockIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 527);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
@@ -253,5 +261,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button3;
     }
 }
