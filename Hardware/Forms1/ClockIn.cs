@@ -38,7 +38,25 @@ namespace Forms1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int currentStatus = GetCurrentClockStatus();
+            Console.WriteLine("stat=" + currentStatus);
 
+        }
+        private int GetCurrentClockStatus()
+        {
+            string query = "SELECT ClockIn FROM Admins WHERE UniqueRFID = @RFID"; // Query to retrieve ClockIn status by username
+
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@RFID", RFID_textbox.Text);
+
+                    connection.Open();
+
+                    return Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
         }
     }
 }
