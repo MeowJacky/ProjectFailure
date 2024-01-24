@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +51,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.clockin = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.editclockin = new System.Windows.Forms.Button();
@@ -83,7 +84,6 @@
             this.BuzzerDeactivate = new System.Windows.Forms.Button();
             this.BuzzerCheck = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -127,8 +127,8 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.projectWSYSToolStripMenuItem,
             this.manageUsersToolStripMenuItem,
-            this.signOutToolStripMenuItem,
-            this.Productmenu});
+            this.Productmenu,
+            this.signOutToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(184, 594);
@@ -187,10 +187,10 @@
             // Productmenu
             // 
             this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewAllToolStripMenuItem,
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
-            this.assignProductsToWorkersToolStripMenuItem,
-            this.viewAllToolStripMenuItem});
+            this.assignProductsToWorkersToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
             this.Productmenu.Size = new System.Drawing.Size(171, 29);
             this.Productmenu.Text = "Manage products";
@@ -216,6 +216,13 @@
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
             this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
+            // viewAllToolStripMenuItem
+            // 
+            this.viewAllToolStripMenuItem.Name = "viewAllToolStripMenuItem";
+            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.viewAllToolStripMenuItem.Text = "View All";
+            this.viewAllToolStripMenuItem.Click += new System.EventHandler(this.viewAllToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -230,21 +237,21 @@
             // 
             // clockin
             // 
-            chartArea1.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.clockin.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.clockin.Legends.Add(legend4);
             this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.clockin.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.clockin.Series.Add(series4);
             this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "Employee Clock In";
-            title1.Name = "Employee Clock In";
-            this.clockin.Titles.Add(title1);
+            title2.Name = "Employee Clock In";
+            this.clockin.Titles.Add(title2);
             this.clockin.Click += new System.EventHandler(this.clockin_Click);
             // 
             // editclockin
@@ -319,16 +326,16 @@
             // 
             // TemperatureChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.TemperatureChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.TemperatureChart.Legends.Add(legend2);
+            chartArea5.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend5);
             this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
             this.TemperatureChart.Name = "TemperatureChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.TemperatureChart.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.TemperatureChart.Series.Add(series5);
             this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
             this.TemperatureChart.TabIndex = 0;
             this.TemperatureChart.Text = "TemperatureLogs";
@@ -396,16 +403,16 @@
             // 
             // IntrusionChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.IntrusionChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.IntrusionChart.Legends.Add(legend3);
+            chartArea6.Name = "ChartArea1";
+            this.IntrusionChart.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.IntrusionChart.Legends.Add(legend6);
             this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
             this.IntrusionChart.Name = "IntrusionChart";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.IntrusionChart.Series.Add(series3);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.IntrusionChart.Series.Add(series6);
             this.IntrusionChart.Size = new System.Drawing.Size(591, 272);
             this.IntrusionChart.TabIndex = 0;
             this.IntrusionChart.Text = "chart1";
@@ -512,7 +519,7 @@
             // 
             // BuzzerDeactivate
             // 
-            this.BuzzerDeactivate.Location = new System.Drawing.Point(0, 436);
+            this.BuzzerDeactivate.Location = new System.Drawing.Point(12, 441);
             this.BuzzerDeactivate.Name = "BuzzerDeactivate";
             this.BuzzerDeactivate.Size = new System.Drawing.Size(115, 53);
             this.BuzzerDeactivate.TabIndex = 8;
@@ -524,7 +531,7 @@
             // 
             this.BuzzerCheck.AutoSize = true;
             this.BuzzerCheck.BackColor = System.Drawing.Color.White;
-            this.BuzzerCheck.Location = new System.Drawing.Point(-3, 401);
+            this.BuzzerCheck.Location = new System.Drawing.Point(8, 402);
             this.BuzzerCheck.Name = "BuzzerCheck";
             this.BuzzerCheck.Size = new System.Drawing.Size(39, 20);
             this.BuzzerCheck.TabIndex = 9;
@@ -533,13 +540,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // viewAllToolStripMenuItem
-            // 
-            this.viewAllToolStripMenuItem.Name = "viewAllToolStripMenuItem";
-            this.viewAllToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
-            this.viewAllToolStripMenuItem.Text = "View All";
-            this.viewAllToolStripMenuItem.Click += new System.EventHandler(this.viewAllToolStripMenuItem_Click);
             // 
             // Admin
             // 

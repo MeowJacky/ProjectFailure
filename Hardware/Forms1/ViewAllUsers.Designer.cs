@@ -51,6 +51,7 @@
             this.adminsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userDBDataSet = new Forms1.UserDBDataSet();
             this.adminsTableAdapter = new Forms1.UserDBDataSetTableAdapters.AdminsTableAdapter();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).BeginInit();
@@ -85,8 +86,8 @@
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.projectWSYSToolStripMenuItem,
             this.manageUsersToolStripMenuItem,
-            this.signOutToolStripMenuItem,
-            this.Productmenu});
+            this.Productmenu,
+            this.signOutToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(184, 608);
@@ -233,12 +234,23 @@
             // 
             this.adminsTableAdapter.ClearBeforeFill = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(27, 142);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 42);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ViewAllUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1045, 608);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.AUsername);
             this.Controls.Add(this.menuStrip2);
@@ -279,5 +291,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn authorityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn uniqueRFIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Action;
+        private System.Windows.Forms.Button button1;
     }
 }
