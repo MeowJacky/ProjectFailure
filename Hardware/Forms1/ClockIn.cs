@@ -23,6 +23,7 @@ namespace Forms1
             InitializeComponent();
             label2.Visible = false;
             label8.Visible = false;
+            button4.Visible = false;
         }
 
         private void ClockIn_Load(object sender, EventArgs e)
@@ -164,10 +165,10 @@ namespace Forms1
                     label9.Text = reader["Email"].ToString();
                     label2.Visible = true;
                     label8.Visible = true;
+                    button4.Visible = true;
                 }
                 reader.Close();
                 connection.Close();
-
             }
 
         }
@@ -221,6 +222,13 @@ namespace Forms1
             label12.Text = "";
             label11.Text = "";
             label9.Text = "";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ClockOut clockoutpage = new ClockOut();
+            clockoutpage.Show();
+            this.Hide();
         }
     }
 }
