@@ -124,7 +124,7 @@ namespace Forms1
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            if (CheckAuthorityLevelForModify())
+            if (CheckAuthorityLevelForModify() == true)
             {
                 if (ModifyUserRecord() > 0)
                     MessageBox.Show("Modified");
@@ -148,12 +148,12 @@ namespace Forms1
                 return true;
             }
             // Lvl 2 authority can only modify records lower than itself
-            else if (loggedInAuthority == 2 && userAuthority < 2)
+            else if (loggedInAuthority == 2 && userAuthority > 2)
             {
                 return true;
             }
             // Lvl 3 authority can only modify records lower than itself but not authority level
-            else if (loggedInAuthority == 3 && (userAuthority < 3 && userAuthority != 1 && userAuthority != 2))
+            else if (loggedInAuthority == 3 && (userAuthority > 3 && userAuthority != 1 && userAuthority != 2))
             {
                 return true;
             }
@@ -233,7 +233,7 @@ namespace Forms1
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (CheckAuthorityLevelForDelete())
+            if (CheckAuthorityLevelForDelete()==true)
             {
                 if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -248,7 +248,7 @@ namespace Forms1
                     {
                         int loggedInAuthority = loggedInAdminAuthority;
 
-                        if (loggedInAuthority > Convert.ToInt32(tbAuthority.Text))
+                        if (loggedInAuthority < Convert.ToInt32(tbAuthority.Text))
                         {
                             if (DeleteUserRecord(tbRFID.Text) > 0)
                             {
