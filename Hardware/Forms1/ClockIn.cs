@@ -192,6 +192,7 @@ namespace Forms1
             RFID_textbox.Text = "";
 
             // Hide labels
+            label8.Visible = false;
             label2.Visible = false;
             label10.Text = "";
             label13.Text = "";
