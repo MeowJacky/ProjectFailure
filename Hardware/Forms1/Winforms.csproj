@@ -92,6 +92,12 @@
     <Compile Include="AssignItems.Designer.cs">
       <DependentUpon>AssignItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClockIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClockIn.Designer.cs">
+      <DependentUpon>ClockIn.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomDataGridViewComboBoxCell.cs" />
     <Compile Include="CustomDataGridViewComboBoxColumn.cs" />
     <Compile Include="DataComms.cs" />
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AssignItems.resx">
       <DependentUpon>AssignItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClockIn.resx">
+      <DependentUpon>ClockIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="editclockin.resx">
       <DependentUpon>editclockin.cs</DependentUpon>
