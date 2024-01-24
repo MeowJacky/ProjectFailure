@@ -100,7 +100,7 @@ public class DBUserTempUpdate
     }
 
     private void InitComms()
-    {
+    { 
         datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
         datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
     }
