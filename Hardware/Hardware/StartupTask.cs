@@ -203,6 +203,11 @@ namespace Hardware
             sendtowindows("Temp=" + truetemp);
         }
 
+        private void handlenorm()
+        {
+
+        }
+
         private void UartDataHandler(Object sender, SerialComms.UartEventArgs e)
         {
             rfid = e.data;
@@ -276,6 +281,14 @@ namespace Hardware
                 {
                     incoming = "";
                     sendtowindows("Detect=" + detect);
+                    if (detect==true)
+                    {
+                        detect = false;
+                        while (curMode == 1)
+                        {
+                            buzzing();
+                        }
+                    }
                     detect = false;
                 }
                 if (rfid != "")
@@ -283,11 +296,29 @@ namespace Hardware
                     sendtowindows("RFID=" + rfid);
                     rfid = "";
                 }
-                //if (press == true)
-                //{
-                //    press = false;
-                //    buzzing();
-                //}
+                if (press == true)
+                {
+                    press = false;
+                    if (curMode==1)
+                    {
+                        curMode = 0;
+                    }
+                    else if (curMode==0)
+                    {
+                        curMode = 1;
+                    }
+                }
+                if (incoming.Equals("Stoppls"))
+                {
+                    if (curMode == 1)
+                    {
+                        curMode = 0;
+                    }
+                }
+                if (incoming.Equals("ModePls"))
+                {
+                    sendtowindows("mode=" + curMode);
+                }
             }
         }
 
