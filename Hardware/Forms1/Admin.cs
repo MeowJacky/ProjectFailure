@@ -19,9 +19,11 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private DBTempUpdate temperatureUpdateService;
-
+        DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
+        public delegate void myprocessDataDelegate(string strData);
         private string username;
         private int loggedInAdminAuthority;
+        private int mode;
         public Admin(string username, int authority)
         {
             InitializeComponent();
@@ -633,11 +635,14 @@ namespace Forms1
         }
         private void DeactivateBuzzer()
         {
+            datacomms.sendData("Stoppls");
             //do something here that deactivates buzzer
         }
         private bool CheckBuzzer()
         {
-            return false;
+            datacomms.sendData("ModePls");
+            bool Value = (mode != 0);
+            return Value;
             //do something that checks if buzzer is currently on
         }
 
@@ -646,6 +651,50 @@ namespace Forms1
             viewProds vProds = new viewProds(username, loggedInAdminAuthority);
             vProds.Show();
             this.Close();
+        }
+        private string extractStringValue(string strData, string ID)
+        {
+            string result = strData.Substring(strData.IndexOf(ID) + ID.Length);
+            return result;
+        }
+        private int extractIntValue(string strData, string ID)
+        {
+            return (Int32.Parse(extractStringValue(strData, ID)));
+        }
+        private int HandleDetect(string strData, string ID)
+        {
+            mode = extractIntValue(strData, ID);
+            return mode;
+        }
+
+        public void extractSensorData(string strData)
+        {
+            if (strData.IndexOf("mode=") != -1)
+                HandleDetect(strData, "mode=");
+
+        }
+
+        public void processDataReceive(string strData)
+        {
+            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+            d(strData);
+        }
+
+        public void commsdatareceive(string datareceived)
+        {
+            processDataReceive(datareceived);
+        }
+
+        public void commsSendError(string errMsg)
+        {
+            MessageBox.Show(errMsg);
+            processDataReceive(errMsg);
+        }
+
+        private void InitComms()
+        {
+            datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+            datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
     }
 }

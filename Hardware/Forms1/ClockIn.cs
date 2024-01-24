@@ -88,6 +88,7 @@ namespace Forms1
 
                         Displayuserinfo(rfid);
                         UpdateClockStatus(1);
+                        InsertClockinRecord(rfid, currentTime, lateStartTime, lateEndTime, currentTimeOfDay);
                     }
                 }
                 else
@@ -98,6 +99,26 @@ namespace Forms1
             else
             {
                 MessageBox.Show("Invalid RFID. Please enter a valid RFID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void InsertClockinRecord(string rfid, DateTime currentTime, TimeSpan lateStartTime, TimeSpan lateEndTime, TimeSpan currentTimeOfDay)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                string strCommandText = "INSERT INTO Clockin (UserID, ClockInTime, Date) VALUES (@UserID, @ClockInTime, @Date)";
+
+                SqlCommand cmd = new SqlCommand(strCommandText, connection);
+                cmd.Parameters.AddWithValue("@UserID", rfid);
+                cmd.Parameters.AddWithValue("@ClockInTime", currentTime);
+                cmd.Parameters.AddWithValue("@Date", currentTime.Date); // Extracting only the date part
+                //cmd.Parameters.AddWithValue("@Late", (currentTimeOfDay < lateStartTime || currentTimeOfDay > lateEndTime) ? 1 : 0);
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
             }
         }
         private bool ValidateRFID(string rfid)
@@ -146,6 +167,7 @@ namespace Forms1
                 }
                 reader.Close();
                 connection.Close();
+
             }
 
         }
