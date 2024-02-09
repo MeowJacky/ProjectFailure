@@ -213,9 +213,9 @@ private void btnDelete_Click(object sender, EventArgs e)
             // Clear or reset form fields as needed
             tbSearchBar.Text = "";
             ProdName.Text = "";
-            stocksnum.Text = "";
+            stocksnum.Value = 0;
             tbdesc.Text = "";
-            numprice.Text = "";
+            numprice.Value = 0;
             rfid.Text = "";
             tbshelve.Text = "";
             comboBox1.SelectedIndex = -1;
