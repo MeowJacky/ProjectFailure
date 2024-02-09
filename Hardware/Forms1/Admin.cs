@@ -674,6 +674,13 @@ namespace Forms1
 
         }
 
+        private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
+            adminpg.Show();
+            this.Close();
+        }
+
         //public void processDataReceive(string strData)
         //{
         //    myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);

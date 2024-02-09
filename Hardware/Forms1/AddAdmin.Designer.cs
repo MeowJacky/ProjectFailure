@@ -62,21 +62,32 @@
             this.tbContact1 = new System.Windows.Forms.TextBox();
             this.tbNRIC1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Viewusers = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Productmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(this.tabPage1);
             tabControl1.Controls.Add(this.tabPage2);
-            tabControl1.Location = new System.Drawing.Point(12, 68);
+            tabControl1.Location = new System.Drawing.Point(190, 75);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(683, 343);
+            tabControl1.Size = new System.Drawing.Size(672, 352);
             tabControl1.TabIndex = 18;
             // 
             // tabPage1
@@ -100,7 +111,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(675, 310);
+            this.tabPage1.Size = new System.Drawing.Size(664, 319);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Admin";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -277,7 +288,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(675, 310);
+            this.tabPage2.Size = new System.Drawing.Size(658, 310);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Workers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -403,20 +414,109 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 24);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(188, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 29);
+            this.label1.Size = new System.Drawing.Size(209, 36);
             this.label1.TabIndex = 15;
             this.label1.Text = "Add New User";
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projectWSYSToolStripMenuItem,
+            this.manageUsersToolStripMenuItem,
+            this.Productmenu,
+            this.signOutToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(184, 427);
+            this.menuStrip2.TabIndex = 19;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // projectWSYSToolStripMenuItem
+            // 
+            this.projectWSYSToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.projectWSYSToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.projectWSYSToolStripMenuItem.Name = "projectWSYSToolStripMenuItem";
+            this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(171, 36);
+            this.projectWSYSToolStripMenuItem.Text = "Project W-SYS";
+            this.projectWSYSToolStripMenuItem.Click += new System.EventHandler(this.projectWSYSToolStripMenuItem_Click);
+            // 
+            // manageUsersToolStripMenuItem
+            // 
+            this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Viewusers,
+            this.currentAdminToolStripMenuItem});
+            this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 200, 0, 0);
+            this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
+            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.manageUsersToolStripMenuItem.Text = "Manage Users";
+            // 
+            // Viewusers
+            // 
+            this.Viewusers.Name = "Viewusers";
+            this.Viewusers.Size = new System.Drawing.Size(210, 30);
+            this.Viewusers.Text = "View All Users";
+            this.Viewusers.Click += new System.EventHandler(this.Viewusers_Click);
+            // 
+            // currentAdminToolStripMenuItem
+            // 
+            this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentAdminToolStripMenuItem.Text = "Search Users";
+            this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
+            // 
+            // Productmenu
+            // 
+            this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.assignProductsToWorkersToolStripMenuItem});
+            this.Productmenu.Name = "Productmenu";
+            this.Productmenu.Size = new System.Drawing.Size(171, 29);
+            this.Productmenu.Text = "Manage products";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(316, 30);
+            this.toolStripMenuItem2.Text = "Edit products";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(316, 30);
+            this.toolStripMenuItem3.Text = "Add products";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // assignProductsToWorkersToolStripMenuItem
+            // 
+            this.assignProductsToWorkersToolStripMenuItem.Name = "assignProductsToWorkersToolStripMenuItem";
+            this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
+            this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
+            // 
+            // signOutToolStripMenuItem
+            // 
+            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.signOutToolStripMenuItem.Text = "Sign Out";
+            this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
             // AddAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(712, 423);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(874, 427);
+            this.Controls.Add(this.menuStrip2);
             this.Controls.Add(tabControl1);
             this.Controls.Add(this.label1);
             this.Name = "AddAdmin";
@@ -428,6 +528,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AuthoritySelect)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,5 +570,15 @@
         private System.Windows.Forms.TextBox tbName1;
         private System.Windows.Forms.TextBox tbContact1;
         private System.Windows.Forms.TextBox tbNRIC1;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem projectWSYSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageUsersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Viewusers;
+        private System.Windows.Forms.ToolStripMenuItem currentAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Productmenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
     }
 }

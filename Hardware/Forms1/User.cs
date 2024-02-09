@@ -89,7 +89,7 @@ namespace Forms1
         }
         private void LabelChangeWhenLoad()
         {
-            Temp.Text = dbTempUpdate.LatestTemperature().ToString() + "Degrees";
+            Temp.Text = dbTempUpdate.LatestTemperature().ToString() + " Degrees";
         }
 
 
@@ -106,7 +106,7 @@ namespace Forms1
         private void TemperatureUpdateTimer_Tick(object sender, EventArgs e)
         {
             // Update the temperature label here
-            //Temp.Text = dbTempUpdate.LatestTemperature().ToString() + "Degrees";
+            //Temp.Text = dbTempUpdate.LatestTemperature().ToString() + " Degrees";
             Console.WriteLine(dbTempUpdate.LatestTemperature() + "this bitch not working");
 
             DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
@@ -333,7 +333,9 @@ namespace Forms1
 
         private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            User user = new User(this.username);
+            user.Show();
+            this.Close();
         }
 
 
