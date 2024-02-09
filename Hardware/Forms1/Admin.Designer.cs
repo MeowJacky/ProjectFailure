@@ -525,7 +525,7 @@
             this.BuzzerDeactivate.TabIndex = 8;
             this.BuzzerDeactivate.Text = "Deactivate Buzzer";
             this.BuzzerDeactivate.UseVisualStyleBackColor = true;
-            this.BuzzerDeactivate.Click += new System.EventHandler(this.BuzzerDeactivate_Click);
+            //this.BuzzerDeactivate.Click += new System.EventHandler(this.BuzzerDeactivate_Click);
             // 
             // BuzzerCheck
             // 
@@ -539,7 +539,7 @@
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            //this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Admin
             // 

@@ -19,8 +19,8 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private DBTempUpdate temperatureUpdateService;
-        DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
-        public delegate void myprocessDataDelegate(string strData);
+        //DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
+        //public delegate void myprocessDataDelegate(string strData);
         private string username;
         private int loggedInAdminAuthority;
         private int mode;
@@ -42,20 +42,20 @@ namespace Forms1
             }
             timer1.Interval = 1000;
             timer1.Enabled = true;
-            UpdateLabelText();
+            //UpdateLabelText();
         }
 
-        private void UpdateLabelText()
-        {
-            if (CheckBuzzer())
-            {
-                BuzzerCheck.Text = "Buzzer is active";
-            }
-            else
-            {
-                BuzzerCheck.Text = "Buzzer is not active";
-            }
-        }
+        //private void UpdateLabelText()
+        //{
+        //    if (CheckBuzzer())
+        //    {
+        //        BuzzerCheck.Text = "Buzzer is active";
+        //    }
+        //    else
+        //    {
+        //        BuzzerCheck.Text = "Buzzer is not active";
+        //    }
+        //}
         private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
         {
             try
@@ -617,34 +617,34 @@ namespace Forms1
 
         }
 
-        private void BuzzerDeactivate_Click(object sender, EventArgs e)
-        {
-            DeactivateBuzzer();
-            BuzzerCheck.Text = "Buzzer is not active";
+        //private void BuzzerDeactivate_Click(object sender, EventArgs e)
+        //{
+        //    DeactivateBuzzer();
+        //    BuzzerCheck.Text = "Buzzer is not active";
 
-        }
+        //}
 
         private void timer2_Tick(object sender, EventArgs e)
         {
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            UpdateLabelText();
-        }
-        private void DeactivateBuzzer()
-        {
-            datacomms.sendData("Stoppls");
-            //do something here that deactivates buzzer
-        }
-        private bool CheckBuzzer()
-        {
-            datacomms.sendData("ModePls");
-            bool Value = (mode != 0);
-            return Value;
-            //do something that checks if buzzer is currently on
-        }
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    UpdateLabelText();
+        //}
+        //private void DeactivateBuzzer()
+        //{
+        //    datacomms.sendData("Stoppls");
+        //    //do something here that deactivates buzzer
+        //}
+        //private bool CheckBuzzer()
+        //{
+        //    datacomms.sendData("ModePls");
+        //    bool Value = (mode != 0);
+        //    return Value;
+        //    //do something that checks if buzzer is currently on
+        //}
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -674,27 +674,27 @@ namespace Forms1
 
         }
 
-        public void processDataReceive(string strData)
-        {
-            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
-            d(strData);
-        }
+        //public void processDataReceive(string strData)
+        //{
+        //    myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+        //    d(strData);
+        //}
 
-        public void commsdatareceive(string datareceived)
-        {
-            processDataReceive(datareceived);
-        }
+        //public void commsdatareceive(string datareceived)
+        //{
+        //    processDataReceive(datareceived);
+        //}
 
-        public void commsSendError(string errMsg)
-        {
-            MessageBox.Show(errMsg);
-            processDataReceive(errMsg);
-        }
+        //public void commsSendError(string errMsg)
+        //{
+        //    MessageBox.Show(errMsg);
+        //    processDataReceive(errMsg);
+        //}
 
-        private void InitComms()
-        {
-            datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-            datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
-        }
+        //private void InitComms()
+        //{
+        //    datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+        //    datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+        //}
     }
 }

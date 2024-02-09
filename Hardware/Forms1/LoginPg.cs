@@ -20,7 +20,7 @@ namespace Forms1
 
         //HENG LE PC DONT LIKE DATACOMMS
         //DataComms dataComms = DataCommsHelper.GetDataCommsInstance();
-        string rfidnum;
+        //string rfidnum;
 
         //public delegate void myprocessDataDelegate(string strData);
         //private DBTempUpdate temperatureUpdateService;
