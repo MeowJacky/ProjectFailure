@@ -18,15 +18,38 @@ public class DBUserTempUpdate
     DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
     public delegate void myprocessDataDelegate(string strData);
     float temp;
+    private static DBUserTempUpdate TempInstance;
+    private float temperature;
 
-    public float LatestTemperature
+
+
+    public float LatestTemperature()
     {
-        get { return temp; }
+        //get { return temp; }
+        return temp;
     }
-    //public void settemp(float temperature)
-    //{
-    //    temp = temperature;
-    //}
+    public float RetrieveTemp()
+    {
+        return temperature;
+    }
+
+    public void settemp(float temperatures)
+    {
+        temp = temperatures;
+        temperature = temperatures;
+    }
+
+    public static DBUserTempUpdate tempinstance
+    {
+        get
+        {
+            if (TempInstance == null)
+            {
+                TempInstance = new DBUserTempUpdate();
+            }
+            return TempInstance;
+        }
+    }
 
 
     public void UpdateTemperature()
@@ -38,6 +61,7 @@ public class DBUserTempUpdate
             {
                 timer = new Timer();
                 timer.Interval = 15000; // 15 seconds for testing 10000
+
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -55,7 +79,9 @@ public class DBUserTempUpdate
         datacomms.sendData("GIBTEMP");
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
-        Console.WriteLine("fuckthismodule" + temp);
+        //temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        settemp((float)(new Random().NextDouble() * 10.0 + 20.0));
+
     }
 
 
@@ -71,7 +97,8 @@ public class DBUserTempUpdate
     }
     private float HandleTemp(string strData, string ID)
     {
-        temp = extractFloatValue(strData, ID);
+        float temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        //temp = extractFloatValue(strData, ID);
         return temp;
     }
 
