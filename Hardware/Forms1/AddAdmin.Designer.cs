@@ -72,6 +72,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AUsername = new System.Windows.Forms.Label();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -288,7 +289,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(658, 310);
+            this.tabPage2.Size = new System.Drawing.Size(664, 319);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Workers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -416,7 +417,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(188, 24);
+            this.label1.Location = new System.Drawing.Point(192, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(209, 36);
             this.label1.TabIndex = 15;
@@ -453,7 +454,7 @@
             this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Viewusers,
             this.currentAdminToolStripMenuItem});
-            this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 200, 0, 0);
+            this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 125, 0, 0);
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
             this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
             this.manageUsersToolStripMenuItem.Text = "Manage Users";
@@ -510,15 +511,28 @@
             this.signOutToolStripMenuItem.Text = "Sign Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
+            // AUsername
+            // 
+            this.AUsername.AutoSize = true;
+            this.AUsername.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.AUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AUsername.ForeColor = System.Drawing.Color.Black;
+            this.AUsername.Location = new System.Drawing.Point(27, 223);
+            this.AUsername.Name = "AUsername";
+            this.AUsername.Size = new System.Drawing.Size(137, 22);
+            this.AUsername.TabIndex = 20;
+            this.AUsername.Text = "adminusername";
+            // 
             // AddAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(874, 427);
-            this.Controls.Add(this.menuStrip2);
+            this.Controls.Add(this.AUsername);
             this.Controls.Add(tabControl1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip2);
             this.Name = "AddAdmin";
             this.Text = "AddAdmin";
             this.Load += new System.EventHandler(this.AddAdmin_Load);
@@ -580,5 +594,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.Label AUsername;
     }
 }

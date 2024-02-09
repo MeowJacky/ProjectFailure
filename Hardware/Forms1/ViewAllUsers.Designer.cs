@@ -211,6 +211,7 @@
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
             this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
+            this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click_1);
             // 
             // addAdminToolStripMenuItem
             // 
@@ -234,18 +235,21 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(316, 30);
             this.toolStripMenuItem2.Text = "Edit products";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click_1);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(316, 30);
             this.toolStripMenuItem3.Text = "Add products";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click_1);
             // 
             // assignProductsToWorkersToolStripMenuItem
             // 
             this.assignProductsToWorkersToolStripMenuItem.Name = "assignProductsToWorkersToolStripMenuItem";
             this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
+            this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 

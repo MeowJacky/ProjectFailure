@@ -21,6 +21,8 @@ namespace Forms1
         public AddAdmin(string username, int authority)
         {
             InitializeComponent();
+            this.username = username;
+            AUsername.Text = username;
             this.loggedInAdminAuthority = authority;
             Console.WriteLine(loggedInAdminAuthority);
         }
