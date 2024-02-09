@@ -23,7 +23,7 @@ namespace Forms1
 
             userusername.Text = username;
 
-            label1.Font = new Font(label1.Font.FontFamily, 14);
+            userusername.Font = new Font(userusername.Font.FontFamily, 14);
             userusername.Font = new Font(userusername.Font.FontFamily, 14);
 
             dataGridView1.AllowUserToAddRows = false;
@@ -73,6 +73,40 @@ namespace Forms1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void userusername_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userusername_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void username_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userusername_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            LoginPg login = new LoginPg();
+            login.Show();
+            this.Close();
+        }
+
+        private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            User user = new User(this.username);
+            user.Show();
+            this.Close();
         }
     }
 }

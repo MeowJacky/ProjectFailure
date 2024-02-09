@@ -350,5 +350,62 @@ private void btnDelete_Click(object sender, EventArgs e)
         {
             ClearFormFields();
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
+            adminpg.Show();
+            this.Close();
+        }
+
+        private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
+            adminpg.Show();
+            this.Close();
+        }
+
+        private void Viewusers_Click(object sender, EventArgs e)
+        {
+            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            allusers.Show();
+            this.Close();
+        }
+
+        private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userid = "0";
+            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
+            manage.Show();
+            this.Close();
+        }
+
+        private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
+            addmin.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            AddProduct addpro = new AddProduct();
+            addpro.Show();
+            this.Close();
+        }
+
+        private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssignItems AssigningItems = new AssignItems();
+            AssigningItems.Show();
+            this.Hide();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginPg login = new LoginPg();
+            login.Show();
+            this.Close();
+        }
     }
 }

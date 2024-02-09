@@ -81,6 +81,65 @@ namespace Forms1
         {
             LoadData();
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            AddProduct addpro = new AddProduct();
+            addpro.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            int productionID = 0;
+            EditProds prods = new EditProds(this.username, loggedInAdminAuthority, productionID);
+            prods.Show();
+            this.Close();
+        }
+
+        private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
+            adminpg.Show();
+            this.Close();
+        }
+
+        private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
+            addmin.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+            int productionID = 0;
+            EditProds prods = new EditProds(this.username, loggedInAdminAuthority, productionID);
+            prods.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem3_Click_1(object sender, EventArgs e)
+        {
+            AddProduct addpro = new AddProduct();
+            addpro.Show();
+            this.Close();
+        }
+
+        private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssignItems AssigningItems = new AssignItems();
+            AssigningItems.Show();
+            this.Hide();
+        }
+
+        private void currentAdminToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            string userid = "0";
+            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
+            manage.Show();
+            this.Close();
+        }
     }
     
 }

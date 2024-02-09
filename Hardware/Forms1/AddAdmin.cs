@@ -21,6 +21,8 @@ namespace Forms1
         public AddAdmin(string username, int authority)
         {
             InitializeComponent();
+            this.username = username;
+            AUsername.Text = username;
             this.loggedInAdminAuthority = authority;
             Console.WriteLine(loggedInAdminAuthority);
         }
@@ -278,6 +280,62 @@ namespace Forms1
             }
 
             tbContact1.TextChanged += tbContact1_TextChanged; // Subscribe back
+        }
+
+        private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Viewusers_Click(object sender, EventArgs e)
+        {
+            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            allusers.Show();
+            this.Close();
+        }
+
+        private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userid = "0";
+            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
+            manage.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            int productionID = 0;
+            EditProds prods = new EditProds(this.username, loggedInAdminAuthority, productionID);
+            prods.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            AddProduct addpro = new AddProduct();
+            addpro.Show();
+            this.Close();
+        }
+
+        private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssignItems AssigningItems = new AssignItems();
+            AssigningItems.Show();
+            this.Hide();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginPg login = new LoginPg();
+            login.Show();
+            this.Close();
+        }
+
+        private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
+            adminpg.Show();
+            this.Close();
         }
     }
 }

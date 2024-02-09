@@ -53,16 +53,20 @@
             this.tbfile = new System.Windows.Forms.TextBox();
             this.Clear = new System.Windows.Forms.Button();
             this.Adusername = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewAllUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Viewusers = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Productmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.stocksnum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numprice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbSearchBar
@@ -315,58 +319,92 @@
             this.Adusername.TabIndex = 32;
             this.Adusername.Text = "adminusername";
             // 
-            // menuStrip1
+            // menuStrip2
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.menuStrip2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projectWSYSToolStripMenuItem,
             this.manageUsersToolStripMenuItem,
+            this.Productmenu,
             this.signOutToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(184, 532);
-            this.menuStrip1.TabIndex = 31;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(184, 532);
+            this.menuStrip2.TabIndex = 33;
+            this.menuStrip2.Text = "menuStrip2";
             // 
-            // toolStripMenuItem1
+            // projectWSYSToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.toolStripMenuItem1.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(171, 36);
-            this.toolStripMenuItem1.Text = "Project W-SYS";
+            this.projectWSYSToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.projectWSYSToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.projectWSYSToolStripMenuItem.Name = "projectWSYSToolStripMenuItem";
+            this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(171, 36);
+            this.projectWSYSToolStripMenuItem.Text = "Project W-SYS";
+            this.projectWSYSToolStripMenuItem.Click += new System.EventHandler(this.projectWSYSToolStripMenuItem_Click);
             // 
             // manageUsersToolStripMenuItem
             // 
-            this.manageUsersToolStripMenuItem.Checked = true;
-            this.manageUsersToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewAllUsersToolStripMenuItem,
+            this.Viewusers,
+            this.currentAdminToolStripMenuItem,
             this.addAdminToolStripMenuItem});
-            this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 200, 0, 0);
+            this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 125, 0, 0);
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
             this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
             this.manageUsersToolStripMenuItem.Text = "Manage Users";
             // 
-            // viewAllUsersToolStripMenuItem
+            // Viewusers
             // 
-            this.viewAllUsersToolStripMenuItem.Name = "viewAllUsersToolStripMenuItem";
-            this.viewAllUsersToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
-            this.viewAllUsersToolStripMenuItem.Text = "View All Users";
+            this.Viewusers.Name = "Viewusers";
+            this.Viewusers.Size = new System.Drawing.Size(210, 30);
+            this.Viewusers.Text = "View All Users";
+            this.Viewusers.Click += new System.EventHandler(this.Viewusers_Click);
+            // 
+            // currentAdminToolStripMenuItem
+            // 
+            this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentAdminToolStripMenuItem.Text = "Search Users";
+            this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
-            this.addAdminToolStripMenuItem.Text = "Add User";
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Text = "Add Users";
+            this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click);
+            // 
+            // Productmenu
+            // 
+            this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3,
+            this.assignProductsToWorkersToolStripMenuItem});
+            this.Productmenu.Name = "Productmenu";
+            this.Productmenu.Size = new System.Drawing.Size(171, 29);
+            this.Productmenu.Text = "Manage products";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(316, 30);
+            this.toolStripMenuItem3.Text = "Add products";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // assignProductsToWorkersToolStripMenuItem
+            // 
+            this.assignProductsToWorkersToolStripMenuItem.Name = "assignProductsToWorkersToolStripMenuItem";
+            this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
+            this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
             this.signOutToolStripMenuItem.Text = "Sign Out";
+            this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
             // EditProds
             // 
@@ -375,7 +413,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(958, 532);
             this.Controls.Add(this.Adusername);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.tbfile);
             this.Controls.Add(this.tbshelve);
@@ -400,13 +437,14 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnIDSearch);
             this.Controls.Add(this.tbSearchBar);
+            this.Controls.Add(this.menuStrip2);
             this.Name = "EditProds";
             this.Text = "EditProds";
             ((System.ComponentModel.ISupportInitialize)(this.stocksnum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numprice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,11 +477,15 @@
         private System.Windows.Forms.TextBox tbfile;
         private System.Windows.Forms.Button Clear;
         private System.Windows.Forms.Label Adusername;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem projectWSYSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageUsersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewAllUsersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Viewusers;
+        private System.Windows.Forms.ToolStripMenuItem currentAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Productmenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
     }
 }
