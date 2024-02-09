@@ -89,7 +89,7 @@ namespace Forms1
         }
         private void LabelChangeWhenLoad()
         {
-            Temp.Text = dbTempUpdate.LatestTemperature.ToString() + "Degrees";
+            Temp.Text = dbTempUpdate.LatestTemperature().ToString() + "Degrees";
         }
 
 
@@ -99,13 +99,19 @@ namespace Forms1
             temperatureUpdateTimer.Interval = 10000; // Update every 10 seconds (adjust as needed)
             temperatureUpdateTimer.Tick += TemperatureUpdateTimer_Tick;
             temperatureUpdateTimer.Start();
+
+
         }
 
         private void TemperatureUpdateTimer_Tick(object sender, EventArgs e)
         {
             // Update the temperature label here
-            Temp.Text = dbTempUpdate.LatestTemperature.ToString() + "Degrees";
-            Console.WriteLine(dbTempUpdate.LatestTemperature);
+            //Temp.Text = dbTempUpdate.LatestTemperature().ToString() + "Degrees";
+            Console.WriteLine(dbTempUpdate.LatestTemperature() + "this bitch not working");
+
+            DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
+            //TempCheck.settemp();
+            Temp.Text = TempCheck.RetrieveTemp().ToString();
         }
 
         private void User_FormClosed(object sender, FormClosedEventArgs e)
