@@ -84,9 +84,53 @@ namespace Forms1
 
             LabelChangeWhenLoad();
 
+            DisplayAssignedItems();
 
             DisplayClockStatus();
         }
+        private void DisplayAssignedItems()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to retrieve assigned items for the current user
+                string query = "SELECT Products.Product_Name, ItemsAssigned.Quantity, WorkerAssigned.PackingID " +
+                               "FROM ItemsAssigned " +
+                               "INNER JOIN WorkerAssigned ON ItemsAssigned.PackingID = WorkerAssigned.PackingID " +
+                               "INNER JOIN Products ON ItemsAssigned.ItemID = Products.ProductID " +
+                               "WHERE WorkerAssigned.WorkerName = @CurrentUser";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentUser", username); // Use username field
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Add items to the FlowLayoutPanel
+                        while (reader.Read())
+                        {
+                            // Retrieve item details from the database
+                            string productName = reader["Product_Name"].ToString();
+                            int quantity = Convert.ToInt32(reader["Quantity"]);
+                            int packingID = Convert.ToInt32(reader["PackingID"]);
+
+                            // Create a Label to display item details
+                            Label lblItems = new Label();
+                            lblItems.Text = $"{productName}: {quantity} (Packing ID: {packingID})";
+                            lblItems.AutoSize = true;
+
+                            Console.WriteLine($"Added label for product: {productName}, Quantity: {quantity}, Packing ID: {packingID}");
+
+                            flowLayoutPanel.Controls.Add(lblItems);
+                            // Add the Label to the FlowLayoutPanel
+                            // flowLayoutPanel.Controls.Add(lblItem);
+                        }
+                    }
+                }
+            }
+        }
+
         private void LabelChangeWhenLoad()
         {
             Temp.Text = dbTempUpdate.LatestTemperature().ToString() + " Degrees";
@@ -367,5 +411,19 @@ namespace Forms1
             this.Close();
         }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

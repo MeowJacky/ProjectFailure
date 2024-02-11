@@ -40,8 +40,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Temp = new System.Windows.Forms.Label();
             this.ClockButton = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // userusername
@@ -134,6 +137,7 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Current Temperature";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // Temp
             // 
@@ -156,12 +160,31 @@
             this.ClockButton.UseVisualStyleBackColor = true;
             this.ClockButton.Click += new System.EventHandler(this.ClockButton_Click_1);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.flowLayoutPanel);
+            this.groupBox2.Location = new System.Drawing.Point(33, 217);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(392, 294);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Assigned products";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.Location = new System.Drawing.Point(7, 26);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(305, 225);
+            this.flowLayoutPanel.TabIndex = 0;
+            // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(784, 545);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ClockButton);
@@ -178,6 +201,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +220,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label Temp;
         private System.Windows.Forms.Button ClockButton;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
     }
 }
