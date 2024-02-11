@@ -68,7 +68,7 @@ namespace Forms1
                 dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
                 dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
-
+        private int selectedpackingID;
         private string username;
         public User(string username)
         {
@@ -87,6 +87,19 @@ namespace Forms1
             DisplayAssignedItems();
 
             DisplayClockStatus();
+
+            if (comboBox1.Items.Count > 0)
+            {
+                selectedpackingID = Convert.ToInt32(comboBox1.Items[0]);
+            }
+            else
+            {
+                // Set a default value if no items are available in the combo box
+                selectedpackingID = 0; // Or any other default value you prefer
+            }
+
+            DisplayAllProducts(selectedpackingID);
+
         }
         private void DisplayAssignedItems()
         {
@@ -125,6 +138,162 @@ namespace Forms1
                             flowLayoutPanel.Controls.Add(lblItems);
                             // Add the Label to the FlowLayoutPanel
                             // flowLayoutPanel.Controls.Add(lblItem);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DisplayAllProducts(int selectedPackingID)
+        {
+            flowLayoutPanel1.Controls.Clear(); // Clear existing controls
+
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to retrieve all products
+                string query = "SELECT ProductID, Product_Name FROM Products";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int productID = Convert.ToInt32(reader["ProductID"]);
+                            string productName = reader["Product_Name"].ToString();
+
+                            // Create labels and buttons for each product
+                            Label lblProductName = new Label();
+                            lblProductName.Text = productName;
+                            lblProductName.AutoSize = true;
+
+                            Button btnScan = new Button();
+                            btnScan.Text = "Scan";
+                            btnScan.Tag = new Tuple<int, int>(productID, selectedPackingID);
+                            // Store product ID and packing ID
+                            btnScan.Click += BtnScan_Click; // Add event handler for button click
+
+                            // Add controls to the flow layout panel
+                            flowLayoutPanel1.Controls.Add(lblProductName);
+                            flowLayoutPanel1.Controls.Add(btnScan);
+                        }
+                    }
+                }
+            }
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem != null)
+            {
+                int selectedPackingID = Convert.ToInt32(comboBox1.SelectedItem);
+                Console.WriteLine($"Selected Packing ID: {selectedPackingID}");
+                DisplayAllProducts(selectedPackingID);
+            }
+        }
+
+        private void BtnScan_Click(object sender, EventArgs e)
+        {
+            // Get the clicked button and the associated product ID and packing ID
+            Button btnScan = (Button)sender;
+            var tags = (Tuple<int, int>)btnScan.Tag;
+            int productID = tags.Item1;
+            int packingID = tags.Item2;
+
+            // Decrease quantity for the scanned product in the selected packing ID
+            DecreaseProductQuantity(packingID, productID);
+
+            // Check if all items are scanned, if so, remove the packing ID from the database
+            if (IsPackingIDEmpty(packingID))
+            {
+                RemovePackingIDFromDatabase(packingID);
+            }
+
+            // Refresh the display
+            DisplayAllProducts(packingID);
+        }
+        private void DecreaseProductQuantity(int packingID, int productID)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to update quantity for the scanned product in the selected packing ID
+                string query = "UPDATE ItemsAssigned " +
+                               "SET Quantity = Quantity - 1 " +
+                               "WHERE PackingID = @PackingID AND ItemID = @ProductID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PackingID", packingID);
+                    command.Parameters.AddWithValue("@ProductID", productID);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine($"{rowsAffected} row(s) updated for Product ID: {productID}, Packing ID: {packingID}");
+                }
+            }
+        }
+        private bool IsPackingIDEmpty(int packingID)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to check if any items are left for the packing ID
+                string query = "SELECT COUNT(*) FROM ItemsAssigned WHERE PackingID = @PackingID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PackingID", packingID);
+
+                    int itemCount = (int)command.ExecuteScalar();
+
+                    return itemCount == 0;
+                }
+            }
+        }
+        private void RemovePackingIDFromDatabase(int packingID)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to remove the packing ID from the database
+                string query = "DELETE FROM WorkerAssigned WHERE PackingID = @PackingID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PackingID", packingID);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine($"{rowsAffected} row(s) deleted for Packing ID: {packingID}");
+                }
+            }
+        }
+        private void User_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'userDBDataSet.Admins' table. You can move, or remove it, as needed.
+            //this.adminsTableAdapter.Fill(this.userDBDataSet.Admins);
+            comboBox1.Items.Clear(); // Clear the ComboBox items
+
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to retrieve distinct packing IDs assigned to the worker
+                string query = "SELECT DISTINCT PackingID FROM WorkerAssigned WHERE WorkerName = @CurrentUser";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentUser", username); // Use username field
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int packingID = Convert.ToInt32(reader["PackingID"]);
+                            comboBox1.Items.Add(packingID); // Add packing ID to ComboBox
                         }
                     }
                 }
@@ -341,12 +510,6 @@ namespace Forms1
                 }
             }
         }
-
-        private void User_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void userusername_Click(object sender, EventArgs e)
         {
             ManageUser userProfile = new ManageUser(this.username);
