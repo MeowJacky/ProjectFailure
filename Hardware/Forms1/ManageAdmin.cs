@@ -371,5 +371,54 @@ namespace Forms1
         {
 
         }
+
+        private void workerQuotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            adminquota quota = new adminquota();
+            quota.Show();
+        }
+
+        private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AssignItems AssigningItems = new AssignItems(username, loggedInAdminAuthority);
+            AssigningItems.Show();
+            this.Hide();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            AddProduct addpro = new AddProduct();
+            addpro.Show();
+            this.Close();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            int productionID = 0;
+            EditProds prods = new EditProds(this.username, loggedInAdminAuthority, productionID);
+            prods.Show();
+            this.Close();
+        }
+
+        private void Viewusers_Click(object sender, EventArgs e)
+        {
+            ViewAllUsers allusers = new ViewAllUsers(this.username, loggedInAdminAuthority);
+            allusers.Show();
+            this.Close();
+        }
+
+        private void addAdminToolStripMenuItem_Click_2(object sender, EventArgs e)
+        {
+            AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
+            addmin.Show();
+            this.Close();
+        }
+
+        private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
+            adminpg.Show();
+            this.Close();
+        }
     }
 }

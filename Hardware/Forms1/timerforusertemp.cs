@@ -22,13 +22,17 @@ public class DBUserTempUpdate
     private float temperature;
     float blametristen;
 
-
-
     public float LatestTemperature()
     {
-        temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
-        Console.WriteLine("latest temp: " + temp);
-        return temp;
+        if (temp != 0)
+        {
+            blametristen = temp;
+            Console.WriteLine("Handle temp3:" + blametristen);
+            //temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
+            Console.WriteLine("latest temp: " + blametristen);
+            
+        }
+        return blametristen;
     }
 
     public static DBUserTempUpdate tempinstance
@@ -47,7 +51,7 @@ public class DBUserTempUpdate
     public void UpdateTemperature()
     {
         Console.WriteLine("updating temp");
-        InitComms();
+        
         lock (timerLock)
         {
             if (timer == null)
@@ -69,7 +73,11 @@ public class DBUserTempUpdate
 
     private void Timer_Tick(object sender, EventArgs e)
     {
+        InitComms();
         datacomms.sendData("GIBTEMP");
+        Console.WriteLine("Handle temp4:" + temp);
+        blametristen = temp;
+        Console.WriteLine("Handle temp5:" + blametristen);
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
         Console.WriteLine("faking data");
@@ -94,8 +102,8 @@ public class DBUserTempUpdate
         //float temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
         Console.WriteLine("Handle teamp:" + temp);
         temp = extractFloatValue(strData, ID);
-        blametristen = temp;
-        return blametristen;
+        Console.WriteLine("Handle temp2:" + temp);
+        return temp;
     }
 
     public void extractSensorData(string strData)

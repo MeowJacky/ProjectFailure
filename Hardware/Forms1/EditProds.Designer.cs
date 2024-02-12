@@ -62,6 +62,7 @@
             this.Productmenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.stocksnum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numprice)).BeginInit();
@@ -313,7 +314,7 @@
             this.Adusername.AutoSize = true;
             this.Adusername.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Adusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Adusername.Location = new System.Drawing.Point(25, 227);
+            this.Adusername.Location = new System.Drawing.Point(40, 223);
             this.Adusername.Name = "Adusername";
             this.Adusername.Size = new System.Drawing.Size(137, 22);
             this.Adusername.TabIndex = 32;
@@ -358,21 +359,21 @@
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(210, 30);
+            this.Viewusers.Size = new System.Drawing.Size(206, 30);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.Viewusers_Click);
             // 
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.addAdminToolStripMenuItem.Text = "Add Users";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click);
             // 
@@ -380,7 +381,8 @@
             // 
             this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem3,
-            this.assignProductsToWorkersToolStripMenuItem});
+            this.assignProductsToWorkersToolStripMenuItem,
+            this.workerQuotaToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
             this.Productmenu.Size = new System.Drawing.Size(171, 29);
             this.Productmenu.Text = "Manage products";
@@ -398,6 +400,13 @@
             this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
             this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
+            // 
+            // workerQuotaToolStripMenuItem
+            // 
+            this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
+            this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
+            this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 
@@ -487,5 +496,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workerQuotaToolStripMenuItem;
     }
 }

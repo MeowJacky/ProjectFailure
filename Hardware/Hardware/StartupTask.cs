@@ -202,11 +202,6 @@ namespace Hardware
             sendtowindows("Temp=" + truetemp);
         }
 
-        private void handlenorm()
-        {
-
-        }
-
         private void UartDataHandler(Object sender, SerialComms.UartEventArgs e)
         {
             rfid = e.data;
@@ -278,17 +273,22 @@ namespace Hardware
                 //}
                 if (incoming.Equals("GIBMOVE"))
                 {
+                    bool truedetect = detect;
+                    detect = false;
                     incoming = "";
+                    sendtowindows("Detect=" + truedetect);
                     sendtowindows("Detect=" + detect);
-                    if (detect == true)
+                    if (truedetect == true)
                     {
-                        detect = false;
+                        truedetect = false;
                         while (curMode == 1)
                         {
+                            redon();
                             buzzing();
                         }
                     }
-                    detect = false;
+                    greenon();
+                    truedetect = false;
                 }
                     if (rfid != "")
                     {
@@ -301,10 +301,14 @@ namespace Hardware
                         if (curMode == 1)
                         {
                             curMode = 0;
+                            redoff();
+                            greenon();
                         }
                         else if (curMode == 0)
                         {
                             curMode = 1;
+                            greenoff();
+                            redon();
                         }
                     }
                     if (incoming.Equals("Stoppls"))
@@ -313,7 +317,9 @@ namespace Hardware
                         if (curMode == 1)
                         {
                             curMode = 0;
-                        }
+                            redoff();
+                            greenon();
+                    }
                     }
                     if (incoming.Equals("ModePls"))
                     {
