@@ -837,6 +837,12 @@ namespace Forms1
             PopulateChartData(date);
         }
 
+        private void workerQuotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            adminquota quota = new adminquota();
+            quota.Show();
+        }
+
         //public void processDataReceive(string strData)
         //{
         //    myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);

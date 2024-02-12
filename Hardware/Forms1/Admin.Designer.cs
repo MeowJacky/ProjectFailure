@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,12 +50,15 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.clockin = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.editclockin = new System.Windows.Forms.Button();
             this.refresh = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ClockDateButton = new System.Windows.Forms.Button();
+            this.ClockDate = new System.Windows.Forms.DateTimePicker();
             this.selectDate = new System.Windows.Forms.Button();
             this.SetDateTemp = new System.Windows.Forms.DateTimePicker();
             this.RefreshTempData = new System.Windows.Forms.Button();
@@ -83,8 +86,6 @@
             this.BuzzerDeactivate = new System.Windows.Forms.Button();
             this.BuzzerCheck = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.ClockDate = new System.Windows.Forms.DateTimePicker();
-            this.ClockDateButton = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -184,7 +185,8 @@
             this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
-            this.assignProductsToWorkersToolStripMenuItem});
+            this.assignProductsToWorkersToolStripMenuItem,
+            this.workerQuotaToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
             this.Productmenu.Size = new System.Drawing.Size(143, 24);
             this.Productmenu.Text = "Manage products";
@@ -210,6 +212,13 @@
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
             this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
+            // workerQuotaToolStripMenuItem
+            // 
+            this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
+            this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
+            this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
+            this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
+            // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
@@ -231,21 +240,21 @@
             // 
             // clockin
             // 
-            chartArea4.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.clockin.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.clockin.Legends.Add(legend1);
             this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.clockin.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.clockin.Series.Add(series1);
             this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "Employee Clock In";
-            title2.Name = "Employee Clock In";
-            this.clockin.Titles.Add(title2);
+            title1.Name = "Employee Clock In";
+            this.clockin.Titles.Add(title1);
             this.clockin.Click += new System.EventHandler(this.clockin_Click);
             // 
             // editclockin
@@ -292,6 +301,23 @@
             this.splitContainer1.SplitterDistance = 594;
             this.splitContainer1.TabIndex = 6;
             // 
+            // ClockDateButton
+            // 
+            this.ClockDateButton.Location = new System.Drawing.Point(474, 115);
+            this.ClockDateButton.Name = "ClockDateButton";
+            this.ClockDateButton.Size = new System.Drawing.Size(75, 23);
+            this.ClockDateButton.TabIndex = 7;
+            this.ClockDateButton.Text = "Select";
+            this.ClockDateButton.UseVisualStyleBackColor = true;
+            this.ClockDateButton.Click += new System.EventHandler(this.ClockDateButton_Click);
+            // 
+            // ClockDate
+            // 
+            this.ClockDate.Location = new System.Drawing.Point(449, 87);
+            this.ClockDate.Name = "ClockDate";
+            this.ClockDate.Size = new System.Drawing.Size(122, 22);
+            this.ClockDate.TabIndex = 6;
+            // 
             // selectDate
             // 
             this.selectDate.Location = new System.Drawing.Point(402, 130);
@@ -322,16 +348,16 @@
             // 
             // TemperatureChart
             // 
-            chartArea5.Name = "ChartArea1";
-            this.TemperatureChart.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.TemperatureChart.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend2);
             this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
             this.TemperatureChart.Name = "TemperatureChart";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.TemperatureChart.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.TemperatureChart.Series.Add(series2);
             this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
             this.TemperatureChart.TabIndex = 0;
             this.TemperatureChart.Text = "TemperatureLogs";
@@ -399,16 +425,16 @@
             // 
             // IntrusionChart
             // 
-            chartArea6.Name = "ChartArea1";
-            this.IntrusionChart.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.IntrusionChart.Legends.Add(legend6);
+            chartArea3.Name = "ChartArea1";
+            this.IntrusionChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.IntrusionChart.Legends.Add(legend3);
             this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
             this.IntrusionChart.Name = "IntrusionChart";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.IntrusionChart.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.IntrusionChart.Series.Add(series3);
             this.IntrusionChart.Size = new System.Drawing.Size(591, 272);
             this.IntrusionChart.TabIndex = 0;
             this.IntrusionChart.Text = "chart1";
@@ -532,23 +558,6 @@
             this.BuzzerCheck.TabIndex = 9;
             this.BuzzerCheck.Text = "fuck";
             // 
-            // ClockDate
-            // 
-            this.ClockDate.Location = new System.Drawing.Point(449, 87);
-            this.ClockDate.Name = "ClockDate";
-            this.ClockDate.Size = new System.Drawing.Size(122, 22);
-            this.ClockDate.TabIndex = 6;
-            // 
-            // ClockDateButton
-            // 
-            this.ClockDateButton.Location = new System.Drawing.Point(474, 115);
-            this.ClockDateButton.Name = "ClockDateButton";
-            this.ClockDateButton.Size = new System.Drawing.Size(75, 23);
-            this.ClockDateButton.TabIndex = 7;
-            this.ClockDateButton.Text = "Select";
-            this.ClockDateButton.UseVisualStyleBackColor = true;
-            this.ClockDateButton.Click += new System.EventHandler(this.ClockDateButton_Click);
-            // 
             // Admin
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -644,5 +653,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button ClockDateButton;
         private System.Windows.Forms.DateTimePicker ClockDate;
+        private System.Windows.Forms.ToolStripMenuItem workerQuotaToolStripMenuItem;
     }
 }
