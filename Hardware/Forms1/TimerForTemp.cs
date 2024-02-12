@@ -55,6 +55,7 @@ public class DBTempUpdate
         //float temperature = temp;
         //float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
         float temperature = (float)somethingsomethingtemp.GetTemp();
+        Console.WriteLine("somethingsomethingidontknow" + temperature);
         SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
         string strCommandText = "INSERT INTO Temperature (Time, Temp) VALUES (@CurrentTime, @NewTemperature)";
         SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
