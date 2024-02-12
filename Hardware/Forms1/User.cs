@@ -100,6 +100,8 @@ namespace Forms1
 
             DisplayAllProducts(selectedpackingID);
 
+            Populatecombo();
+
         }
         private void DisplayAssignedItems()
         {
@@ -183,13 +185,16 @@ namespace Forms1
                 }
             }
         }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null)
             {
                 int selectedPackingID = Convert.ToInt32(comboBox1.SelectedItem);
                 Console.WriteLine($"Selected Packing ID: {selectedPackingID}");
                 DisplayAllProducts(selectedPackingID);
+                this.selectedpackingID = selectedPackingID; // Set the selectedPackingID variable
             }
         }
 
@@ -221,7 +226,7 @@ namespace Forms1
 
                 // Query to update quantity for the scanned product in the selected packing ID
                 string query = "UPDATE ItemsAssigned " +
-                               "SET Quantity = Quantity - 1 " +
+                               "SET Quantity = CASE WHEN Quantity > 0 THEN Quantity - 1 ELSE 0 END " +
                                "WHERE PackingID = @PackingID AND ItemID = @ProductID";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -231,6 +236,14 @@ namespace Forms1
 
                     int rowsAffected = command.ExecuteNonQuery();
                     Console.WriteLine($"{rowsAffected} row(s) updated for Product ID: {productID}, Packing ID: {packingID}");
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show($"Successfully scanned Product ID {productID} from Packing ID {packingID}");
+                        this.Close();
+                        User user = new User(username);
+                        user.Show();
+                    }
                 }
             }
         }
@@ -241,7 +254,7 @@ namespace Forms1
                 connection.Open();
 
                 // Query to check if any items are left for the packing ID
-                string query = "SELECT COUNT(*) FROM ItemsAssigned WHERE PackingID = @PackingID";
+                string query = "SELECT COUNT(*) FROM ItemsAssigned WHERE PackingID = @PackingID AND Quantity > 0";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -268,10 +281,22 @@ namespace Forms1
 
                     int rowsAffected = command.ExecuteNonQuery();
                     Console.WriteLine($"{rowsAffected} row(s) deleted for Packing ID: {packingID}");
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show($"Successfully completed the quota for Packing ID {packingID}");
+                        this.Close();
+                        User user = new User(username);
+                        user.Show();
+                    }
                 }
             }
+
+            // Refresh the page
+            DisplayAllProducts(selectedpackingID);
+            Populatecombo();
+            DisplayAssignedItems();
         }
-        private void User_Load(object sender, EventArgs e)
+        private void Populatecombo()
         {
             // TODO: This line of code loads data into the 'userDBDataSet.Admins' table. You can move, or remove it, as needed.
             //this.adminsTableAdapter.Fill(this.userDBDataSet.Admins);
@@ -298,6 +323,10 @@ namespace Forms1
                     }
                 }
             }
+        }
+        private void User_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void LabelChangeWhenLoad()
