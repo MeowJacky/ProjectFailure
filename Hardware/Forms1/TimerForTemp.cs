@@ -16,7 +16,7 @@ public class DBTempUpdate
     DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
     public delegate void myprocessDataDelegate(string strData);
     float temp;
-    private Temperature somethingsomethingtemp;
+    private Temperature somethingsomethingtemp = new Temperature();
 
     public void UpdateTemperatureDB()
     {

@@ -23,6 +23,7 @@ public class Temperature
     }
     public double GetTemp()
     {
+        InitComms();
         datacomms.sendData("GIBTEMP");
         tempsend = Math.Round(temp, 2);
         datacomms.dataReceiveEvent += commsdatareceive;
@@ -73,7 +74,7 @@ public class Temperature
         // Console.WriteLine("error coms");
         MessageBox.Show(errMsg);
         processDataReceive(errMsg);
-    }
+    }   
 
     private void InitComms()
     {

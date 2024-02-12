@@ -25,7 +25,7 @@ namespace Forms1
 
         //private DBUserTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
 
-        private Temperature temperaturefwuak;
+        private Temperature temperaturefwuak = new Temperature();
 
         private string extractStringValue(string strData, string ID)
         {
@@ -395,7 +395,7 @@ namespace Forms1
 
         private void LabelChangeWhenLoad()
         {
-            Temp.Text = temperaturefwuak.GetTemp().ToString() + " Degrees";
+            Temp.Text = (temperaturefwuak.GetTemp()).ToString() + " Degrees";
         }
 
 
@@ -417,7 +417,7 @@ namespace Forms1
 
             //DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
             //TempCheck.settemp();
-            Temp.Text = (temperaturefwuak.GetTemp().ToString() + " degrees");
+            Temp.Text = ((temperaturefwuak.GetTemp()).ToString() + " degrees");
         }
 
         private void User_FormClosed(object sender, FormClosedEventArgs e)
