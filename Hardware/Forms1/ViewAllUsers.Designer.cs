@@ -53,6 +53,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDBDataSet)).BeginInit();
@@ -209,14 +210,14 @@
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(196, 30);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click_1);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(196, 30);
             this.addAdminToolStripMenuItem.Text = "Add Users";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click);
             // 
@@ -225,7 +226,8 @@
             this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
-            this.assignProductsToWorkersToolStripMenuItem});
+            this.assignProductsToWorkersToolStripMenuItem,
+            this.workerQuotaToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
             this.Productmenu.Size = new System.Drawing.Size(171, 29);
             this.Productmenu.Text = "Manage products";
@@ -256,6 +258,13 @@
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
             this.signOutToolStripMenuItem.Text = "Sign Out";
+            // 
+            // workerQuotaToolStripMenuItem
+            // 
+            this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
+            this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
+            this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
             // 
             // ViewAllUsers
             // 
@@ -306,5 +315,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workerQuotaToolStripMenuItem;
     }
 }

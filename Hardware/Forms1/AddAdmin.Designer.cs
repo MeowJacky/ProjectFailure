@@ -73,6 +73,7 @@
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AUsername = new System.Windows.Forms.Label();
+            this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -462,14 +463,14 @@
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(210, 30);
+            this.Viewusers.Size = new System.Drawing.Size(206, 30);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.Viewusers_Click);
             // 
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
@@ -478,7 +479,8 @@
             this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
-            this.assignProductsToWorkersToolStripMenuItem});
+            this.assignProductsToWorkersToolStripMenuItem,
+            this.workerQuotaToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
             this.Productmenu.Size = new System.Drawing.Size(171, 29);
             this.Productmenu.Text = "Manage products";
@@ -517,11 +519,18 @@
             this.AUsername.BackColor = System.Drawing.Color.WhiteSmoke;
             this.AUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AUsername.ForeColor = System.Drawing.Color.Black;
-            this.AUsername.Location = new System.Drawing.Point(27, 223);
+            this.AUsername.Location = new System.Drawing.Point(40, 223);
             this.AUsername.Name = "AUsername";
             this.AUsername.Size = new System.Drawing.Size(137, 22);
             this.AUsername.TabIndex = 20;
             this.AUsername.Text = "adminusername";
+            // 
+            // workerQuotaToolStripMenuItem
+            // 
+            this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
+            this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
+            this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
             // 
             // AddAdmin
             // 
@@ -595,5 +604,6 @@
         private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
         private System.Windows.Forms.Label AUsername;
+        private System.Windows.Forms.ToolStripMenuItem workerQuotaToolStripMenuItem;
     }
 }

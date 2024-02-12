@@ -26,7 +26,7 @@ public class DBOffHoursDetect
             if (Intrusiontimer == null)
             {
                 Intrusiontimer = new Timer();
-                Intrusiontimer.Interval = 30000;
+                Intrusiontimer.Interval = 60000;
                 Intrusiontimer.Tick += Intrusiontimer_Tick;
 
                 // Ensure that timer operations run on the UI thread
