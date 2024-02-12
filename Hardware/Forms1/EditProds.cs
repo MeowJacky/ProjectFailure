@@ -413,5 +413,17 @@ private void btnDelete_Click(object sender, EventArgs e)
             adminquota quota = new adminquota();
             quota.Show();
         }
+
+        private void EditProds_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login_logs logs = new Login_logs(this.username, loggedInAdminAuthority);
+            logs.Show();
+            this.Hide();
+        }
     }
 }

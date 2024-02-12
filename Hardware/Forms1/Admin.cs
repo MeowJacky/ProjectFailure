@@ -33,15 +33,15 @@ namespace Forms1
             PopulateChartData();
             TemperaturePopulateChartData();
             PopulateIntrusionChartData();
-            LoadData();
             if (username == "")
             {
                 SessionID IDCheck = SessionID.Instance;
                 this.username = IDCheck.RetrieveID();
                 AUsername.Text = IDCheck.RetrieveID();
             }
-            timer1.Interval = 60000; 
+            timer1.Interval = 60000;
             timer1.Enabled = true;
+            PopulateInventory();
             UpdateLabelText();
         }
 
@@ -185,7 +185,7 @@ namespace Forms1
                             IntrusionChart.ChartAreas[0].AxisY.Maximum = double.NaN;
                             IntrusionChart.ChartAreas[0].RecalculateAxesScale();
 
-                            
+
 
                             // Customize the chart appearance and labels based on your requirements
                             if (IntrusionChart.Titles.Count == 0)
@@ -314,7 +314,7 @@ namespace Forms1
         //    {
         //        // Handle exceptions appropriately
         //        MessageBox.Show($"Error populating chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    } 
+        //    }
         //}
         private void PopulateChartData(DateTime date = default(DateTime))
         {
@@ -448,7 +448,7 @@ namespace Forms1
                 connection.Open();
 
                 string query = "SELECT COUNT(*) FROM Admins";
-    
+
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     rowCount = Convert.ToInt32(command.ExecuteScalar());
@@ -540,14 +540,9 @@ namespace Forms1
         private void adminsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userid = "0";
-            ManageAdmin manage = new ManageAdmin(this.username,userid, loggedInAdminAuthority);
+            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
             manage.Show();
             this.Close();
-        }
-
-        private void Admin_Load_1(object sender, EventArgs e)
-        {
-
         }
 
         private void debug_Click(object sender, EventArgs e)
@@ -570,7 +565,7 @@ namespace Forms1
         private void currentAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string userid = "0";
-            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority  );
+            ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
             manage.Show();
             this.Close();
         }
@@ -709,7 +704,7 @@ namespace Forms1
 
                 ShowIntrusions intrusionpage = new ShowIntrusions();
                 intrusionpage.SetDate(dateString);
-                intrusionpage.ShowDialog();   
+                intrusionpage.ShowDialog();
 
                 // Attempt to parse the date without specifying the format
 
@@ -733,27 +728,6 @@ namespace Forms1
 
         }
 
-        private void LoadData()
-        {
-            try
-            {
-                // Clear existing data
-                this.userLoginDBDataSet.LoginLogs.Clear();
-
-                // Load fresh data into the 'userDBDataSet.Admins' table
-                this.loginLogsTableAdapter.Fill(this.userLoginDBDataSet.LoginLogs);
-
-                // Sort the data in descending order based on the 'Time' column
-                userLoginDBDataSet.LoginLogs.DefaultView.Sort = "Time DESC";
-
-                // Set the DataGridView data source to the sorted view
-                dataGridView1.DataSource = userLoginDBDataSet.LoginLogs.DefaultView;
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-        }
 
         private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -842,6 +816,76 @@ namespace Forms1
             adminquota quota = new adminquota();
             quota.Show();
         }
+
+        private void chart1_Click_2(object sender, EventArgs e)
+        {
+            PopulateInventory();
+        }
+
+        private void PopulateInventory()
+        {
+            string query = "SELECT Category, SUM(Stock) AS TotalStock FROM Products GROUP BY Category";
+
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+
+                try
+                {
+                    connection.Open();
+                    adapter.Fill(dataTable);
+
+                    // Clear existing series in chart
+                    chart1.Series.Clear();
+
+                    // Add a new series
+                    chart1.Series.Add("Total Items");
+
+                    // Set chart type to bar
+                    chart1.Series["Total Items"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+
+                    // Bind data to the chart
+                    chart1.DataSource = dataTable;
+                    chart1.Series["Total Items"].XValueMember = "Category";
+                    chart1.Series["Total Items"].YValueMembers = "TotalStock";
+
+
+                    // Set axis labels
+                    chart1.ChartAreas[0].AxisX.Title = "Category";
+                    chart1.ChartAreas[0].AxisY.Title = "Total Stock";
+
+                    chart1.Titles.Clear();
+                    chart1.Titles.Add("Products by Category");
+
+
+                    // Refresh chart
+                    chart1.DataBind();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void refreshinv_Click(object sender, EventArgs e)
+        {
+            PopulateInventory();
+        }
+
+        private void loginLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login_logs logs = new Login_logs(this.username, loggedInAdminAuthority);
+            logs.Show();
+            this.Hide();
+
+        }
+
+
+
 
         private void BuzzerCheck_Click(object sender, EventArgs e)
         {

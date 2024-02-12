@@ -131,6 +131,12 @@
     <Compile Include="ForgetPass.Designer.cs">
       <DependentUpon>ForgetPass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login logs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login logs.Designer.cs">
+      <DependentUpon>Login logs.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginPg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="products.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>products.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,6 +268,9 @@
     <EmbeddedResource Include="ForgetPass.resx">
       <DependentUpon>ForgetPass.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login logs.resx">
+      <DependentUpon>Login logs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginPg.resx">
       <DependentUpon>LoginPg.cs</DependentUpon>
     </EmbeddedResource>
@@ -322,6 +336,17 @@
     </None>
     <None Include="ProductDataSet.xss">
       <DependentUpon>ProductDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="products.xsc">
+      <DependentUpon>products.xsd</DependentUpon>
+    </None>
+    <None Include="products.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>products.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="products.xss">
+      <DependentUpon>products.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

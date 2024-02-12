@@ -20,7 +20,8 @@ namespace Forms1
         public ViewAllUsers(string username, int authority)
         {
             InitializeComponent();
-            AUsername.Text = username;
+            loggedInAdminAuthority = authority;
+            AUsername.Text = this.username;
             LoadData();
         }
 
@@ -145,6 +146,13 @@ namespace Forms1
         {
             adminquota quota = new adminquota();
             quota.Show();
+        }
+
+        private void loginLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login_logs logs = new Login_logs(this.username, loggedInAdminAuthority);
+            logs.Show();
+            this.Hide();
         }
     }
     
