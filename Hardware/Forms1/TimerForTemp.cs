@@ -25,7 +25,7 @@ public class DBTempUpdate
             if (timer == null)
             {
                 timer = new Timer();
-                timer.Interval = 1000;
+                timer.Interval = 60000;
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
