@@ -420,5 +420,12 @@ namespace Forms1
             adminpg.Show();
             this.Close();
         }
+
+        private void loginLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login_logs logs = new Login_logs(this.username, loggedInAdminAuthority);
+            logs.Show();
+            this.Hide();
+        }
     }
 }

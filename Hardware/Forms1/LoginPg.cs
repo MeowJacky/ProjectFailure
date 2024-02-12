@@ -19,7 +19,7 @@ namespace Forms1
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
         //HENG LE PC DONT LIKE DATACOMMS
-        //DataComms dataComms = DataCommsHelper.GetDataCommsInstance();
+        DataComms dataComms = DataCommsHelper.GetDataCommsInstance();
         //string rfidnum;
 
         //public delegate void myprocessDataDelegate(string strData);

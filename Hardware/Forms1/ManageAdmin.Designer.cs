@@ -66,6 +66,7 @@
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -346,7 +347,8 @@
             // 
             this.manageUsersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Viewusers,
-            this.addAdminToolStripMenuItem});
+            this.addAdminToolStripMenuItem,
+            this.loginLogsToolStripMenuItem});
             this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 125, 0, 0);
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
             this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
@@ -355,14 +357,14 @@
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(206, 30);
+            this.Viewusers.Size = new System.Drawing.Size(210, 30);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.Viewusers_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.addAdminToolStripMenuItem.Text = "Add Users";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_2);
             // 
@@ -410,6 +412,13 @@
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
             this.signOutToolStripMenuItem.Text = "Sign Out";
+            // 
+            // loginLogsToolStripMenuItem
+            // 
+            this.loginLogsToolStripMenuItem.Name = "loginLogsToolStripMenuItem";
+            this.loginLogsToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.loginLogsToolStripMenuItem.Text = "Login Logs";
+            this.loginLogsToolStripMenuItem.Click += new System.EventHandler(this.loginLogsToolStripMenuItem_Click);
             // 
             // ManageAdmin
             // 
@@ -493,5 +502,6 @@
         private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem workerQuotaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginLogsToolStripMenuItem;
     }
 }
