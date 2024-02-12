@@ -252,6 +252,8 @@ namespace Hardware
             StartMotion();
             StartButton();
             activateBuzzer(buzzer, 0);
+            redoff();
+            greenoff();
             while (true)
             {
                 sleep(300);
@@ -277,10 +279,10 @@ namespace Hardware
                     detect = false;
                     incoming = "";
                     sendtowindows("Detect=" + truedetect);
-                    sendtowindows("Detect=" + detect);
                     if (truedetect == true)
                     {
                         truedetect = false;
+                        curMode = 1;
                         while (curMode == 1)
                         {
                             redon();
