@@ -20,6 +20,7 @@ public class DBUserTempUpdate
     float temp;
     private static DBUserTempUpdate TempInstance;
     private float temperature;
+    float blametristen;
 
 
 
@@ -27,23 +28,23 @@ public class DBUserTempUpdate
     {
         //get { return temp; }
         //temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
-        temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
-        Console.WriteLine("latest temp: " + temp);
-        return temp;
+        //temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
+        Console.WriteLine("latest temp: " + blametristen);
+        return blametristen;
     }
     public float RetrieveTemp()
     {
-        temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
+        //temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
         Console.WriteLine("updated temp: " + temperature);
         return temperature;
     }
 
-    public void settemp(float temperatures)
-    {
-        Console.WriteLine("settemp:" + temp + " " + temperature);
-        temp = temperatures;
-        temperature = temperatures;
-    }
+    //public void settemp(float temperatures)
+    //{
+    //    Console.WriteLine("settemp:" + temp + " " + temperature);
+    //    temp = temperatures;
+    //    temperature = temperatures;
+    //}
 
     public static DBUserTempUpdate tempinstance
     {
@@ -87,8 +88,8 @@ public class DBUserTempUpdate
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
         Console.WriteLine("faking data");
-        temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
-        settemp((float)(new Random().NextDouble() * 10.0 + 20.0));
+        //temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        //settemp((float)(new Random().NextDouble() * 10.0 + 20.0));
 
         Console.WriteLine("Latest temperature: " + LatestTemperature());
         Console.WriteLine("Updated temperature: " + RetrieveTemp());
@@ -107,14 +108,16 @@ public class DBUserTempUpdate
     }
     private float HandleTemp(string strData, string ID)
     {
-        float temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        //float temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
         Console.WriteLine("faked teamp:" + temp);
-        //temp = extractFloatValue(strData, ID);
-        return temp;
+        temp = extractFloatValue(strData, ID);
+        blametristen = temp;
+        return blametristen;
     }
 
     public void extractSensorData(string strData)
     {
+        Console.WriteLine(strData);
         if (strData.IndexOf("Temp=") != -1)
             HandleTemp(strData, "Temp=");
 
@@ -129,7 +132,16 @@ public class DBUserTempUpdate
 
     public void commsdatareceive(string datareceived)
     {
-        processDataReceive(datareceived);
+        try
+        {
+            Console.WriteLine(datareceived);
+            Console.WriteLine("what");
+            processDataReceive(datareceived);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error in commsdatareceive: " + ex.Message);
+        }
     }
 
     public void commsSendError(string errMsg)
@@ -139,7 +151,9 @@ public class DBUserTempUpdate
     }
 
     private void InitComms()
-    { 
+    {
+        Console.WriteLine("Why");
+        datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
         datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
         datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
     }

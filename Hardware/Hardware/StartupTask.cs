@@ -120,7 +120,7 @@ namespace Hardware
             }
         }
 
-        private void activateBuzzer(Pin pin,byte val)
+        private void activateBuzzer(Pin pin, byte val)
         {
             sm.WaitOne();
             DeviceFactory.Build.GrovePi().AnalogWrite(pin, val);
@@ -199,7 +199,6 @@ namespace Hardware
         private void Temp()
         {
             truetemp = getTemp();
-            Debug.WriteLine(truetemp);
             sendtowindows("Temp=" + truetemp);
         }
 
@@ -281,7 +280,7 @@ namespace Hardware
                 {
                     incoming = "";
                     sendtowindows("Detect=" + detect);
-                    if (detect==true)
+                    if (detect == true)
                     {
                         detect = false;
                         while (curMode == 1)
@@ -290,39 +289,39 @@ namespace Hardware
                         }
                     }
                     detect = false;
-                //}
-                if (rfid != "")
-                {
-                    sendtowindows("RFID=" + rfid);
-                    rfid = "";
                 }
-                if (press == true)
-                {
-                    press = false;
-                    if (curMode==1)
+                    if (rfid != "")
                     {
-                        curMode = 0;
+                        sendtowindows("RFID=" + rfid);
+                        rfid = "";
                     }
-                    else if (curMode==0)
+                    if (press == true)
                     {
-                        curMode = 1;
+                        press = false;
+                        if (curMode == 1)
+                        {
+                            curMode = 0;
+                        }
+                        else if (curMode == 0)
+                        {
+                            curMode = 1;
+                        }
                     }
-                }
-                if (incoming.Equals("Stoppls"))
-                {
-                    incoming = "";
-                    if (curMode == 1)
+                    if (incoming.Equals("Stoppls"))
                     {
-                        curMode = 0;
+                        incoming = "";
+                        if (curMode == 1)
+                        {
+                            curMode = 0;
+                        }
                     }
-                }
-                if (incoming.Equals("ModePls"))
-                {
-                    incoming = "";
-                    sendtowindows("mode=" + curMode);
+                    if (incoming.Equals("ModePls"))
+                    {
+                        incoming = "";
+                        sendtowindows("mode=" + curMode);
+                    }
                 }
             }
-        }
 
+        }
     }
-}
