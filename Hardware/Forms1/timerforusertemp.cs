@@ -18,19 +18,49 @@ public class DBUserTempUpdate
     DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
     public delegate void myprocessDataDelegate(string strData);
     float temp;
+    private static DBUserTempUpdate TempInstance;
+    private float temperature;
 
-    public float LatestTemperature
+
+
+    public float LatestTemperature()
     {
-        get { return temp; }
+        //get { return temp; }
+        //temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
+        Console.WriteLine("latest temp: " + temp);
+        return temp;
     }
-    //public void settemp(float temperature)
-    //{
-    //    temp = temperature;
-    //}
+    public float RetrieveTemp()
+    {
+        temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
+        Console.WriteLine("updated temp: " + temperature);
+        return temperature;
+    }
+
+    public void settemp(float temperatures)
+    {
+        Console.WriteLine("settemp:" + temp + " " + temperature);
+        temp = temperatures;
+        temperature = temperatures;
+    }
+
+    public static DBUserTempUpdate tempinstance
+    {
+        get
+        {
+            if (TempInstance == null)
+            {
+                TempInstance = new DBUserTempUpdate();
+            }
+            return TempInstance;
+        }
+    }
 
 
     public void UpdateTemperature()
     {
+        Console.WriteLine("updating temp");
         InitComms();
         lock (timerLock)
         {
@@ -38,6 +68,7 @@ public class DBUserTempUpdate
             {
                 timer = new Timer();
                 timer.Interval = 15000; // 15 seconds for testing 10000
+
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -55,7 +86,12 @@ public class DBUserTempUpdate
         datacomms.sendData("GIBTEMP");
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
-        Console.WriteLine("fuckthismodule" + temp);
+        Console.WriteLine("faking data");
+        temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        settemp((float)(new Random().NextDouble() * 10.0 + 20.0));
+
+        Console.WriteLine("Latest temperature: " + LatestTemperature());
+        Console.WriteLine("Updated temperature: " + RetrieveTemp());
     }
 
 
@@ -71,7 +107,9 @@ public class DBUserTempUpdate
     }
     private float HandleTemp(string strData, string ID)
     {
-        temp = extractFloatValue(strData, ID);
+        float temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        Console.WriteLine("faked teamp:" + temp);
+        //temp = extractFloatValue(strData, ID);
         return temp;
     }
 
@@ -84,6 +122,7 @@ public class DBUserTempUpdate
 
     public void processDataReceive(string strData)
     {
+        Console.WriteLine("process data");
         myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
         d(strData);
     }

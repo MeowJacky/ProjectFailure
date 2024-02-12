@@ -19,8 +19,8 @@ namespace Forms1
     {
         private string strConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
         private DBTempUpdate temperatureUpdateService;
-        DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
-        public delegate void myprocessDataDelegate(string strData);
+        //DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
+        //public delegate void myprocessDataDelegate(string strData);
         private string username;
         private int loggedInAdminAuthority;
         private int mode;
@@ -42,20 +42,20 @@ namespace Forms1
             }
             timer1.Interval = 1000;
             timer1.Enabled = true;
-            UpdateLabelText();
+            //UpdateLabelText();
         }
 
-        private void UpdateLabelText()
-        {
-            if (CheckBuzzer())
-            {
-                BuzzerCheck.Text = "Buzzer is active";
-            }
-            else
-            {
-                BuzzerCheck.Text = "Buzzer is not active";
-            }
-        }
+        //private void UpdateLabelText()
+        //{
+        //    if (CheckBuzzer())
+        //    {
+        //        BuzzerCheck.Text = "Buzzer is active";
+        //    }
+        //    else
+        //    {
+        //        BuzzerCheck.Text = "Buzzer is not active";
+        //    }
+        //}
         private void TemperaturePopulateChartData(DateTime ChangeMax = default(DateTime))
         {
             try
@@ -222,10 +222,115 @@ namespace Forms1
         }
 
 
-        private void PopulateChartData()
+        //private void PopulateChartData(DateTime date = default(DateTime))
+        //{
+        //    DateTime dateday = date.Date;
+        //    try
+        //    {
+        //        // Clear existing series from the chart
+        //        clockin.Series.Clear();
+
+        //        using (SqlConnection connection = new SqlConnection(strConnectionString))
+        //        {
+        //            connection.Open();
+
+        //            string query = "SELECT ClockIn, COUNT(*) AS Count FROM Admins GROUP BY ClockIn";
+        //            using (SqlCommand command = new SqlCommand(query, connection))
+        //            {
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    // Create a series for the chart
+        //                    Series series = new Series("Clock In Status");
+        //                    series.ChartType = SeriesChartType.Column;
+
+        //                    while (reader.Read())
+        //                    {
+        //                        int clockInValue = Convert.ToInt32(reader["ClockIn"]);
+        //                        int count = Convert.ToInt32(reader["Count"]);
+
+        //                        // Set color based on ClockIn value
+        //                        Color barColor = clockInValue == 0 ? Color.Red : Color.Blue;
+
+        //                        // Add a data point to the series with the specified color
+        //                        series.Points.Add(count);
+
+        //                        // Set the data point label to indicate present or not present
+        //                        series.Points.Last().AxisLabel = clockInValue == 1 ? "Present" : "Not Present";
+
+        //                        // Set the color of the data point
+        //                        series.Points.Last().Color = barColor;
+
+        //                        // Attach data to the data point for later use
+        //                        series.Points.Last().Tag = clockInValue;
+        //                    }
+
+        //                    // Set the X-axis labels to admin names
+        //                    clockin.ChartAreas[0].AxisX.Interval = 1;
+        //                    clockin.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+
+        //                    // Set the Y-axis labels with the desired interval
+        //                    clockin.ChartAreas[0].AxisY.Interval = 1;
+        //                    clockin.ChartAreas[0].AxisY.Minimum = 0; // Set based on your data
+        //                    clockin.ChartAreas[0].AxisY.Maximum = databaserows(); // Set based on your data
+        //                    Console.WriteLine(databaserows());
+
+
+        //                    clockin.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+
+        //                    clockin.MouseUp -= Clockin_MouseClick;
+        //                    clockin.MouseUp += Clockin_MouseClick;
+
+
+
+
+        //                    if (clockin.Titles.Count == 1) //idk why its 1 i think i messed with the properties
+        //                    {
+        //                        Title chart1Title = new Title();
+        //                        chart1Title.Text = "Employee Clock In";
+        //                        chart1Title.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+        //                        clockin.Titles.Add(chart1Title);
+        //                        Console.WriteLine("clockin title added");
+        //                    }
+
+
+
+
+        //                    // Check if the series has data before adding it to the chart
+        //                    if (series.Points.Count > 0)
+        //                    {
+        //                        // Add the series to the chart
+        //                        clockin.Series.Add(series);
+        //                    }
+        //                    else
+        //                    {
+        //                        // Handle the case where the series is empty
+        //                        MessageBox.Show("No data to display in the chart.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exceptions appropriately
+        //        MessageBox.Show($"Error populating chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    } 
+        //}
+        private void PopulateChartData(DateTime date = default(DateTime))
         {
             try
             {
+                // If no date is provided, default to today's date
+                if (date == default(DateTime))
+                {
+                    date = DateTime.Now.Date;
+                }
+                else
+                {
+                    date = date.Date;
+                    ClockDate.Value = date;
+                }
+
                 // Clear existing series from the chart
                 clockin.Series.Clear();
 
@@ -233,37 +338,42 @@ namespace Forms1
                 {
                     connection.Open();
 
-                    string query = "SELECT ClockIn, COUNT(*) AS Count FROM Admins GROUP BY ClockIn";
+                    // Select all users and mark whether they have clocked in on the given date
+                    string query = "SELECT COUNT(C.UserID) AS PresentCount, COUNT(A.UniqueRFID) - COUNT(C.UserID) AS NotPresentCount " +
+                                   "FROM Admins A " +
+                                   "LEFT JOIN Clockin C ON A.UniqueRFID = C.UserID AND C.Date = @Date";
+
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        // Add parameter for the date
+                        command.Parameters.AddWithValue("@Date", date);
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            // Create a series for the chart
+                            // Create a single series for the chart
                             Series series = new Series("Clock In Status");
-                            series.ChartType = SeriesChartType.Column;
+                            series.ChartType = SeriesChartType.StackedColumn;
 
-                            while (reader.Read())
-                            {
-                                int clockInValue = Convert.ToInt32(reader["ClockIn"]);
-                                int count = Convert.ToInt32(reader["Count"]);
+                            reader.Read();
 
-                                // Set color based on ClockIn value
-                                Color barColor = clockInValue == 0 ? Color.Red : Color.Blue;
+                            DataPoint notPresentPoint = new DataPoint();
+                            notPresentPoint.SetValueXY(0, Convert.ToInt32(reader["NotPresentCount"]));
+                            notPresentPoint.AxisLabel = "Not Present";
+                            notPresentPoint.Color = Color.Red;
+                            notPresentPoint.Tag = 0; // Set the Tag to 0 for "Not Present"
+                            series.Points.Add(notPresentPoint);
 
-                                // Add a data point to the series with the specified color
-                                series.Points.Add(count);
+                            // Add a data point for "Present"
+                            DataPoint presentPoint = new DataPoint();
+                            presentPoint.SetValueXY(1, Convert.ToInt32(reader["PresentCount"]));
+                            presentPoint.AxisLabel = "Present";
+                            presentPoint.Color = Color.Blue;
+                            presentPoint.Tag = 1; // Set the Tag to 1 for "Present"
+                            series.Points.Add(presentPoint);
 
-                                // Set the data point label to indicate present or not present
-                                series.Points.Last().AxisLabel = clockInValue == 1 ? "Present" : "Not Present";
+                            // Add the series to the chart
+                            clockin.Series.Add(series);
 
-                                // Set the color of the data point
-                                series.Points.Last().Color = barColor;
-
-                                // Attach data to the data point for later use
-                                series.Points.Last().Tag = clockInValue;
-                            }
-
-                            // Set the X-axis labels to admin names
                             clockin.ChartAreas[0].AxisX.Interval = 1;
                             clockin.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
 
@@ -279,26 +389,17 @@ namespace Forms1
                             clockin.MouseUp -= Clockin_MouseClick;
                             clockin.MouseUp += Clockin_MouseClick;
 
-                            
-
-
-                            if (clockin.Titles.Count == 1) //idk why its 1 i think i messed with the properties
-                            {
-                                Title chart1Title = new Title();
-                                chart1Title.Text = "Employee Clock In";
-                                chart1Title.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-                                clockin.Titles.Add(chart1Title);
-                                Console.WriteLine("clockin title added");
-                            }
-                            
-
-
-
-                            // Check if the series has data before adding it to the chart
                             if (series.Points.Count > 0)
                             {
-                                // Add the series to the chart
-                                clockin.Series.Add(series);
+                                // Add chart title if not already present
+                                if (clockin.Titles.Count == 0)
+                                {
+                                    Title chartTitle = new Title();
+                                    chartTitle.Text = "Employee Clock In";
+                                    chartTitle.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+                                    clockin.Titles.Add(chartTitle);
+                                    Console.WriteLine("Chart title added");
+                                }
                             }
                             else
                             {
@@ -315,6 +416,29 @@ namespace Forms1
                 MessageBox.Show($"Error populating chart data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
+        private bool IsPresent(string uniqueRFID, DateTime date)
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Clockin WHERE UserID = @UniqueRFID AND Date = @Date";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UniqueRFID", uniqueRFID);
+                    command.Parameters.AddWithValue("@Date", date);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+
         private int databaserows()
         {
             int rowCount = 0;
@@ -334,28 +458,53 @@ namespace Forms1
             return rowCount;
         }
 
+        //private void Clockin_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    // Get the clicked data point
+        //    HitTestResult result = clockin.HitTest(e.X, e.Y);
+
+        //    if (result.Series != null && result.PointIndex >= 0)
+        //    {
+        //        // Check if the clicked bar represents "Present"
+        //        Console.WriteLine(result.Series.Points[result.PointIndex].Tag);
+        //        int clockInValue = Convert.ToInt32(result.Series.Points[result.PointIndex].Tag);
+
+        //        if (clockInValue == 1)
+        //        {
+        //            // Open another WinForm (replace FormToOpen with your actual form)
+        //            present form = new present();
+        //            form.ShowDialog(); // Use ShowDialog to make it a modal form
+        //        }
+        //        else
+        //        {
+        //            notpresent form = new notpresent();
+        //            form.ShowDialog(); // Use ShowDialog to make it a modal form
+
+        //        }
+        //    }
+        //}
         private void Clockin_MouseClick(object sender, MouseEventArgs e)
         {
+            DateTime date = ClockDate.Value;
+            date = date.Date;
             // Get the clicked data point
             HitTestResult result = clockin.HitTest(e.X, e.Y);
 
             if (result.Series != null && result.PointIndex >= 0)
             {
                 // Check if the clicked bar represents "Present"
-                Console.WriteLine(result.Series.Points[result.PointIndex].Tag);
                 int clockInValue = Convert.ToInt32(result.Series.Points[result.PointIndex].Tag);
 
                 if (clockInValue == 1)
                 {
                     // Open another WinForm (replace FormToOpen with your actual form)
-                    present form = new present();
+                    present form = new present(date);
                     form.ShowDialog(); // Use ShowDialog to make it a modal form
                 }
                 else
                 {
-                    notpresent form = new notpresent();
+                    notpresent form = new notpresent(date);
                     form.ShowDialog(); // Use ShowDialog to make it a modal form
-
                 }
             }
         }
@@ -455,6 +604,7 @@ namespace Forms1
         private void refresh_Click(object sender, EventArgs e)
         {
             PopulateChartData();
+            ClockDate.Value = DateTime.Now;
         }
 
         private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -617,34 +767,34 @@ namespace Forms1
 
         }
 
-        private void BuzzerDeactivate_Click(object sender, EventArgs e)
-        {
-            DeactivateBuzzer();
-            BuzzerCheck.Text = "Buzzer is not active";
+        //private void BuzzerDeactivate_Click(object sender, EventArgs e)
+        //{
+        //    DeactivateBuzzer();
+        //    BuzzerCheck.Text = "Buzzer is not active";
 
-        }
+        //}
 
         private void timer2_Tick(object sender, EventArgs e)
         {
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            UpdateLabelText();
-        }
-        private void DeactivateBuzzer()
-        {
-            datacomms.sendData("Stoppls");
-            //do something here that deactivates buzzer
-        }
-        private bool CheckBuzzer()
-        {
-            datacomms.sendData("ModePls");
-            bool Value = (mode != 0);
-            return Value;
-            //do something that checks if buzzer is currently on
-        }
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    UpdateLabelText();
+        //}
+        //private void DeactivateBuzzer()
+        //{
+        //    datacomms.sendData("Stoppls");
+        //    //do something here that deactivates buzzer
+        //}
+        //private bool CheckBuzzer()
+        //{
+        //    datacomms.sendData("ModePls");
+        //    bool Value = (mode != 0);
+        //    return Value;
+        //    //do something that checks if buzzer is currently on
+        //}
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -674,27 +824,40 @@ namespace Forms1
 
         }
 
-        public void processDataReceive(string strData)
+        private void projectWSYSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
-            d(strData);
+            Admin adminpg = new Admin(this.username, loggedInAdminAuthority);
+            adminpg.Show();
+            this.Close();
         }
 
-        public void commsdatareceive(string datareceived)
+        private void ClockDateButton_Click(object sender, EventArgs e)
         {
-            processDataReceive(datareceived);
+            DateTime date = ClockDate.Value;
+            PopulateChartData(date);
         }
 
-        public void commsSendError(string errMsg)
-        {
-            MessageBox.Show(errMsg);
-            processDataReceive(errMsg);
-        }
+        //public void processDataReceive(string strData)
+        //{
+        //    myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
+        //    d(strData);
+        //}
 
-        private void InitComms()
-        {
-            datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-            datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
-        }
+        //public void commsdatareceive(string datareceived)
+        //{
+        //    processDataReceive(datareceived);
+        //}
+
+        //public void commsSendError(string errMsg)
+        //{
+        //    MessageBox.Show(errMsg);
+        //    processDataReceive(errMsg);
+        //}
+
+        //private void InitComms()
+        //{
+        //    datacomms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+        //    datacomms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+        //}
     }
 }

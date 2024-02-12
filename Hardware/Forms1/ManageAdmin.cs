@@ -84,15 +84,6 @@ namespace Forms1
                 int loggedInAuthority = Convert.ToInt32(tbAuthority.Text);
                 int searchedAuthority = Convert.ToInt32(reader["Authority"]);
 
-                if (loggedInAuthority >= searchedAuthority)
-                {
-                    SetTextBoxReadOnly(loggedInAuthority < searchedAuthority);
-                }
-                else
-                {
-                    MessageBox.Show("You do not have the authority to modify or delete user details with higher authority.");
-                    SetTextBoxReadOnly(true);
-                }
 
                 if (reader["SupposedToClockIn"] != DBNull.Value)
                 {
@@ -112,19 +103,9 @@ namespace Forms1
             myConnect.Close();
         }
 
-        private void SetTextBoxReadOnly(bool isReadOnly)
-        {
-            tbName.ReadOnly = isReadOnly;
-            tbRFID.ReadOnly = isReadOnly;
-            tbNRIC.ReadOnly = isReadOnly;
-            tbAdd.ReadOnly = isReadOnly;
-            tbContact.ReadOnly = isReadOnly;
-            // Other textboxes related to user details
-        }
-
         private void btnModify_Click(object sender, EventArgs e)
         {
-            if (CheckAuthorityLevelForModify())
+            if (CheckAuthorityLevelForModify() == true)
             {
                 if (ModifyUserRecord() > 0)
                     MessageBox.Show("Modified");
@@ -148,12 +129,12 @@ namespace Forms1
                 return true;
             }
             // Lvl 2 authority can only modify records lower than itself
-            else if (loggedInAuthority == 2 && userAuthority < 2)
+            else if (loggedInAuthority == 2 && userAuthority > 2)
             {
                 return true;
             }
             // Lvl 3 authority can only modify records lower than itself but not authority level
-            else if (loggedInAuthority == 3 && (userAuthority < 3 && userAuthority != 1 && userAuthority != 2))
+            else if (loggedInAuthority == 3 && (userAuthority > 3))
             {
                 return true;
             }
@@ -233,7 +214,7 @@ namespace Forms1
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (CheckAuthorityLevelForDelete())
+            if (CheckAuthorityLevelForDelete()==true)
             {
                 if (MessageBox.Show("Confirm Delete?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -246,10 +227,6 @@ namespace Forms1
                     }
                     else
                     {
-                        int loggedInAuthority = loggedInAdminAuthority;
-
-                        if (loggedInAuthority > Convert.ToInt32(tbAuthority.Text))
-                        {
                             if (DeleteUserRecord(tbRFID.Text) > 0)
                             {
                                 MessageBox.Show($"{tbName.Text} has been deleted");
@@ -259,11 +236,6 @@ namespace Forms1
                             {
                                 MessageBox.Show("Delete Failed");
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("You do not have the authority to delete user details with equal or higher authority.");
-                        }
                     }
                 }
             }
@@ -280,12 +252,12 @@ namespace Forms1
                 return true;
             }
             // Lvl 2 authority can delete records lower than itself
-            else if (loggedInAuthority == 2 && userAuthority < loggedInAuthority)
+            else if (loggedInAuthority == 2 && userAuthority > loggedInAuthority)
             {
                 return true;
             }
             // Lvl 3 authority can only delete records with authority 999 and lower than itself
-            else if (loggedInAuthority == 3 && (userAuthority == 999 || userAuthority < loggedInAuthority))
+            else if (loggedInAuthority == 3 && (userAuthority == 999 || userAuthority > loggedInAuthority))
             {
                 return true;
             }
@@ -359,22 +331,12 @@ namespace Forms1
 
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
         private void addAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
@@ -403,6 +365,11 @@ namespace Forms1
             AddAdmin addmin = new AddAdmin(this.username, loggedInAdminAuthority);
             addmin.Show();
             this.Close();
+        }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
