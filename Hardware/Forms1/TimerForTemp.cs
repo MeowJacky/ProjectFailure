@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 public class DBTempUpdate
 {

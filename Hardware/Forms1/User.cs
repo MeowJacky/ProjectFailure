@@ -272,17 +272,30 @@ namespace Forms1
             {
                 connection.Open();
 
-                // Query to remove the packing ID from the database
-                string query = "DELETE FROM WorkerAssigned WHERE PackingID = @PackingID";
+                // Query to update the IsCompleted flag for the packing ID
+                string updateQuery = "UPDATE WorkerAssigned SET IsCompleted = 1 WHERE PackingID = @PackingID";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@PackingID", packingID);
+                    updateCommand.Parameters.AddWithValue("@PackingID", packingID);
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    Console.WriteLine($"{rowsAffected} row(s) deleted for Packing ID: {packingID}");
+                    int rowsAffected = updateCommand.ExecuteNonQuery();
+                    Console.WriteLine($"{rowsAffected} row(s) updated for Packing ID: {packingID}");
+
                     if (rowsAffected > 0)
                     {
+                        // Insert into Quota table
+                        string insertQuery = "INSERT INTO Quota (WorkerName, CompletedDate, CompletedPackingID) VALUES (@WorkerName, @CompletedDate, @CompletedPackingID)";
+                        using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                        {
+                            insertCommand.Parameters.AddWithValue("@WorkerName", username);
+                            insertCommand.Parameters.AddWithValue("@CompletedDate", DateTime.Now);
+                            insertCommand.Parameters.AddWithValue("@CompletedPackingID", packingID);
+
+                            int insertedRows = insertCommand.ExecuteNonQuery();
+                            Console.WriteLine($"{insertedRows} row(s) inserted into Quota table");
+                        }
+
                         MessageBox.Show($"Successfully completed the quota for Packing ID {packingID}");
                         this.Close();
                         User user = new User(username);
@@ -296,6 +309,8 @@ namespace Forms1
             Populatecombo();
             DisplayAssignedItems();
         }
+
+
         private void Populatecombo()
         {
             // TODO: This line of code loads data into the 'userDBDataSet.Admins' table. You can move, or remove it, as needed.
