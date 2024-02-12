@@ -277,8 +277,8 @@ namespace Hardware
                 //{
                 //    sendtowindows("Close=" + close);
                 //}
-                //if (incoming.Equals("GIBMOVE"))
-                //{
+                if (incoming.Equals("GIBMOVE"))
+                {
                     incoming = "";
                     sendtowindows("Detect=" + detect);
                     if (detect==true)
