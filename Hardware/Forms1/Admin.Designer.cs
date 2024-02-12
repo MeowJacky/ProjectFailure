@@ -73,6 +73,7 @@
             this.IntrusionDatePicker = new System.Windows.Forms.DateTimePicker();
             this.IntrusionButton = new System.Windows.Forms.Button();
             this.IntrusionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.refreshinv = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.loginLogsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userLoginDBDataSet = new Forms1.UserLoginDBDataSet();
@@ -86,7 +87,6 @@
             this.BuzzerCheck = new System.Windows.Forms.Label();
             this.BuzzerDeactivate = new System.Windows.Forms.Button();
             this.products = new Forms1.products();
-            this.refreshinv = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -118,7 +118,7 @@
             this.AUsername.ForeColor = System.Drawing.Color.Black;
             this.AUsername.Location = new System.Drawing.Point(27, 223);
             this.AUsername.Name = "AUsername";
-            this.AUsername.Size = new System.Drawing.Size(137, 22);
+            this.AUsername.Size = new System.Drawing.Size(114, 18);
             this.AUsername.TabIndex = 1;
             this.AUsername.Text = "adminusername";
             this.AUsername.Click += new System.EventHandler(this.AUsername_Click);
@@ -135,7 +135,7 @@
             this.signOutToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(184, 594);
+            this.menuStrip2.Size = new System.Drawing.Size(156, 594);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             this.menuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip2_ItemClicked);
@@ -145,7 +145,7 @@
             this.projectWSYSToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.projectWSYSToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
             this.projectWSYSToolStripMenuItem.Name = "projectWSYSToolStripMenuItem";
-            this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(171, 36);
+            this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(143, 32);
             this.projectWSYSToolStripMenuItem.Text = "Project W-SYS";
             this.projectWSYSToolStripMenuItem.Click += new System.EventHandler(this.projectWSYSToolStripMenuItem_Click);
             // 
@@ -158,35 +158,35 @@
             this.loginLogsToolStripMenuItem});
             this.manageUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 200, 0, 0);
             this.manageUsersToolStripMenuItem.Name = "manageUsersToolStripMenuItem";
-            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.manageUsersToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
             this.manageUsersToolStripMenuItem.Text = "Manage Users";
             this.manageUsersToolStripMenuItem.Click += new System.EventHandler(this.manageUsersToolStripMenuItem_Click);
             // 
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(206, 30);
+            this.Viewusers.Size = new System.Drawing.Size(177, 26);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // currentAdminToolStripMenuItem
             // 
             this.currentAdminToolStripMenuItem.Name = "currentAdminToolStripMenuItem";
-            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.currentAdminToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.currentAdminToolStripMenuItem.Text = "Search Users";
             this.currentAdminToolStripMenuItem.Click += new System.EventHandler(this.currentAdminToolStripMenuItem_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.addAdminToolStripMenuItem.Text = "Add Users";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_1);
             // 
             // loginLogsToolStripMenuItem
             // 
             this.loginLogsToolStripMenuItem.Name = "loginLogsToolStripMenuItem";
-            this.loginLogsToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.loginLogsToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.loginLogsToolStripMenuItem.Text = "Login Logs";
             this.loginLogsToolStripMenuItem.Click += new System.EventHandler(this.loginLogsToolStripMenuItem_Click);
             // 
@@ -198,41 +198,41 @@
             this.assignProductsToWorkersToolStripMenuItem,
             this.workerQuotaToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
-            this.Productmenu.Size = new System.Drawing.Size(171, 29);
+            this.Productmenu.Size = new System.Drawing.Size(143, 24);
             this.Productmenu.Text = "Manage products";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(316, 30);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(263, 26);
             this.toolStripMenuItem2.Text = "Edit products";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(316, 30);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(263, 26);
             this.toolStripMenuItem3.Text = "Add products";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // assignProductsToWorkersToolStripMenuItem
             // 
             this.assignProductsToWorkersToolStripMenuItem.Name = "assignProductsToWorkersToolStripMenuItem";
-            this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
             this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
             // workerQuotaToolStripMenuItem
             // 
             this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
-            this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
             this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
             this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
             this.signOutToolStripMenuItem.Text = "Sign Out";
             this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
@@ -244,7 +244,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(27, 203);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 20);
+            this.label1.Size = new System.Drawing.Size(101, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Welcome Back";
             // 
@@ -325,7 +325,7 @@
             // 
             this.ClockDate.Location = new System.Drawing.Point(449, 87);
             this.ClockDate.Name = "ClockDate";
-            this.ClockDate.Size = new System.Drawing.Size(122, 26);
+            this.ClockDate.Size = new System.Drawing.Size(122, 22);
             this.ClockDate.TabIndex = 6;
             // 
             // selectDate
@@ -342,7 +342,7 @@
             // 
             this.SetDateTemp.Location = new System.Drawing.Point(384, 88);
             this.SetDateTemp.Name = "SetDateTemp";
-            this.SetDateTemp.Size = new System.Drawing.Size(116, 26);
+            this.SetDateTemp.Size = new System.Drawing.Size(116, 22);
             this.SetDateTemp.TabIndex = 2;
             this.SetDateTemp.ValueChanged += new System.EventHandler(this.SetDateTemp_ValueChanged);
             // 
@@ -401,7 +401,7 @@
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(454, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 20);
+            this.label2.Size = new System.Drawing.Size(94, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Date Selector";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -420,7 +420,7 @@
             // 
             this.IntrusionDatePicker.Location = new System.Drawing.Point(457, 86);
             this.IntrusionDatePicker.Name = "IntrusionDatePicker";
-            this.IntrusionDatePicker.Size = new System.Drawing.Size(114, 26);
+            this.IntrusionDatePicker.Size = new System.Drawing.Size(114, 22);
             this.IntrusionDatePicker.TabIndex = 2;
             // 
             // IntrusionButton
@@ -449,6 +449,16 @@
             this.IntrusionChart.TabIndex = 0;
             this.IntrusionChart.Text = "chart1";
             this.IntrusionChart.Click += new System.EventHandler(this.IntrusionChart_Click);
+            // 
+            // refreshinv
+            // 
+            this.refreshinv.Location = new System.Drawing.Point(381, 196);
+            this.refreshinv.Name = "refreshinv";
+            this.refreshinv.Size = new System.Drawing.Size(107, 30);
+            this.refreshinv.TabIndex = 5;
+            this.refreshinv.Text = "Refresh Data";
+            this.refreshinv.UseVisualStyleBackColor = true;
+            this.refreshinv.Click += new System.EventHandler(this.refreshinv_Click);
             // 
             // chart1
             // 
@@ -508,32 +518,26 @@
             // 
             // BuzzerCheck
             // 
-            this.BuzzerCheck.Location = new System.Drawing.Point(0, 0);
+            this.BuzzerCheck.BackColor = System.Drawing.Color.White;
+            this.BuzzerCheck.Location = new System.Drawing.Point(12, 401);
             this.BuzzerCheck.Name = "BuzzerCheck";
             this.BuzzerCheck.Size = new System.Drawing.Size(100, 23);
             this.BuzzerCheck.TabIndex = 0;
             // 
             // BuzzerDeactivate
             // 
-            this.BuzzerDeactivate.Location = new System.Drawing.Point(0, 0);
+            this.BuzzerDeactivate.BackColor = System.Drawing.Color.Transparent;
+            this.BuzzerDeactivate.Location = new System.Drawing.Point(30, 448);
             this.BuzzerDeactivate.Name = "BuzzerDeactivate";
             this.BuzzerDeactivate.Size = new System.Drawing.Size(75, 23);
             this.BuzzerDeactivate.TabIndex = 1;
+            this.BuzzerDeactivate.Text = "Deactivate Button";
+            this.BuzzerDeactivate.UseVisualStyleBackColor = false;
             // 
             // products
             // 
             this.products.DataSetName = "products";
             this.products.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // refreshinv
-            // 
-            this.refreshinv.Location = new System.Drawing.Point(381, 196);
-            this.refreshinv.Name = "refreshinv";
-            this.refreshinv.Size = new System.Drawing.Size(107, 30);
-            this.refreshinv.TabIndex = 5;
-            this.refreshinv.Text = "Refresh Data";
-            this.refreshinv.UseVisualStyleBackColor = true;
-            this.refreshinv.Click += new System.EventHandler(this.refreshinv_Click);
             // 
             // Admin
             // 

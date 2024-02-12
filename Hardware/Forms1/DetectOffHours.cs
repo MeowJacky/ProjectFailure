@@ -26,7 +26,7 @@ public class DBOffHoursDetect
             if (Intrusiontimer == null)
             {
                 Intrusiontimer = new Timer();
-                Intrusiontimer.Interval = 60000;
+                Intrusiontimer.Interval = 1000;
                 Intrusiontimer.Tick += Intrusiontimer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -45,13 +45,14 @@ public class DBOffHoursDetect
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
     }
+    //if (DetectIntrusionsRPI())
+    //if ((CheckTimeRange()) && RandomDetect())
+    //if ((RandomDetect()))
+    //if ((CheckTimeRange()) && (detect))
 
     private void Intrusion()
     {
-        //if ((CheckTimeRange()) && (detect))
-        //if (DetectIntrusionsRPI())
-        //if ((CheckTimeRange()) && RandomDetect())
-        if ((RandomDetect()))
+        if ((detect))
         {
             int result = 0;
             int detectionStatus = 1;
