@@ -40,7 +40,7 @@ namespace Forms1
                 this.username = IDCheck.RetrieveID();
                 AUsername.Text = IDCheck.RetrieveID();
             }
-            timer1.Interval = 1000;
+            timer1.Interval = 60000; 
             timer1.Enabled = true;
             UpdateLabelText();
         }
