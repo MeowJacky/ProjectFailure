@@ -23,7 +23,9 @@ namespace Forms1
 
         private Timer temperatureUpdateTimer;
 
-        private DBUserTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
+        //private DBUserTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
+
+        private Temperature temperaturefwuak;
 
         private string extractStringValue(string strData, string ID)
         {
@@ -65,8 +67,8 @@ namespace Forms1
 
         private void InitComms()
         {
-                dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-                dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+            dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
         private int selectedpackingID;
         private string username;
@@ -78,7 +80,7 @@ namespace Forms1
             userusername.Text = username;
 
             //ClockButton.Click += ClockButton_Click;
-            dbTempUpdate = new DBUserTempUpdate(); // Assuming you have an instance of DBTempUpdate
+            //dbTempUpdate = new DBUserTempUpdate(); // Assuming you have an instance of DBTempUpdate
 
             InitTemperatureUpdateTimer();
 
@@ -393,7 +395,7 @@ namespace Forms1
 
         private void LabelChangeWhenLoad()
         {
-            Temp.Text = dbTempUpdate.LatestTemperature().ToString() + " Degrees";
+            Temp.Text = temperaturefwuak.GetTemp().ToString() + " Degrees";
         }
 
 
@@ -411,11 +413,11 @@ namespace Forms1
         {
             // Update the temperature label here
             //Temp.Text = dbTempUpdate.LatestTemperature().ToString() + " Degrees";
-            Console.WriteLine(dbTempUpdate.LatestTemperature() + "this bitch not working");
+            Console.WriteLine(temperaturefwuak.GetTemp() + "this bitch not working");
 
-            DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
+            //DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
             //TempCheck.settemp();
-            Temp.Text = (dbTempUpdate.LatestTemperature().ToString() + " degrees");
+            Temp.Text = (temperaturefwuak.GetTemp().ToString() + " degrees");
         }
 
         private void User_FormClosed(object sender, FormClosedEventArgs e)

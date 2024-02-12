@@ -16,42 +16,45 @@ public class DBTempUpdate
     DataComms datacomms = DataCommsHelper.GetDataCommsInstance();
     public delegate void myprocessDataDelegate(string strData);
     float temp;
+    private Temperature somethingsomethingtemp;
 
     public void UpdateTemperatureDB()
     {
         InitComms();
-        lock (timerLock)
+        //lock (timerLock)
+        //{
+            
+        //}
+        if (timer == null)
         {
-            if (timer == null)
-            {
-                timer = new Timer();
-                timer.Interval = 60000;
-                timer.Tick += Timer_Tick;
+            timer = new Timer();
+            timer.Interval = 60000;
+            timer.Tick += Timer_Tick;
 
-                // Ensure that timer operations run on the UI thread
-                if (!isTimerStarted && Application.OpenForms.Count > 0)
-                {
-                    timer.Start();
-                    isTimerStarted = true;
-                }
+            // Ensure that timer operations run on the UI thread
+            if (!isTimerStarted && Application.OpenForms.Count > 0)
+            {
+                timer.Start();
+                isTimerStarted = true;
             }
         }
     }
 
     private void Timer_Tick(object sender, EventArgs e)
     {
-        Console.WriteLine("work?");
-        datacomms.sendData("GIBTEMP");
+        //Console.WriteLine("work?");
+        //datacomms.sendData("GIBTEMP");
         UpdateTemperatureInDatabase();
-        datacomms.dataReceiveEvent += commsdatareceive;
-        datacomms.dataSendErrorEvent += commsSendError;
+        //datacomms.dataReceiveEvent += commsdatareceive;
+        //datacomms.dataSendErrorEvent += commsSendError;
     }
 
     private void UpdateTemperatureInDatabase()
     {
         int result = 0;
         //float temperature = temp;
-        float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        //float temperature = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        float temperature = (float)somethingsomethingtemp.GetTemp();
         SqlConnection myConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString);
         string strCommandText = "INSERT INTO Temperature (Time, Temp) VALUES (@CurrentTime, @NewTemperature)";
         SqlCommand cmd = new SqlCommand(strCommandText, myConnect);
