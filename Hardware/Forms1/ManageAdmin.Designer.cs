@@ -64,8 +64,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -292,7 +292,7 @@
             this.Adusername.AutoSize = true;
             this.Adusername.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Adusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Adusername.Location = new System.Drawing.Point(26, 226);
+            this.Adusername.Location = new System.Drawing.Point(40, 223);
             this.Adusername.Name = "Adusername";
             this.Adusername.Size = new System.Drawing.Size(137, 22);
             this.Adusername.TabIndex = 26;
@@ -355,14 +355,14 @@
             // Viewusers
             // 
             this.Viewusers.Name = "Viewusers";
-            this.Viewusers.Size = new System.Drawing.Size(210, 30);
+            this.Viewusers.Size = new System.Drawing.Size(206, 30);
             this.Viewusers.Text = "View All Users";
             this.Viewusers.Click += new System.EventHandler(this.Viewusers_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
-            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.addAdminToolStripMenuItem.Text = "Add Users";
             this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_2);
             // 
@@ -398,18 +398,18 @@
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
             this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
-            // signOutToolStripMenuItem
-            // 
-            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
-            this.signOutToolStripMenuItem.Text = "Sign Out";
-            // 
             // workerQuotaToolStripMenuItem
             // 
             this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
             this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
             this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
             this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
+            // 
+            // signOutToolStripMenuItem
+            // 
+            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.signOutToolStripMenuItem.Text = "Sign Out";
             // 
             // ManageAdmin
             // 

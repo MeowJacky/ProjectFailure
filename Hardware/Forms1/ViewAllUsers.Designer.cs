@@ -52,8 +52,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDBDataSet)).BeginInit();
@@ -66,7 +66,7 @@
             this.AUsername.BackColor = System.Drawing.Color.WhiteSmoke;
             this.AUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AUsername.ForeColor = System.Drawing.Color.Black;
-            this.AUsername.Location = new System.Drawing.Point(23, 225);
+            this.AUsername.Location = new System.Drawing.Point(40, 223);
             this.AUsername.Name = "AUsername";
             this.AUsername.Size = new System.Drawing.Size(137, 22);
             this.AUsername.TabIndex = 4;
@@ -253,18 +253,18 @@
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
             this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
-            // signOutToolStripMenuItem
-            // 
-            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
-            this.signOutToolStripMenuItem.Text = "Sign Out";
-            // 
             // workerQuotaToolStripMenuItem
             // 
             this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
             this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
             this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
             this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
+            // 
+            // signOutToolStripMenuItem
+            // 
+            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
+            this.signOutToolStripMenuItem.Text = "Sign Out";
             // 
             // ViewAllUsers
             // 
