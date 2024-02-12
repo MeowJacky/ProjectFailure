@@ -102,6 +102,8 @@ namespace Forms1
 
             Populatecombo();
 
+            DisplayQuota();
+
         }
         private void DisplayAssignedItems()
         {
@@ -114,7 +116,7 @@ namespace Forms1
                                "FROM ItemsAssigned " +
                                "INNER JOIN WorkerAssigned ON ItemsAssigned.PackingID = WorkerAssigned.PackingID " +
                                "INNER JOIN Products ON ItemsAssigned.ItemID = Products.ProductID " +
-                               "WHERE WorkerAssigned.WorkerName = @CurrentUser";
+                               "WHERE WorkerAssigned.WorkerName = @CurrentUser AND WorkerAssigned.IsCompleted = 0"; // Check for incomplete packing IDs
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -138,8 +140,6 @@ namespace Forms1
                             Console.WriteLine($"Added label for product: {productName}, Quantity: {quantity}, Packing ID: {packingID}");
 
                             flowLayoutPanel.Controls.Add(lblItems);
-                            // Add the Label to the FlowLayoutPanel
-                            // flowLayoutPanel.Controls.Add(lblItem);
                         }
                     }
                 }
@@ -313,8 +313,6 @@ namespace Forms1
 
         private void Populatecombo()
         {
-            // TODO: This line of code loads data into the 'userDBDataSet.Admins' table. You can move, or remove it, as needed.
-            //this.adminsTableAdapter.Fill(this.userDBDataSet.Admins);
             comboBox1.Items.Clear(); // Clear the ComboBox items
 
             using (SqlConnection connection = new SqlConnection(strConnectionString))
@@ -322,7 +320,7 @@ namespace Forms1
                 connection.Open();
 
                 // Query to retrieve distinct packing IDs assigned to the worker
-                string query = "SELECT DISTINCT PackingID FROM WorkerAssigned WHERE WorkerName = @CurrentUser";
+                string query = "SELECT DISTINCT PackingID FROM WorkerAssigned WHERE WorkerName = @CurrentUser AND IsCompleted = 0";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -336,6 +334,55 @@ namespace Forms1
                             comboBox1.Items.Add(packingID); // Add packing ID to ComboBox
                         }
                     }
+                }
+            }
+        }
+        private void DisplayQuota()
+        {
+            // Display quota for today's date
+            DisplayQuotaForToday();
+
+            // Display total number of quotas
+            DisplayTotalQuotas();
+        }
+
+        private void DisplayQuotaForToday()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to retrieve quota for today's date
+                string query = "SELECT COUNT(*) FROM Quota WHERE WorkerName = @CurrentUser AND CONVERT(date, CompletedDate) = CONVERT(date, GETDATE())";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentUser", username); // Use username field
+
+                    int quotaForToday = (int)command.ExecuteScalar();
+
+                    // Display quota for today's date
+                    label3.Text = $"Quota for Today ({DateTime.Today.ToShortDateString()}): ";
+                }
+            }
+        }
+        private void DisplayTotalQuotas()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to retrieve total number of quotas
+                string query = "SELECT COUNT(*) FROM Quota WHERE WorkerName = @CurrentUser";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentUser", username); // Use username field
+
+                    int totalQuotas = (int)command.ExecuteScalar();
+
+                    // Display total number of quotas
+                    label4.Text = $"Total Quotas: {totalQuotas}";
                 }
             }
         }
