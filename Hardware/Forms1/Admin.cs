@@ -757,7 +757,7 @@ namespace Forms1
 
         private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AssignItems AssigningItems = new AssignItems();
+            AssignItems AssigningItems = new AssignItems(username, loggedInAdminAuthority);
             AssigningItems.Show();
             this.Hide();
 

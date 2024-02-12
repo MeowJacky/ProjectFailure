@@ -337,5 +337,11 @@ namespace Forms1
             adminpg.Show();
             this.Close();
         }
+
+        private void workerQuotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            adminquota quota = new adminquota();
+            quota.Show();
+        }
     }
 }

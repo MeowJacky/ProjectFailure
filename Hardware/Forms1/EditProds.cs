@@ -396,7 +396,7 @@ private void btnDelete_Click(object sender, EventArgs e)
 
         private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AssignItems AssigningItems = new AssignItems();
+            AssignItems AssigningItems = new AssignItems(username, loggedInAdminAuthority);
             AssigningItems.Show();
             this.Hide();
         }
@@ -406,6 +406,12 @@ private void btnDelete_Click(object sender, EventArgs e)
             LoginPg login = new LoginPg();
             login.Show();
             this.Close();
+        }
+
+        private void workerQuotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            adminquota quota = new adminquota();
+            quota.Show();
         }
     }
 }

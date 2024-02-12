@@ -65,6 +65,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.assignProductsToWorkersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workerQuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -339,6 +340,7 @@
             this.projectWSYSToolStripMenuItem.Name = "projectWSYSToolStripMenuItem";
             this.projectWSYSToolStripMenuItem.Size = new System.Drawing.Size(171, 36);
             this.projectWSYSToolStripMenuItem.Text = "Project W-SYS";
+            this.projectWSYSToolStripMenuItem.Click += new System.EventHandler(this.projectWSYSToolStripMenuItem_Click);
             // 
             // manageUsersToolStripMenuItem
             // 
@@ -355,19 +357,22 @@
             this.Viewusers.Name = "Viewusers";
             this.Viewusers.Size = new System.Drawing.Size(210, 30);
             this.Viewusers.Text = "View All Users";
+            this.Viewusers.Click += new System.EventHandler(this.Viewusers_Click);
             // 
             // addAdminToolStripMenuItem
             // 
             this.addAdminToolStripMenuItem.Name = "addAdminToolStripMenuItem";
             this.addAdminToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.addAdminToolStripMenuItem.Text = "Add Users";
+            this.addAdminToolStripMenuItem.Click += new System.EventHandler(this.addAdminToolStripMenuItem_Click_2);
             // 
             // Productmenu
             // 
             this.Productmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripMenuItem3,
-            this.assignProductsToWorkersToolStripMenuItem});
+            this.assignProductsToWorkersToolStripMenuItem,
+            this.workerQuotaToolStripMenuItem});
             this.Productmenu.Name = "Productmenu";
             this.Productmenu.Size = new System.Drawing.Size(171, 29);
             this.Productmenu.Text = "Manage products";
@@ -377,24 +382,34 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(316, 30);
             this.toolStripMenuItem2.Text = "Edit products";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(316, 30);
             this.toolStripMenuItem3.Text = "Add products";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // assignProductsToWorkersToolStripMenuItem
             // 
             this.assignProductsToWorkersToolStripMenuItem.Name = "assignProductsToWorkersToolStripMenuItem";
             this.assignProductsToWorkersToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
             this.assignProductsToWorkersToolStripMenuItem.Text = "Assign Products to Workers";
+            this.assignProductsToWorkersToolStripMenuItem.Click += new System.EventHandler(this.assignProductsToWorkersToolStripMenuItem_Click);
             // 
             // signOutToolStripMenuItem
             // 
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(171, 29);
             this.signOutToolStripMenuItem.Text = "Sign Out";
+            // 
+            // workerQuotaToolStripMenuItem
+            // 
+            this.workerQuotaToolStripMenuItem.Name = "workerQuotaToolStripMenuItem";
+            this.workerQuotaToolStripMenuItem.Size = new System.Drawing.Size(316, 30);
+            this.workerQuotaToolStripMenuItem.Text = "Worker Quota";
+            this.workerQuotaToolStripMenuItem.Click += new System.EventHandler(this.workerQuotaToolStripMenuItem_Click);
             // 
             // ManageAdmin
             // 
@@ -477,5 +492,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workerQuotaToolStripMenuItem;
     }
 }

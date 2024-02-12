@@ -128,7 +128,7 @@ namespace Forms1
 
         private void assignProductsToWorkersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AssignItems AssigningItems = new AssignItems();
+            AssignItems AssigningItems = new AssignItems(username, loggedInAdminAuthority);
             AssigningItems.Show();
             this.Hide();
         }
@@ -139,6 +139,12 @@ namespace Forms1
             ManageAdmin manage = new ManageAdmin(this.username, userid, loggedInAdminAuthority);
             manage.Show();
             this.Close();
+        }
+
+        private void workerQuotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            adminquota quota = new adminquota();
+            quota.Show();
         }
     }
     
