@@ -107,5 +107,10 @@ namespace Forms1
             DateTime date = ClockDate.Value;
             LoadChartData(date);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

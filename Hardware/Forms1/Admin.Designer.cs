@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.AUsername = new System.Windows.Forms.Label();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.projectWSYSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,9 +83,9 @@
             this.userLoginDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.loginLogsBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.loginLogsBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
-            this.BuzzerDeactivate = new System.Windows.Forms.Button();
-            this.BuzzerCheck = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.BuzzerCheck = new System.Windows.Forms.Label();
+            this.BuzzerDeactivate = new System.Windows.Forms.Button();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clockin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -240,21 +240,21 @@
             // 
             // clockin
             // 
-            chartArea1.Name = "ChartArea1";
-            this.clockin.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.clockin.Legends.Add(legend1);
+            chartArea7.Name = "ChartArea1";
+            this.clockin.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.clockin.Legends.Add(legend7);
             this.clockin.Location = new System.Drawing.Point(0, 0);
             this.clockin.Name = "clockin";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.clockin.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.clockin.Series.Add(series7);
             this.clockin.Size = new System.Drawing.Size(591, 292);
             this.clockin.TabIndex = 0;
             this.clockin.Text = "Employee Clock In";
-            title1.Name = "Employee Clock In";
-            this.clockin.Titles.Add(title1);
+            title3.Name = "Employee Clock In";
+            this.clockin.Titles.Add(title3);
             this.clockin.Click += new System.EventHandler(this.clockin_Click);
             // 
             // editclockin
@@ -348,16 +348,16 @@
             // 
             // TemperatureChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.TemperatureChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.TemperatureChart.Legends.Add(legend2);
+            chartArea8.Name = "ChartArea1";
+            this.TemperatureChart.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.TemperatureChart.Legends.Add(legend8);
             this.TemperatureChart.Location = new System.Drawing.Point(3, 0);
             this.TemperatureChart.Name = "TemperatureChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.TemperatureChart.Series.Add(series2);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.TemperatureChart.Series.Add(series8);
             this.TemperatureChart.Size = new System.Drawing.Size(511, 292);
             this.TemperatureChart.TabIndex = 0;
             this.TemperatureChart.Text = "TemperatureLogs";
@@ -425,16 +425,16 @@
             // 
             // IntrusionChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.IntrusionChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.IntrusionChart.Legends.Add(legend3);
+            chartArea9.Name = "ChartArea1";
+            this.IntrusionChart.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.IntrusionChart.Legends.Add(legend9);
             this.IntrusionChart.Location = new System.Drawing.Point(0, 0);
             this.IntrusionChart.Name = "IntrusionChart";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.IntrusionChart.Series.Add(series3);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.IntrusionChart.Series.Add(series9);
             this.IntrusionChart.Size = new System.Drawing.Size(591, 272);
             this.IntrusionChart.TabIndex = 0;
             this.IntrusionChart.Text = "chart1";
@@ -539,6 +539,17 @@
             this.loginLogsBindingSource4.DataMember = "LoginLogs";
             this.loginLogsBindingSource4.DataSource = this.userLoginDBDataSetBindingSource;
             // 
+            // BuzzerCheck
+            // 
+            this.BuzzerCheck.AutoSize = true;
+            this.BuzzerCheck.BackColor = System.Drawing.Color.White;
+            this.BuzzerCheck.Location = new System.Drawing.Point(40, 396);
+            this.BuzzerCheck.Name = "BuzzerCheck";
+            this.BuzzerCheck.Size = new System.Drawing.Size(34, 17);
+            this.BuzzerCheck.TabIndex = 9;
+            this.BuzzerCheck.Text = "fuck";
+            this.BuzzerCheck.Click += new System.EventHandler(this.BuzzerCheck_Click);
+            // 
             // BuzzerDeactivate
             // 
             this.BuzzerDeactivate.Location = new System.Drawing.Point(12, 441);
@@ -547,16 +558,7 @@
             this.BuzzerDeactivate.TabIndex = 8;
             this.BuzzerDeactivate.Text = "Deactivate Buzzer";
             this.BuzzerDeactivate.UseVisualStyleBackColor = true;
-            // 
-            // BuzzerCheck
-            // 
-            this.BuzzerCheck.AutoSize = true;
-            this.BuzzerCheck.BackColor = System.Drawing.Color.White;
-            this.BuzzerCheck.Location = new System.Drawing.Point(8, 402);
-            this.BuzzerCheck.Name = "BuzzerCheck";
-            this.BuzzerCheck.Size = new System.Drawing.Size(34, 17);
-            this.BuzzerCheck.TabIndex = 9;
-            this.BuzzerCheck.Text = "fuck";
+            this.BuzzerDeactivate.Click += new System.EventHandler(this.BuzzerDeactivate_Click_1);
             // 
             // Admin
             // 
@@ -648,11 +650,11 @@
         private System.Windows.Forms.BindingSource loginLogsBindingSource3;
         private System.Windows.Forms.BindingSource loginLogsBindingSource4;
         private System.Windows.Forms.ToolStripMenuItem assignProductsToWorkersToolStripMenuItem;
-        private System.Windows.Forms.Button BuzzerDeactivate;
-        private System.Windows.Forms.Label BuzzerCheck;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button ClockDateButton;
         private System.Windows.Forms.DateTimePicker ClockDate;
         private System.Windows.Forms.ToolStripMenuItem workerQuotaToolStripMenuItem;
+        private System.Windows.Forms.Label BuzzerCheck;
+        private System.Windows.Forms.Button BuzzerDeactivate;
     }
 }
