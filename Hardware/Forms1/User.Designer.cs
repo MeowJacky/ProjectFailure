@@ -131,7 +131,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox1.Controls.Add(this.Temp);
-            this.groupBox1.Location = new System.Drawing.Point(530, 78);
+            this.groupBox1.Location = new System.Drawing.Point(494, 78);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);

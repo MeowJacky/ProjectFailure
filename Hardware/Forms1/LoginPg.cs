@@ -26,7 +26,7 @@ namespace Forms1
 
         //private DBTempUpdate temperatureUpdateService;
         //private DBOffHoursDetect intrusionDetectionService;
-        private DBUserTempUpdate UserTempService;
+        //private DBUserTempUpdate UserTempService;
 
         //private string extractStringValue(string strData, string ID)
         //{
@@ -208,8 +208,8 @@ namespace Forms1
             //intrusionDetectionService = new DBOffHoursDetect();
             //intrusionDetectionService.UpdateIntrusionDB();
 
-            UserTempService = new DBUserTempUpdate();
-            UserTempService.UpdateTemperature();
+            //UserTempService = new DBUserTempUpdate();
+            //UserTempService.UpdateTemperature();
 
         }
 
