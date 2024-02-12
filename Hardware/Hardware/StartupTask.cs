@@ -277,8 +277,8 @@ namespace Hardware
                 //{
                 //    sendtowindows("Close=" + close);
                 //}
-                if (incoming.Equals("GIBMOVE"))
-                {
+                //if (incoming.Equals("GIBMOVE"))
+                //{
                     incoming = "";
                     sendtowindows("Detect=" + detect);
                     if (detect==true)
@@ -290,7 +290,7 @@ namespace Hardware
                         }
                     }
                     detect = false;
-                }
+                //}
                 if (rfid != "")
                 {
                     sendtowindows("RFID=" + rfid);
@@ -310,6 +310,7 @@ namespace Hardware
                 }
                 if (incoming.Equals("Stoppls"))
                 {
+                    incoming = "";
                     if (curMode == 1)
                     {
                         curMode = 0;
@@ -317,6 +318,7 @@ namespace Hardware
                 }
                 if (incoming.Equals("ModePls"))
                 {
+                    incoming = "";
                     sendtowindows("mode=" + curMode);
                 }
             }

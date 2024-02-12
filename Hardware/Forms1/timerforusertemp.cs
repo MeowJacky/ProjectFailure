@@ -26,15 +26,21 @@ public class DBUserTempUpdate
     public float LatestTemperature()
     {
         //get { return temp; }
+        //temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
+        Console.WriteLine("latest temp: " + temp);
         return temp;
     }
     public float RetrieveTemp()
     {
+        temp = (float)Math.Round(new Random().NextDouble() * 10.0 + 20.0, 2);
+        Console.WriteLine("updated temp: " + temperature);
         return temperature;
     }
 
     public void settemp(float temperatures)
     {
+        Console.WriteLine("settemp:" + temp + " " + temperature);
         temp = temperatures;
         temperature = temperatures;
     }
@@ -54,6 +60,7 @@ public class DBUserTempUpdate
 
     public void UpdateTemperature()
     {
+        Console.WriteLine("updating temp");
         InitComms();
         lock (timerLock)
         {
@@ -79,9 +86,12 @@ public class DBUserTempUpdate
         datacomms.sendData("GIBTEMP");
         datacomms.dataReceiveEvent -= commsdatareceive;
         datacomms.dataSendErrorEvent -= commsSendError;
-        //temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        Console.WriteLine("faking data");
+        temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
         settemp((float)(new Random().NextDouble() * 10.0 + 20.0));
 
+        Console.WriteLine("Latest temperature: " + LatestTemperature());
+        Console.WriteLine("Updated temperature: " + RetrieveTemp());
     }
 
 
@@ -98,6 +108,7 @@ public class DBUserTempUpdate
     private float HandleTemp(string strData, string ID)
     {
         float temp = (float)(new Random().NextDouble() * 10.0 + 20.0);
+        Console.WriteLine("faked teamp:" + temp);
         //temp = extractFloatValue(strData, ID);
         return temp;
     }
@@ -111,6 +122,7 @@ public class DBUserTempUpdate
 
     public void processDataReceive(string strData)
     {
+        Console.WriteLine("process data");
         myprocessDataDelegate d = new myprocessDataDelegate(extractSensorData);
         d(strData);
     }
