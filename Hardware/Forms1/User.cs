@@ -23,7 +23,9 @@ namespace Forms1
 
         private Timer temperatureUpdateTimer;
 
-        private DBUserTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
+        //private DBUserTempUpdate dbTempUpdate; // Assuming you have an instance of DBTempUpdate
+
+        private Temperature temperaturefwuak;
 
         private string extractStringValue(string strData, string ID)
         {
@@ -65,8 +67,8 @@ namespace Forms1
 
         private void InitComms()
         {
-                dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
-                dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
+            dataComms.dataReceiveEvent += new DataComms.DataReceivedDelegate(commsdatareceive);
+            dataComms.dataSendErrorEvent += new DataComms.DataSendErrorDelegate(commsSendError);
         }
         private int selectedpackingID;
         private string username;
@@ -78,7 +80,7 @@ namespace Forms1
             userusername.Text = username;
 
             //ClockButton.Click += ClockButton_Click;
-            dbTempUpdate = new DBUserTempUpdate(); // Assuming you have an instance of DBTempUpdate
+            //dbTempUpdate = new DBUserTempUpdate(); // Assuming you have an instance of DBTempUpdate
 
             InitTemperatureUpdateTimer();
 
@@ -102,6 +104,8 @@ namespace Forms1
 
             Populatecombo();
 
+            DisplayQuota();
+
         }
         private void DisplayAssignedItems()
         {
@@ -114,7 +118,7 @@ namespace Forms1
                                "FROM ItemsAssigned " +
                                "INNER JOIN WorkerAssigned ON ItemsAssigned.PackingID = WorkerAssigned.PackingID " +
                                "INNER JOIN Products ON ItemsAssigned.ItemID = Products.ProductID " +
-                               "WHERE WorkerAssigned.WorkerName = @CurrentUser";
+                               "WHERE WorkerAssigned.WorkerName = @CurrentUser AND WorkerAssigned.IsCompleted = 0"; // Check for incomplete packing IDs
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -138,8 +142,6 @@ namespace Forms1
                             Console.WriteLine($"Added label for product: {productName}, Quantity: {quantity}, Packing ID: {packingID}");
 
                             flowLayoutPanel.Controls.Add(lblItems);
-                            // Add the Label to the FlowLayoutPanel
-                            // flowLayoutPanel.Controls.Add(lblItem);
                         }
                     }
                 }
@@ -313,8 +315,6 @@ namespace Forms1
 
         private void Populatecombo()
         {
-            // TODO: This line of code loads data into the 'userDBDataSet.Admins' table. You can move, or remove it, as needed.
-            //this.adminsTableAdapter.Fill(this.userDBDataSet.Admins);
             comboBox1.Items.Clear(); // Clear the ComboBox items
 
             using (SqlConnection connection = new SqlConnection(strConnectionString))
@@ -322,7 +322,7 @@ namespace Forms1
                 connection.Open();
 
                 // Query to retrieve distinct packing IDs assigned to the worker
-                string query = "SELECT DISTINCT PackingID FROM WorkerAssigned WHERE WorkerName = @CurrentUser";
+                string query = "SELECT DISTINCT PackingID FROM WorkerAssigned WHERE WorkerName = @CurrentUser AND IsCompleted = 0";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -339,6 +339,55 @@ namespace Forms1
                 }
             }
         }
+        private void DisplayQuota()
+        {
+            // Display quota for today's date
+            DisplayQuotaForToday();
+
+            // Display total number of quotas
+            DisplayTotalQuotas();
+        }
+
+        private void DisplayQuotaForToday()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to retrieve quota for today's date
+                string query = "SELECT COUNT(*) FROM Quota WHERE WorkerName = @CurrentUser AND CONVERT(date, CompletedDate) = CONVERT(date, GETDATE())";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentUser", username); // Use username field
+
+                    int quotaForToday = (int)command.ExecuteScalar();
+
+                    // Display quota for today's date
+                    label3.Text = $"Quota for Today ({DateTime.Today.ToShortDateString()}): ";
+                }
+            }
+        }
+        private void DisplayTotalQuotas()
+        {
+            using (SqlConnection connection = new SqlConnection(strConnectionString))
+            {
+                connection.Open();
+
+                // Query to retrieve total number of quotas
+                string query = "SELECT COUNT(*) FROM Quota WHERE WorkerName = @CurrentUser";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentUser", username); // Use username field
+
+                    int totalQuotas = (int)command.ExecuteScalar();
+
+                    // Display total number of quotas
+                    label4.Text = $"Total Quotas: {totalQuotas}";
+                }
+            }
+        }
         private void User_Load(object sender, EventArgs e)
         {
             
@@ -346,7 +395,7 @@ namespace Forms1
 
         private void LabelChangeWhenLoad()
         {
-            Temp.Text = dbTempUpdate.LatestTemperature().ToString() + " Degrees";
+            Temp.Text = temperaturefwuak.GetTemp().ToString() + " Degrees";
         }
 
 
@@ -364,11 +413,11 @@ namespace Forms1
         {
             // Update the temperature label here
             //Temp.Text = dbTempUpdate.LatestTemperature().ToString() + " Degrees";
-            Console.WriteLine(dbTempUpdate.LatestTemperature() + "this bitch not working");
+            Console.WriteLine(temperaturefwuak.GetTemp() + "this bitch not working");
 
-            DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
+            //DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
             //TempCheck.settemp();
-            Temp.Text = (dbTempUpdate.LatestTemperature().ToString() + " degrees");
+            Temp.Text = (temperaturefwuak.GetTemp().ToString() + " degrees");
         }
 
         private void User_FormClosed(object sender, FormClosedEventArgs e)
