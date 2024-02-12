@@ -353,7 +353,7 @@ namespace Forms1
 
             DBUserTempUpdate TempCheck = DBUserTempUpdate.tempinstance;
             //TempCheck.settemp();
-            Temp.Text = TempCheck.RetrieveTemp().ToString();
+            Temp.Text = (dbTempUpdate.LatestTemperature().ToString() + " degrees");
         }
 
         private void User_FormClosed(object sender, FormClosedEventArgs e)
@@ -614,6 +614,11 @@ namespace Forms1
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Temp_Click(object sender, EventArgs e)
         {
 
         }
