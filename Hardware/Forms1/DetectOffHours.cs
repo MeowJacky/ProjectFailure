@@ -40,10 +40,10 @@ public class DBOffHoursDetect
     }
     private void Intrusiontimer_Tick(object sender, EventArgs e)
     {
-        datacomms.sendData("GIBMOVE");
+        //datacomms.sendData("GIBMOVE");
         Intrusion();
-        datacomms.dataReceiveEvent -= commsdatareceive;
-        datacomms.dataSendErrorEvent -= commsSendError;
+        //datacomms.dataReceiveEvent -= commsdatareceive;
+        //datacomms.dataSendErrorEvent -= commsSendError;
     }
     //if (DetectIntrusionsRPI())
     //if ((CheckTimeRange()) && RandomDetect())
@@ -52,7 +52,9 @@ public class DBOffHoursDetect
 
     private void Intrusion()
     {
-        if ((detect))
+        bool detect = RandomDetect();
+        Console.WriteLine("hi detect: " + detect);
+        if (detect)
         {
             int result = 0;
             int detectionStatus = 1;
@@ -87,8 +89,7 @@ public class DBOffHoursDetect
         // Use a random number generator to generate a value between 0 and 1
         double randomValue = new Random().NextDouble();
 
-        // Set the activation percentage (0.01% or 0.0001)
-        double activationPercentage = 0.01;
+        double activationPercentage = 0.25;
 
         // Check if the generated value is within the activation range
         return randomValue < activationPercentage;
