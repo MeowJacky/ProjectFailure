@@ -34,10 +34,21 @@ namespace Forms1
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
+                    // Check file extension to ensure it's an image file
+                    string fileExtension = Path.GetExtension(ofd.FileName).ToLower();
+                    if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg")
+                    {
+                        MessageBox.Show("Please select a valid image file (PNG, JPG, JPEG).");
+                        return;
+                    }
+
+                    // Dispose existing image if any
                     if (pictureBox.Image != null)
                     {
                         pictureBox.Image.Dispose();
                     }
+
+                    // Assign the selected image to the picture box
                     imageUrl = ofd.FileName;
                     pictureBox.Image = Image.FromFile(ofd.FileName);
                 }
@@ -58,6 +69,58 @@ namespace Forms1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            // Check if an image is selected
+            if (pictureBox.Image == null)
+            {
+                MessageBox.Show("Please select an image.");
+                return;
+            }
+
+            // Validate image format
+            string fileExtension = Path.GetExtension(imageUrl).ToLower();
+            if (fileExtension != ".png" && fileExtension != ".jpg" && fileExtension != ".jpeg")
+            {
+                MessageBox.Show("Please select a valid image file (PNG, JPG, JPEG).");
+                return;
+            }
+
+            // Validate product name
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Please enter a product name.");
+                return;
+            }
+
+            // Validate description
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Please enter a description.");
+                return;
+            }
+
+            // Validate stock
+
+            int stock;
+            if (!int.TryParse(textBox4.Text, out stock) || stock < 0)
+            {
+                MessageBox.Show("Please enter a valid stock quantity.");
+                return;
+            }
+
+            decimal price;
+            if (!decimal.TryParse(textBox5.Text, out price) || price <= 0)
+            {
+                MessageBox.Show("Please enter a valid price.");
+                return;
+            }
+
+            // Validate RFID
+            if (string.IsNullOrWhiteSpace(textBox1.Text) || textBox1.Text.Length != 8)
+            {
+                MessageBox.Show("Please enter a valid 8-digit RFID.");
+                return;
+            }
+
             using (SqlConnection connection = new SqlConnection(strConnectionString))
             {
                 Image img = pictureBox.Image;
@@ -66,11 +129,11 @@ namespace Forms1
                 arr = (byte[])converter.ConvertTo(img, typeof(byte[]));
                 connection.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO Products (Product_Name,Description,Stock,Price,Image,ProductRFID,FileName,Category,Shelve) VALUES (@Product_Name,@Description,@Stock,@Price,@Image,@ProductRFID,@FileName,@Category,@Shelve)",connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Products (Product_Name,Description,Stock,Price,Image,ProductRFID,FileName,Category,Shelve) VALUES (@Product_Name,@Description,@Stock,@Price,@Image,@ProductRFID,@FileName,@Category,@Shelve)", connection);
                 cmd.Parameters.AddWithValue("@Product_Name", textBox2.Text);
                 cmd.Parameters.AddWithValue("@Description", textBox3.Text);
-                cmd.Parameters.AddWithValue("@Stock", textBox4.Text);
-                cmd.Parameters.AddWithValue("@Price", textBox5.Text);
+                cmd.Parameters.AddWithValue("@Stock", stock);
+                cmd.Parameters.AddWithValue("@Price", price);
                 cmd.Parameters.AddWithValue("@Image", arr);
                 cmd.Parameters.AddWithValue("@ProductRFID", textBox1.Text);
                 string ImageName = Path.GetFileName(imageUrl);
@@ -91,6 +154,7 @@ namespace Forms1
                 connection.Close();
             }
         }
+
 
         private int GetShelveNumber(string category)
         {
@@ -118,6 +182,11 @@ namespace Forms1
             Admin adminpg = new Admin(this.username, sessionId.RetrieveAuthority());
             adminpg.Show();
             this.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
