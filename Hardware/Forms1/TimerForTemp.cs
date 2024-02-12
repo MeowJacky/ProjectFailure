@@ -25,7 +25,7 @@ public class DBTempUpdate
             if (timer == null)
             {
                 timer = new Timer();
-                timer.Interval = 5000; // 10 seconds for testing 10000
+                timer.Interval = 1000;
                 timer.Tick += Timer_Tick;
 
                 // Ensure that timer operations run on the UI thread
@@ -40,6 +40,7 @@ public class DBTempUpdate
 
     private void Timer_Tick(object sender, EventArgs e)
     {
+        Console.WriteLine("work?");
         datacomms.sendData("GIBTEMP");
         UpdateTemperatureInDatabase();
         datacomms.dataReceiveEvent += commsdatareceive;

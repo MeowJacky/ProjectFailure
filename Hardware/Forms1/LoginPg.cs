@@ -24,9 +24,9 @@ namespace Forms1
 
         //public delegate void myprocessDataDelegate(string strData);
 
-        //private DBTempUpdate temperatureUpdateService;
-        //private DBOffHoursDetect intrusionDetectionService;
-        //private DBUserTempUpdate UserTempService;
+        private DBTempUpdate temperatureUpdateService;
+        private DBOffHoursDetect intrusionDetectionService;
+        private DBUserTempUpdate UserTempService;
 
         //private string extractStringValue(string strData, string ID)
         //{
@@ -202,14 +202,14 @@ namespace Forms1
 
         private void LoginPg_Load(object sender, EventArgs e)
         {
-            //temperatureUpdateService = new DBTempUpdate();
-            //temperatureUpdateService.UpdateTemperatureDB();
+            temperatureUpdateService = new DBTempUpdate();
+            temperatureUpdateService.UpdateTemperatureDB();
 
-            //intrusionDetectionService = new DBOffHoursDetect();
-            //intrusionDetectionService.UpdateIntrusionDB();
+            intrusionDetectionService = new DBOffHoursDetect();
+            intrusionDetectionService.UpdateIntrusionDB();
 
-            //UserTempService = new DBUserTempUpdate();
-            //UserTempService.UpdateTemperature();
+            UserTempService = new DBUserTempUpdate();
+            UserTempService.UpdateTemperature();
 
         }
 
