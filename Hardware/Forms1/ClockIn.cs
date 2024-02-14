@@ -23,7 +23,7 @@ namespace Forms1
             InitializeComponent();
             label2.Visible = false;
             label8.Visible = false;
-            button4.Visible = false;
+            button4.Visible = true;
         }
 
         private void ClockIn_Load(object sender, EventArgs e)
